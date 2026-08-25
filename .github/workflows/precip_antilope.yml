@@ -1,0 +1,51 @@
+name: Suivi précipitations ANTILOPE (5 min)
+
+on:
+  schedule:
+    # Toutes les 5 minutes. GitHub Actions ne garantit pas une exécution
+    # pile à l'heure (délai possible en cas de forte charge sur les
+    # workflows planifiés publics) — c'est sans gravité ici : le script
+    # est idempotent (déduplication par validity_time) et signale en log
+    # tout jour dont le cumul est basé sur moins de 288 instantanés.
+    - cron: "*/5 * * * *"
+  workflow_dispatch: {}  # permet un déclenchement manuel depuis l'onglet Actions
+
+permissions:
+  contents: write
+
+concurrency:
+  group: precip-antilope
+  cancel-in-progress: false  # on met en file plutôt que d'annuler, pour ne pas sauter d'instantané
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Installer les dépendances (requests, rasterio, pyproj uniquement)
+        run: pip install requests rasterio pyproj
+
+      - name: Interroger ANTILOPE et mettre à jour le CSV
+        env:
+          METEOFRANCE_APPLICATION_ID: ${{ secrets.METEOFRANCE_APPLICATION_ID }}
+        run: python precip_daily_update.py
+
+      - name: Committer les changements (CSV / état), s'il y en a
+        run: |
+          git config user.name "precip-bot"
+          git config user.email "actions@users.noreply.github.com"
+          for f in precip_yavannome.csv precip_antilope_state.json; do
+            [ -f "$f" ] && git add "$f"
+          done
+          if git diff --cached --quiet; then
+            echo "Rien de nouveau à committer."
+          else
+            git commit -m "Mise à jour ANTILOPE $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git push
+          fi
