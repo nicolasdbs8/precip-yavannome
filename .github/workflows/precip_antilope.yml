@@ -58,7 +58,7 @@ jobs:
               exit 0
             fi
             echo "Push rejeté (commit concurrent), fusion et nouvel essai ($i)..."
-            git pull --no-edit origin main
+            git pull --no-rebase --no-edit origin main
           done
           echo "Échec du push après plusieurs tentatives" >&2
           exit 1
