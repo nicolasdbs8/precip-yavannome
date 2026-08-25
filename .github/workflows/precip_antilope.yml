@@ -28,8 +28,8 @@ jobs:
           python-version: "3.12"
           cache: "pip"
 
-      - name: Installer les dépendances (requests, rasterio, pyproj uniquement)
-        run: pip install requests rasterio pyproj
+      - name: Installer les dépendances (requests, rasterio, pyproj, h5py uniquement)
+        run: pip install requests rasterio pyproj h5py
 
       - name: Interroger ANTILOPE et mettre à jour le CSV
         env:
