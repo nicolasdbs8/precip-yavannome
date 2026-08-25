@@ -46,7 +46,19 @@ jobs:
           done
           if git diff --cached --quiet; then
             echo "Rien de nouveau à committer."
-          else
-            git commit -m "Mise à jour ANTILOPE $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-            git push
+            exit 0
           fi
+          git commit -m "Mise à jour ANTILOPE $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          # Réessai avec fusion en cas de push concurrent (ex: job merge du
+          # backfill COMEPHORE qui pousse au même moment) — le CSV partagé
+          # fusionne sans conflit grâce à .gitattributes (merge=union),
+          # precip_antilope_state.json n'est modifié que par ce workflow.
+          for i in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push rejeté (commit concurrent), fusion et nouvel essai ($i)..."
+            git pull --no-edit origin main
+          done
+          echo "Échec du push après plusieurs tentatives" >&2
+          exit 1
