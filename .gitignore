@@ -3,3 +3,4 @@ __pycache__/
 .env
 *.png
 *.html
+comephore_extract.log
