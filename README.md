@@ -118,8 +118,26 @@ secret GitHub mis à jour, voir plus bas) à ce moment-là.
    clé API obtenue ci-dessus.
 4. Onglet **Actions** du dépôt : le workflow *"Suivi précipitations
    ANTILOPE (5 min)"* ([.github/workflows/precip_antilope.yml](.github/workflows/precip_antilope.yml))
-   apparaît et tourne automatiquement toutes les 5 minutes (`workflow_dispatch`
-   permet aussi un déclenchement manuel immédiat pour tester).
+   apparaît (`workflow_dispatch` permet un déclenchement manuel immédiat
+   pour tester).
+
+**Cadence régulière — cron-job.org** : le `schedule:` natif de GitHub
+Actions n'a aucune garantie de ponctualité (retards fréquents de
+plusieurs minutes en cas de forte charge sur les workflows planifiés
+publics). Pour un vrai passage toutes les 5 minutes, un cron externe
+gratuit ([cron-job.org](https://cron-job.org)) appelle l'API GitHub pour
+déclencher `workflow_dispatch` :
+
+- URL : `https://api.github.com/repos/VOTRE_USER/precip-yavannome/actions/workflows/precip_antilope.yml/dispatches`
+- Méthode : `POST`, toutes les 5 minutes
+- En-têtes : `Authorization: Bearer VOTRE_TOKEN_GITHUB` (token *fine-grained*,
+  scopé au seul dépôt, permission Actions "Read and write"), `Accept:
+  application/vnd.github+json`, `Content-Type: application/json`
+- Corps : `{"ref":"main"}`
+
+Le `schedule:` interne (toutes les 30 min) reste actif en secours si
+cron-job.org tombe en panne — ce n'est pas la source de la cadence
+régulière, juste un filet de sécurité redondant.
 
 Le workflow committe et pousse `precip_yavannome.csv` et
 `precip_antilope_state.json` à chaque instantané traité — un commit

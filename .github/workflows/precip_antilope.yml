@@ -2,13 +2,14 @@ name: Suivi précipitations ANTILOPE (5 min)
 
 on:
   schedule:
-    # Toutes les 5 minutes. GitHub Actions ne garantit pas une exécution
-    # pile à l'heure (délai possible en cas de forte charge sur les
-    # workflows planifiés publics) — c'est sans gravité ici : le script
-    # est idempotent (déduplication par validity_time) et signale en log
-    # tout jour dont le cumul est basé sur moins de 288 instantanés.
-    - cron: "*/5 * * * *"
-  workflow_dispatch: {}  # permet un déclenchement manuel depuis l'onglet Actions
+    # Filet de sécurité seulement — le rythme régulier toutes les 5 min est
+    # assuré par un cron externe (cron-job.org) qui déclenche workflow_dispatch
+    # ci-dessous via l'API GitHub. Le schedule natif de GitHub Actions n'a
+    # aucune garantie de ponctualité (retards fréquents de plusieurs minutes,
+    # voire runs sautés en cas de forte charge) — inutile de compter dessus
+    # pour la cadence, mais utile en secours si cron-job.org tombe en panne.
+    - cron: "*/30 * * * *"
+  workflow_dispatch: {}  # déclenché toutes les 5 min par cron-job.org (API dispatch), et manuellement depuis l'onglet Actions
 
 permissions:
   contents: write
