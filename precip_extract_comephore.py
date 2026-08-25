@@ -138,7 +138,14 @@ def download_file(url: str, dest: Path, retries: int = 3) -> None:
 def read_pixel_value(tif_path: Path) -> float | None:
     """Lit la valeur du pixel du raster `tif_path` à la position du terrain.
     Reprojette les coordonnées cibles (EPSG:2154) vers le CRS natif du
-    raster, quel qu'il soit. Retourne None si hors-emprise ou nodata."""
+    raster, quel qu'il soit. Retourne None si hors-emprise ou nodata.
+
+    Vérifié sur un fichier réel (juin 2026) : GeoTIFF uint16, échelle/offset
+    à 1.0/0.0 (valeurs déjà en mm, pas de conversion à appliquer), mais SANS
+    tag nodata déclaré alors que la grille dépasse la couverture radar
+    (max brut = 65535 = valeur max uint16, sur une bonne partie du domaine).
+    On traite donc explicitement cette valeur sentinelle comme nodata,
+    en plus du tag nodata s'il est présent."""
     import rasterio
     from pyproj import Transformer
 
@@ -149,10 +156,15 @@ def read_pixel_value(tif_path: Path) -> float | None:
         if not (0 <= row < src.height and 0 <= col < src.width):
             return None
         band = src.read(1, window=((row, row + 1), (col, col + 1)))
-        value = float(band[0, 0])
+        raw = band[0, 0]
+        value = float(raw)
         nodata = src.nodata
         if nodata is not None and value == nodata:
             return None
+        if nodata is None and str(raw.dtype).startswith("uint"):
+            max_representable = float(2 ** (raw.dtype.itemsize * 8) - 1)
+            if value == max_representable:
+                return None
         return value
 
 
@@ -176,12 +188,17 @@ def process_month(month: str, url: str, seen_dates: set[str]) -> list[tuple[str,
         finally:
             tar_path.unlink(missing_ok=True)  # libère l'espace disque au plus vite
 
+        # Chaque heure a 3 GeoTIFF : _RR (hauteur de précipitation, la donnée
+        # voulue), _ERR (champ d'erreur d'estimation) et _QUALIF (indicateur
+        # de qualité). Vérifié sur un fichier réel (juin 2026) — ne pas
+        # filtrer sur "_RR" fait sommer les trois valeurs ensemble, ce qui
+        # gonfle massivement le cumul (bug corrigé le 25/08/2026).
         tif_files = sorted(
             p for p in extract_dir.rglob("*")
-            if p.suffix.lower() in (".tif", ".tiff", ".gtif")
+            if p.suffix.lower() in (".tif", ".tiff", ".gtif") and p.stem.upper().endswith("_RR")
         )
         if not tif_files:
-            log.warning("Aucun GeoTIFF trouvé dans l'archive du mois %s — format inattendu ?", month)
+            log.warning("Aucun GeoTIFF _RR trouvé dans l'archive du mois %s — format inattendu ?", month)
             return []
 
         daily_sums: dict[str, float] = defaultdict(float)
