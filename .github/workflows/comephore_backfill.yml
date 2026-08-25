@@ -1,0 +1,92 @@
+name: Backfill COMÉPHORE historique (parallèle, ponctuel)
+
+# Job manuel, à déclencher une fois (onglet Actions -> Run workflow) pour
+# reconstituer l'historique 1997 -> aujourd'hui en parallèle plutôt qu'en
+# local (~17-18h en série sur un PC contre quelques heures en parallèle,
+# et sans avoir à laisser le PC allumé). Chaque bloc d'années tourne dans
+# un job isolé avec son propre CSV, fusionnés une seule fois à la fin —
+# ça évite tout conflit avec les commits du suivi ANTILOPE en continu.
+on:
+  workflow_dispatch: {}
+
+jobs:
+  extract:
+    strategy:
+      fail-fast: false
+      matrix:
+        range:
+          - { start: "1997-01", end: "2001-12", name: "1997-2001" }
+          - { start: "2002-01", end: "2006-12", name: "2002-2006" }
+          - { start: "2007-01", end: "2011-12", name: "2007-2011" }
+          - { start: "2012-01", end: "2016-12", name: "2012-2016" }
+          - { start: "2017-01", end: "2021-12", name: "2017-2021" }
+          - { start: "2022-01", end: "", name: "2022-present" }
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Installer les dépendances
+        run: pip install requests rasterio pyproj
+
+      - name: "Extraire ${{ matrix.range.name }}"
+        env:
+          PRECIP_CSV_PATH: ${{ github.workspace }}/chunk_${{ matrix.range.name }}.csv
+        run: |
+          if [ -n "${{ matrix.range.end }}" ]; then
+            python precip_extract_comephore.py --start "${{ matrix.range.start }}" --end "${{ matrix.range.end }}"
+          else
+            python precip_extract_comephore.py --start "${{ matrix.range.start }}"
+          fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: "comephore-chunk-${{ matrix.range.name }}"
+          path: "chunk_${{ matrix.range.name }}.csv"
+
+  merge:
+    needs: extract
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Installer les dépendances
+        run: pip install pandas
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: chunks
+
+      - name: Fusionner les blocs dans le CSV partagé
+        run: python merge_comephore_chunks.py chunks precip_yavannome.csv
+
+      - name: Committer et pousser (avec réessai en cas de commit concurrent du bot ANTILOPE)
+        run: |
+          git config user.name "precip-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add precip_yavannome.csv
+          if git diff --cached --quiet; then
+            echo "Rien de nouveau à committer."
+            exit 0
+          fi
+          git commit -m "Backfill COMÉPHORE historique (parallèle, run ${{ github.run_id }})"
+          for i in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push rejeté (commit concurrent), fusion et nouvel essai ($i)..."
+            git pull --no-edit origin main
+          done
+          echo "Échec du push après plusieurs tentatives" >&2
+          exit 1
