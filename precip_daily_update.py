@@ -42,16 +42,19 @@ Authentification (à faire une fois, gratuit)
 ---------------------------------------------
 1. Compte sur https://portail-api.meteofrance.fr/, s'abonner à l'API
    "données radar" (DPRadar).
-2. Sur cette API : badge application (ex. "DefaultApplication") en haut de
-   la page > onglet Clés et secrets / Credentials > générer les clés.
-   La commande curl affichée contient, après "Authorization: Basic ",
-   votre APPLICATION_ID.
-3. Stocker cet identifiant en variable d'environnement (jamais en dur) :
+2. Sur la page "Configurer l'API" de cette API : choisir le mode
+   **"API Key"** (pas OAuth2), renseigner une durée de validité longue en
+   secondes (essayer 31536000 = 1 an ; réduire si refusé par le
+   formulaire), cliquer "Générer Token", révéler la valeur (icône œil) et
+   la copier.
+3. Stocker cette clé en variable d'environnement (jamais en dur) :
 
-     setx METEOFRANCE_APPLICATION_ID "votre_application_id_ici"
+     setx METEOFRANCE_APPLICATION_ID "votre_cle_api_ici"
 
-Le script échange cet APPLICATION_ID contre un token Bearer (courte durée,
-1h) à chaque exécution — flux OAuth2 client_credentials officiel.
+Cette clé est envoyée telle quelle dans l'en-tête `apikey` à chaque
+requête (pas d'échange OAuth2 côté script — plus simple, mais la clé
+expire à la durée choisie et devra être régénérée manuellement à ce
+moment-là, contrairement à un flux OAuth2 client_credentials classique).
 
 Tâche planifiée — toutes les 5 minutes, en continu
 -----------------------------------------------------
@@ -84,7 +87,6 @@ from precip_common import CSV_PATH, TARGET_L93_X, TARGET_L93_Y, append_rows, exi
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 log = logging.getLogger("antilope")
 
-TOKEN_URL = "https://portail-api.meteofrance.fr/token"
 API_BASE = "https://public-api.meteofrance.fr/public/DPRadar/v1"
 ZONE = "METROPOLE"
 MAILLE = 1000  # 1000 m -> format gzip/GeoTIFF géré par rasterio ; 500 m est en HDF5 (non géré ici)
@@ -100,37 +102,26 @@ STATE_PATH = Path(os.environ.get("PRECIP_STATE_PATH", CSV_PATH.parent / "precip_
 OBSERVATION_OVERRIDE = os.environ.get("METEOFRANCE_OBSERVATION")
 
 
-def get_application_id() -> str:
-    app_id = os.environ.get("METEOFRANCE_APPLICATION_ID")
-    if not app_id:
+def get_auth_headers() -> dict[str, str]:
+    """Clé API statique (mode "API Key" du portail, header `apikey`) —
+    plus simple qu'un échange OAuth2, mais expire à la durée choisie lors
+    de sa génération sur le portail (à régénérer manuellement à ce
+    moment-là)."""
+    api_key = os.environ.get("METEOFRANCE_APPLICATION_ID")
+    if not api_key:
         raise RuntimeError(
             "Variable d'environnement METEOFRANCE_APPLICATION_ID absente. "
             "Voir la documentation en tête de fichier / README.md pour l'obtenir."
         )
-    return app_id
+    return {"apikey": api_key}
 
 
-def get_token() -> str:
-    app_id = get_application_id()
-    resp = requests.post(
-        TOKEN_URL,
-        data={"grant_type": "client_credentials"},
-        headers={"Authorization": f"Basic {app_id}"},
-        timeout=30,
-    )
-    resp.raise_for_status()
-    token = resp.json().get("access_token")
-    if not token:
-        raise RuntimeError(f"Réponse inattendue du serveur de token : {resp.text[:200]}")
-    return token
-
-
-def discover_observation_name(token: str) -> str:
+def discover_observation_name(headers: dict[str, str]) -> str:
     """Retourne le nom de l'observation à utiliser (ex: 'LAME_D_EAU'),
     détecté dans le catalogue en direct plutôt que figé en dur."""
     if OBSERVATION_OVERRIDE:
         return OBSERVATION_OVERRIDE
-    headers = {"Authorization": f"Bearer {token}", "accept": "application/json"}
+    headers = {**headers, "accept": "application/json"}
     resp = requests.get(f"{API_BASE}/mosaiques/{ZONE}/observations", headers=headers, timeout=30)
     resp.raise_for_status()
     data = resp.json()
@@ -153,10 +144,10 @@ def discover_observation_name(token: str) -> str:
     )
 
 
-def get_latest_snapshot(token: str, observation: str) -> tuple[str, str]:
+def get_latest_snapshot(headers: dict[str, str], observation: str) -> tuple[str, str]:
     """Retourne (validity_time ISO8601, url de téléchargement) pour la
     maille configurée, à partir du dernier instantané disponible."""
-    headers = {"Authorization": f"Bearer {token}", "accept": "application/json"}
+    headers = {**headers, "accept": "application/json"}
     resp = requests.get(f"{API_BASE}/mosaiques/{ZONE}/observations/{observation}", headers=headers, timeout=30)
     resp.raise_for_status()
     data = resp.json()
@@ -171,8 +162,8 @@ def get_latest_snapshot(token: str, observation: str) -> tuple[str, str]:
     raise RuntimeError(f"Aucun produit à la maille {MAILLE} trouvé pour {observation} : {links}")
 
 
-def download_product(token: str, href: str) -> bytes:
-    headers = {"Authorization": f"Bearer {token}", "accept": "*/*"}
+def download_product(headers: dict[str, str], href: str) -> bytes:
+    headers = {**headers, "accept": "*/*"}
     resp = requests.get(href, headers=headers, timeout=60)
     resp.raise_for_status()
     return resp.content
@@ -253,14 +244,14 @@ def flush_day(day: str, sum_mm: float, n_slots: int) -> None:
 
 def main() -> int:
     try:
-        token = get_token()
+        headers = get_auth_headers()
     except Exception as exc:
         log.error("Authentification échouée : %s", exc)
         return 1
 
     try:
-        observation = discover_observation_name(token)
-        validity_time, href = get_latest_snapshot(token, observation)
+        observation = discover_observation_name(headers)
+        validity_time, href = get_latest_snapshot(headers, observation)
     except Exception as exc:
         log.error("Découverte du produit/instantané échouée : %s", exc)
         return 1
@@ -285,7 +276,7 @@ def main() -> int:
         state["day"] = day_str
 
     try:
-        raw = download_product(token, href)
+        raw = download_product(headers, href)
     except requests.HTTPError as exc:
         if exc.response is not None and exc.response.status_code == 429:
             log.error("Quota API dépassé (429). Nouvelle tentative au prochain passage planifié.")

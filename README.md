@@ -56,73 +56,87 @@ python precip_extract_comephore.py --start 1997-01
 - `--start`/`--end` au format `YYYY-MM` ; `--end` par défaut = mois courant − 2
   (dernier mois normalement publié par COMÉPHORE).
 
-## Étape 2 — Suivi quotidien ANTILOPE
+## Étape 2 — Suivi quasi-continu ANTILOPE / LAME_D_EAU
+
+### Pourquoi ce n'est pas une simple requête quotidienne
+
+Vérification faite en conditions réelles : le catalogue de l'API "données
+radar" (DPRadar) n'expose pas de cumul pré-calculé sur 24h/96h — seuls
+`LAME_D_EAU` (mosaïque radar 5 min) et `REFLECTIVITE` existent, et la doc
+précise que **seul le dernier instantané est disponible** (pas
+d'historique interrogeable à la demande). Le script doit donc être
+exécuté **toutes les 5 minutes** pour ne pas perdre de pluie tombée entre
+deux passages, et additionner les instantanés en un cumul journalier
+persistant (`precip_antilope_state.json`).
+
+Comme le suivi doit tourner 24h/24 et que le PC ne doit pas rester allumé
+en continu, l'exécution se fait dans le cloud via **GitHub Actions**
+(gratuit sur dépôt public), pas sur votre machine.
 
 ### Inscription API Météo-France (gratuite)
 
 1. Créer un compte sur https://portail-api.meteofrance.fr/
-2. Une fois connecté : **Mes API** → s'abonner à l'API donnant accès aux
-   cumuls de précipitations radar (catalogue "API Ciblée Radar" / "Données
-   radars" au moment de la rédaction — le catalogue évolue, vérifier la
-   présence éventuelle d'une API dédiée "ANTILOPE"/"Précipitations").
-3. Sur cette API, cliquer **Générer Token** : la commande `curl` affichée
-   contient, après `Authorization: Basic `, votre `APPLICATION_ID`.
-4. Stocker cet identifiant en variable d'environnement (jamais en dur dans
-   le code — voir `.env.example`) :
+2. Une fois connecté : **Mes API** → s'abonner à l'API **"données radar"**
+   (DPRadar).
+3. Sur la page "Configurer l'API" de cette API, choisir le mode
+   **"API Key"** (pas OAuth2), indiquer une durée de validité longue en
+   secondes (essayer `31536000` = 1 an ; réduire si le formulaire la
+   refuse), cliquer **Générer Token**, révéler la valeur (icône œil) et la
+   copier.
 
-   ```powershell
-   setx METEOFRANCE_APPLICATION_ID "votre_application_id_ici"
+Cette clé est envoyée telle quelle dans l'en-tête `apikey` à chaque
+requête — plus simple qu'un échange OAuth2, mais elle **expire à la durée
+choisie à sa génération** et devra être régénérée manuellement (et le
+secret GitHub mis à jour, voir plus bas) à ce moment-là.
+
+> **Point d'attention** : le nom exact du produit (identifiant, format du
+> fichier renvoyé) dépend du catalogue réellement accessible à votre
+> abonnement, qui évolue. Le script interroge donc le catalogue en direct
+> pour détecter automatiquement un produit `ANTILOPE`/`LAME_D_EAU`. Si la
+> détection échoue, il affiche la liste des produits disponibles ; fixez
+> alors `METEOFRANCE_OBSERVATION` (variable d'env) avec le nom exact
+> trouvé. Si le format du fichier reçu n'est ni GeoTIFF ni GeoTIFF gzippé,
+> la fonction à adapter est `extract_raster_value()` dans
+> `precip_daily_update.py` — se référer au "Descriptif technique des
+> produits" (onglet documentation du portail des données publiques
+> Météo-France).
+
+### Mise en place GitHub Actions (une fois)
+
+1. Créer un dépôt **public** sur https://github.com/new (ex. nom :
+   `precip-yavannome`), sans README/gitignore auto-générés.
+2. Pousser ce projet :
+
+   ```bash
+   git remote add origin https://github.com/VOTRE_USER/precip-yavannome.git
+   git branch -M main
+   git push -u origin main
    ```
 
-   (rouvrir le terminal pour que la variable soit prise en compte par les
-   futures sessions ; `$env:METEOFRANCE_APPLICATION_ID = "..."` pour la
-   session courante uniquement)
+3. Dans le dépôt GitHub : **Settings → Secrets and variables → Actions →
+   New repository secret**, nom `METEOFRANCE_APPLICATION_ID`, valeur = la
+   clé API obtenue ci-dessus.
+4. Onglet **Actions** du dépôt : le workflow *"Suivi précipitations
+   ANTILOPE (5 min)"* ([.github/workflows/precip_antilope.yml](.github/workflows/precip_antilope.yml))
+   apparaît et tourne automatiquement toutes les 5 minutes (`workflow_dispatch`
+   permet aussi un déclenchement manuel immédiat pour tester).
 
-Le script échange cet identifiant contre un token Bearer à chaque exécution
-(`POST https://portail-api.meteofrance.fr/token`) — c'est le flux OAuth2
-officiel documenté par Météo-France, pas une clé API statique.
+Le workflow committe et pousse `precip_yavannome.csv` et
+`precip_antilope_state.json` à chaque instantané traité — un commit
+toutes les ~5 minutes est normal et attendu (gratuit sur dépôt public,
+et ça évite la désactivation automatique du workflow après 60 jours
+d'inactivité du dépôt).
 
-> **Point d'attention** : le nom exact du produit ANTILOPE (identifiant,
-> périodes de cumul disponibles, format du fichier renvoyé) dépend du
-> catalogue réellement accessible à votre abonnement, qui évolue. Le script
-> interroge donc le catalogue en direct pour détecter automatiquement un
-> produit `ANTILOPE`/`LAME_D_EAU`. Si la détection échoue, il affiche la
-> liste des produits disponibles ; fixez alors `METEOFRANCE_OBSERVATION`
-> (variable d'env) avec le nom exact trouvé. Si le format du fichier reçu
-> n'est ni GeoTIFF ni GeoTIFF gzippé, la fonction à adapter est
-> `extract_raster_value()` dans `precip_daily_update.py` — se référer au
-> "Descriptif technique des produits" (onglet documentation du portail des
-> données publiques Météo-France).
+Un instantané déjà comptabilisé n'est jamais recompté (déduplication par
+`validity_time` dans l'état persistant) : le script est donc idempotent
+même relancé manuellement ou après une interruption. Une erreur de quota
+(HTTP 429) ou de format inattendu est journalisée dans les logs Actions
+sans faire planter les exécutions suivantes.
 
-### Exécution manuelle
+### Exécution manuelle (test local, optionnel)
 
 ```bash
 python precip_daily_update.py
-```
-
-Ajoute le cumul 24h du jour courant au CSV partagé (`source=antilope`),
-sans doublon si déjà exécuté le même jour. Une erreur de quota (HTTP 429)
-ou de disponibilité produit est journalisée sans faire planter le script —
-le prochain passage planifié réessaiera.
-
-### Tâche planifiée
-
-**Windows** (Planificateur de tâches), exécution quotidienne à 07h00 :
-
-```powershell
-schtasks /create /tn "Precip Yavannome Daily" /tr "python C:\chemin\vers\precip_daily_update.py" /sc daily /st 07:00
-```
-
-Adapter le chemin vers `python.exe` si un environnement virtuel est utilisé :
-
-```powershell
-schtasks /create /tn "Precip Yavannome Daily" /tr "C:\chemin\venv\Scripts\python.exe C:\chemin\vers\precip_daily_update.py" /sc daily /st 07:00
-```
-
-**Linux/macOS** (cron), équivalent :
-
-```cron
-0 7 * * * /usr/bin/env METEOFRANCE_APPLICATION_ID=... python3 /chemin/precip_daily_update.py >> /chemin/precip_daily_update.log 2>&1
 ```
 
 ## Étape 3 — Structure du CSV partagé
