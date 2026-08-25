@@ -69,6 +69,11 @@ RESOURCE_TITLE_RE = re.compile(r"H_COMEPHORE_(\d{6})")
 # ce qui reste robuste même si la convention exacte de nommage évolue.
 HOURLY_TS_RE = re.compile(r"(\d{10})")
 
+# Record français de cumul journalier connu : ~697 mm (Aramon, Gard, 08/09/2002).
+# Un cumul au-delà signale presque certainement un bug d'extraction plutôt
+# qu'une vraie mesure — cf. incident du 25/08/2026 (facteur d'échelle RR oublié).
+PLAUSIBLE_MAX_DAILY_MM = 700.0
+
 
 def list_comephore_resources() -> dict[str, str]:
     """Interroge l'API data.gouv.fr et retourne {"YYYYMM": url_de_telechargement}."""
@@ -135,17 +140,25 @@ def download_file(url: str, dest: Path, retries: int = 3) -> None:
                 raise
 
 
-def read_pixel_value(tif_path: Path) -> float | None:
-    """Lit la valeur du pixel du raster `tif_path` à la position du terrain.
-    Reprojette les coordonnées cibles (EPSG:2154) vers le CRS natif du
-    raster, quel qu'il soit. Retourne None si hors-emprise ou nodata.
+RR_SCALE = 0.1  # RR est stocké en 1/10 mm (confirmé par la doc officielle AERIS/Météo-France
+                 # du produit NETCDF COMEPHORE : "RR:units = 1/10 mm"). Le GeoTIFF téléchargé via
+                 # data.gouv.fr encode la même grandeur sans le dire dans ses tags — vérifié en
+                 # comparant une valeur brute suspecte (502 sur 2006-09-30 21h, repérée comme
+                 # aberrante à 502 mm/h) à la doc : 502 * 0.1 = 50.2 mm/h, un extrême plausible.
 
-    Vérifié sur un fichier réel (juin 2026) : GeoTIFF uint16, échelle/offset
-    à 1.0/0.0 (valeurs déjà en mm, pas de conversion à appliquer), mais SANS
-    tag nodata déclaré alors que la grille dépasse la couverture radar
-    (max brut = 65535 = valeur max uint16, sur une bonne partie du domaine).
-    On traite donc explicitement cette valeur sentinelle comme nodata,
-    en plus du tag nodata s'il est présent."""
+
+def read_pixel_value(tif_path: Path) -> float | None:
+    """Lit la valeur du pixel du raster `tif_path` à la position du terrain,
+    convertie en mm. Reprojette les coordonnées cibles (EPSG:2154) vers le
+    CRS natif du raster, quel qu'il soit. Retourne None si hors-emprise ou
+    nodata.
+
+    Le GeoTIFF est en uint16, sans tag nodata déclaré alors que la grille
+    dépasse la couverture radar (masquée au-delà de ~30km des côtes et
+    frontières, cf. doc AERIS) — le pixel hors-couverture vaut alors 65535
+    (= "missing_value" documenté pour RR/ERR dans la version NetCDF du même
+    produit, et = valeur max représentable en uint16). On le traite donc
+    comme nodata même en l'absence du tag."""
     import rasterio
     from pyproj import Transformer
 
@@ -165,6 +178,7 @@ def read_pixel_value(tif_path: Path) -> float | None:
             max_representable = float(2 ** (raw.dtype.itemsize * 8) - 1)
             if value == max_representable:
                 return None
+        value *= RR_SCALE
         return value
 
 
@@ -233,6 +247,12 @@ def process_month(month: str, url: str, seen_dates: set[str]) -> list[tuple[str,
                 log.warning(
                     "%s : %d heure(s) manquante(s)/nodata — cumul journalier partiel (%.2f mm)",
                     day_str, daily_missing[day_str], total,
+                )
+            if total > PLAUSIBLE_MAX_DAILY_MM:
+                log.warning(
+                    "%s : cumul de %.1f mm dépasse le record français connu (~697 mm, Aramon 2002) — "
+                    "à vérifier manuellement (bug d'extraction possible, cf. incident du 25/08/2026).",
+                    day_str, total,
                 )
             rows.append((day_str, total, "comephore"))
         return rows
