@@ -1,1 +1,7 @@
-precip_yavannome.csv merge=union
+# NOTE : merge=union a été retiré le 28/08/2026 — dangereux pour ce fichier.
+# Incident : une fusion avec une copie locale (bot ANTILOPE) antérieure à
+# une purge de données corrompues a fait "revivre" les lignes supprimées,
+# car merge=union ne sait pas représenter une suppression intentionnelle
+# (il prend l'union de toutes les lignes des deux côtés, sans exception).
+# Le merge Git par défaut gère déjà correctement le cas courant (deux
+# ajouts simultanés en fin de fichier, bot + backfill) sans ce risque.
