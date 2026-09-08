@@ -56,6 +56,15 @@ python precip_extract_comephore.py --start 1997-01
 - `--start`/`--end` au format `YYYY-MM` ; `--end` par défaut = mois courant − 2
   (dernier mois normalement publié par COMÉPHORE).
 
+> **Historique de bugs (25/08/2026, corrigés)** : chaque heure COMÉPHORE
+> contient 3 GeoTIFF (`_RR` précipitation, `_ERR` erreur, `_QUALIF`
+> qualité) — seul `_RR` doit être sommé. Et `RR` est stocké en **1/10 mm**
+> (doc officielle AERIS), pas en mm brut. Les deux sont gérés dans
+> `read_pixel_value()`. Un garde-fou journalise un avertissement si un
+> cumul journalier dépasse ~700 mm (record français connu) — à prendre
+> au sérieux si ça se reproduit un jour, ça a déjà signalé un vrai bug une
+> fois.
+
 ## Étape 2 — Suivi quasi-continu ANTILOPE / LAME_D_EAU
 
 ### Pourquoi ce n'est pas une simple requête quotidienne
@@ -185,6 +194,46 @@ Génère :
   ≥ 12 mois de données disponibles.
 - `cumul_mensuel_yavannome.html` — version interactive (plotly), survol
   pour explorer les valeurs mois par mois.
+
+## Maintenance récurrente
+
+- **Combler le trou COMÉPHORE/ANTILOPE** : ANTILOPE ne couvre que depuis
+  son démarrage (25/08/2026) ; COMÉPHORE publie toujours avec ~2 mois de
+  retard. Le trou entre les deux se réduit en relançant périodiquement
+  (ex. une fois par mois) :
+
+  ```bash
+  python precip_extract_comephore.py --start 2026-08
+  ```
+
+  (adapter le mois — reprend automatiquement sans doublon, pas besoin de
+  préciser `--end`). Committer/pousser le CSV mis à jour ensuite (voir
+  `.gitattributes` ci-dessous pour la procédure en cas de conflit).
+
+- **Renouvellement de la clé API Météo-France** (`METEOFRANCE_APPLICATION_ID`) :
+  expire à la durée choisie lors de sa génération sur le portail (ex. 1 an).
+  À ce terme, en régénérer une (mode "API Key", voir Étape 2) et mettre à
+  jour le secret GitHub **et** le header `Authorization` dans cron-job.org.
+
+- **Renouvellement du token GitHub *fine-grained*** utilisé par cron-job.org :
+  a sa propre expiration (indépendante de la clé Météo-France), fixée à sa
+  création sur https://github.com/settings/personal-access-tokens. Sans
+  renouvellement, cron-job.org se met à recevoir des 401/403 silencieux —
+  vérifier périodiquement l'historique d'exécution sur cron-job.org.
+
+## `.gitattributes` — pas de `merge=union` sur ce CSV
+
+Un `merge=union` a été essayé puis retiré (28/08/2026) : il fusionne bien
+deux ajouts simultanés (bot + backfill) sans conflit, mais est incapable
+de représenter une **suppression** intentionnelle (ex. purge de données
+corrompues) — il l'annule silencieusement en la fusionnant avec une copie
+distante plus ancienne qui n'a pas cette suppression. Un vrai conflit Git
+(sans union) est plus sûr : rare, visible, et résolu manuellement en
+gardant le bon côté plutôt que de risquer une résurrection silencieuse.
+En cas de conflit sur `precip_yavannome.csv` lors d'un `git pull`/`merge` :
+inspecter les deux côtés (`git show :2:precip_yavannome.csv` / `:3:`),
+généralement il suffit de garder les deux ajouts (rarement une vraie
+collision).
 
 ## Contraintes respectées
 
