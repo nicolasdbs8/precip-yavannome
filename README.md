@@ -197,18 +197,13 @@ Génère :
 
 ## Maintenance récurrente
 
-- **Combler le trou COMÉPHORE/ANTILOPE** : ANTILOPE ne couvre que depuis
-  son démarrage (25/08/2026) ; COMÉPHORE publie toujours avec ~2 mois de
-  retard. Le trou entre les deux se réduit en relançant périodiquement
-  (ex. une fois par mois) :
-
-  ```bash
-  python precip_extract_comephore.py --start 2026-08
-  ```
-
-  (adapter le mois — reprend automatiquement sans doublon, pas besoin de
-  préciser `--end`). Committer/pousser le CSV mis à jour ensuite (voir
-  `.gitattributes` ci-dessous pour la procédure en cas de conflit).
+- **Combler le trou COMÉPHORE/ANTILOPE** : automatisé depuis le 16/09/2026
+  via [.github/workflows/comephore_monthly_update.yml](.github/workflows/comephore_monthly_update.yml)
+  — tourne seul le 3 de chaque mois, sans rien à faire. Le script est
+  idempotent (saute les mois déjà complets), donc ce workflow ne produit
+  un commit que quand Météo-France a effectivement publié du nouveau. Un
+  déclenchement manuel reste possible (onglet Actions → "Rattrapage
+  mensuel COMÉPHORE (auto)" → Run workflow) si besoin de ne pas attendre.
 
 - **Renouvellement de la clé API Météo-France** (`METEOFRANCE_APPLICATION_ID`) :
   expire à la durée choisie lors de sa génération sur le portail (ex. 1 an).

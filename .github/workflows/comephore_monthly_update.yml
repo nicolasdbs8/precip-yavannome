@@ -1,0 +1,61 @@
+name: Rattrapage mensuel COMÉPHORE (auto)
+
+# Comble automatiquement le trou entre la couverture COMÉPHORE (toujours
+# ~2 mois de retard de publication) et le suivi ANTILOPE en continu.
+# Le script (precip_extract_comephore.py) est déjà idempotent : il saute
+# tout mois déjà entièrement présent dans le CSV, donc l'exécuter chaque
+# mois sans paramètre traite juste ce qui est nouvellement publié — rien
+# à surveiller ou relancer manuellement.
+on:
+  schedule:
+    # Le 3 de chaque mois à 6h UTC — laisse le temps à Météo-France de
+    # publier le mois précédent. Pas besoin de précision ici (contrairement
+    # au suivi ANTILOPE toutes les 5 min) : un décalage de quelques heures
+    # sur un cron mensuel est sans conséquence.
+    - cron: "0 6 3 * *"
+  workflow_dispatch: {}  # déclenchement manuel possible depuis l'onglet Actions
+
+permissions:
+  contents: write
+
+concurrency:
+  group: precip-comephore-monthly
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Installer les dépendances
+        run: pip install requests rasterio pyproj
+
+      - name: Compléter l'historique COMÉPHORE (mois nouvellement publiés uniquement)
+        run: python precip_extract_comephore.py
+
+      - name: Committer et pousser (avec réessai en cas de commit concurrent)
+        run: |
+          git config user.name "precip-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add precip_yavannome.csv
+          if git diff --cached --quiet; then
+            echo "Rien de nouveau à committer (rien de neuf publié par COMÉPHORE ce mois-ci)."
+            exit 0
+          fi
+          git commit -m "Rattrapage mensuel COMÉPHORE (auto, $(date -u +%Y-%m-%d))"
+          for i in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push rejeté (commit concurrent), fusion et nouvel essai ($i)..."
+            git fetch origin
+            git merge --no-edit origin/main
+          done
+          echo "Échec du push après plusieurs tentatives" >&2
+          exit 1
