@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "generated_at": "2026-10-20T20:48:52+00:00",
+ "generated_at": "2026-10-20T20:56:58+00:00",
  "generator": "soil_hydrology_update.py",
  "parcel": {
   "insee": "39160",
@@ -11,8 +11,8 @@
   "area_m2": 4634,
   "area_m2_geometry": 4606.5,
   "centroid": {
-   "lat": 46.8038979,
-   "lon": 5.4501605
+   "lat": 46.8039042,
+   "lon": 5.450162
   },
   "bbox_wgs84": [
    5.44955812,
@@ -137,9 +137,9 @@
    "status": "FRESH",
    "source_date": "2026-10-19",
    "valid_until": "2026-10-20T06:00:00+00:00",
-   "age_hours": 14.8,
+   "age_hours": 14.9,
    "max_age_hours": 48,
-   "status_reason": "dernière donnée âgée de 14.8 h (≤ 48 h)",
+   "status_reason": "dernière donnée âgée de 14.9 h (≤ 48 h)",
    "messages": [],
    "product": "SIM2 quotidien (SAFRAN-ISBA)",
    "provider": "Météo-France",
@@ -2450,8 +2450,8 @@
      "transport": "tabular",
      "url": "https://tabular-api.data.gouv.fr/api/resources/aa3dac55-39e3-4308-b0ed-e03eec59cc6b/data/",
      "source_version": "2026-10-20T08:03:26+00:00",
-     "retrieved_at": "2026-10-20T16:03:36.619311+00:00",
-     "cache_hit": true,
+     "retrieved_at": "2026-10-20T20:57:03.111396+00:00",
+     "cache_hit": false,
      "fallback": [],
      "lines_matched": 120,
      "lines_read": null
@@ -2485,7 +2485,7 @@
      "lat": 46.8080357,
      "lon": 5.4508929,
      "overlap_fraction": 0.6874,
-     "distance_to_centroid_m": 462.9,
+     "distance_to_centroid_m": 462.2,
      "bounds_wgs84": [
       5.4464286,
       46.8035714,
@@ -2506,7 +2506,7 @@
      "lat": 46.7991071,
      "lon": 5.4508929,
      "overlap_fraction": 0.3126,
-     "distance_to_centroid_m": 535.0,
+     "distance_to_centroid_m": 535.7,
      "bounds_wgs84": [
       5.4464286,
       46.7946429,
@@ -2555,7 +2555,7 @@
      "lat": 46.8080357,
      "lon": 5.4508929,
      "overlap_fraction": 0.6874,
-     "distance_to_centroid_m": 462.9,
+     "distance_to_centroid_m": 462.2,
      "bounds_wgs84": [
       5.4464286,
       46.8035714,
@@ -2576,7 +2576,7 @@
      "lat": 46.7991071,
      "lon": 5.4508929,
      "overlap_fraction": 0.3126,
-     "distance_to_centroid_m": 535.0,
+     "distance_to_centroid_m": 535.7,
      "bounds_wgs84": [
       5.4464286,
       46.7946429,
@@ -2606,15 +2606,15 @@
    "max_age_hours": null,
    "status_reason": "source non exécutée lors de cette mise à jour",
    "messages": [],
-   "carried_over_from": "2026-10-20T16:03:34+00:00"
+   "carried_over_from": "2026-10-20T20:48:52+00:00"
   },
   "rain_precipitation": {
    "status": "FRESH",
    "source_date": "2026-10-19",
    "valid_until": "2026-10-20T00:00:00+00:00",
-   "age_hours": 20.8,
+   "age_hours": 20.9,
    "max_age_hours": 48,
-   "status_reason": "dernière donnée âgée de 20.8 h (≤ 48 h)",
+   "status_reason": "dernière donnée âgée de 20.9 h (≤ 48 h)",
    "messages": [
     "CSV existant lu sans modification. Couverture intrajournalière et coordonnées des pixels non conservées par Rain."
    ],
