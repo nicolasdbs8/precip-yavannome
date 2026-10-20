@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "generated_at": "2026-10-20T21:46:56+00:00",
+ "generated_at": "2026-10-20T21:55:59+00:00",
  "generator": "soil_hydrology_update.py",
  "parcel": {
   "insee": "39160",
@@ -11,8 +11,8 @@
   "area_m2": 4634,
   "area_m2_geometry": 4606.5,
   "centroid": {
-   "lat": 46.8038979,
-   "lon": 5.4501605
+   "lat": 46.8039042,
+   "lon": 5.450162
   },
   "bbox_wgs84": [
    5.44955812,
@@ -137,9 +137,9 @@
    "status": "FRESH",
    "source_date": "2026-10-19",
    "valid_until": "2026-10-20T06:00:00+00:00",
-   "age_hours": 15.8,
+   "age_hours": 15.9,
    "max_age_hours": 48,
-   "status_reason": "dernière donnée âgée de 15.8 h (≤ 48 h)",
+   "status_reason": "dernière donnée âgée de 15.9 h (≤ 48 h)",
    "messages": [],
    "product": "SIM2 quotidien (SAFRAN-ISBA)",
    "provider": "Météo-France",
@@ -2456,15 +2456,16 @@
      "lines_matched": 120,
      "lines_read": null
     }
-   ]
+   ],
+   "carried_over_from": "2026-10-20T21:46:56+00:00"
   },
   "copernicus_swi": {
    "status": "FRESH",
    "source_date": "2026-10-19",
    "valid_until": "2026-10-19T12:00:00+00:00",
-   "age_hours": 33.8,
+   "age_hours": 33.9,
    "max_age_hours": 72,
-   "status_reason": "dernière donnée âgée de 33.8 h (≤ 72 h)",
+   "status_reason": "dernière donnée âgée de 33.9 h (≤ 72 h)",
    "messages": [],
    "unit": "%",
    "product": "CLMS Soil Water Index Europe 1 km daily v2",
@@ -3948,16 +3949,15 @@
      "r2822_c1842": 0.3126
     },
     "method": "Σ(part de ZP1 × valeur) / Σ(parts des pixels valides), même produit et même date ; valeurs individuelles conservées dans pixels[]"
-   },
-   "carried_over_from": "2026-10-20T21:29:10+00:00"
+   }
   },
   "copernicus_ssm": {
    "status": "FRESH",
    "source_date": "2026-10-19",
    "valid_until": "2026-10-20T00:00:00+00:00",
-   "age_hours": 21.8,
+   "age_hours": 21.9,
    "max_age_hours": 72,
-   "status_reason": "dernière donnée âgée de 21.8 h (≤ 72 h)",
+   "status_reason": "dernière donnée âgée de 21.9 h (≤ 72 h)",
    "messages": [],
    "unit": "%",
    "product": "CLMS Surface Soil Moisture Europe 1 km daily v1",
@@ -4404,8 +4404,7 @@
      "r2822_c1842": 0.3126
     },
     "method": "Σ(part de ZP1 × valeur) / Σ(parts des pixels valides), même produit et même date ; valeurs individuelles conservées dans pixels[]"
-   },
-   "carried_over_from": "2026-10-20T21:29:10+00:00"
+   }
   },
   "era5_land": {
    "status": "DISABLED",
@@ -4415,15 +4414,15 @@
    "max_age_hours": null,
    "status_reason": "source non exécutée lors de cette mise à jour",
    "messages": [],
-   "carried_over_from": "2026-10-20T21:29:10+00:00"
+   "carried_over_from": "2026-10-20T21:46:56+00:00"
   },
   "rain_precipitation": {
    "status": "FRESH",
    "source_date": "2026-10-19",
    "valid_until": "2026-10-20T00:00:00+00:00",
-   "age_hours": 21.8,
+   "age_hours": 21.9,
    "max_age_hours": 48,
-   "status_reason": "dernière donnée âgée de 21.8 h (≤ 48 h)",
+   "status_reason": "dernière donnée âgée de 21.9 h (≤ 48 h)",
    "messages": [
     "CSV existant lu sans modification. Couverture intrajournalière et coordonnées des pixels non conservées par Rain."
    ],
