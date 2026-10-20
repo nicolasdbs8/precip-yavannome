@@ -164,10 +164,44 @@ seuil scientifique) ; cumuls `PRELIQ`, `PRENEI`, `PRELIQ+PRENEI` sur 24 h
 La pluie Rain (`precip_yavannome.csv` : COMÉPHORE 1 km, puis LAME_D_EAU 500 m
 sous l'étiquette `antilope`) reste **indépendante** et n'est jamais remplacée
 par SIM. Par jour, COMÉPHORE prime sur le temps réel ; la journée UTC en cours
-est exclue des cumuls. `comparisons.precipitation_sim_vs_rain` compare 7/14/30 j
-(maille principale) : `DIVERGENT` si |Δ| > 5 mm **et** > 30 % du plus grand
-cumul, `INCOMPLETE` si un jour manque. Les journées diffèrent (SIM 06–06 UTC,
-Rain 00–24 UTC) : seuls les cumuls pluri-journaliers ont un sens.
+est exclue des cumuls. `comparisons.precipitation_sim_vs_rain` compare les
+cumuls 7 / 14 / 30 j (maille principale), arrondis au 0,1 mm publié — chaque
+métrique se recalcule depuis le JSON :
+
+| Champ | Définition |
+|---|---|
+| `difference_mm` | SIM − Rain (signé) ; `absolute_difference_mm` = sa valeur absolue |
+| `symmetric_relative_difference` | \|S − R\| / ((S + R) / 2), ∈ [0, 2] ; `null` si 0 vs 0 |
+| `ratio` | max / min ; `null` si une source vaut 0 (jamais de division par zéro) |
+| `direction` | `SIM_HIGHER`, `RAIN_HIGHER` ou `EQUAL` (quelle source est la plus humide) |
+| `classification` | voir ci-dessous (`flag` et `diff_mm` : alias conservés pour compatibilité) |
+
+Classification par fenêtre (constantes `PRECIP_*` de `export.py`, conventions
+Rain, pas des seuils agronomiques publiés) :
+
+1. les deux cumuls ≤ 2 mm → `BOTH_DRY` (un fort pourcentage sur de très
+   petites quantités n'est pas significatif : 0,4 vs 0,9 mm) ;
+2. sinon, écart relatif symétrique ≤ 25 % → `CONSISTENT`, ≤ 50 % → `PARTIAL`,
+   au-delà → `DIVERGENT` ;
+3. garde-fous absolus : écart ≤ 1 mm jamais `DIVERGENT` (plafonné à `PARTIAL`),
+   écart ≥ 10 mm jamais `CONSISTENT` (au moins `PARTIAL`) ;
+4. un jour manquant → `INCOMPLETE`, sans métrique.
+
+Verdict global (`status`, `score`, `rule`) : score pondéré vers le récent
+(7 j × 3, 14 j × 2, 30 j × 1 ; `CONSISTENT`/`BOTH_DRY` = 0, `PARTIAL` = 1,
+`DIVERGENT` = 2), sur les fenêtres complètes seulement : < 0,5 → `CONSISTENT`,
+< 1,25 → `PARTIAL`, sinon `DIVERGENT`. Règles : 7 j **et** 14 j `DIVERGENT` →
+`DIVERGENT` ; 7 j et 14 j cohérents → jamais `DIVERGENT` (une divergence
+ancienne sur 30 j seule ne suffit pas). Aucune fenêtre complète → `INSUFFICIENT`.
+
+Au 19/10/2026 : 7 j 6,8 vs 3,5 mm (64 %, ×1,94) `DIVERGENT` ; 14 j 29,7 vs
+12,8 mm (80 %) `DIVERGENT` ; 30 j 32,1 vs 19,5 mm (49 %) `PARTIAL` ; global
+`DIVERGENT` (score 1,83), SIM plus humide sur les trois fenêtres.
+
+Les journées diffèrent (SIM 06–06 UTC, Rain 00–24 UTC) : seuls les cumuls
+pluri-journaliers ont un sens. Page : « bonne convergence » (`CONSISTENT`),
+« convergence partielle » (`PARTIAL`), « faible convergence » (`DIVERGENT`),
+« deux sources sèches » (`BOTH_DRY`), toujours avec les chiffres.
 
 ## Copernicus CLMS (pixels 1 km)
 
@@ -203,7 +237,7 @@ page indique le dernier produit catalogué. Créer un compte gratuit sur
 
 | Variable | Usage |
 |---|---|
-| `CDSE_S3_ACCESS_KEY`, `CDSE_S3_SECRET_KEY` | **recommandé** : clés S3 générées sur [eodata-s3keysmanager.dataspace.copernicus.eu](https://eodata-s3keysmanager.dataspace.copernicus.eu/) ; lecture `/vsis3/eodata/…` (endpoint `eodata.dataspace.copernicus.eu`) |
+| `CDSE_S3_ACCESS_KEY`, `CDSE_S3_SECRET_KEY` | **recommandé** : clés S3 générées sur [eodata-s3keysmanager.dataspace.copernicus.eu](https://eodata-s3keysmanager.dataspace.copernicus.eu/) ; lecture `s3://eodata/…` (endpoint `https://eodata.dataspace.copernicus.eu`, région `default`) |
 | `CDSE_USERNAME`, `CDSE_PASSWORD` | alternative : jeton OIDC (`client_id=cdse-public`) puis `/vsicurl/` sur `download.dataspace.copernicus.eu` |
 
 En local : variables d'environnement (le `.env` n'est pas chargé automatiquement,
@@ -211,11 +245,40 @@ comme pour les autres scripts Rain). Dans GitHub : *Settings → Secrets and
 variables → Actions*, mêmes noms. Les clés S3 CDSE ont une date d'expiration :
 à renouveler comme la clé Météo-France.
 
-**Limite connue** : la lecture authentifiée n'a pas pu être testée (aucun
-identifiant disponible lors du développement). Découverte, calcul des pixels,
-décodage et lecture fenêtrée sont testés sur des GeoTIFF reproduisant la grille
-officielle. La voie S3 suit la configuration GDAL documentée par CDSE ; la voie
-OData dépend du support des requêtes Range par `download.dataspace.copernicus.eu`.
+**Accès S3 (correctif du 20/10/2026)** : les clés ne sont **jamais** passées à
+`rasterio.Env` comme options GDAL `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY`
+— rasterio ≥ 1.4 le refuse (`EnvError : GDAL's AWS config options can not be
+directly set`), ce qui faisait échouer chaque produit au premier run GitHub.
+Elles alimentent une `boto3.Session` (région `default`) enveloppée dans
+`rasterio.session.AWSSession(endpoint_url="eodata.dataspace.copernicus.eu")`,
+avec `AWS_VIRTUAL_HOSTING=FALSE` et `AWS_HTTPS=YES` ; tous les COG d'un passage
+sont ouverts dans ce même environnement (boto3 requis : `pip install boto3`).
+
+Avant toute lecture, un **preflight unique** (`head_object` boto3 sur la bande
+`SWI002`/`SSM` du produit le plus récent, endpoint `https://eodata.dataspace.copernicus.eu`)
+classe la situation, visible dans `details.s3_preflight` et les logs
+(`S3 preflight : OK` / `KO`) :
+
+| Situation | Statut |
+|---|---|
+| aucun identifiant | `UNAVAILABLE_AUTH` (aucun appel S3) |
+| identifiants refusés (401/403, `AccessDenied`, `InvalidAccessKeyId`…) | `UNAVAILABLE_AUTH`, message explicite |
+| endpoint/chemin/boto3 en échec, session rasterio impossible | `ERROR`, un seul message, aucun produit tenté |
+| preflight OK mais 3 premiers produits illisibles (GDAL) | `ERROR`, arrêt, un seul message |
+| preflight OK, un produit illisible parmi d'autres | `PARTIAL`, les autres jours sont lus |
+
+Les clés ne sont jamais journalisées. Copernicus reste non bloquant pour l'Action.
+
+**ZP1 pondéré** : `parcel_weighted` donne, par bande et pour la dernière date,
+Σ(part de ZP1 × valeur) / Σ(parts des pixels valides) — uniquement entre les
+deux pixels d'un **même** produit ; un pixel drapeauté est exclu (jamais 0) et
+`covered_fraction` indique la part de ZP1 représentée. Les valeurs par pixel
+restent publiées. Jamais de moyenne avec SIM.
+
+**À valider** : la lecture authentifiée réelle n'a pas encore été observée
+(identifiants disponibles uniquement dans GitHub Actions). Elle est considérée
+validée quand un run affiche `S3 preflight : OK` et `N jour(s) lus` avec N > 0.
+La voie OData dépend du support des requêtes Range par `download.dataspace.copernicus.eu`.
 
 ## ERA5-Land
 

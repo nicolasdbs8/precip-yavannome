@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "generated_at": "2026-10-20T21:12:33+00:00",
+ "generated_at": "2026-10-20T21:25:26+00:00",
  "generator": "soil_hydrology_update.py",
  "parcel": {
   "insee": "39160",
@@ -11,8 +11,8 @@
   "area_m2": 4634,
   "area_m2_geometry": 4606.5,
   "centroid": {
-   "lat": 46.8039042,
-   "lon": 5.450162
+   "lat": 46.8038979,
+   "lon": 5.4501605
   },
   "bbox_wgs84": [
    5.44955812,
@@ -137,9 +137,9 @@
    "status": "FRESH",
    "source_date": "2026-10-19",
    "valid_until": "2026-10-20T06:00:00+00:00",
-   "age_hours": 15.2,
+   "age_hours": 15.4,
    "max_age_hours": 48,
-   "status_reason": "dernière donnée âgée de 15.2 h (≤ 48 h)",
+   "status_reason": "dernière donnée âgée de 15.4 h (≤ 48 h)",
    "messages": [],
    "product": "SIM2 quotidien (SAFRAN-ISBA)",
    "provider": "Météo-France",
@@ -2450,8 +2450,8 @@
      "transport": "tabular",
      "url": "https://tabular-api.data.gouv.fr/api/resources/aa3dac55-39e3-4308-b0ed-e03eec59cc6b/data/",
      "source_version": "2026-10-20T08:03:26+00:00",
-     "retrieved_at": "2026-10-20T21:12:37.026274+00:00",
-     "cache_hit": false,
+     "retrieved_at": "2026-10-20T16:03:36.619311+00:00",
+     "cache_hit": true,
      "fallback": [],
      "lines_matched": 120,
      "lines_read": null
@@ -2584,7 +2584,8 @@
     "discovery": "https://catalogue.dataspace.copernicus.eu/odata/v1/Products",
     "auth_method": "s3",
     "catalog_latest": "2026-10-19"
-   }
+   },
+   "carried_over_from": "2026-10-20T21:12:33+00:00"
   },
   "copernicus_ssm": {
    "status": "ERROR",
@@ -2712,7 +2713,8 @@
     "discovery": "https://catalogue.dataspace.copernicus.eu/odata/v1/Products",
     "auth_method": "s3",
     "catalog_latest": "2026-10-19"
-   }
+   },
+   "carried_over_from": "2026-10-20T21:12:33+00:00"
   },
   "era5_land": {
    "status": "DISABLED",
@@ -2722,15 +2724,15 @@
    "max_age_hours": null,
    "status_reason": "source non exécutée lors de cette mise à jour",
    "messages": [],
-   "carried_over_from": "2026-10-20T20:56:58+00:00"
+   "carried_over_from": "2026-10-20T21:12:33+00:00"
   },
   "rain_precipitation": {
    "status": "FRESH",
    "source_date": "2026-10-19",
    "valid_until": "2026-10-20T00:00:00+00:00",
-   "age_hours": 21.2,
+   "age_hours": 21.4,
    "max_age_hours": 48,
-   "status_reason": "dernière donnée âgée de 21.2 h (≤ 48 h)",
+   "status_reason": "dernière donnée âgée de 21.4 h (≤ 48 h)",
    "messages": [
     "CSV existant lu sans modification. Couverture intrajournalière et coordonnées des pixels non conservées par Rain."
    ],
@@ -2939,30 +2941,57 @@
  },
  "comparisons": {
   "precipitation_sim_vs_rain": {
-   "method": "DIVERGENT si |Δ| > 5.0 mm et > 30% du plus grand cumul",
-   "caveat": "SIM : maille 8 km, journées 06–06 UTC ; Rain : pixel 1 km, journées 00–24 UTC. Un écart journalier est attendu ; seuls les cumuls pluri-journaliers sont comparés.",
+   "method": "Écart relatif symétrique |S−R|/((S+R)/2) : ≤ 25% CONSISTENT, ≤ 50% PARTIAL, sinon DIVERGENT ; BOTH_DRY si les deux ≤ 2 mm ; écart ≤ 1 mm jamais DIVERGENT, ≥ 10 mm jamais CONSISTENT. Global : score pondéré (7 j ×3, 14 j ×2, 30 j ×1 ; CONSISTENT/BOTH_DRY 0, PARTIAL 1, DIVERGENT 2), DIVERGENT dès 1.25, PARTIAL dès 0.5 ; 7 j et 14 j divergents → DIVERGENT ; 7 j et 14 j cohérents → jamais DIVERGENT.",
+   "caveat": "SIM : maille 8 km, journées 06–06 UTC ; Rain : pixel 1 km (COMÉPHORE) ou 500 m (LAME_D_EAU), journées 00–24 UTC. Un écart journalier est attendu ; seuls les cumuls pluri-journaliers sont comparés.",
    "anchor_date": "2026-10-19",
    "windows": {
     "7d": {
+     "window": "7d",
      "sim_mm": 6.8,
      "rain_mm": 3.5,
+     "difference_mm": 3.3,
+     "absolute_difference_mm": 3.3,
+     "symmetric_relative_difference": 0.641,
+     "ratio": 1.943,
+     "direction": "SIM_HIGHER",
+     "classification": "DIVERGENT",
+     "reason": "écart relatif symétrique 64%",
      "diff_mm": 3.3,
-     "flag": "CONSISTENT"
+     "flag": "DIVERGENT"
     },
     "14d": {
+     "window": "14d",
      "sim_mm": 29.7,
      "rain_mm": 12.8,
+     "difference_mm": 16.9,
+     "absolute_difference_mm": 16.9,
+     "symmetric_relative_difference": 0.795,
+     "ratio": 2.32,
+     "direction": "SIM_HIGHER",
+     "classification": "DIVERGENT",
+     "reason": "écart relatif symétrique 80%",
      "diff_mm": 16.9,
      "flag": "DIVERGENT"
     },
     "30d": {
+     "window": "30d",
      "sim_mm": 32.1,
      "rain_mm": 19.5,
+     "difference_mm": 12.6,
+     "absolute_difference_mm": 12.6,
+     "symmetric_relative_difference": 0.488,
+     "ratio": 1.646,
+     "direction": "SIM_HIGHER",
+     "classification": "PARTIAL",
+     "reason": "écart relatif symétrique 49%",
      "diff_mm": 12.6,
-     "flag": "DIVERGENT"
+     "flag": "PARTIAL"
     }
    },
-   "status": "DIVERGENT"
+   "status": "DIVERGENT",
+   "score": 1.833,
+   "rule": "score pondéré 1.83 (poids 7d=3, 14d=2, 30d=1) ; 7 j et 14 j divergents",
+   "incomplete_windows": []
   },
   "soil_moisture_trends": {
    "category": "données insuffisantes",

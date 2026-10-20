@@ -1,6 +1,8 @@
 -r requirements.txt
 # Module Sol / Hydrologie : validation du JSON publié.
 jsonschema>=4.17
+# Copernicus S3 : rasterio transmet les clés à GDAL via une session boto3.
+boto3>=1.34
 # Optionnel : nécessaire seulement pour ERA5-Land (--provider era5).
 xarray>=2024.1
 netCDF4>=1.6

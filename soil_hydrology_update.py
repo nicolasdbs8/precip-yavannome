@@ -60,8 +60,10 @@ def summarize(report: dict) -> None:
                  swi["latest"], swi["d7"], swi["delta_7d"], swi["trend"], *c["PRELIQ"].values(),
                  c["EVAP"]["7d"], c["PE"]["7d"], c["DRAINC"]["7d"], c["RUNC"]["7d"])
     comparison = report["comparisons"]["precipitation_sim_vs_rain"]
-    log.info("Pluie SIM vs Rain (au %s) : %s %s", comparison["anchor_date"], comparison["status"],
-             {k: (w["sim_mm"], w["rain_mm"], w["flag"]) for k, w in comparison["windows"].items()})
+    log.info("Pluie SIM vs Rain (au %s) : %s (%s)", comparison["anchor_date"], comparison["status"], comparison.get("rule"))
+    for key, w in comparison["windows"].items():
+        log.info("  %-3s SIM %s mm / Rain %s mm : écart %s mm, relatif sym. %s, ratio %s, %s → %s", key, w["sim_mm"],
+                 w["rain_mm"], w["difference_mm"], w["symmetric_relative_difference"], w["ratio"], w["direction"], w["classification"])
 
 
 def step_summary(report: dict, path: Path) -> None:

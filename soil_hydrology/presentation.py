@@ -73,19 +73,40 @@ def sim_section(sim) -> str:
     return "".join(out) or "<p>SIM indisponible.</p>"
 
 
+WINDOW_LABELS = {"7d": "7 jours", "14d": "14 jours", "30d": "30 jours"}
+DIRECTION = {"SIM_HIGHER": "SIM plus humide", "RAIN_HIGHER": "Rain plus humide", "EQUAL": "égalité", None: "—"}
+
+
+def signed(value, digits=1, unit="") -> str:
+    if value is None:
+        return "<span class='na'>n.d.</span>"
+    return esc(f"{value:+.{digits}f}{(' ' + unit) if unit else ''}")
+
+
 def comparison_section(comp) -> str:
-    rows = "".join(f"<tr><th>{esc(k)}</th><td>{num(w['sim_mm'], 1, 'mm')}</td><td>{num(w['rain_mm'], 1, 'mm')}</td>"
-                   f"<td>{num(w['diff_mm'], 1, 'mm')}</td><td>{badge_flag(w['flag'])}</td></tr>" for k, w in comp["windows"].items())
-    return (f"<article class='wide'><h3>Pluie SIM vs pluie Rain au {esc(comp['anchor_date'])} {badge_flag(comp['status'])}</h3>"
-            f"<p class='muted'>{esc(comp['caveat'])} {esc(comp['method'])}.</p>"
-            f"<table><thead><tr><th>Fenêtre</th><th>SIM (PRELIQ+PRENEI)</th><th>Rain</th><th>Écart SIM − Rain</th><th></th></tr></thead><tbody>{rows}</tbody></table></article>")
+    rows = []
+    for key, w in comp["windows"].items():
+        relative = w.get("symmetric_relative_difference")
+        rel = esc(f"{relative:.0%}") if relative is not None else "<span class='na'>n.d.</span>"
+        ratio = esc(f"×{w['ratio']:.2f}") if w.get("ratio") is not None else "<span class='na'>n.d.</span>"
+        rows.append(f"<tr><th>{esc(WINDOW_LABELS.get(key, key))}</th><td>{num(w['sim_mm'], 1, 'mm')}</td><td>{num(w['rain_mm'], 1, 'mm')}</td>"
+                    f"<td>{signed(w.get('difference_mm'), 1, 'mm')}</td><td>{rel}</td><td>{ratio}</td>"
+                    f"<td>{esc(DIRECTION.get(w.get('direction')))}</td><td>{badge_flag(w['classification'])}"
+                    f"<br><small class='muted'>{esc(w.get('reason'))}</small></td></tr>")
+    rule = f"<p class='muted'>Verdict : {esc(comp.get('rule'))}.</p>" if comp.get("rule") else ""
+    return (f"<article class='wide'><h3>Pluie SIM vs pluie Rain au {esc(comp['anchor_date'])} — {badge_flag(comp['status'])}</h3>{rule}"
+            f"<p class='muted'>{esc(comp['caveat'])}</p>"
+            "<table><thead><tr><th>Fenêtre</th><th>SIM (PRELIQ+PRENEI)</th><th>Rain</th><th>Écart SIM − Rain</th>"
+            "<th>Écart relatif symétrique</th><th>Ratio</th><th>Sens</th><th>Convergence</th></tr></thead>"
+            f"<tbody>{''.join(rows)}</tbody></table>"
+            f"<details><summary>Méthode</summary><p>{esc(comp['method'])}</p></details></article>")
 
 
 def badge_flag(flag) -> str:
-    tone = {"CONSISTENT": ("good", "✓", "cohérent"), "DIVERGENT": ("serious", "⚠", "divergent"),
-            "INCOMPLETE": ("neutral", "…", "incomplet"), "PARTIAL": ("neutral", "◐", "partiel"),
-            "INSUFFICIENT": ("neutral", "–", "insuffisant")}.get(flag, ("neutral", "?", flag))
-    return f"<span class='badge {tone[0]}'><span aria-hidden='true'>{tone[1]}</span> {esc(tone[2])}</span>"
+    tone = {"CONSISTENT": ("good", "✓", "bonne convergence"), "PARTIAL": ("warning", "◐", "convergence partielle"),
+            "DIVERGENT": ("serious", "⚠", "faible convergence"), "BOTH_DRY": ("neutral", "○", "deux sources sèches"),
+            "INCOMPLETE": ("neutral", "…", "incomplet"), "INSUFFICIENT": ("neutral", "–", "insuffisant")}.get(flag, ("neutral", "?", flag))
+    return f"<span class='badge {tone[0]}'><span aria-hidden='true'>{tone[1]}</span> {esc(tone[2])} <code>{esc(flag)}</code></span>"
 
 
 def raster_section(key, block) -> str:
@@ -97,6 +118,14 @@ def raster_section(key, block) -> str:
                 "<p class='muted'>Voir docs/soil_hydrology.md § Copernicus pour configurer les identifiants CDSE.</p></article>"
                 if key != "era5_land" else f"<article class='wide'><h3>{esc(LABELS[key])}</h3>{badge(block['status'])}<p>{esc(block['status_reason'])}</p></article>")
     out = []
+    weighted = block.get("parcel_weighted")
+    if weighted:
+        rows = "".join(f"<tr><th>{esc(n)}</th><td>{num(v, 1, block['unit'])}</td>"
+                       f"<td>{num(100 * weighted['covered_fraction'][n] if weighted['covered_fraction'][n] is not None else None, 0, '%')}</td></tr>"
+                       for n, v in weighted["values"].items())
+        out.append(f"<article class='wide'><h3>{esc(LABELS[key])} — ZP1, moyenne pondérée des pixels au {esc(weighted['date'])}</h3>"
+                   f"<p class='muted'>{esc(weighted['method'])}. Jamais moyennée avec SIM.</p>"
+                   f"<table><thead><tr><th>Bande</th><th>ZP1 pondéré</th><th>Part de ZP1 couverte</th></tr></thead><tbody>{rows}</tbody></table></article>")
     for p in pixels:
         lat = p["latest"]
         share = f" · {100 * p['overlap_fraction']:.0f} % de ZP1" if p.get("overlap_fraction") is not None else ""

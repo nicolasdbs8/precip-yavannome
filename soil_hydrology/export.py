@@ -28,7 +28,19 @@ FLUX_WINDOWS = {"7d": 7}
 # Conventions internes Rain (pas des seuils scientifiques) : variation sur 7 jours
 # en deçà de laquelle la tendance est « stable », dans l'unité de chaque source.
 TREND_THRESHOLDS = {"swi_sim": 0.02, "swi_copernicus": 2.0, "ssm_copernicus": 5.0, "soil_water": 0.01}
-DIVERGENCE = {"abs_mm": 5.0, "relative": 0.30}
+# Comparaison pluie SIM / Rain : conventions internes Rain, pas des seuils publiés.
+# L'écart principal est la différence relative symétrique |S − R| / ((S + R) / 2),
+# bornée à [0, 2] et insensible à l'ordre des sources (contrairement à S/R).
+PRECIP_DRY_MAX_MM = 2.0           # les deux cumuls ≤ 2 mm : BOTH_DRY, l'écart relatif n'est pas significatif
+PRECIP_REL_CONSISTENT_MAX = 0.25  # ≤ 25 % : CONSISTENT
+PRECIP_REL_PARTIAL_MAX = 0.50     # ≤ 50 % : PARTIAL ; au-delà : DIVERGENT
+PRECIP_ABS_NEGLIGIBLE_MM = 1.0    # écart ≤ 1 mm : jamais DIVERGENT (au plus PARTIAL)
+PRECIP_ABS_MAJOR_MM = 10.0        # écart ≥ 10 mm : jamais CONSISTENT (au moins PARTIAL)
+COMPARISON_WINDOWS = {"7d": 7, "14d": 14, "30d": 30}
+PRECIP_WINDOW_WEIGHTS = {"7d": 3, "14d": 2, "30d": 1}  # la situation récente pèse davantage
+PRECIP_CLASS_SCORE = {"CONSISTENT": 0, "BOTH_DRY": 0, "PARTIAL": 1, "DIVERGENT": 2}
+PRECIP_GLOBAL_PARTIAL_FROM = 0.5     # score pondéré ∈ [0, 2] : < 0,5 CONSISTENT
+PRECIP_GLOBAL_DIVERGENT_FROM = 1.25  # ≥ 1,25 DIVERGENT, sinon PARTIAL
 RASTER_METADATA = ("raw_dn", "qflag_pct", "ssf", "noise", "source_unit")
 LIMITS = ("Une maille SAFRAN de 8 km ou un pixel Copernicus de 1 km ne constitue pas une mesure physique "
           "effectuée sur la parcelle. Ces modèles et observations servent à suivre la tendance locale ; "
@@ -162,7 +174,27 @@ def raster_block(source: str, result, now: datetime, unit: str, label_meta: dict
     partial = any(a is None for a in anchors) and latest is not None
     block = _base(source, result, latest, now, partial)
     block.update({"unit": unit, **label_meta, "pixels": blocks, "details": {k: v for k, v in (result.details if result else {}).items() if k != "pixels"}})
+    if latest and all(p.get("overlap_fraction") is not None for p in pixels):
+        block["parcel_weighted"] = parcel_weighted(blocks, latest)
     return block
+
+
+def parcel_weighted(pixels: list[dict], day: str) -> dict:
+    """Moyenne pondérée par la part de parcelle de chaque pixel, à l'intérieur d'un
+    même produit et d'une même date. Un pixel sans valeur valide (drapeau, absent)
+    est exclu, jamais compté 0 : `covered_fraction` dit quelle part de ZP1 est représentée."""
+    values, covered = {}, {}
+    names = sorted({n for p in pixels for n in p["series"] if n != "date"})
+    for name in names:
+        pairs = [(p["overlap_fraction"], dict(zip(p["series"]["date"], p["series"][name])).get(day)) for p in pixels]
+        valid = [(w, v) for w, v in pairs if v is not None]
+        weight = sum(w for w, _ in valid)
+        values[name] = _r(sum(w * v for w, v in valid) / weight, 2) if weight > 0 else None
+        covered[name] = _r(weight, 4)
+    return {"date": day, "values": values, "covered_fraction": covered,
+            "weights": {p["id"]: p["overlap_fraction"] for p in pixels},
+            "method": "Σ(part de ZP1 × valeur) / Σ(parts des pixels valides), même produit et même date ; "
+                      "valeurs individuelles conservées dans pixels[]"}
 
 
 def rain_block(result, now: datetime) -> dict:
@@ -193,33 +225,87 @@ def rain_block(result, now: datetime) -> dict:
     return block
 
 
+def classify_precipitation(sim_mm: float, rain_mm: float) -> dict:
+    """Écart entre deux cumuls de pluie d'une même fenêtre (mm, ≥ 0)."""
+    difference = sim_mm - rain_mm
+    magnitude = round(abs(difference), 9)  # 2,2 − 1,2 doit valoir 1 mm, pas 1,0000000000000002
+    mean = (sim_mm + rain_mm) / 2
+    relative = magnitude / mean if mean > 0 else None  # 0 vs 0 : non défini, pas de division par zéro
+    low, high = min(sim_mm, rain_mm), max(sim_mm, rain_mm)
+    ratio = high / low if low > 0 else None  # une source à 0 : ratio non défini (relative le remplace)
+    direction = "EQUAL" if magnitude == 0 else "SIM_HIGHER" if difference > 0 else "RAIN_HIGHER"
+    if high <= PRECIP_DRY_MAX_MM:
+        classification, reason = "BOTH_DRY", f"les deux cumuls ≤ {PRECIP_DRY_MAX_MM:g} mm"
+    else:
+        if relative <= PRECIP_REL_CONSISTENT_MAX:
+            classification = "CONSISTENT"
+        elif relative <= PRECIP_REL_PARTIAL_MAX:
+            classification = "PARTIAL"
+        else:
+            classification = "DIVERGENT"
+        reason = f"écart relatif symétrique {relative:.0%}"
+        if classification == "DIVERGENT" and magnitude <= PRECIP_ABS_NEGLIGIBLE_MM:
+            classification, reason = "PARTIAL", reason + f", mais écart ≤ {PRECIP_ABS_NEGLIGIBLE_MM:g} mm"
+        elif classification == "CONSISTENT" and magnitude >= PRECIP_ABS_MAJOR_MM:
+            classification, reason = "PARTIAL", reason + f", mais écart ≥ {PRECIP_ABS_MAJOR_MM:g} mm"
+    return {"difference_mm": _r(difference, 1), "absolute_difference_mm": _r(magnitude, 1),
+            "symmetric_relative_difference": _r(relative, 3), "ratio": _r(ratio, 3), "direction": direction,
+            "classification": classification, "reason": reason}
+
+
+def aggregate_precipitation(windows: dict) -> dict:
+    """Verdict global pondéré vers les fenêtres récentes, avec règles explicites."""
+    used = {k: w["classification"] for k, w in windows.items() if w["classification"] in PRECIP_CLASS_SCORE}
+    incomplete = [k for k in windows if k not in used]
+    if not used:
+        return {"status": "INSUFFICIENT", "score": None, "rule": "aucune fenêtre complète", "incomplete_windows": incomplete}
+    weight = sum(PRECIP_WINDOW_WEIGHTS[k] for k in used)
+    score = sum(PRECIP_WINDOW_WEIGHTS[k] * PRECIP_CLASS_SCORE[c] for k, c in used.items()) / weight
+    status = ("DIVERGENT" if score >= PRECIP_GLOBAL_DIVERGENT_FROM else
+              "PARTIAL" if score >= PRECIP_GLOBAL_PARTIAL_FROM else "CONSISTENT")
+    rule = f"score pondéré {score:.2f} (poids {', '.join(f'{k}={PRECIP_WINDOW_WEIGHTS[k]}' for k in used)})"
+    recent = [used.get("7d"), used.get("14d")]
+    if recent == ["DIVERGENT", "DIVERGENT"]:
+        status, rule = "DIVERGENT", rule + " ; 7 j et 14 j divergents"
+    elif all(c in ("CONSISTENT", "BOTH_DRY") for c in recent) and status == "DIVERGENT":
+        status, rule = "PARTIAL", rule + " ; 7 j et 14 j cohérents : divergence ancienne seulement"
+    return {"status": status, "score": round(score, 3), "rule": rule, "incomplete_windows": incomplete}
+
+
 def compare_precipitation(sim: dict, rain: dict) -> dict:
     """SIM PRELIQ+PRENEI (maille principale) vs pluie Rain, sur des cumuls ≥ 7 jours."""
-    out = {"method": f"DIVERGENT si |Δ| > {DIVERGENCE['abs_mm']} mm et > {DIVERGENCE['relative']:.0%} du plus grand cumul",
-           "caveat": "SIM : maille 8 km, journées 06–06 UTC ; Rain : pixel 1 km, journées 00–24 UTC. "
+    out = {"method": (f"Écart relatif symétrique |S−R|/((S+R)/2) : ≤ {PRECIP_REL_CONSISTENT_MAX:.0%} CONSISTENT, "
+                      f"≤ {PRECIP_REL_PARTIAL_MAX:.0%} PARTIAL, sinon DIVERGENT ; BOTH_DRY si les deux ≤ {PRECIP_DRY_MAX_MM:g} mm ; "
+                      f"écart ≤ {PRECIP_ABS_NEGLIGIBLE_MM:g} mm jamais DIVERGENT, ≥ {PRECIP_ABS_MAJOR_MM:g} mm jamais CONSISTENT. "
+                      f"Global : score pondéré (7 j ×3, 14 j ×2, 30 j ×1 ; CONSISTENT/BOTH_DRY 0, PARTIAL 1, DIVERGENT 2), "
+                      f"DIVERGENT dès {PRECIP_GLOBAL_DIVERGENT_FROM:g}, PARTIAL dès {PRECIP_GLOBAL_PARTIAL_FROM:g} ; "
+                      "7 j et 14 j divergents → DIVERGENT ; 7 j et 14 j cohérents → jamais DIVERGENT."),
+           "caveat": "SIM : maille 8 km, journées 06–06 UTC ; Rain : pixel 1 km (COMÉPHORE) ou 500 m (LAME_D_EAU), journées 00–24 UTC. "
                      "Un écart journalier est attendu ; seuls les cumuls pluri-journaliers sont comparés.",
            "anchor_date": None, "windows": {}}
     grid = next((g for g in sim.get("grids", []) if g["id"] == sim.get("primary_grid")), None)
     if not grid or not rain.get("source_date") or not grid.get("latest"):
-        out["status"] = "INSUFFICIENT"
+        out.update(aggregate_precipitation({}))
         return out
     sim_daily = dict(zip(grid["series"]["date"], grid["series"].get("PRELIQ+PRENEI", [])))
     rain_daily = {d: v for d, v in zip(rain["series"]["date"], rain["series"]["mm"]) if d not in rain["in_progress_dates"]}
     anchor = min(grid["latest"]["date"], rain["source_date"])
     out["anchor_date"] = anchor
-    for label, n in {"7d": 7, "14d": 14, "30d": 30}.items():
+    for label, n in COMPARISON_WINDOWS.items():
         s, _, s_gap = window_sum(sim_daily, date.fromisoformat(anchor), n)
         r, _, r_gap = window_sum(rain_daily, date.fromisoformat(anchor), n)
-        entry = {"sim_mm": _r(s, 1), "rain_mm": _r(r, 1), "diff_mm": None, "flag": "INCOMPLETE"}
+        entry = {"window": label, "sim_mm": _r(s, 1), "rain_mm": _r(r, 1), "difference_mm": None,
+                 "absolute_difference_mm": None, "symmetric_relative_difference": None, "ratio": None,
+                 "direction": None, "classification": "INCOMPLETE", "reason": "cumul incomplet"}
         if s is not None and r is not None:
-            diff = s - r
-            big = abs(diff) > DIVERGENCE["abs_mm"] and abs(diff) > DIVERGENCE["relative"] * max(s, r)
-            entry.update(diff_mm=_r(diff, 1), flag="DIVERGENT" if big else "CONSISTENT")
+            # Sur les cumuls publiés (0,1 mm, précision SIM) : métriques recalculables depuis le JSON.
+            entry.update(classify_precipitation(entry["sim_mm"], entry["rain_mm"]))
         else:
             entry["missing"] = {"sim": s_gap, "rain": r_gap}
+        # Alias de schema_version 1 (lecteurs antérieurs) : diff_mm = difference_mm, flag = classification.
+        entry.update(diff_mm=entry["difference_mm"], flag=entry["classification"])
         out["windows"][label] = entry
-    flags = {w["flag"] for w in out["windows"].values()}
-    out["status"] = "DIVERGENT" if "DIVERGENT" in flags else "CONSISTENT" if flags == {"CONSISTENT"} else "PARTIAL"
+    out.update(aggregate_precipitation(out["windows"]))
     return out
 
 

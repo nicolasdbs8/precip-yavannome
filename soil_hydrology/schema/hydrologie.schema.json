@@ -40,7 +40,8 @@
       },
       "additionalProperties": false
     },
-    "comparisons": {"type": "object", "required": ["precipitation_sim_vs_rain"]}
+    "comparisons": {"type": "object", "required": ["precipitation_sim_vs_rain"],
+                    "properties": {"precipitation_sim_vs_rain": {"$ref": "#/$defs/precipitation_comparison"}}}
   },
   "$defs": {
     "nullable_number": {"type": ["number", "null"]},
@@ -99,6 +100,31 @@
         "latest": {"$ref": "#/$defs/nullable_number"}, "d7": {"$ref": "#/$defs/nullable_number"},
         "delta_7d": {"$ref": "#/$defs/nullable_number"},
         "trend": {"enum": ["rising", "stable", "falling", null]}
+      }
+    },
+    "precipitation_comparison": {
+      "type": "object", "required": ["status", "method", "anchor_date", "windows"],
+      "properties": {
+        "status": {"enum": ["CONSISTENT", "PARTIAL", "DIVERGENT", "INSUFFICIENT"]},
+        "score": {"type": ["number", "null"], "minimum": 0, "maximum": 2},
+        "rule": {"type": "string"},
+        "incomplete_windows": {"type": "array", "items": {"type": "string"}},
+        "windows": {"type": "object", "additionalProperties": {"$ref": "#/$defs/precipitation_window"}}
+      }
+    },
+    "precipitation_window": {
+      "type": "object",
+      "required": ["window", "sim_mm", "rain_mm", "difference_mm", "absolute_difference_mm", "symmetric_relative_difference",
+                   "ratio", "direction", "classification", "diff_mm", "flag"],
+      "properties": {
+        "sim_mm": {"$ref": "#/$defs/nullable_number"}, "rain_mm": {"$ref": "#/$defs/nullable_number"},
+        "difference_mm": {"$ref": "#/$defs/nullable_number"}, "diff_mm": {"$ref": "#/$defs/nullable_number"},
+        "absolute_difference_mm": {"type": ["number", "null"], "minimum": 0},
+        "symmetric_relative_difference": {"type": ["number", "null"], "minimum": 0, "maximum": 2},
+        "ratio": {"type": ["number", "null"], "minimum": 1},
+        "direction": {"enum": ["SIM_HIGHER", "RAIN_HIGHER", "EQUAL", null]},
+        "classification": {"enum": ["CONSISTENT", "PARTIAL", "DIVERGENT", "BOTH_DRY", "INCOMPLETE"]},
+        "flag": {"enum": ["CONSISTENT", "PARTIAL", "DIVERGENT", "BOTH_DRY", "INCOMPLETE"]}
       }
     }
   }

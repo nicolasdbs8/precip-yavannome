@@ -44,7 +44,7 @@ jobs:
           cache: "pip"
 
       - name: Installer les dépendances (module hydrologique uniquement)
-        run: pip install requests pyproj rasterio jsonschema plotly
+        run: pip install requests pyproj rasterio boto3 jsonschema plotly
 
       # Cache SQLite (ETag SIM, pixels Copernicus déjà lus) conservé d'un jour à l'autre.
       - uses: actions/cache@v4

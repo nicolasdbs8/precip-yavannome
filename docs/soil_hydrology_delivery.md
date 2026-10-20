@@ -2,6 +2,17 @@
 
 La documentation de référence est [soil_hydrology.md](soil_hydrology.md).
 
+## 20 octobre 2026 (soir) — comparaison pluie SIM / Rain et accès Copernicus S3
+
+- Comparaison SIM / Rain : écart relatif symétrique, cas secs (`BOTH_DRY`),
+  garde-fous 1 mm / 10 mm, sens de l'écart, verdict global pondéré vers le
+  récent. 7 j 6,8 vs 3,5 mm n'est plus « cohérent ».
+- Copernicus : le premier run GitHub avec secrets échouait sur chaque produit
+  (`EnvError`, clés passées en options GDAL ; dataset de plus ouvert hors de
+  l'environnement rasterio). Remplacé par `boto3.Session` + `AWSSession`,
+  preflight S3 unique, arrêt immédiat sur panne globale ; moyenne pondérée
+  ZP1 intra-produit.
+
 ## 20 octobre 2026 — parcelle ZP1, SIM opérationnel, JSON publié, Action quotidienne
 
 - Géométrie cadastrale officielle de ZP1 (API Carto IGN) conservée en fixture.

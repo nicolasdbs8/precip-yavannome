@@ -6,7 +6,7 @@ import unittest
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
-from soil_hydrology.export import build_report, dumps, trend, validate
+from soil_hydrology.export import aggregate_precipitation, build_report, classify_precipitation, dumps, trend, validate
 from soil_hydrology.freshness import assess
 from soil_hydrology.models import Nature, Observation, ProviderResult
 from soil_hydrology.parcel import load_parcel
@@ -144,14 +144,95 @@ class NoCrossSourceAverage(unittest.TestCase):
         for forbidden in ("mean_moisture", "average_moisture", "humidite_moyenne", "combined"):
             self.assertNotIn(forbidden, text)
 
-    def test_precipitation_comparison_flags(self):
+    def test_precipitation_comparison_in_report(self):
         days = {str(END - timedelta(days=i)): (3.0, "antilope") for i in range(30)}
         out = report(rain_precipitation=rain_result(days))["comparisons"]["precipitation_sim_vs_rain"]
-        self.assertEqual(out["windows"]["7d"]["flag"], "DIVERGENT")  # SIM 4 mm vs Rain 21 mm
-        self.assertEqual(out["windows"]["30d"]["flag"], "INCOMPLETE")  # SIM : 20 jours seulement
+        w7 = out["windows"]["7d"]  # SIM 4 mm vs Rain 21 mm
+        self.assertEqual((w7["classification"], w7["direction"], w7["flag"], w7["diff_mm"]), ("DIVERGENT", "RAIN_HIGHER", "DIVERGENT", -17.0))
+        self.assertEqual(out["windows"]["30d"]["classification"], "INCOMPLETE")  # SIM : 20 jours seulement
+        self.assertIsNone(out["windows"]["30d"]["symmetric_relative_difference"])
+        self.assertEqual(out["incomplete_windows"], ["30d"])
         close = {str(END - timedelta(days=i)): (0.5, "comephore") for i in range(14)}
         out = report(rain_precipitation=rain_result(close))["comparisons"]["precipitation_sim_vs_rain"]
-        self.assertEqual(out["windows"]["14d"]["flag"], "CONSISTENT")
+        self.assertEqual(out["windows"]["14d"]["classification"], "CONSISTENT")  # 7 vs 7 mm
+
+
+class PrecipitationClassification(unittest.TestCase):
+    def cls(self, sim, rain):
+        return classify_precipitation(sim, rain)["classification"]
+
+    def test_real_run_of_2026_10_20(self):
+        w7 = classify_precipitation(6.8, 3.5)
+        self.assertEqual(w7["classification"], "DIVERGENT")  # n'est plus CONSISTENT
+        self.assertEqual((w7["difference_mm"], w7["absolute_difference_mm"], w7["symmetric_relative_difference"],
+                          w7["ratio"], w7["direction"]), (3.3, 3.3, 0.641, 1.943, "SIM_HIGHER"))
+        self.assertEqual(self.cls(29.7, 12.8), "DIVERGENT")  # 79,5 %
+        w30 = classify_precipitation(32.1, 19.5)
+        # 48,8 % ≤ 50 % → PARTIAL ; l'écart de 12,6 mm interdit seulement CONSISTENT.
+        self.assertEqual((w30["classification"], w30["symmetric_relative_difference"]), ("PARTIAL", 0.488))
+
+    def test_relative_thresholds(self):
+        self.assertEqual(self.cls(10, 10), "CONSISTENT")
+        self.assertEqual(classify_precipitation(10, 10)["direction"], "EQUAL")
+        self.assertEqual(self.cls(10, 11), "CONSISTENT")  # 9,5 %
+        self.assertEqual(self.cls(10, 14), "PARTIAL")  # 33 %
+        self.assertEqual(self.cls(10, 20), "DIVERGENT")  # 67 %
+        self.assertEqual(classify_precipitation(10, 20)["direction"], "RAIN_HIGHER")
+
+    def test_dry_and_zero_cases_without_division_by_zero(self):
+        zero = classify_precipitation(0, 0)
+        self.assertEqual((zero["classification"], zero["symmetric_relative_difference"], zero["ratio"]), ("BOTH_DRY", None, None))
+        self.assertEqual(self.cls(0.4, 0.9), "BOTH_DRY")  # 77 % relatif, mais non significatif
+        one_zero = classify_precipitation(0, 5)
+        self.assertEqual((one_zero["classification"], one_zero["ratio"], one_zero["symmetric_relative_difference"]), ("DIVERGENT", None, 2.0))
+        self.assertEqual(self.cls(1.8, 2.1), "CONSISTENT")  # 15 %, jamais DIVERGENT artificiellement
+
+    def test_absolute_guards(self):
+        self.assertEqual(self.cls(1.5, 2.5), "PARTIAL")  # 50 % … mais 1 mm : jamais DIVERGENT
+        self.assertEqual(classify_precipitation(2.2, 3.2)["classification"], "PARTIAL")  # 37 %, écart 1 mm
+        self.assertEqual(self.cls(2.5, 3.4), "PARTIAL")  # 30 %
+        self.assertEqual(self.cls(1.2, 2.2), "PARTIAL")  # 59 % mais écart 1 mm → plafonné
+        self.assertEqual(self.cls(100, 120), "PARTIAL")  # 18 % mais écart 20 mm → jamais CONSISTENT
+        self.assertEqual(self.cls(100, 108), "CONSISTENT")  # 8 mm < 10 mm
+
+    def test_global_verdict_weighted_towards_recent(self):
+        def verdict(c7, c14, c30):
+            return aggregate_precipitation({"7d": {"classification": c7}, "14d": {"classification": c14},
+                                            "30d": {"classification": c30}})
+        real = verdict("DIVERGENT", "DIVERGENT", "PARTIAL")
+        self.assertEqual((real["status"], real["score"]), ("DIVERGENT", 1.833))
+        self.assertIn("7 j et 14 j divergents", real["rule"])
+        self.assertEqual(verdict("CONSISTENT", "CONSISTENT", "DIVERGENT")["status"], "CONSISTENT")  # 0,33
+        self.assertEqual(verdict("BOTH_DRY", "CONSISTENT", "DIVERGENT")["status"], "CONSISTENT")
+        self.assertEqual(verdict("DIVERGENT", "CONSISTENT", "CONSISTENT")["status"], "PARTIAL")  # 1,0
+        self.assertEqual(verdict("CONSISTENT", "DIVERGENT", "DIVERGENT")["status"], "PARTIAL")  # 1,0 : le récent prime
+        self.assertEqual(verdict("DIVERGENT", "PARTIAL", "CONSISTENT")["status"], "DIVERGENT")  # 1,33
+        self.assertEqual(verdict("PARTIAL", "CONSISTENT", "CONSISTENT")["status"], "PARTIAL")  # 0,5
+        self.assertEqual(verdict("CONSISTENT", "PARTIAL", "CONSISTENT")["status"], "CONSISTENT")  # 0,33
+        partial = aggregate_precipitation({"7d": {"classification": "DIVERGENT"}, "14d": {"classification": "INCOMPLETE"},
+                                           "30d": {"classification": "INCOMPLETE"}})
+        self.assertEqual((partial["status"], partial["incomplete_windows"]), ("DIVERGENT", ["14d", "30d"]))
+        self.assertEqual(aggregate_precipitation({"7d": {"classification": "INCOMPLETE"}})["status"], "INSUFFICIENT")
+
+
+class CopernicusParcelWeighted(unittest.TestCase):
+    def test_weighted_within_product_excludes_flagged_pixels(self):
+        pixels = [{"id": "r2821_c1842", "overlap_fraction": .6874}, {"id": "r2822_c1842", "overlap_fraction": .3126}]
+
+        def swi(pixel, band, value, quality="valid", day="2026-10-19"):
+            return Observation(timestamp=f"{day}T12:00:00+00:00", date=day, latitude=46.8, longitude=5.45, source="copernicus_swi",
+                               product="CLMS SWI", provider="CLMS", variable="swi_copernicus", original_variable=band, value=value,
+                               unit="%", nature=Nature.SATELLITE_DERIVED, retrieved_at=FETCHED, grid_id=pixel, quality=quality)
+        observations = [swi("r2821_c1842", "SWI002", 60.0), swi("r2822_c1842", "SWI002", 40.0),
+                        swi("r2821_c1842", "SWI100", 50.0), swi("r2822_c1842", "SWI100", None, "LowQFLAG")]
+        result = ProviderResult("Copernicus", observations=observations, details={"pixels": pixels})
+        block = report(copernicus_swi=result)["sources"]["copernicus_swi"]
+        weighted = block["parcel_weighted"]
+        self.assertEqual(weighted["values"]["SWI002"], 53.75)  # 0,6874×60 + 0,3126×40
+        self.assertEqual(weighted["covered_fraction"]["SWI002"], 1.0)
+        self.assertEqual((weighted["values"]["SWI100"], weighted["covered_fraction"]["SWI100"]), (50.0, .6874))  # drapeau exclu
+        self.assertEqual([p["latest"]["values"]["SWI002"] for p in block["pixels"]], [60.0, 40.0])  # valeurs individuelles gardées
+        self.assertNotIn("parcel_weighted", report()["sources"]["sim"])
 
 
 class Schema(unittest.TestCase):
