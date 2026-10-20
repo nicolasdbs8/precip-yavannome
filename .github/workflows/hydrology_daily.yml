@@ -1,0 +1,102 @@
+name: Hydrologie quotidienne ZP1 (SIM + Copernicus)
+
+# Met à jour hydrologie_yavannome.json (SIM Météo-France, Copernicus CLMS,
+# comparaison avec la pluie Rain) une fois par jour. Indépendant des
+# workflows de précipitations : ne lit le CSV pluviométrique qu'en lecture.
+on:
+  schedule:
+    # SIM QUOT_SIM2_latest est publié vers 08:00 UTC, copie tabulaire data.gouv
+    # vers 09:30 UTC ; Copernicus SWI/SSM J−1 arrive dans l'après-midi (J+1).
+    # 10:40 UTC limite le risque de fichier incomplet. Retards GitHub tolérés.
+    - cron: "40 10 * * *"
+  workflow_dispatch:
+    inputs:
+      provider:
+        description: "Sources à relancer (les autres sont reprises du JSON précédent)"
+        type: choice
+        options: [all, sim, copernicus]
+        default: all
+      refresh:
+        description: "Ignorer le cache (téléchargements forcés)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: hydrology-daily
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash  # -eo pipefail : un échec avant « tee » fait échouer l'étape
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Installer les dépendances (module hydrologique uniquement)
+        run: pip install requests pyproj rasterio jsonschema plotly
+
+      # Cache SQLite (ETag SIM, pixels Copernicus déjà lus) conservé d'un jour à l'autre.
+      - uses: actions/cache@v4
+        with:
+          path: .cache/soil_hydrology.sqlite
+          key: hydrology-cache-${{ github.run_id }}
+          restore-keys: hydrology-cache-
+
+      - name: Tests unitaires (hors réseau)
+        run: python -m unittest discover -s tests
+
+      - name: Mise à jour hydrologique (échoue si SIM n'a aucune donnée locale)
+        env:
+          CDSE_S3_ACCESS_KEY: ${{ secrets.CDSE_S3_ACCESS_KEY }}
+          CDSE_S3_SECRET_KEY: ${{ secrets.CDSE_S3_SECRET_KEY }}
+          CDSE_USERNAME: ${{ secrets.CDSE_USERNAME }}
+          CDSE_PASSWORD: ${{ secrets.CDSE_PASSWORD }}
+        run: |
+          python soil_hydrology_update.py --no-html \
+            --provider "${{ inputs.provider || 'all' }}" \
+            ${{ inputs.refresh && '--refresh' || '' }} 2>&1 | tee hydrology.log
+
+      - name: Valider le schéma du JSON publié
+        run: python soil_hydrology_update.py --validate
+
+      - name: Conserver le JSON et les logs (artifact)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hydrologie-${{ github.run_id }}
+          path: |
+            hydrologie_yavannome.json
+            hydrology.log
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Committer le JSON (avec réessai en cas de commit concurrent du bot ANTILOPE)
+        run: |
+          git config user.name "precip-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add hydrologie_yavannome.json soil_hydrology/data/
+          if git diff --cached --quiet; then
+            echo "Rien de nouveau à committer."
+            exit 0
+          fi
+          git commit -m "Hydrologie ZP1 $(date -u +%Y-%m-%d)"
+          for i in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push rejeté (commit concurrent), fusion et nouvel essai ($i)..."
+            git pull --no-rebase --no-edit origin main
+          done
+          echo "Échec du push après plusieurs tentatives" >&2
+          exit 1

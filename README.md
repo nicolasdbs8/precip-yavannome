@@ -1,5 +1,42 @@
 # Suivi des précipitations — terrain Yavannomë (Commenailles, 39140)
 
+## Sol / Hydrologie (parcelle ZP1)
+
+Suivi quotidien de l'humidité du sol de la parcelle cadastrale **ZP1**
+(Commenailles, 39160 ZP 0001, 4 634 m²), indépendant du suivi pluviométrique
+ci-dessous, qu'il ne remplace pas :
+
+- **Météo-France SIM2** (SAFRAN-ISBA, maille 8 km `8360_22090` qui contient
+  entièrement ZP1) : SWI, pluie liquide/solide, évapotranspiration, pluie
+  efficace, drainage, ruissellement — source de référence, sans clé ;
+- **Copernicus CLMS** SWI 1 km v2 et SSM 1 km v1 (2 pixels couvrant ZP1) —
+  identifiants CDSE requis, sinon statut `UNAVAILABLE_AUTH` ;
+- ERA5-Land en option (compte CDS) ;
+- comparaison explicite de la pluie SIM avec la pluie Rain.
+
+```bash
+pip install requests pyproj rasterio jsonschema plotly
+python soil_hydrology_update.py                  # tout (ou --provider sim / copernicus / era5)
+python soil_hydrology_update.py --render-only    # page depuis le JSON, sans réseau
+python -m unittest discover -s tests -v
+```
+
+Produit `hydrologie_yavannome.json` (JSON compact, mis à jour chaque jour
+par l'Action [hydrology_daily.yml](.github/workflows/hydrology_daily.yml),
+récupéré par `python update_local.py`) et la page
+`etat_hydrique_yavannome.html`. Chaque source garde ses unités, sa date et
+son statut de fraîcheur (`FRESH`, `STALE`, …) ; aucune moyenne entre sources,
+aucun remplacement silencieux d'une donnée absente.
+
+> Une maille SAFRAN de 8 km ou un pixel Copernicus de 1 km ne constitue pas
+> une mesure physique effectuée sur la parcelle : ces données suivent la
+> tendance locale, le contrôle du sol sur place reste supérieur.
+
+Détails (sources, unités, mailles, cache, secrets, débogage, limites) :
+[docs/soil_hydrology.md](docs/soil_hydrology.md).
+
+## Suivi pluviométrique existant
+
 Reconstitution d'un historique fiable de cumul de précipitations sur le
 terrain agroforestier de 4600 m² (Commenailles, Jura), en croisant deux
 produits Météo-France plus fiables que le radar grand public (Météociel) :
@@ -194,6 +231,23 @@ Génère :
   ≥ 12 mois de données disponibles.
 - `cumul_mensuel_yavannome.html` — version interactive (plotly), survol
   pour explorer les valeurs mois par mois.
+
+### Mettre à jour la copie locale (données + graphiques en une commande)
+
+Les données vivent sur GitHub (mises à jour par les workflows
+automatiques) — la copie locale ne se met pas à jour toute seule. Pour
+récupérer les derniers cumuls et régénérer les deux graphiques d'un
+coup :
+
+```bash
+python update_local.py
+```
+
+Équivalent à `git pull`, `python precip_visualize.py` puis
+`python soil_hydrology_update.py --render-only` (page Sol / Hydrologie). Si `git pull`
+échoue à cause de modifications locales non commitées, le script
+s'arrête et l'indique — commiter ou `git stash` ces modifications avant
+de relancer.
 
 ## Maintenance récurrente
 

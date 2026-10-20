@@ -1,0 +1,86 @@
+{
+ "type": "Feature",
+ "id": "parcelle.3329810",
+ "geometry": {
+  "type": "MultiPolygon",
+  "coordinates": [
+   [
+    [
+     [
+      5.44977133,
+      46.80292294
+     ],
+     [
+      5.44955812,
+      46.80297459
+     ],
+     [
+      5.44956977,
+      46.80302056
+     ],
+     [
+      5.44969181,
+      46.80328541
+     ],
+     [
+      5.44970405,
+      46.80331253
+     ],
+     [
+      5.44979331,
+      46.80348764
+     ],
+     [
+      5.45002171,
+      46.80394625
+     ],
+     [
+      5.45024724,
+      46.80434132
+     ],
+     [
+      5.45047889,
+      46.80475563
+     ],
+     [
+      5.45047921,
+      46.80475985
+     ],
+     [
+      5.45046367,
+      46.80480487
+     ],
+     [
+      5.45080225,
+      46.80480143
+     ],
+     [
+      5.44977133,
+      46.80292294
+     ]
+    ]
+   ]
+  ]
+ },
+ "geometry_name": "geom",
+ "properties": {
+  "gid": 298064,
+  "numero": "0001",
+  "feuille": 1,
+  "section": "ZP",
+  "code_dep": "39",
+  "nom_com": "Commenailles",
+  "code_com": "160",
+  "com_abs": "000",
+  "code_arr": "000",
+  "idu": "39160000ZP0001",
+  "contenance": 4634,
+  "code_insee": "39160"
+ },
+ "rain": {
+  "provider": "IGN API Carto — module cadastre",
+  "url": "https://apicarto.ign.fr/api/cadastre/parcelle?code_insee=39160&section=ZP&numero=0001",
+  "retrieved_at": "2026-10-20T15:36:06.446197+00:00",
+  "feature_id": "parcelle.3329810"
+ }
+}

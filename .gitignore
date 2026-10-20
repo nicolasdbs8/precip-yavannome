@@ -4,3 +4,6 @@ __pycache__/
 *.png
 *.html
 comephore_extract.log
+.cache/
+etat_hydrique_*.json
+.pytest_cache/
