@@ -54,7 +54,8 @@ transport HTTP avec retries) : pas de seconde architecture.
 | `providers.py` | pluie Rain (`precip_yavannome.csv`, lecture seule), isolation des pannes |
 | `freshness.py` | statuts `FRESH`/`STALE`/`PARTIAL`/`UNAVAILABLE`/`UNAVAILABLE_AUTH`/`ERROR`/`DISABLED` |
 | `calculations.py` | cumuls sur fenêtre ; une journée absente rend le cumul `null` |
-| `comparison.py` | convergence qualitative des tendances d'humidité (un vote par source) |
+| `synthesis.py` | synthèse qualitative des tendances d'humidité (`comparisons.soil_moisture_trends`), sur le JSON final |
+| `comparison.py` | ancien vote de convergence par source (septembre), testé mais plus utilisé par l'export |
 | `export.py` | construction et validation du JSON compact |
 | `schema/hydrologie.schema.json` | schéma JSON (draft 2020-12) |
 | `presentation.py` | page HTML depuis le JSON (aucun recalcul) |
@@ -202,6 +203,33 @@ Les journées diffèrent (SIM 06–06 UTC, Rain 00–24 UTC) : seuls les cumuls
 pluri-journaliers ont un sens. Page : « bonne convergence » (`CONSISTENT`),
 « convergence partielle » (`PARTIAL`), « faible convergence » (`DIVERGENT`),
 « deux sources sèches » (`BOTH_DRY`), toujours avec les chiffres.
+
+## Synthèse des tendances d'humidité
+
+`comparisons.soil_moisture_trends` est recalculé à chaque génération à partir
+des blocs **finaux** du JSON : une source reprise d'un run précédent
+(`carried_over_from`) est utilisée si son statut recalculé est `FRESH` ou
+`PARTIAL` ; `STALE`, `ERROR`, `UNAVAILABLE`… sont listés dans
+`sources_excluded` et jamais pris comme preuve actuelle. Chaque source n'est
+lue qu'à travers ses propres tendances (aucun niveau SIM comparé à Copernicus ;
+T n'est pas une profondeur) :
+
+| Signal | Règle (convention Rain) |
+|---|---|
+| surface en hausse | SSM pondéré ZP1 Δ 7 j > 5 pts, ou ≥ 2 des SWI002/005/010 Δ > 2 pts |
+| fond sec / en retard | temps longs SWI040/060/100 ≥ 10 pts sous les temps courts (même produit), ou SIM stable/en baisse avec SSWI_10J ≤ −1 |
+| fond en hausse | SIM SWI en hausse, ou ≥ 2 temps longs en hausse |
+
+Catégories : `SURFACE_REWETTING_DEEP_DRYNESS` (surface en hausse + fond sec),
+`GENERAL_REWETTING`, `DRYING`, `STABLE`, `MIXED`, et `INSUFFICIENT_DATA`
+(« données insuffisantes ») sans aucune source Copernicus utilisable.
+`completeness` vaut `COMPLETE`, `PARTIAL` ou `NONE` ; `evidence` donne des
+phrases recalculables et `signals` les valeurs (Copernicus pondéré par la part
+de ZP1 de chaque pixel, pixel drapeauté exclu).
+
+Au 19/10/2026 : `SURFACE_REWETTING_DEEP_DRYNESS` — SSM 44,75 % (+19,25 pts),
+SWI temps courts 3/3 en hausse, temps longs 16–19 % (15,6 pts sous les temps
+courts), SIM SWI 0,102 stable, SSWI_10J −2,53.
 
 ## Copernicus CLMS (pixels 1 km)
 

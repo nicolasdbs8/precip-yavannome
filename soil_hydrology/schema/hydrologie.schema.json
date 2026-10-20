@@ -41,7 +41,8 @@
       "additionalProperties": false
     },
     "comparisons": {"type": "object", "required": ["precipitation_sim_vs_rain"],
-                    "properties": {"precipitation_sim_vs_rain": {"$ref": "#/$defs/precipitation_comparison"}}}
+                    "properties": {"precipitation_sim_vs_rain": {"$ref": "#/$defs/precipitation_comparison"},
+                                   "soil_moisture_trends": {"$ref": "#/$defs/moisture_synthesis"}}}
   },
   "$defs": {
     "nullable_number": {"type": ["number", "null"]},
@@ -100,6 +101,18 @@
         "latest": {"$ref": "#/$defs/nullable_number"}, "d7": {"$ref": "#/$defs/nullable_number"},
         "delta_7d": {"$ref": "#/$defs/nullable_number"},
         "trend": {"enum": ["rising", "stable", "falling", null]}
+      }
+    },
+    "moisture_synthesis": {
+      "type": "object", "required": ["category", "label", "completeness", "sources_used", "sources_excluded", "evidence", "signals"],
+      "properties": {
+        "category": {"enum": ["INSUFFICIENT_DATA", "SURFACE_REWETTING_DEEP_DRYNESS", "GENERAL_REWETTING", "DRYING", "STABLE", "MIXED"]},
+        "label": {"type": "string"},
+        "completeness": {"enum": ["COMPLETE", "PARTIAL", "NONE"]},
+        "sources_used": {"type": "array", "items": {"enum": ["sim", "copernicus_ssm", "copernicus_swi"]}},
+        "sources_excluded": {"type": "object", "additionalProperties": {"type": "string"}},
+        "evidence": {"type": "array", "items": {"type": "string"}},
+        "signals": {"type": "object"}
       }
     },
     "precipitation_comparison": {

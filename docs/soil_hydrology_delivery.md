@@ -2,6 +2,14 @@
 
 La documentation de référence est [soil_hydrology.md](soil_hydrology.md).
 
+## 20 octobre 2026 (nuit) — synthèse des tendances d'humidité
+
+- Premier run Copernicus réel validé (preflight S3 OK, 60 jours SWI et SSM lus).
+- `soil_moisture_trends` restait « données insuffisantes » : il ne lisait que
+  les sources relancées dans le run (SIM repris non vu) et l'ancien vote
+  ignorait SSM, SSWI et la distinction temps courts / longs. Remplacé par
+  `synthesis.py`, calculé sur les blocs finaux du JSON.
+
 ## 20 octobre 2026 (soir) — comparaison pluie SIM / Rain et accès Copernicus S3
 
 - Comparaison SIM / Rain : écart relatif symétrique, cas secs (`BOTH_DRY`),

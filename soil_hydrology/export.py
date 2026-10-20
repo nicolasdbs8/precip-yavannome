@@ -13,7 +13,7 @@ from datetime import date, datetime, timedelta
 from pathlib import Path
 
 from .calculations import window_sum
-from .comparison import THRESHOLDS as COMPARED, compare
+from .synthesis import moisture_synthesis, weighted_at
 from .freshness import MAX_AGE_HOURS, Status, assess, reassess, valid_until, WINDOW_END
 from .variables import SIM_FIELDS, VARIABLES
 
@@ -184,13 +184,8 @@ def parcel_weighted(pixels: list[dict], day: str) -> dict:
     même produit et d'une même date. Un pixel sans valeur valide (drapeau, absent)
     est exclu, jamais compté 0 : `covered_fraction` dit quelle part de ZP1 est représentée."""
     values, covered = {}, {}
-    names = sorted({n for p in pixels for n in p["series"] if n != "date"})
-    for name in names:
-        pairs = [(p["overlap_fraction"], dict(zip(p["series"]["date"], p["series"][name])).get(day)) for p in pixels]
-        valid = [(w, v) for w, v in pairs if v is not None]
-        weight = sum(w for w, _ in valid)
-        values[name] = _r(sum(w * v for w, v in valid) / weight, 2) if weight > 0 else None
-        covered[name] = _r(weight, 4)
+    for name in sorted({n for p in pixels for n in p["series"] if n != "date"}):
+        values[name], covered[name] = weighted_at(pixels, name, day)
     return {"date": day, "values": values, "covered_fraction": covered,
             "weights": {p["id"]: p["overlap_fraction"] for p in pixels},
             "method": "Σ(part de ZP1 × valeur) / Σ(parts des pixels valides), même produit et même date ; "
@@ -309,19 +304,6 @@ def compare_precipitation(sim: dict, rain: dict) -> dict:
     return out
 
 
-def moisture_trends(results: dict) -> dict:
-    """Convergence qualitative des tendances (comparison.compare) : un vote par source,
-    aucun niveau moyenné. Seulement pour les sources relancées dans ce passage."""
-    observations = [o for key, r in results.items() if r is not None and key != "rain_precipitation" for o in r.observations]
-    dates = [o.date for o in observations if o.variable in COMPARED and o.value is not None]
-    if not dates:
-        return {"category": "données insuffisantes", "evidence": []}
-    result = compare(observations, date.fromisoformat(max(dates)))
-    result["evidence"] = [{k: e[k] for k in ("source", "variable", "delta", "unit", "threshold", "direction")}
-                          | {"first_date": e["first"]["date"], "last_date": e["last"]["date"]} for e in result["evidence"]]
-    return result
-
-
 META = {
     "copernicus_swi": {"product": "CLMS Soil Water Index Europe 1 km daily v2", "provider": "Copernicus Land Monitoring Service",
                        "spatial_resolution_m": 1000, "nature": "satellite (ASCAT + Sentinel-1), filtre exponentiel",
@@ -375,7 +357,8 @@ def build_report(parcel: dict, results: dict, now: datetime, previous: dict | No
                         "no_cross_source_average": True},
         "sources": sources,
         "comparisons": {"precipitation_sim_vs_rain": compare_precipitation(sources["sim"], sources["rain_precipitation"]),
-                        "soil_moisture_trends": moisture_trends(results)},
+                        # Sur les blocs finaux (relancés ou repris) : jamais sur les seuls résultats du run.
+                        "soil_moisture_trends": moisture_synthesis(sources)},
     }
 
 
