@@ -1,0 +1,98 @@
+name: Prévision météo ZP1 — multi-modèles
+
+# Met à jour forecast_zp1.json (Open-Meteo : AROME HD, AROME, ARPEGE, IFS 9 km,
+# ICON-EU + relais ICON Global ; ensembles IFS ENS 9 km et ICON-EU-EPS) une fois
+# par jour. Indépendant des workflows pluie et hydrologie.
+on:
+  schedule:
+    # 15:30 UTC = 17:30 heure d'été / 16:30 heure d'hiver : toujours avant le rapport
+    # du dimanche 18:30 Europe/Paris, même avec le retard habituel des crons GitHub.
+    # Le run réellement utilisé par chaque modèle est publié dans providers.*.model_run.
+    - cron: "30 15 * * *"
+  workflow_dispatch:
+    inputs:
+      refresh:
+        description: "Ignorer le cache (appels forcés)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: forecast-daily
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        shell: bash  # -eo pipefail : un échec avant « tee » fait échouer l'étape
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Installer les dépendances (module prévision uniquement)
+        run: pip install -r requirements-forecast.txt
+
+      - name: Tests unitaires du module prévision (hors réseau)
+        run: python -m unittest discover -s tests -p "test_forecast*.py"
+
+      # Code 1 : aucun modèle exploitable ; l'ancien JSON est conservé et marqué
+      # carried_over_from / STALE, puis committé. Le run est signalé en échec à la fin.
+      - name: Collecte Open-Meteo et génération de forecast_zp1.json
+        id: forecast
+        continue-on-error: true
+        run: |
+          python forecast_update.py --no-html \
+            ${{ inputs.refresh && '--refresh' || '' }} 2>&1 | tee forecast.log
+
+      - name: Valider le schéma du JSON publié
+        run: python forecast_update.py --validate
+
+      - name: Générer la page HTML (artifact uniquement, non versionnée)
+        run: python forecast_update.py --render-only
+
+      - name: Conserver JSON, page et log (artifact)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: forecast-zp1-${{ github.run_id }}
+          path: |
+            forecast_zp1.json
+            forecast_zp1.html
+            forecast.log
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Committer le JSON (avec réessai en cas de commit concurrent du bot ANTILOPE)
+        run: |
+          git config user.name "precip-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add forecast_zp1.json
+          if git diff --cached --quiet; then
+            echo "Rien de nouveau à committer."
+            exit 0
+          fi
+          git commit -m "Prévision ZP1 $(date -u +%Y-%m-%dT%H:%MZ)"
+          for i in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push rejeté (commit concurrent), fusion et nouvel essai ($i)..."
+            git pull --no-rebase --no-edit origin main
+          done
+          echo "Échec du push après plusieurs tentatives" >&2
+          exit 1
+
+      - name: Signaler l'échec de collecte
+        if: steps.forecast.outcome == 'failure'
+        run: |
+          echo "::error title=Open-Meteo::collecte en échec — prévision précédente conservée (voir forecast.log)"
+          exit 1

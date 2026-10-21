@@ -1,0 +1,6 @@
+# Module Prévision météo ZP1 (forecast_update.py) : dépendances minimales.
+requests>=2.31
+# Validation du JSON publié.
+jsonschema>=4.17
+# Base des fuseaux pour zoneinfo (Europe/Paris) : indispensable sous Windows.
+tzdata>=2024.1

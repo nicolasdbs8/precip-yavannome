@@ -1,0 +1,212 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/nicolasdbs8/precip-yavannome/weather_forecast/schema/forecast.schema.json",
+  "title": "Prévision météo multi-modèles ZP1 (forecast_zp1.json)",
+  "type": "object",
+  "required": ["schema_version", "generated_at", "generator", "status", "age_hours", "max_age_hours", "fresh_until",
+               "data_fetched_at", "carried_over_from", "last_attempt", "point", "attribution", "conventions",
+               "providers", "daily", "half_days", "limits"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": 1},
+    "generated_at": {"$ref": "#/$defs/datetime"},
+    "generator": {"type": "string"},
+    "status": {"enum": ["FRESH", "STALE"]},
+    "age_hours": {"type": "number", "minimum": 0},
+    "max_age_hours": {"const": 12},
+    "fresh_until": {"$ref": "#/$defs/datetime"},
+    "data_fetched_at": {"$ref": "#/$defs/datetime"},
+    "carried_over_from": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/datetime"}]},
+    "last_attempt": {
+      "type": "object", "required": ["at", "outcome", "reason"], "additionalProperties": false,
+      "properties": {"at": {"$ref": "#/$defs/datetime"}, "outcome": {"enum": ["OK", "PARTIAL", "FAILED"]},
+                     "reason": {"type": "string"}}
+    },
+    "point": {
+      "type": "object", "required": ["parcel_id", "lat", "lon", "timezone"],
+      "properties": {"parcel_id": {"const": "39160000ZP0001"}, "lat": {"const": 46.8039042}, "lon": {"const": 5.450162},
+                     "timezone": {"const": "Europe/Paris"}, "commune": {"type": "string"}, "source": {"type": "string"}}
+    },
+    "attribution": {"type": "object", "required": ["open_meteo", "producers"]},
+    "conventions": {"type": "object", "required": ["no_cross_model_average", "confidence_rules"],
+                    "properties": {"no_cross_model_average": {"const": true}}},
+    "providers": {
+      "type": "object", "required": ["deterministic", "ensemble"], "additionalProperties": false,
+      "properties": {
+        "deterministic": {"type": "object", "minProperties": 1, "propertyNames": {"$ref": "#/$defs/detKey"},
+                          "additionalProperties": {"$ref": "#/$defs/provider"}},
+        "ensemble": {"type": "object", "propertyNames": {"$ref": "#/$defs/ensKey"},
+                     "additionalProperties": {"$ref": "#/$defs/provider"}}
+      }
+    },
+    "daily": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/day"}},
+    "half_days": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/halfDay"}},
+    "limits": {"type": "array", "items": {"type": "string"}}
+  },
+  "$defs": {
+    "datetime": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\+00:00|Z)$"},
+    "date": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+    "detKey": {"enum": ["arome_hd", "arome", "arpege", "ecmwf", "icon", "icon_global"]},
+    "ensKey": {"enum": ["ecmwf_ens", "icon_eu_eps"]},
+    "num": {"type": ["number", "null"]},
+    "nonneg": {"type": ["number", "null"], "minimum": 0},
+    "prob": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+    "availability": {"enum": ["AVAILABLE", "PARTIAL_HORIZON", "INCOMPLETE", "OUT_OF_HORIZON", "MODEL_ERROR", "MODEL_UNAVAILABLE"]},
+    "provider": {
+      "type": "object", "additionalProperties": false,
+      "required": ["provider", "model_name", "model_id", "kind", "endpoint", "region", "nominal_resolution_km", "role",
+                   "forecast_horizon", "fetched_at", "from_cache", "status", "status_reason", "first_forecast_time",
+                   "last_forecast_time", "series_start", "model_run", "model_run_note", "grid_point",
+                   "variables_requested", "variables_missing"],
+      "properties": {
+        "provider": {"type": "string"}, "model_name": {"type": "string"},
+        "model_id": {"type": "string", "not": {"pattern": "best_match|seamless"}},
+        "kind": {"enum": ["deterministic", "ensemble"]}, "endpoint": {"type": ["string", "null"]},
+        "region": {"type": "string"}, "nominal_resolution_km": {"type": "number", "exclusiveMinimum": 0},
+        "role": {"type": "string"},
+        "forecast_horizon": {
+          "type": "object", "required": ["nominal_hours", "observed_hours_after_fetch", "last_complete_local_day"],
+          "additionalProperties": false,
+          "properties": {"nominal_hours": {"type": "integer"}, "observed_hours_after_fetch": {"$ref": "#/$defs/num"},
+                         "last_complete_local_day": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/date"}]}}
+        },
+        "fetched_at": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/datetime"}]},
+        "from_cache": {"type": "boolean"},
+        "status": {"enum": ["FRESH", "PARTIAL", "UNAVAILABLE", "ERROR"]},
+        "status_reason": {"type": "string"},
+        "first_forecast_time": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/datetime"}]},
+        "last_forecast_time": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/datetime"}]},
+        "series_start": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/datetime"}]},
+        "model_run": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/datetime"}]},
+        "model_run_note": {"type": ["string", "null"]},
+        "grid_point": {"oneOf": [{"type": "null"}, {"type": "object", "required": ["lat", "lon", "distance_km"]}]},
+        "variables_requested": {"type": "array", "items": {"type": "string"}},
+        "variables_missing": {"type": ["array", "null"], "items": {"type": "string"}},
+        "members_expected": {"type": "integer", "minimum": 1},
+        "members_received": {"type": "integer", "minimum": 0}
+      }
+    },
+    "deterministicBlock": {
+      "type": "object", "additionalProperties": false,
+      "required": ["availability", "hours_valid", "precipitation_mm", "rain_mm", "snowfall_cm", "temperature_min_c",
+                   "temperature_max_c", "wind_gust_max_kmh", "wind_speed_max_kmh", "relative_humidity_mean_pct",
+                   "et0_mm", "surface_temperature_min_c"],
+      "properties": {
+        "availability": {"$ref": "#/$defs/availability"}, "hours_valid": {"type": "integer", "minimum": 0},
+        "precipitation_mm": {"$ref": "#/$defs/nonneg"}, "rain_mm": {"$ref": "#/$defs/nonneg"},
+        "snowfall_cm": {"$ref": "#/$defs/nonneg"}, "temperature_min_c": {"$ref": "#/$defs/num"},
+        "temperature_max_c": {"$ref": "#/$defs/num"}, "wind_gust_max_kmh": {"$ref": "#/$defs/nonneg"},
+        "wind_speed_max_kmh": {"$ref": "#/$defs/nonneg"},
+        "relative_humidity_mean_pct": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+        "et0_mm": {"$ref": "#/$defs/nonneg"}, "surface_temperature_min_c": {"$ref": "#/$defs/num"}
+      }
+    },
+    "ensembleBlock": {
+      "type": "object", "additionalProperties": false,
+      "required": ["availability", "members_expected", "precipitation", "temperature", "wind"],
+      "properties": {
+        "availability": {"$ref": "#/$defs/availability"},
+        "members_expected": {"type": "integer", "minimum": 1},
+        "precipitation": {
+          "type": "object", "additionalProperties": false,
+          "required": ["members_valid", "p10_mm", "p25_mm", "median_mm", "p75_mm", "p90_mm", "min_mm", "max_mm",
+                       "prob_ge_0_5mm", "prob_ge_2mm", "prob_ge_5mm", "prob_ge_10mm"],
+          "properties": {
+            "members_valid": {"type": "integer", "minimum": 0},
+            "p10_mm": {"$ref": "#/$defs/nonneg"}, "p25_mm": {"$ref": "#/$defs/nonneg"}, "median_mm": {"$ref": "#/$defs/nonneg"},
+            "p75_mm": {"$ref": "#/$defs/nonneg"}, "p90_mm": {"$ref": "#/$defs/nonneg"}, "min_mm": {"$ref": "#/$defs/nonneg"},
+            "max_mm": {"$ref": "#/$defs/nonneg"}, "prob_ge_0_5mm": {"$ref": "#/$defs/prob"}, "prob_ge_2mm": {"$ref": "#/$defs/prob"},
+            "prob_ge_5mm": {"$ref": "#/$defs/prob"}, "prob_ge_10mm": {"$ref": "#/$defs/prob"}
+          }
+        },
+        "temperature": {
+          "type": "object", "additionalProperties": false,
+          "required": ["members_valid", "prob_temperature_below_0c", "min_p10_c", "min_median_c"],
+          "properties": {"members_valid": {"type": "integer", "minimum": 0}, "prob_temperature_below_0c": {"$ref": "#/$defs/prob"},
+                         "min_p10_c": {"$ref": "#/$defs/num"}, "min_median_c": {"$ref": "#/$defs/num"}}
+        },
+        "wind": {
+          "type": "object", "additionalProperties": false,
+          "required": ["members_valid", "prob_gust_ge_40kmh", "prob_gust_ge_60kmh", "gust_max_median_kmh", "gust_max_p90_kmh"],
+          "properties": {"members_valid": {"type": "integer", "minimum": 0}, "prob_gust_ge_40kmh": {"$ref": "#/$defs/prob"},
+                         "prob_gust_ge_60kmh": {"$ref": "#/$defs/prob"}, "gust_max_median_kmh": {"$ref": "#/$defs/nonneg"},
+                         "gust_max_p90_kmh": {"$ref": "#/$defs/nonneg"}}
+        }
+      }
+    },
+    "consensus": {
+      "type": "object", "additionalProperties": false,
+      "required": ["scenario_threshold_mm", "deterministic_models", "deterministic_categories", "deterministic_wet_fraction",
+                   "deterministic_rain_fraction", "vote_weights", "weighted_agreement", "majority_scenario",
+                   "deterministic_min_mm", "deterministic_max_mm", "deterministic_spread_mm", "ensemble_prob_ge_2mm",
+                   "ensemble_readings", "ensemble_systems_available", "confidence", "confidence_cap_reason", "reasons", "reason"],
+      "properties": {
+        "scenario_threshold_mm": {"type": "number"},
+        "deterministic_models": {"type": "array", "items": {"$ref": "#/$defs/detKey"}},
+        "deterministic_categories": {"type": "object", "additionalProperties": {"enum": ["DRY", "LIGHT", "WET", "VERY_WET"]}},
+        "deterministic_wet_fraction": {"$ref": "#/$defs/prob"}, "deterministic_rain_fraction": {"$ref": "#/$defs/prob"},
+        "vote_weights": {"type": "object", "additionalProperties": {"type": "number", "exclusiveMinimum": 0}},
+        "weighted_agreement": {"$ref": "#/$defs/prob"},
+        "majority_scenario": {"enum": ["DRY", "WET", "SPLIT", null]},
+        "deterministic_min_mm": {"$ref": "#/$defs/nonneg"}, "deterministic_max_mm": {"$ref": "#/$defs/nonneg"},
+        "deterministic_spread_mm": {"$ref": "#/$defs/nonneg"},
+        "ensemble_prob_ge_2mm": {"type": "object", "propertyNames": {"$ref": "#/$defs/ensKey"},
+                                 "additionalProperties": {"$ref": "#/$defs/prob"}},
+        "ensemble_readings": {"type": "object", "propertyNames": {"$ref": "#/$defs/ensKey"},
+                              "additionalProperties": {"enum": ["WET", "DRY", "AMBIGUOUS", "LEANING_WET", "LEANING_DRY", null]}},
+        "ensemble_systems_available": {"type": "integer", "minimum": 0, "maximum": 2},
+        "confidence": {"enum": ["HIGH", "MEDIUM", "LOW"]},
+        "confidence_cap_reason": {"type": ["string", "null"]},
+        "reasons": {"type": "array", "items": {"type": "string"}},
+        "reason": {"type": "string"}
+      }
+    },
+    "horizon": {
+      "type": "object", "additionalProperties": false, "required": ["out_of_horizon", "partial_horizon", "incomplete", "in_error"],
+      "properties": {"out_of_horizon": {"type": "array"}, "partial_horizon": {"type": "array"}, "incomplete": {"type": "array"},
+                     "in_error": {"type": "array"}}
+    },
+    "periodCommon": {
+      "type": "object",
+      "required": ["date", "start_utc", "end_utc", "hours", "period_state", "lead_day", "deterministic", "ensemble",
+                   "horizon", "consensus"],
+      "properties": {
+        "date": {"$ref": "#/$defs/date"}, "start_utc": {"$ref": "#/$defs/datetime"}, "end_utc": {"$ref": "#/$defs/datetime"},
+        "hours": {"type": "integer", "minimum": 1, "maximum": 25},
+        "period_state": {"enum": ["PAST", "ONGOING", "FUTURE"]},
+        "lead_day": {"type": "integer", "minimum": 0, "maximum": 7},
+        "deterministic": {"type": "object", "propertyNames": {"$ref": "#/$defs/detKey"},
+                          "additionalProperties": {"$ref": "#/$defs/deterministicBlock"}},
+        "ensemble": {"type": "object", "propertyNames": {"$ref": "#/$defs/ensKey"},
+                     "additionalProperties": {"$ref": "#/$defs/ensembleBlock"}},
+        "horizon": {"$ref": "#/$defs/horizon"},
+        "consensus": {"$ref": "#/$defs/consensus"}
+      }
+    },
+    "byModel": {"type": "object", "propertyNames": {"$ref": "#/$defs/detKey"}, "additionalProperties": {"$ref": "#/$defs/nonneg"}},
+    "day": {
+      "allOf": [{"$ref": "#/$defs/periodCommon"}],
+      "required": ["preceding_24h_forecast_precip_mm_by_model", "preceding_48h_forecast_precip_mm_by_model",
+                   "preceding_72h_forecast_precip_mm_by_model"],
+      "properties": {"hours": {"minimum": 23, "maximum": 25}},
+      "patternProperties": {"^preceding_(24|48|72)h_forecast_precip_mm_by_model$": {"$ref": "#/$defs/byModel"}},
+      "unevaluatedProperties": false
+    },
+    "halfDay": {
+      "allOf": [{"$ref": "#/$defs/periodCommon"}],
+      "required": ["slot", "local_start", "local_end", "hours_since_last_forecast_rain_ge_0_2mm"],
+      "properties": {
+        "slot": {"enum": ["MORNING", "AFTERNOON"]},
+        "local_start": {"enum": ["06:00", "12:00"]}, "local_end": {"enum": ["12:00", "18:00"]},
+        "hours": {"const": 6},
+        "hours_since_last_forecast_rain_ge_0_2mm": {
+          "type": "object", "propertyNames": {"$ref": "#/$defs/detKey"},
+          "additionalProperties": {"type": "object", "required": ["hours", "lower_bound"], "additionalProperties": false,
+                                   "properties": {"hours": {"type": ["integer", "null"], "minimum": 0},
+                                                  "lower_bound": {"type": "boolean"}}}
+        }
+      },
+      "unevaluatedProperties": false
+    }
+  }
+}

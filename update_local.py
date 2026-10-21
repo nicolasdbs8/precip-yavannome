@@ -4,8 +4,9 @@ update_local.py
 
 Met à jour la copie locale du projet avec les dernières données poussées
 par les workflows GitHub Actions (ANTILOPE + rattrapage mensuel
-COMÉPHORE + hydrologie quotidienne), puis régénère les graphiques et la
-page Sol / Hydrologie (depuis hydrologie_yavannome.json, sans réseau).
+COMÉPHORE + hydrologie quotidienne + prévision ZP1), puis régénère les
+graphiques, la page Sol / Hydrologie et la page Prévision ZP1 (depuis
+hydrologie_yavannome.json et forecast_zp1.json, sans réseau).
 
 Usage :
     python update_local.py
@@ -14,6 +15,7 @@ Usage :
     git pull
     python precip_visualize.py
     python soil_hydrology_update.py --render-only
+    python forecast_update.py --render-only
 """
 from __future__ import annotations
 
@@ -47,6 +49,11 @@ def main() -> int:
         import soil_hydrology_update
 
         status = status or soil_hydrology_update.main(["--render-only"])
+    if Path(__file__).with_name("forecast_zp1.json").exists():
+        log.info("Régénération de la page Prévision ZP1...")
+        import forecast_update
+
+        status = forecast_update.main(["--render-only"]) or status  # régénérée même si une étape a échoué
     return status
 
 

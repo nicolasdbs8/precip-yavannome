@@ -35,6 +35,44 @@ aucun remplacement silencieux d'une donnée absente.
 Détails (sources, unités, mailles, cache, secrets, débogage, limites) :
 [docs/soil_hydrology.md](docs/soil_hydrology.md).
 
+## Prévision météo ZP1 (multi-modèles)
+
+Prévision J0–J+7 au centroïde cadastral de ZP1 (46.8039042 N, 5.450162 E),
+par journée et par demi-journée (matin 06–12 h, après-midi 12–18 h, heure de
+Paris), via [Open-Meteo](https://open-meteo.com/) sans clé API. Chaque modèle
+est demandé explicitement et gardé séparé — jamais `best_match`, jamais de
+moyenne entre modèles :
+
+- Météo-France **AROME France HD** (1,5 km) et **AROME France** (2,5 km), J0–J2 ;
+  **ARPEGE Europe**, J0–J4 ;
+- ECMWF **IFS HRES 9 km** et DWD **ICON-EU** (relayé par **ICON Global** au-delà
+  de son horizon, signalé), contrôles indépendants ;
+- ensembles **IFS ENS 9 km** (51 membres, J0–J7) et **ICON-EU-EPS** (40 membres,
+  J0–J5) : quantiles p10–p90 et probabilités (≥ 0,5 / 2 / 5 / 10 mm, gel,
+  rafales ≥ 40 / 60 km/h), jamais mélangés ;
+- consensus et confiance `HIGH` / `MEDIUM` / `LOW` par règles explicites, raisons publiées.
+
+```bash
+pip install -r requirements-forecast.txt
+python forecast_update.py                  # → forecast_zp1.json + forecast_zp1.html
+python forecast_update.py --render-only    # page depuis le JSON, sans réseau
+python forecast_update.py --validate
+python -m unittest discover -s tests -p "test_forecast*.py"
+```
+
+`forecast_zp1.json` est mis à jour chaque jour à 15:30 UTC par l'Action
+[forecast_daily.yml](.github/workflows/forecast_daily.yml) (« Prévision météo
+ZP1 — multi-modèles ») et récupéré par `python update_local.py`.
+
+> Ce module décrit la météo prévue, pas la travaillabilité du sol : aucune
+> décision GO / NO-GO n'y est codée. Une prévision n'est pas une observation —
+> la pluie tombée reste celle de Rain (ANTILOPE / COMÉPHORE).
+
+Détails (horizons, déterministe / ensemble, p10/p50/p90, règles de confiance,
+fuseau horaire, limites, licences) : [docs/weather_forecast.md](docs/weather_forecast.md).
+Données : *Weather data by Open-Meteo.com* (CC BY 4.0) ; modèles Météo-France,
+ECMWF et Deutscher Wetterdienst.
+
 ## Suivi pluviométrique existant
 
 Reconstitution d'un historique fiable de cumul de précipitations sur le
