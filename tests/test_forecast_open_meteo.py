@@ -1,9 +1,11 @@
+
 """Client Open-Meteo : modèles explicites, séries validées, pannes isolées, cache, run."""
 import copy
 import tempfile
 import unittest
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from unittest.mock import patch
 
 from forecast_fixtures import REAL_NOW, SPECS, FakeHttp, make_result, payload, real_entry
 from soil_hydrology.cache import Cache
@@ -40,7 +42,7 @@ class ExplicitModels(unittest.TestCase):
         data_calls = [params for url, params, _ in http.calls if "/static/meta.json" not in url]
         self.assertEqual(len(data_calls), len(ALL_MODELS))
         for params in data_calls:
-            self.assertIn("models", params)  # sans « models », Open-Meteo appliquerait best_match
+            self.assertIn("models", params)
             self.assertNotIn("best_match", str(params))
             self.assertNotIn("seamless", str(params))
 
@@ -95,7 +97,7 @@ class Parsing(unittest.TestCase):
 
     def test_nulls_are_kept_as_none(self):
         series = om.parse(real_entry("arome")["payload"], SPECS["arome"])
-        self.assertIsNone(series.values["precipitation"][-1])  # au-delà de l'horizon AROME
+        self.assertIsNone(series.values["precipitation"][-1])
         self.assertNotIn(None, series.values["precipitation"][:24])
 
     def test_fewer_members_is_partial(self):
@@ -120,10 +122,26 @@ class Resilience(unittest.TestCase):
     def test_one_model_http_500_keeps_the_others(self):
         table = routes()
         table["meteofrance_arpege_europe"] = 500
-        results = om.fetch_all(ALL_MODELS, FakeHttp(table), self.cache)
+
+        with patch.object(om, "datetime", wraps=datetime) as clock:
+            clock.now.return_value = REAL_NOW
+            results = om.fetch_all(
+                ALL_MODELS,
+                FakeHttp(table),
+                self.cache,
+            )
+
         self.assertEqual(results["arpege"].status, "ERROR")
         self.assertIn("500", results["arpege"].reason)
-        self.assertTrue(all(r.usable for k, r in results.items() if k != "arpege"))
+
+        self.assertTrue(
+            all(r.usable for k, r in results.items() if k != "arpege"),
+            {
+                k: (r.status, r.reason)
+                for k, r in results.items()
+                if k != "arpege" and not r.usable
+            },
+        )
 
     def test_open_meteo_down_is_a_clean_error(self):
         results = om.fetch_all(ALL_MODELS, FakeHttp({}), self.cache)
@@ -175,7 +193,7 @@ class ModelRun(unittest.TestCase):
     def test_not_published_when_changed_or_incoherent(self):
         stamp = int((datetime.now(UTC) - timedelta(hours=4)).timestamp())
         self.assertIsNone(self.run_for([stamp, stamp + 10800])["model_run"])
-        self.assertIsNone(self.run_for([stamp - 15 * 86400])["model_run"])  # meta.json périmé
+        self.assertIsNone(self.run_for([stamp - 15 * 86400])["model_run"])
 
     def test_not_invented_without_meta(self):
         entry = om.download(FakeHttp(routes()), SPECS["ecmwf_ens"])
