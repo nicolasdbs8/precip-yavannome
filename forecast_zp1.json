@@ -1,15 +1,15 @@
 {
  "schema_version": 1,
- "generated_at": "2026-10-22T19:19:00+00:00",
+ "generated_at": "2026-11-01T20:50:54+00:00",
  "generator": "forecast_update.py",
  "status": "FRESH",
  "age_hours": 0.0,
  "max_age_hours": 12,
- "fresh_until": "2026-10-23T07:18:57+00:00",
- "data_fetched_at": "2026-10-22T19:18:57+00:00",
+ "fresh_until": "2026-11-02T08:50:52+00:00",
+ "data_fetched_at": "2026-11-01T20:50:52+00:00",
  "carried_over_from": null,
  "last_attempt": {
-  "at": "2026-10-22T19:19:00+00:00",
+  "at": "2026-11-01T20:50:54+00:00",
   "outcome": "PARTIAL",
   "reason": "modèles non FRESH : ecmwf_ens"
  },
@@ -142,17 +142,17 @@
     "role": "très court terme J0–J2, poids interprétatif renforcé",
     "forecast_horizon": {
      "nominal_hours": 48,
-     "observed_hours_after_fetch": 46.7,
-     "last_complete_local_day": "2026-10-23"
+     "observed_hours_after_fetch": 45.2,
+     "last_complete_local_day": "2026-11-02"
     },
-    "fetched_at": "2026-10-22T19:18:57+00:00",
+    "fetched_at": "2026-11-01T20:50:52+00:00",
     "from_cache": false,
     "status": "FRESH",
-    "status_reason": "horizon observé 47 h après la collecte ; non fournies par ce modèle : rain, snowfall, et0_fao_evapotranspiration, surface_temperature",
-    "first_forecast_time": "2026-10-22T20:00:00+00:00",
-    "last_forecast_time": "2026-10-24T18:00:00+00:00",
-    "series_start": "2026-10-19T00:00:00+00:00",
-    "model_run": "2026-10-22T15:00:00+00:00",
+    "status_reason": "horizon observé 45 h après la collecte ; non fournies par ce modèle : rain, snowfall, et0_fao_evapotranspiration, surface_temperature",
+    "first_forecast_time": "2026-11-01T21:00:00+00:00",
+    "last_forecast_time": "2026-11-03T18:00:00+00:00",
+    "series_start": "2026-10-29T00:00:00+00:00",
+    "model_run": "2026-11-01T15:00:00+00:00",
     "model_run_note": "meta.json last_run_initialisation_time, identique avant et après la requête",
     "grid_point": {
      "lat": 46.8,
@@ -189,17 +189,17 @@
     "role": "très court terme J0–J2, poids interprétatif renforcé",
     "forecast_horizon": {
      "nominal_hours": 48,
-     "observed_hours_after_fetch": 46.7,
-     "last_complete_local_day": "2026-10-23"
+     "observed_hours_after_fetch": 45.2,
+     "last_complete_local_day": "2026-11-02"
     },
-    "fetched_at": "2026-10-22T19:18:58+00:00",
+    "fetched_at": "2026-11-01T20:50:52+00:00",
     "from_cache": false,
     "status": "FRESH",
-    "status_reason": "horizon observé 47 h après la collecte ; non fournies par ce modèle : surface_temperature",
-    "first_forecast_time": "2026-10-22T20:00:00+00:00",
-    "last_forecast_time": "2026-10-24T18:00:00+00:00",
-    "series_start": "2026-10-19T00:00:00+00:00",
-    "model_run": "2026-10-22T15:00:00+00:00",
+    "status_reason": "horizon observé 45 h après la collecte ; non fournies par ce modèle : surface_temperature",
+    "first_forecast_time": "2026-11-01T21:00:00+00:00",
+    "last_forecast_time": "2026-11-03T18:00:00+00:00",
+    "series_start": "2026-10-29T00:00:00+00:00",
+    "model_run": "2026-11-01T15:00:00+00:00",
     "model_run_note": "meta.json last_run_initialisation_time, identique avant et après la requête",
     "grid_point": {
      "lat": 46.8,
@@ -233,17 +233,17 @@
     "role": "court terme J0–J4",
     "forecast_horizon": {
      "nominal_hours": 96,
-     "observed_hours_after_fetch": 94.7,
-     "last_complete_local_day": "2026-10-25"
+     "observed_hours_after_fetch": 93.2,
+     "last_complete_local_day": "2026-11-04"
     },
-    "fetched_at": "2026-10-22T19:18:58+00:00",
+    "fetched_at": "2026-11-01T20:50:52+00:00",
     "from_cache": false,
     "status": "FRESH",
-    "status_reason": "horizon observé 95 h après la collecte ; non fournies par ce modèle : surface_temperature",
-    "first_forecast_time": "2026-10-22T20:00:00+00:00",
-    "last_forecast_time": "2026-10-26T18:00:00+00:00",
-    "series_start": "2026-10-19T00:00:00+00:00",
-    "model_run": "2026-10-22T12:00:00+00:00",
+    "status_reason": "horizon observé 93 h après la collecte ; non fournies par ce modèle : surface_temperature",
+    "first_forecast_time": "2026-11-01T21:00:00+00:00",
+    "last_forecast_time": "2026-11-05T18:00:00+00:00",
+    "series_start": "2026-10-29T00:00:00+00:00",
+    "model_run": "2026-11-01T12:00:00+00:00",
     "model_run_note": "meta.json last_run_initialisation_time, identique avant et après la requête",
     "grid_point": {
      "lat": 46.800003,
@@ -277,17 +277,17 @@
     "role": "contrôle indépendant J0–J7",
     "forecast_horizon": {
      "nominal_hours": 360,
-     "observed_hours_after_fetch": 195.7,
-     "last_complete_local_day": "2026-10-29"
+     "observed_hours_after_fetch": 194.2,
+     "last_complete_local_day": "2026-11-08"
     },
-    "fetched_at": "2026-10-22T19:18:58+00:00",
+    "fetched_at": "2026-11-01T20:50:53+00:00",
     "from_cache": false,
     "status": "FRESH",
-    "status_reason": "horizon observé 196 h après la collecte",
-    "first_forecast_time": "2026-10-22T20:00:00+00:00",
-    "last_forecast_time": "2026-10-30T23:00:00+00:00",
-    "series_start": "2026-10-19T00:00:00+00:00",
-    "model_run": "2026-10-22T12:00:00+00:00",
+    "status_reason": "horizon observé 194 h après la collecte",
+    "first_forecast_time": "2026-11-01T21:00:00+00:00",
+    "last_forecast_time": "2026-11-09T23:00:00+00:00",
+    "series_start": "2026-10-29T00:00:00+00:00",
+    "model_run": "2026-11-01T12:00:00+00:00",
     "model_run_note": "meta.json last_run_initialisation_time, identique avant et après la requête",
     "grid_point": {
      "lat": 46.78383,
@@ -319,17 +319,17 @@
     "role": "contrôle indépendant J0–J5",
     "forecast_horizon": {
      "nominal_hours": 120,
-     "observed_hours_after_fetch": 112.7,
-     "last_complete_local_day": "2026-10-26"
+     "observed_hours_after_fetch": 111.2,
+     "last_complete_local_day": "2026-11-05"
     },
-    "fetched_at": "2026-10-22T19:18:59+00:00",
+    "fetched_at": "2026-11-01T20:50:53+00:00",
     "from_cache": false,
     "status": "FRESH",
-    "status_reason": "horizon observé 113 h après la collecte",
-    "first_forecast_time": "2026-10-22T20:00:00+00:00",
-    "last_forecast_time": "2026-10-27T12:00:00+00:00",
-    "series_start": "2026-10-19T00:00:00+00:00",
-    "model_run": "2026-10-22T15:00:00+00:00",
+    "status_reason": "horizon observé 111 h après la collecte",
+    "first_forecast_time": "2026-11-01T21:00:00+00:00",
+    "last_forecast_time": "2026-11-06T12:00:00+00:00",
+    "series_start": "2026-10-29T00:00:00+00:00",
+    "model_run": "2026-11-01T15:00:00+00:00",
     "model_run_note": "meta.json last_run_initialisation_time, identique avant et après la requête",
     "grid_point": {
      "lat": 46.8125,
@@ -361,17 +361,17 @@
     "role": "relais explicite d'ICON-EU au-delà de son horizon (J+5–J+7)",
     "forecast_horizon": {
      "nominal_hours": 180,
-     "observed_hours_after_fetch": 172.7,
-     "last_complete_local_day": "2026-10-29"
+     "observed_hours_after_fetch": 171.2,
+     "last_complete_local_day": "2026-11-08"
     },
-    "fetched_at": "2026-10-22T19:18:59+00:00",
+    "fetched_at": "2026-11-01T20:50:53+00:00",
     "from_cache": false,
     "status": "FRESH",
-    "status_reason": "horizon observé 173 h après la collecte",
-    "first_forecast_time": "2026-10-22T20:00:00+00:00",
-    "last_forecast_time": "2026-10-30T00:00:00+00:00",
-    "series_start": "2026-10-19T00:00:00+00:00",
-    "model_run": "2026-10-22T12:00:00+00:00",
+    "status_reason": "horizon observé 171 h après la collecte",
+    "first_forecast_time": "2026-11-01T21:00:00+00:00",
+    "last_forecast_time": "2026-11-09T00:00:00+00:00",
+    "series_start": "2026-10-29T00:00:00+00:00",
+    "model_run": "2026-11-01T12:00:00+00:00",
     "model_run_note": "meta.json last_run_initialisation_time, identique avant et après la requête",
     "grid_point": {
      "lat": 46.75,
@@ -405,16 +405,16 @@
     "role": "ensemble principal J0–J7",
     "forecast_horizon": {
      "nominal_hours": 360,
-     "observed_hours_after_fetch": 130.7,
-     "last_complete_local_day": "2026-10-27"
+     "observed_hours_after_fetch": 129.2,
+     "last_complete_local_day": "2026-11-06"
     },
-    "fetched_at": "2026-10-22T19:19:00+00:00",
+    "fetched_at": "2026-11-01T20:50:54+00:00",
     "from_cache": false,
     "status": "PARTIAL",
-    "status_reason": "horizon observé 131 h, nominal 360 h",
-    "first_forecast_time": "2026-10-22T20:00:00+00:00",
-    "last_forecast_time": "2026-10-28T06:00:00+00:00",
-    "series_start": "2026-10-19T00:00:00+00:00",
+    "status_reason": "horizon observé 129 h, nominal 360 h",
+    "first_forecast_time": "2026-11-01T21:00:00+00:00",
+    "last_forecast_time": "2026-11-07T06:00:00+00:00",
+    "series_start": "2026-10-29T00:00:00+00:00",
     "model_run": null,
     "model_run_note": "heure du run non exposée par Open-Meteo pour ce modèle",
     "grid_point": {
@@ -443,17 +443,17 @@
     "role": "second ensemble indépendant J0–J5",
     "forecast_horizon": {
      "nominal_hours": 120,
-     "observed_hours_after_fetch": 112.7,
-     "last_complete_local_day": "2026-10-26"
+     "observed_hours_after_fetch": 111.2,
+     "last_complete_local_day": "2026-11-05"
     },
-    "fetched_at": "2026-10-22T19:19:00+00:00",
+    "fetched_at": "2026-11-01T20:50:54+00:00",
     "from_cache": false,
     "status": "FRESH",
-    "status_reason": "horizon observé 113 h après la collecte",
-    "first_forecast_time": "2026-10-22T20:00:00+00:00",
-    "last_forecast_time": "2026-10-27T12:00:00+00:00",
-    "series_start": "2026-10-19T00:00:00+00:00",
-    "model_run": "2026-10-22T12:00:00+00:00",
+    "status_reason": "horizon observé 111 h après la collecte",
+    "first_forecast_time": "2026-11-01T21:00:00+00:00",
+    "last_forecast_time": "2026-11-06T12:00:00+00:00",
+    "series_start": "2026-10-29T00:00:00+00:00",
+    "model_run": "2026-11-01T12:00:00+00:00",
     "model_run_note": "meta.json last_run_initialisation_time, identique avant et après la requête",
     "grid_point": {
      "lat": 46.82506,
@@ -474,9 +474,9 @@
  },
  "daily": [
   {
-   "date": "2026-10-22",
-   "start_utc": "2026-10-21T22:00:00+00:00",
-   "end_utc": "2026-10-22T22:00:00+00:00",
+   "date": "2026-11-01",
+   "start_utc": "2026-10-31T23:00:00+00:00",
+   "end_utc": "2026-11-01T23:00:00+00:00",
    "hours": 24,
    "period_state": "ONGOING",
    "lead_day": 0,
@@ -487,11 +487,11 @@
      "precipitation_mm": 0.0,
      "rain_mm": null,
      "snowfall_cm": null,
-     "temperature_min_c": 6.6,
-     "temperature_max_c": 14.4,
-     "wind_gust_max_kmh": 35.0,
-     "wind_speed_max_kmh": 18.0,
-     "relative_humidity_mean_pct": 78.0,
+     "temperature_min_c": 0.1,
+     "temperature_max_c": 11.7,
+     "wind_gust_max_kmh": 51.0,
+     "wind_speed_max_kmh": 24.0,
+     "relative_humidity_mean_pct": 73.0,
      "et0_mm": null,
      "surface_temperature_min_c": null
     },
@@ -501,12 +501,12 @@
      "precipitation_mm": 0.0,
      "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 6.6,
-     "temperature_max_c": 14.3,
-     "wind_gust_max_kmh": 35.0,
-     "wind_speed_max_kmh": 18.0,
-     "relative_humidity_mean_pct": 78.0,
-     "et0_mm": 1.5,
+     "temperature_min_c": 0.1,
+     "temperature_max_c": 11.6,
+     "wind_gust_max_kmh": 51.0,
+     "wind_speed_max_kmh": 24.0,
+     "relative_humidity_mean_pct": 73.0,
+     "et0_mm": 1.8,
      "surface_temperature_min_c": null
     },
     "arpege": {
@@ -515,27 +515,27 @@
      "precipitation_mm": 0.0,
      "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 7.0,
-     "temperature_max_c": 13.8,
-     "wind_gust_max_kmh": 32.0,
-     "wind_speed_max_kmh": 16.0,
-     "relative_humidity_mean_pct": 75.0,
-     "et0_mm": 1.7,
+     "temperature_min_c": 1.6,
+     "temperature_max_c": 11.6,
+     "wind_gust_max_kmh": 52.0,
+     "wind_speed_max_kmh": 29.0,
+     "relative_humidity_mean_pct": 73.0,
+     "et0_mm": 1.8,
      "surface_temperature_min_c": null
     },
     "ecmwf": {
      "availability": "AVAILABLE",
      "hours_valid": 24,
-     "precipitation_mm": 0.3,
-     "rain_mm": 0.1,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 6.1,
-     "temperature_max_c": 14.3,
-     "wind_gust_max_kmh": 35.0,
-     "wind_speed_max_kmh": 18.0,
-     "relative_humidity_mean_pct": 79.0,
-     "et0_mm": 1.5,
-     "surface_temperature_min_c": 5.6
+     "temperature_min_c": 5.1,
+     "temperature_max_c": 12.1,
+     "wind_gust_max_kmh": 55.0,
+     "wind_speed_max_kmh": 30.0,
+     "relative_humidity_mean_pct": 73.0,
+     "et0_mm": 1.9,
+     "surface_temperature_min_c": 3.8
     },
     "icon": {
      "availability": "AVAILABLE",
@@ -543,27 +543,27 @@
      "precipitation_mm": 0.0,
      "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 7.4,
-     "temperature_max_c": 14.0,
-     "wind_gust_max_kmh": 32.0,
-     "wind_speed_max_kmh": 18.0,
+     "temperature_min_c": 3.7,
+     "temperature_max_c": 11.7,
+     "wind_gust_max_kmh": 52.0,
+     "wind_speed_max_kmh": 29.0,
      "relative_humidity_mean_pct": 76.0,
-     "et0_mm": 1.5,
-     "surface_temperature_min_c": 6.8
+     "et0_mm": 1.6,
+     "surface_temperature_min_c": 2.7
     },
     "icon_global": {
      "availability": "AVAILABLE",
      "hours_valid": 24,
-     "precipitation_mm": 0.6,
+     "precipitation_mm": 0.0,
      "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 8.3,
-     "temperature_max_c": 13.8,
-     "wind_gust_max_kmh": 35.0,
-     "wind_speed_max_kmh": 16.0,
-     "relative_humidity_mean_pct": 81.0,
-     "et0_mm": 1.4,
-     "surface_temperature_min_c": 8.0
+     "temperature_min_c": 1.6,
+     "temperature_max_c": 12.8,
+     "wind_gust_max_kmh": 54.0,
+     "wind_speed_max_kmh": 24.0,
+     "relative_humidity_mean_pct": 75.0,
+     "et0_mm": 1.6,
+     "surface_temperature_min_c": 1.8
     }
    },
    "ensemble": {
@@ -605,12 +605,12 @@
       "members_valid": 40,
       "p10_mm": 0.0,
       "p25_mm": 0.0,
-      "median_mm": 0.2,
-      "p75_mm": 0.4,
-      "p90_mm": 0.6,
+      "median_mm": 0.0,
+      "p75_mm": 0.0,
+      "p90_mm": 0.0,
       "min_mm": 0.0,
-      "max_mm": 1.0,
-      "prob_ge_0_5mm": 0.175,
+      "max_mm": 0.0,
+      "prob_ge_0_5mm": 0.0,
       "prob_ge_2mm": 0.0,
       "prob_ge_5mm": 0.0,
       "prob_ge_10mm": 0.0
@@ -618,15 +618,15 @@
      "temperature": {
       "members_valid": 40,
       "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 6.8,
-      "min_median_c": 7.3
+      "min_p10_c": 1.3,
+      "min_median_c": 3.2
      },
      "wind": {
       "members_valid": 40,
-      "prob_gust_ge_40kmh": 0.075,
-      "prob_gust_ge_60kmh": 0.0,
-      "gust_max_median_kmh": 37.0,
-      "gust_max_p90_kmh": 40.0
+      "prob_gust_ge_40kmh": 1.0,
+      "prob_gust_ge_60kmh": 0.075,
+      "gust_max_median_kmh": 58.0,
+      "gust_max_p90_kmh": 60.0
      }
     }
    },
@@ -639,28 +639,28 @@
     "in_error": []
    },
    "preceding_24h_forecast_precip_mm_by_model": {
-    "arome_hd": 2.6,
-    "arome": 3.8,
-    "arpege": 8.3,
-    "ecmwf": 7.6,
-    "icon": 9.9,
-    "icon_global": 19.3
+    "arome_hd": 0.0,
+    "arome": 0.0,
+    "arpege": 0.0,
+    "ecmwf": 0.0,
+    "icon": 0.0,
+    "icon_global": 0.0
    },
    "preceding_48h_forecast_precip_mm_by_model": {
-    "arome_hd": 21.0,
-    "arome": 22.2,
-    "arpege": 25.3,
-    "ecmwf": 28.5,
-    "icon": 24.1,
-    "icon_global": 31.4
+    "arome_hd": 0.0,
+    "arome": 0.0,
+    "arpege": 0.0,
+    "ecmwf": 0.0,
+    "icon": 0.0,
+    "icon_global": 0.0
    },
    "preceding_72h_forecast_precip_mm_by_model": {
-    "arome_hd": null,
-    "arome": null,
-    "arpege": null,
-    "ecmwf": null,
-    "icon": null,
-    "icon_global": null
+    "arome_hd": 0.0,
+    "arome": 0.0,
+    "arpege": 0.0,
+    "ecmwf": 0.0,
+    "icon": 0.0,
+    "icon_global": 0.0
    },
    "consensus": {
     "scenario_threshold_mm": 2.0,
@@ -690,8 +690,8 @@
     "weighted_agreement": 1.0,
     "majority_scenario": "DRY",
     "deterministic_min_mm": 0.0,
-    "deterministic_max_mm": 0.3,
-    "deterministic_spread_mm": 0.3,
+    "deterministic_max_mm": 0.0,
+    "deterministic_spread_mm": 0.0,
     "ensemble_prob_ge_2mm": {
      "ecmwf_ens": null,
      "icon_eu_eps": 0.0
@@ -712,9 +712,9 @@
    }
   },
   {
-   "date": "2026-10-23",
-   "start_utc": "2026-10-22T22:00:00+00:00",
-   "end_utc": "2026-10-23T22:00:00+00:00",
+   "date": "2026-11-02",
+   "start_utc": "2026-11-01T23:00:00+00:00",
+   "end_utc": "2026-11-02T23:00:00+00:00",
    "hours": 24,
    "period_state": "FUTURE",
    "lead_day": 1,
@@ -722,86 +722,86 @@
     "arome_hd": {
      "availability": "AVAILABLE",
      "hours_valid": 24,
-     "precipitation_mm": 3.1,
+     "precipitation_mm": 0.0,
      "rain_mm": null,
      "snowfall_cm": null,
-     "temperature_min_c": 8.0,
-     "temperature_max_c": 14.5,
-     "wind_gust_max_kmh": 58.0,
-     "wind_speed_max_kmh": 31.0,
-     "relative_humidity_mean_pct": 74.0,
+     "temperature_min_c": 3.7,
+     "temperature_max_c": 10.4,
+     "wind_gust_max_kmh": 38.0,
+     "wind_speed_max_kmh": 18.0,
+     "relative_humidity_mean_pct": 68.0,
      "et0_mm": null,
      "surface_temperature_min_c": null
     },
     "arome": {
      "availability": "AVAILABLE",
      "hours_valid": 24,
-     "precipitation_mm": 3.1,
-     "rain_mm": 3.1,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 8.0,
-     "temperature_max_c": 14.5,
-     "wind_gust_max_kmh": 58.0,
-     "wind_speed_max_kmh": 31.0,
-     "relative_humidity_mean_pct": 74.0,
-     "et0_mm": 1.8,
+     "temperature_min_c": 3.6,
+     "temperature_max_c": 10.4,
+     "wind_gust_max_kmh": 38.0,
+     "wind_speed_max_kmh": 18.0,
+     "relative_humidity_mean_pct": 68.0,
+     "et0_mm": 1.6,
      "surface_temperature_min_c": null
     },
     "arpege": {
      "availability": "AVAILABLE",
      "hours_valid": 24,
-     "precipitation_mm": 11.4,
-     "rain_mm": 11.4,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 7.9,
-     "temperature_max_c": 14.6,
-     "wind_gust_max_kmh": 66.0,
-     "wind_speed_max_kmh": 36.0,
-     "relative_humidity_mean_pct": 78.0,
-     "et0_mm": 1.6,
+     "temperature_min_c": 3.7,
+     "temperature_max_c": 10.1,
+     "wind_gust_max_kmh": 42.0,
+     "wind_speed_max_kmh": 23.0,
+     "relative_humidity_mean_pct": 65.0,
+     "et0_mm": 1.8,
      "surface_temperature_min_c": null
     },
     "ecmwf": {
      "availability": "AVAILABLE",
      "hours_valid": 24,
-     "precipitation_mm": 10.7,
-     "rain_mm": 2.1,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 7.6,
-     "temperature_max_c": 14.7,
-     "wind_gust_max_kmh": 58.0,
-     "wind_speed_max_kmh": 32.0,
-     "relative_humidity_mean_pct": 74.0,
-     "et0_mm": 1.9,
-     "surface_temperature_min_c": 6.0
+     "temperature_min_c": 4.2,
+     "temperature_max_c": 10.0,
+     "wind_gust_max_kmh": 43.0,
+     "wind_speed_max_kmh": 24.0,
+     "relative_humidity_mean_pct": 72.0,
+     "et0_mm": 1.6,
+     "surface_temperature_min_c": 3.0
     },
     "icon": {
      "availability": "AVAILABLE",
      "hours_valid": 24,
-     "precipitation_mm": 5.6,
-     "rain_mm": 2.7,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 7.8,
-     "temperature_max_c": 14.3,
-     "wind_gust_max_kmh": 62.0,
-     "wind_speed_max_kmh": 31.0,
-     "relative_humidity_mean_pct": 68.0,
-     "et0_mm": 1.9,
-     "surface_temperature_min_c": 6.7
+     "temperature_min_c": 3.3,
+     "temperature_max_c": 9.9,
+     "wind_gust_max_kmh": 38.0,
+     "wind_speed_max_kmh": 21.0,
+     "relative_humidity_mean_pct": 76.0,
+     "et0_mm": 1.3,
+     "surface_temperature_min_c": 3.0
     },
     "icon_global": {
      "availability": "AVAILABLE",
      "hours_valid": 24,
-     "precipitation_mm": 15.3,
-     "rain_mm": 5.8,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 8.2,
-     "temperature_max_c": 13.7,
-     "wind_gust_max_kmh": 68.0,
-     "wind_speed_max_kmh": 28.0,
-     "relative_humidity_mean_pct": 74.0,
-     "et0_mm": 1.5,
-     "surface_temperature_min_c": 8.1
+     "temperature_min_c": 3.6,
+     "temperature_max_c": 10.1,
+     "wind_gust_max_kmh": 38.0,
+     "wind_speed_max_kmh": 17.0,
+     "relative_humidity_mean_pct": 78.0,
+     "et0_mm": 1.2,
+     "surface_temperature_min_c": 3.3
     }
    },
    "ensemble": {
@@ -810,30 +810,30 @@
      "members_expected": 51,
      "precipitation": {
       "members_valid": 51,
-      "p10_mm": 4.1,
-      "p25_mm": 5.2,
-      "median_mm": 6.2,
-      "p75_mm": 7.9,
-      "p90_mm": 10.8,
-      "min_mm": 2.8,
-      "max_mm": 14.4,
-      "prob_ge_0_5mm": 1.0,
-      "prob_ge_2mm": 1.0,
-      "prob_ge_5mm": 0.784,
-      "prob_ge_10mm": 0.157
+      "p10_mm": 0.0,
+      "p25_mm": 0.0,
+      "median_mm": 0.0,
+      "p75_mm": 0.0,
+      "p90_mm": 0.0,
+      "min_mm": 0.0,
+      "max_mm": 0.0,
+      "prob_ge_0_5mm": 0.0,
+      "prob_ge_2mm": 0.0,
+      "prob_ge_5mm": 0.0,
+      "prob_ge_10mm": 0.0
      },
      "temperature": {
       "members_valid": 51,
       "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 7.0,
-      "min_median_c": 7.7
+      "min_p10_c": 3.1,
+      "min_median_c": 3.6
      },
      "wind": {
       "members_valid": 51,
-      "prob_gust_ge_40kmh": 1.0,
-      "prob_gust_ge_60kmh": 0.686,
-      "gust_max_median_kmh": 63.0,
-      "gust_max_p90_kmh": 70.0
+      "prob_gust_ge_40kmh": 0.922,
+      "prob_gust_ge_60kmh": 0.0,
+      "gust_max_median_kmh": 44.0,
+      "gust_max_p90_kmh": 48.0
      }
     },
     "icon_eu_eps": {
@@ -841,30 +841,30 @@
      "members_expected": 40,
      "precipitation": {
       "members_valid": 40,
-      "p10_mm": 5.7,
-      "p25_mm": 6.4,
-      "median_mm": 8.8,
-      "p75_mm": 10.2,
-      "p90_mm": 11.5,
-      "min_mm": 3.1,
-      "max_mm": 12.8,
-      "prob_ge_0_5mm": 1.0,
-      "prob_ge_2mm": 1.0,
-      "prob_ge_5mm": 0.95,
-      "prob_ge_10mm": 0.275
+      "p10_mm": 0.0,
+      "p25_mm": 0.0,
+      "median_mm": 0.0,
+      "p75_mm": 0.0,
+      "p90_mm": 0.0,
+      "min_mm": 0.0,
+      "max_mm": 0.0,
+      "prob_ge_0_5mm": 0.0,
+      "prob_ge_2mm": 0.0,
+      "prob_ge_5mm": 0.0,
+      "prob_ge_10mm": 0.0
      },
      "temperature": {
       "members_valid": 40,
       "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 7.3,
-      "min_median_c": 8.1
+      "min_p10_c": 2.2,
+      "min_median_c": 2.7
      },
      "wind": {
       "members_valid": 40,
-      "prob_gust_ge_40kmh": 1.0,
-      "prob_gust_ge_60kmh": 0.975,
-      "gust_max_median_kmh": 68.0,
-      "gust_max_p90_kmh": 75.0
+      "prob_gust_ge_40kmh": 0.575,
+      "prob_gust_ge_60kmh": 0.0,
+      "gust_max_median_kmh": 41.0,
+      "gust_max_p90_kmh": 45.0
      }
     }
    },
@@ -878,25 +878,25 @@
     "arome_hd": 0.0,
     "arome": 0.0,
     "arpege": 0.0,
-    "ecmwf": 0.3,
+    "ecmwf": 0.0,
     "icon": 0.0,
-    "icon_global": 0.6
+    "icon_global": 0.0
    },
    "preceding_48h_forecast_precip_mm_by_model": {
-    "arome_hd": 2.6,
-    "arome": 3.8,
-    "arpege": 8.3,
-    "ecmwf": 7.9,
-    "icon": 9.9,
-    "icon_global": 19.9
+    "arome_hd": 0.0,
+    "arome": 0.0,
+    "arpege": 0.0,
+    "ecmwf": 0.0,
+    "icon": 0.0,
+    "icon_global": 0.0
    },
    "preceding_72h_forecast_precip_mm_by_model": {
-    "arome_hd": 21.0,
-    "arome": 22.2,
-    "arpege": 25.3,
-    "ecmwf": 28.8,
-    "icon": 24.1,
-    "icon_global": 32.0
+    "arome_hd": 0.0,
+    "arome": 0.0,
+    "arpege": 0.0,
+    "ecmwf": 0.0,
+    "icon": 0.0,
+    "icon_global": 0.0
    },
    "consensus": {
     "scenario_threshold_mm": 2.0,
@@ -908,14 +908,14 @@
      "icon"
     ],
     "deterministic_categories": {
-     "arome": "WET",
-     "arome_hd": "WET",
-     "arpege": "VERY_WET",
-     "ecmwf": "VERY_WET",
-     "icon": "WET"
+     "arome": "DRY",
+     "arome_hd": "DRY",
+     "arpege": "DRY",
+     "ecmwf": "DRY",
+     "icon": "DRY"
     },
-    "deterministic_wet_fraction": 1.0,
-    "deterministic_rain_fraction": 1.0,
+    "deterministic_wet_fraction": 0.0,
+    "deterministic_rain_fraction": 0.0,
     "vote_weights": {
      "arome_hd": 1.5,
      "arome": 1.5,
@@ -924,41 +924,40 @@
      "icon": 1.0
     },
     "weighted_agreement": 1.0,
-    "majority_scenario": "WET",
-    "deterministic_min_mm": 3.1,
-    "deterministic_max_mm": 11.4,
-    "deterministic_spread_mm": 8.3,
+    "majority_scenario": "DRY",
+    "deterministic_min_mm": 0.0,
+    "deterministic_max_mm": 0.0,
+    "deterministic_spread_mm": 0.0,
     "ensemble_prob_ge_2mm": {
-     "ecmwf_ens": 1.0,
-     "icon_eu_eps": 1.0
+     "ecmwf_ens": 0.0,
+     "icon_eu_eps": 0.0
     },
     "ensemble_readings": {
-     "ecmwf_ens": "WET",
-     "icon_eu_eps": "WET"
+     "ecmwf_ens": "DRY",
+     "icon_eu_eps": "DRY"
     },
     "ensemble_systems_available": 2,
-    "confidence": "MEDIUM",
-    "confidence_cap_reason": "dispersion quantitative notable (3.1–11.4 mm)",
+    "confidence": "HIGH",
+    "confidence_cap_reason": null,
     "reasons": [
-     "dispersion quantitative notable (3.1–11.4 mm)",
-     "5 modèles, accord pondéré 100% sur le scénario WET",
-     "ecmwf_ens : P(≥ 2 mm) = 100%",
-     "icon_eu_eps : P(≥ 2 mm) = 100%"
+     "5 modèles, accord pondéré 100% sur le scénario DRY",
+     "ecmwf_ens : P(≥ 2 mm) = 0%",
+     "icon_eu_eps : P(≥ 2 mm) = 0%"
     ],
-    "reason": "dispersion quantitative notable (3.1–11.4 mm) ; 5 modèles, accord pondéré 100% sur le scénario WET ; ecmwf_ens : P(≥ 2 mm) = 100% ; icon_eu_eps : P(≥ 2 mm) = 100%"
+    "reason": "5 modèles, accord pondéré 100% sur le scénario DRY ; ecmwf_ens : P(≥ 2 mm) = 0% ; icon_eu_eps : P(≥ 2 mm) = 0%"
    }
   },
   {
-   "date": "2026-10-24",
-   "start_utc": "2026-10-23T22:00:00+00:00",
-   "end_utc": "2026-10-24T22:00:00+00:00",
+   "date": "2026-11-03",
+   "start_utc": "2026-11-02T23:00:00+00:00",
+   "end_utc": "2026-11-03T23:00:00+00:00",
    "hours": 24,
    "period_state": "FUTURE",
    "lead_day": 2,
    "deterministic": {
     "arome_hd": {
      "availability": "PARTIAL_HORIZON",
-     "hours_valid": 20,
+     "hours_valid": 19,
      "precipitation_mm": null,
      "rain_mm": null,
      "snowfall_cm": null,
@@ -972,7 +971,7 @@
     },
     "arome": {
      "availability": "PARTIAL_HORIZON",
-     "hours_valid": 20,
+     "hours_valid": 19,
      "precipitation_mm": null,
      "rain_mm": null,
      "snowfall_cm": null,
@@ -987,58 +986,58 @@
     "arpege": {
      "availability": "AVAILABLE",
      "hours_valid": 24,
-     "precipitation_mm": 8.0,
-     "rain_mm": 8.0,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 6.9,
-     "temperature_max_c": 10.4,
-     "wind_gust_max_kmh": 45.0,
-     "wind_speed_max_kmh": 27.0,
-     "relative_humidity_mean_pct": 88.0,
-     "et0_mm": 0.9,
+     "temperature_min_c": 2.2,
+     "temperature_max_c": 10.5,
+     "wind_gust_max_kmh": 30.0,
+     "wind_speed_max_kmh": 17.0,
+     "relative_humidity_mean_pct": 72.0,
+     "et0_mm": 1.4,
      "surface_temperature_min_c": null
     },
     "ecmwf": {
      "availability": "AVAILABLE",
      "hours_valid": 24,
-     "precipitation_mm": 8.4,
-     "rain_mm": 4.6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 6.3,
-     "temperature_max_c": 11.8,
-     "wind_gust_max_kmh": 41.0,
-     "wind_speed_max_kmh": 24.0,
-     "relative_humidity_mean_pct": 90.0,
-     "et0_mm": 0.8,
-     "surface_temperature_min_c": 5.7
+     "temperature_min_c": 2.2,
+     "temperature_max_c": 10.8,
+     "wind_gust_max_kmh": 32.0,
+     "wind_speed_max_kmh": 19.0,
+     "relative_humidity_mean_pct": 77.0,
+     "et0_mm": 1.3,
+     "surface_temperature_min_c": 0.1
     },
     "icon": {
      "availability": "AVAILABLE",
      "hours_valid": 24,
-     "precipitation_mm": 7.0,
-     "rain_mm": 6.1,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 6.6,
-     "temperature_max_c": 9.9,
-     "wind_gust_max_kmh": 38.0,
-     "wind_speed_max_kmh": 21.0,
-     "relative_humidity_mean_pct": 84.0,
-     "et0_mm": 0.9,
-     "surface_temperature_min_c": 6.3
+     "temperature_min_c": 1.2,
+     "temperature_max_c": 10.6,
+     "wind_gust_max_kmh": 28.0,
+     "wind_speed_max_kmh": 16.0,
+     "relative_humidity_mean_pct": 81.0,
+     "et0_mm": 1.1,
+     "surface_temperature_min_c": -0.1
     },
     "icon_global": {
      "availability": "AVAILABLE",
      "hours_valid": 24,
-     "precipitation_mm": 12.5,
-     "rain_mm": 5.6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 7.3,
-     "temperature_max_c": 10.3,
-     "wind_gust_max_kmh": 55.0,
-     "wind_speed_max_kmh": 20.0,
-     "relative_humidity_mean_pct": 85.0,
-     "et0_mm": 0.8,
-     "surface_temperature_min_c": 7.5
+     "temperature_min_c": 2.3,
+     "temperature_max_c": 10.6,
+     "wind_gust_max_kmh": 28.0,
+     "wind_speed_max_kmh": 9.0,
+     "relative_humidity_mean_pct": 84.0,
+     "et0_mm": 1.0,
+     "surface_temperature_min_c": 2.8
     }
    },
    "ensemble": {
@@ -1047,30 +1046,30 @@
      "members_expected": 51,
      "precipitation": {
       "members_valid": 51,
-      "p10_mm": 2.0,
-      "p25_mm": 4.7,
-      "median_mm": 6.7,
-      "p75_mm": 9.6,
-      "p90_mm": 11.5,
-      "min_mm": 0.3,
-      "max_mm": 16.6,
-      "prob_ge_0_5mm": 0.941,
-      "prob_ge_2mm": 0.902,
-      "prob_ge_5mm": 0.725,
-      "prob_ge_10mm": 0.235
+      "p10_mm": 0.0,
+      "p25_mm": 0.0,
+      "median_mm": 0.0,
+      "p75_mm": 0.0,
+      "p90_mm": 0.0,
+      "min_mm": 0.0,
+      "max_mm": 0.0,
+      "prob_ge_0_5mm": 0.0,
+      "prob_ge_2mm": 0.0,
+      "prob_ge_5mm": 0.0,
+      "prob_ge_10mm": 0.0
      },
      "temperature": {
       "members_valid": 51,
       "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 5.1,
-      "min_median_c": 6.3
+      "min_p10_c": 1.3,
+      "min_median_c": 1.9
      },
      "wind": {
       "members_valid": 51,
-      "prob_gust_ge_40kmh": 0.549,
-      "prob_gust_ge_60kmh": 0.02,
-      "gust_max_median_kmh": 40.0,
-      "gust_max_p90_kmh": 49.0
+      "prob_gust_ge_40kmh": 0.078,
+      "prob_gust_ge_60kmh": 0.0,
+      "gust_max_median_kmh": 34.0,
+      "gust_max_p90_kmh": 38.0
      }
     },
     "icon_eu_eps": {
@@ -1078,30 +1077,30 @@
      "members_expected": 40,
      "precipitation": {
       "members_valid": 40,
-      "p10_mm": 2.7,
-      "p25_mm": 4.2,
-      "median_mm": 6.2,
-      "p75_mm": 9.3,
-      "p90_mm": 11.1,
-      "min_mm": 0.5,
-      "max_mm": 12.9,
-      "prob_ge_0_5mm": 1.0,
-      "prob_ge_2mm": 0.9,
-      "prob_ge_5mm": 0.6,
-      "prob_ge_10mm": 0.2
+      "p10_mm": 0.0,
+      "p25_mm": 0.0,
+      "median_mm": 0.0,
+      "p75_mm": 0.0,
+      "p90_mm": 0.0,
+      "min_mm": 0.0,
+      "max_mm": 0.0,
+      "prob_ge_0_5mm": 0.0,
+      "prob_ge_2mm": 0.0,
+      "prob_ge_5mm": 0.0,
+      "prob_ge_10mm": 0.0
      },
      "temperature": {
       "members_valid": 40,
-      "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 5.5,
-      "min_median_c": 6.6
+      "prob_temperature_below_0c": 0.075,
+      "min_p10_c": 0.2,
+      "min_median_c": 1.5
      },
      "wind": {
       "members_valid": 40,
-      "prob_gust_ge_40kmh": 0.575,
-      "prob_gust_ge_60kmh": 0.025,
-      "gust_max_median_kmh": 40.0,
-      "gust_max_p90_kmh": 49.0
+      "prob_gust_ge_40kmh": 0.05,
+      "prob_gust_ge_60kmh": 0.0,
+      "gust_max_median_kmh": 30.0,
+      "gust_max_p90_kmh": 37.0
      }
     }
    },
@@ -1115,28 +1114,28 @@
     "in_error": []
    },
    "preceding_24h_forecast_precip_mm_by_model": {
-    "arome_hd": 3.1,
-    "arome": 3.1,
-    "arpege": 11.4,
-    "ecmwf": 10.7,
-    "icon": 5.6,
-    "icon_global": 15.3
+    "arome_hd": 0.0,
+    "arome": 0.0,
+    "arpege": 0.0,
+    "ecmwf": 0.0,
+    "icon": 0.0,
+    "icon_global": 0.0
    },
    "preceding_48h_forecast_precip_mm_by_model": {
-    "arome_hd": 3.1,
-    "arome": 3.1,
-    "arpege": 11.4,
-    "ecmwf": 11.0,
-    "icon": 5.6,
-    "icon_global": 15.9
+    "arome_hd": 0.0,
+    "arome": 0.0,
+    "arpege": 0.0,
+    "ecmwf": 0.0,
+    "icon": 0.0,
+    "icon_global": 0.0
    },
    "preceding_72h_forecast_precip_mm_by_model": {
-    "arome_hd": 5.7,
-    "arome": 6.9,
-    "arpege": 19.7,
-    "ecmwf": 18.6,
-    "icon": 15.5,
-    "icon_global": 35.2
+    "arome_hd": 0.0,
+    "arome": 0.0,
+    "arpege": 0.0,
+    "ecmwf": 0.0,
+    "icon": 0.0,
+    "icon_global": 0.0
    },
    "consensus": {
     "scenario_threshold_mm": 2.0,
@@ -1146,47 +1145,47 @@
      "icon"
     ],
     "deterministic_categories": {
-     "arpege": "WET",
-     "ecmwf": "WET",
-     "icon": "WET"
+     "arpege": "DRY",
+     "ecmwf": "DRY",
+     "icon": "DRY"
     },
-    "deterministic_wet_fraction": 1.0,
-    "deterministic_rain_fraction": 1.0,
+    "deterministic_wet_fraction": 0.0,
+    "deterministic_rain_fraction": 0.0,
     "vote_weights": {
      "arpege": 1.0,
      "ecmwf": 1.0,
      "icon": 1.0
     },
     "weighted_agreement": 1.0,
-    "majority_scenario": "WET",
-    "deterministic_min_mm": 7.0,
-    "deterministic_max_mm": 8.4,
-    "deterministic_spread_mm": 1.4,
+    "majority_scenario": "DRY",
+    "deterministic_min_mm": 0.0,
+    "deterministic_max_mm": 0.0,
+    "deterministic_spread_mm": 0.0,
     "ensemble_prob_ge_2mm": {
-     "ecmwf_ens": 0.902,
-     "icon_eu_eps": 0.9
+     "ecmwf_ens": 0.0,
+     "icon_eu_eps": 0.0
     },
     "ensemble_readings": {
-     "ecmwf_ens": "WET",
-     "icon_eu_eps": "WET"
+     "ecmwf_ens": "DRY",
+     "icon_eu_eps": "DRY"
     },
     "ensemble_systems_available": 2,
     "confidence": "HIGH",
     "confidence_cap_reason": null,
     "reasons": [
      "couverture incomplète de la période, exclus du vote : arome, arome_hd",
-     "3 modèles, accord pondéré 100% sur le scénario WET",
-     "ecmwf_ens : P(≥ 2 mm) = 90%",
-     "icon_eu_eps : P(≥ 2 mm) = 90%"
+     "3 modèles, accord pondéré 100% sur le scénario DRY",
+     "ecmwf_ens : P(≥ 2 mm) = 0%",
+     "icon_eu_eps : P(≥ 2 mm) = 0%"
     ],
-    "reason": "couverture incomplète de la période, exclus du vote : arome, arome_hd ; 3 modèles, accord pondéré 100% sur le scénario WET ; ecmwf_ens : P(≥ 2 mm) = 90% ; icon_eu_eps : P(≥ 2 mm) = 90%"
+    "reason": "couverture incomplète de la période, exclus du vote : arome, arome_hd ; 3 modèles, accord pondéré 100% sur le scénario DRY ; ecmwf_ens : P(≥ 2 mm) = 0% ; icon_eu_eps : P(≥ 2 mm) = 0%"
    }
   },
   {
-   "date": "2026-10-25",
-   "start_utc": "2026-10-24T22:00:00+00:00",
-   "end_utc": "2026-10-25T23:00:00+00:00",
-   "hours": 25,
+   "date": "2026-11-04",
+   "start_utc": "2026-11-03T23:00:00+00:00",
+   "end_utc": "2026-11-04T23:00:00+00:00",
+   "hours": 24,
    "period_state": "FUTURE",
    "lead_day": 3,
    "deterministic": {
@@ -1220,59 +1219,59 @@
     },
     "arpege": {
      "availability": "AVAILABLE",
-     "hours_valid": 25,
-     "precipitation_mm": 12.9,
-     "rain_mm": 12.9,
+     "hours_valid": 24,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 9.0,
-     "temperature_max_c": 13.2,
-     "wind_gust_max_kmh": 78.0,
-     "wind_speed_max_kmh": 40.0,
-     "relative_humidity_mean_pct": 89.0,
-     "et0_mm": 0.8,
+     "temperature_min_c": 0.6,
+     "temperature_max_c": 10.0,
+     "wind_gust_max_kmh": 14.0,
+     "wind_speed_max_kmh": 6.0,
+     "relative_humidity_mean_pct": 79.0,
+     "et0_mm": 1.0,
      "surface_temperature_min_c": null
     },
     "ecmwf": {
      "availability": "AVAILABLE",
-     "hours_valid": 25,
-     "precipitation_mm": 13.4,
-     "rain_mm": 11.2,
+     "hours_valid": 24,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 5.8,
-     "temperature_max_c": 13.2,
-     "wind_gust_max_kmh": 63.0,
-     "wind_speed_max_kmh": 35.0,
-     "relative_humidity_mean_pct": 87.0,
-     "et0_mm": 0.9,
-     "surface_temperature_min_c": 4.9
+     "temperature_min_c": -0.2,
+     "temperature_max_c": 10.8,
+     "wind_gust_max_kmh": 17.0,
+     "wind_speed_max_kmh": 8.0,
+     "relative_humidity_mean_pct": 88.0,
+     "et0_mm": 1.0,
+     "surface_temperature_min_c": -2.2
     },
     "icon": {
      "availability": "AVAILABLE",
-     "hours_valid": 25,
-     "precipitation_mm": 18.1,
-     "rain_mm": 18.0,
+     "hours_valid": 24,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 8.4,
-     "temperature_max_c": 14.9,
-     "wind_gust_max_kmh": 60.0,
-     "wind_speed_max_kmh": 33.0,
-     "relative_humidity_mean_pct": 79.0,
-     "et0_mm": 1.3,
-     "surface_temperature_min_c": 6.9
+     "temperature_min_c": -1.1,
+     "temperature_max_c": 10.6,
+     "wind_gust_max_kmh": 12.0,
+     "wind_speed_max_kmh": 6.0,
+     "relative_humidity_mean_pct": 91.0,
+     "et0_mm": 0.8,
+     "surface_temperature_min_c": -0.1
     },
     "icon_global": {
      "availability": "AVAILABLE",
-     "hours_valid": 25,
-     "precipitation_mm": 20.8,
-     "rain_mm": 20.4,
+     "hours_valid": 24,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 8.5,
-     "temperature_max_c": 14.7,
-     "wind_gust_max_kmh": 69.0,
-     "wind_speed_max_kmh": 30.0,
-     "relative_humidity_mean_pct": 87.0,
+     "temperature_min_c": 0.2,
+     "temperature_max_c": 9.5,
+     "wind_gust_max_kmh": 16.0,
+     "wind_speed_max_kmh": 6.0,
+     "relative_humidity_mean_pct": 90.0,
      "et0_mm": 1.0,
-     "surface_temperature_min_c": 8.2
+     "surface_temperature_min_c": 1.3
     }
    },
    "ensemble": {
@@ -1281,30 +1280,30 @@
      "members_expected": 51,
      "precipitation": {
       "members_valid": 51,
-      "p10_mm": 7.6,
-      "p25_mm": 9.5,
-      "median_mm": 12.7,
-      "p75_mm": 15.6,
-      "p90_mm": 18.7,
-      "min_mm": 3.8,
-      "max_mm": 34.6,
-      "prob_ge_0_5mm": 1.0,
-      "prob_ge_2mm": 1.0,
-      "prob_ge_5mm": 0.98,
-      "prob_ge_10mm": 0.706
+      "p10_mm": 0.0,
+      "p25_mm": 0.0,
+      "median_mm": 0.0,
+      "p75_mm": 0.0,
+      "p90_mm": 0.0,
+      "min_mm": 0.0,
+      "max_mm": 0.1,
+      "prob_ge_0_5mm": 0.0,
+      "prob_ge_2mm": 0.0,
+      "prob_ge_5mm": 0.0,
+      "prob_ge_10mm": 0.0
      },
      "temperature": {
       "members_valid": 51,
-      "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 7.0,
-      "min_median_c": 7.9
+      "prob_temperature_below_0c": 0.549,
+      "min_p10_c": -0.7,
+      "min_median_c": -0.1
      },
      "wind": {
       "members_valid": 51,
-      "prob_gust_ge_40kmh": 1.0,
-      "prob_gust_ge_60kmh": 0.471,
-      "gust_max_median_kmh": 60.0,
-      "gust_max_p90_kmh": 68.0
+      "prob_gust_ge_40kmh": 0.0,
+      "prob_gust_ge_60kmh": 0.0,
+      "gust_max_median_kmh": 18.0,
+      "gust_max_p90_kmh": 23.0
      }
     },
     "icon_eu_eps": {
@@ -1312,30 +1311,30 @@
      "members_expected": 40,
      "precipitation": {
       "members_valid": 40,
-      "p10_mm": 9.0,
-      "p25_mm": 11.3,
-      "median_mm": 14.7,
-      "p75_mm": 18.9,
-      "p90_mm": 21.4,
-      "min_mm": 8.1,
-      "max_mm": 28.0,
-      "prob_ge_0_5mm": 1.0,
-      "prob_ge_2mm": 1.0,
-      "prob_ge_5mm": 1.0,
-      "prob_ge_10mm": 0.825
+      "p10_mm": 0.0,
+      "p25_mm": 0.0,
+      "median_mm": 0.0,
+      "p75_mm": 0.0,
+      "p90_mm": 0.0,
+      "min_mm": 0.0,
+      "max_mm": 0.0,
+      "prob_ge_0_5mm": 0.0,
+      "prob_ge_2mm": 0.0,
+      "prob_ge_5mm": 0.0,
+      "prob_ge_10mm": 0.0
      },
      "temperature": {
       "members_valid": 40,
-      "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 6.9,
-      "min_median_c": 8.3
+      "prob_temperature_below_0c": 0.5,
+      "min_p10_c": -1.4,
+      "min_median_c": -0.1
      },
      "wind": {
       "members_valid": 40,
-      "prob_gust_ge_40kmh": 1.0,
-      "prob_gust_ge_60kmh": 0.775,
-      "gust_max_median_kmh": 64.0,
-      "gust_max_p90_kmh": 76.0
+      "prob_gust_ge_40kmh": 0.0,
+      "prob_gust_ge_60kmh": 0.0,
+      "gust_max_median_kmh": 11.0,
+      "gust_max_p90_kmh": 16.0
      }
     }
    },
@@ -1351,26 +1350,26 @@
    "preceding_24h_forecast_precip_mm_by_model": {
     "arome_hd": null,
     "arome": null,
-    "arpege": 8.0,
-    "ecmwf": 8.4,
-    "icon": 7.0,
-    "icon_global": 12.5
+    "arpege": 0.0,
+    "ecmwf": 0.0,
+    "icon": 0.0,
+    "icon_global": 0.0
    },
    "preceding_48h_forecast_precip_mm_by_model": {
     "arome_hd": null,
     "arome": null,
-    "arpege": 19.4,
-    "ecmwf": 19.1,
-    "icon": 12.6,
-    "icon_global": 27.8
+    "arpege": 0.0,
+    "ecmwf": 0.0,
+    "icon": 0.0,
+    "icon_global": 0.0
    },
    "preceding_72h_forecast_precip_mm_by_model": {
     "arome_hd": null,
     "arome": null,
-    "arpege": 19.4,
-    "ecmwf": 19.4,
-    "icon": 12.6,
-    "icon_global": 28.4
+    "arpege": 0.0,
+    "ecmwf": 0.0,
+    "icon": 0.0,
+    "icon_global": 0.0
    },
    "consensus": {
     "scenario_threshold_mm": 2.0,
@@ -1380,47 +1379,46 @@
      "icon"
     ],
     "deterministic_categories": {
-     "arpege": "VERY_WET",
-     "ecmwf": "VERY_WET",
-     "icon": "VERY_WET"
+     "arpege": "DRY",
+     "ecmwf": "DRY",
+     "icon": "DRY"
     },
-    "deterministic_wet_fraction": 1.0,
-    "deterministic_rain_fraction": 1.0,
+    "deterministic_wet_fraction": 0.0,
+    "deterministic_rain_fraction": 0.0,
     "vote_weights": {
      "arpege": 1.0,
      "ecmwf": 1.0,
      "icon": 1.0
     },
     "weighted_agreement": 1.0,
-    "majority_scenario": "WET",
-    "deterministic_min_mm": 12.9,
-    "deterministic_max_mm": 18.1,
-    "deterministic_spread_mm": 5.2,
+    "majority_scenario": "DRY",
+    "deterministic_min_mm": 0.0,
+    "deterministic_max_mm": 0.0,
+    "deterministic_spread_mm": 0.0,
     "ensemble_prob_ge_2mm": {
-     "ecmwf_ens": 1.0,
-     "icon_eu_eps": 1.0
+     "ecmwf_ens": 0.0,
+     "icon_eu_eps": 0.0
     },
     "ensemble_readings": {
-     "ecmwf_ens": "WET",
-     "icon_eu_eps": "WET"
+     "ecmwf_ens": "DRY",
+     "icon_eu_eps": "DRY"
     },
     "ensemble_systems_available": 2,
-    "confidence": "MEDIUM",
-    "confidence_cap_reason": "dispersion quantitative notable (12.9–18.1 mm)",
+    "confidence": "HIGH",
+    "confidence_cap_reason": null,
     "reasons": [
-     "dispersion quantitative notable (12.9–18.1 mm)",
      "hors horizon : arome, arome_hd",
-     "3 modèles, accord pondéré 100% sur le scénario WET",
-     "ecmwf_ens : P(≥ 2 mm) = 100%",
-     "icon_eu_eps : P(≥ 2 mm) = 100%"
+     "3 modèles, accord pondéré 100% sur le scénario DRY",
+     "ecmwf_ens : P(≥ 2 mm) = 0%",
+     "icon_eu_eps : P(≥ 2 mm) = 0%"
     ],
-    "reason": "dispersion quantitative notable (12.9–18.1 mm) ; hors horizon : arome, arome_hd ; 3 modèles, accord pondéré 100% sur le scénario WET ; ecmwf_ens : P(≥ 2 mm) = 100% ; icon_eu_eps : P(≥ 2 mm) = 100%"
+    "reason": "hors horizon : arome, arome_hd ; 3 modèles, accord pondéré 100% sur le scénario DRY ; ecmwf_ens : P(≥ 2 mm) = 0% ; icon_eu_eps : P(≥ 2 mm) = 0%"
    }
   },
   {
-   "date": "2026-10-26",
-   "start_utc": "2026-10-25T23:00:00+00:00",
-   "end_utc": "2026-10-26T23:00:00+00:00",
+   "date": "2026-11-05",
+   "start_utc": "2026-11-04T23:00:00+00:00",
+   "end_utc": "2026-11-05T23:00:00+00:00",
    "hours": 24,
    "period_state": "FUTURE",
    "lead_day": 4,
@@ -1470,44 +1468,44 @@
     "ecmwf": {
      "availability": "AVAILABLE",
      "hours_valid": 24,
-     "precipitation_mm": 0.3,
-     "rain_mm": 0.3,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 5.3,
-     "temperature_max_c": 15.2,
-     "wind_gust_max_kmh": 28.0,
-     "wind_speed_max_kmh": 13.0,
-     "relative_humidity_mean_pct": 84.0,
-     "et0_mm": 1.4,
-     "surface_temperature_min_c": 3.8
+     "temperature_min_c": 0.8,
+     "temperature_max_c": 10.0,
+     "wind_gust_max_kmh": 13.0,
+     "wind_speed_max_kmh": 4.0,
+     "relative_humidity_mean_pct": 94.0,
+     "et0_mm": 0.9,
+     "surface_temperature_min_c": -0.7
     },
     "icon": {
      "availability": "AVAILABLE",
      "hours_valid": 24,
-     "precipitation_mm": 0.6,
-     "rain_mm": 0.6,
+     "precipitation_mm": 1.2,
+     "rain_mm": 1.2,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 6.6,
-     "temperature_max_c": 12.8,
-     "wind_gust_max_kmh": 24.0,
-     "wind_speed_max_kmh": 13.0,
-     "relative_humidity_mean_pct": 79.0,
-     "et0_mm": 1.0,
-     "surface_temperature_min_c": 5.5
+     "temperature_min_c": 0.6,
+     "temperature_max_c": 8.6,
+     "wind_gust_max_kmh": 18.0,
+     "wind_speed_max_kmh": 10.0,
+     "relative_humidity_mean_pct": 92.0,
+     "et0_mm": 0.8,
+     "surface_temperature_min_c": 0.7
     },
     "icon_global": {
      "availability": "AVAILABLE",
      "hours_valid": 24,
-     "precipitation_mm": 0.6,
+     "precipitation_mm": 0.8,
      "rain_mm": 0.6,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 5.2,
-     "temperature_max_c": 13.2,
-     "wind_gust_max_kmh": 32.0,
-     "wind_speed_max_kmh": 10.0,
-     "relative_humidity_mean_pct": 84.0,
-     "et0_mm": 1.0,
-     "surface_temperature_min_c": 5.7
+     "temperature_min_c": 1.2,
+     "temperature_max_c": 9.3,
+     "wind_gust_max_kmh": 19.0,
+     "wind_speed_max_kmh": 8.0,
+     "relative_humidity_mean_pct": 90.0,
+     "et0_mm": 0.9,
+     "surface_temperature_min_c": 1.6
     }
    },
    "ensemble": {
@@ -1518,28 +1516,28 @@
       "members_valid": 51,
       "p10_mm": 0.0,
       "p25_mm": 0.0,
-      "median_mm": 0.2,
-      "p75_mm": 1.7,
-      "p90_mm": 3.5,
+      "median_mm": 0.0,
+      "p75_mm": 0.0,
+      "p90_mm": 1.2,
       "min_mm": 0.0,
-      "max_mm": 4.8,
-      "prob_ge_0_5mm": 0.412,
-      "prob_ge_2mm": 0.235,
+      "max_mm": 3.2,
+      "prob_ge_0_5mm": 0.176,
+      "prob_ge_2mm": 0.039,
       "prob_ge_5mm": 0.0,
       "prob_ge_10mm": 0.0
      },
      "temperature": {
       "members_valid": 51,
-      "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 4.9,
-      "min_median_c": 7.0
+      "prob_temperature_below_0c": 0.235,
+      "min_p10_c": -0.5,
+      "min_median_c": 0.4
      },
      "wind": {
       "members_valid": 51,
-      "prob_gust_ge_40kmh": 0.196,
+      "prob_gust_ge_40kmh": 0.0,
       "prob_gust_ge_60kmh": 0.0,
-      "gust_max_median_kmh": 29.0,
-      "gust_max_p90_kmh": 48.0
+      "gust_max_median_kmh": 15.0,
+      "gust_max_p90_kmh": 19.0
      }
     },
     "icon_eu_eps": {
@@ -1550,27 +1548,27 @@
       "p10_mm": 0.0,
       "p25_mm": 0.0,
       "median_mm": 0.0,
-      "p75_mm": 3.1,
-      "p90_mm": 4.3,
+      "p75_mm": 0.0,
+      "p90_mm": 1.9,
       "min_mm": 0.0,
-      "max_mm": 10.2,
-      "prob_ge_0_5mm": 0.45,
-      "prob_ge_2mm": 0.3,
-      "prob_ge_5mm": 0.075,
-      "prob_ge_10mm": 0.025
+      "max_mm": 5.4,
+      "prob_ge_0_5mm": 0.225,
+      "prob_ge_2mm": 0.1,
+      "prob_ge_5mm": 0.025,
+      "prob_ge_10mm": 0.0
      },
      "temperature": {
       "members_valid": 40,
-      "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 4.1,
-      "min_median_c": 6.3
+      "prob_temperature_below_0c": 0.4,
+      "min_p10_c": -1.1,
+      "min_median_c": 0.4
      },
      "wind": {
       "members_valid": 40,
-      "prob_gust_ge_40kmh": 0.125,
+      "prob_gust_ge_40kmh": 0.0,
       "prob_gust_ge_60kmh": 0.0,
-      "gust_max_median_kmh": 23.0,
-      "gust_max_p90_kmh": 41.0
+      "gust_max_median_kmh": 11.0,
+      "gust_max_p90_kmh": 20.0
      }
     }
    },
@@ -1588,26 +1586,26 @@
    "preceding_24h_forecast_precip_mm_by_model": {
     "arome_hd": null,
     "arome": null,
-    "arpege": 12.0,
-    "ecmwf": 12.0,
-    "icon": 16.0,
-    "icon_global": 19.9
+    "arpege": 0.0,
+    "ecmwf": 0.0,
+    "icon": 0.0,
+    "icon_global": 0.0
    },
    "preceding_48h_forecast_precip_mm_by_model": {
     "arome_hd": null,
     "arome": null,
-    "arpege": 20.9,
-    "ecmwf": 21.8,
-    "icon": 25.1,
-    "icon_global": 33.3
+    "arpege": 0.0,
+    "ecmwf": 0.0,
+    "icon": 0.0,
+    "icon_global": 0.0
    },
    "preceding_72h_forecast_precip_mm_by_model": {
     "arome_hd": null,
     "arome": null,
-    "arpege": 32.3,
-    "ecmwf": 32.5,
-    "icon": 30.7,
-    "icon_global": 48.6
+    "arpege": 0.0,
+    "ecmwf": 0.0,
+    "icon": 0.0,
+    "icon_global": 0.0
    },
    "consensus": {
     "scenario_threshold_mm": 2.0,
@@ -1627,12 +1625,12 @@
     },
     "weighted_agreement": 1.0,
     "majority_scenario": "DRY",
-    "deterministic_min_mm": 0.3,
-    "deterministic_max_mm": 0.6,
-    "deterministic_spread_mm": 0.3,
+    "deterministic_min_mm": 0.0,
+    "deterministic_max_mm": 1.2,
+    "deterministic_spread_mm": 1.2,
     "ensemble_prob_ge_2mm": {
-     "ecmwf_ens": 0.235,
-     "icon_eu_eps": 0.3
+     "ecmwf_ens": 0.039,
+     "icon_eu_eps": 0.1
     },
     "ensemble_readings": {
      "ecmwf_ens": "DRY",
@@ -1646,16 +1644,16 @@
      "couverture incomplète de la période, exclus du vote : arpege",
      "hors horizon : arome, arome_hd",
      "2 modèles, accord pondéré 100% sur le scénario DRY",
-     "ecmwf_ens : P(≥ 2 mm) = 24%",
-     "icon_eu_eps : P(≥ 2 mm) = 30%"
+     "ecmwf_ens : P(≥ 2 mm) = 4%",
+     "icon_eu_eps : P(≥ 2 mm) = 10%"
     ],
-    "reason": "seulement 2 modèles déterministes ; couverture incomplète de la période, exclus du vote : arpege ; hors horizon : arome, arome_hd ; 2 modèles, accord pondéré 100% sur le scénario DRY ; ecmwf_ens : P(≥ 2 mm) = 24% ; icon_eu_eps : P(≥ 2 mm) = 30%"
+    "reason": "seulement 2 modèles déterministes ; couverture incomplète de la période, exclus du vote : arpege ; hors horizon : arome, arome_hd ; 2 modèles, accord pondéré 100% sur le scénario DRY ; ecmwf_ens : P(≥ 2 mm) = 4% ; icon_eu_eps : P(≥ 2 mm) = 10%"
    }
   },
   {
-   "date": "2026-10-27",
-   "start_utc": "2026-10-26T23:00:00+00:00",
-   "end_utc": "2026-10-27T23:00:00+00:00",
+   "date": "2026-11-06",
+   "start_utc": "2026-11-05T23:00:00+00:00",
+   "end_utc": "2026-11-06T23:00:00+00:00",
    "hours": 24,
    "period_state": "FUTURE",
    "lead_day": 5,
@@ -1708,13 +1706,13 @@
      "precipitation_mm": 0.0,
      "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 8.6,
-     "temperature_max_c": 20.1,
-     "wind_gust_max_kmh": 35.0,
-     "wind_speed_max_kmh": 17.0,
-     "relative_humidity_mean_pct": 82.0,
-     "et0_mm": 1.9,
-     "surface_temperature_min_c": 6.5
+     "temperature_min_c": 2.0,
+     "temperature_max_c": 10.5,
+     "wind_gust_max_kmh": 11.0,
+     "wind_speed_max_kmh": 3.0,
+     "relative_humidity_mean_pct": 92.0,
+     "et0_mm": 0.7,
+     "surface_temperature_min_c": 1.0
     },
     "icon": {
      "availability": "PARTIAL_HORIZON",
@@ -1733,16 +1731,16 @@
     "icon_global": {
      "availability": "AVAILABLE",
      "hours_valid": 24,
-     "precipitation_mm": 0.6,
-     "rain_mm": 0.0,
+     "precipitation_mm": 3.4,
+     "rain_mm": 2.1,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 7.8,
-     "temperature_max_c": 20.1,
-     "wind_gust_max_kmh": 51.0,
-     "wind_speed_max_kmh": 22.0,
-     "relative_humidity_mean_pct": 80.0,
-     "et0_mm": 1.8,
-     "surface_temperature_min_c": 7.5
+     "temperature_min_c": 3.8,
+     "temperature_max_c": 11.2,
+     "wind_gust_max_kmh": 16.0,
+     "wind_speed_max_kmh": 6.0,
+     "relative_humidity_mean_pct": 93.0,
+     "et0_mm": 0.6,
+     "surface_temperature_min_c": 4.1
     }
    },
    "ensemble": {
@@ -1753,28 +1751,28 @@
       "members_valid": 51,
       "p10_mm": 0.0,
       "p25_mm": 0.0,
-      "median_mm": 0.6,
-      "p75_mm": 2.7,
-      "p90_mm": 6.2,
+      "median_mm": 0.0,
+      "p75_mm": 0.5,
+      "p90_mm": 1.3,
       "min_mm": 0.0,
-      "max_mm": 18.8,
-      "prob_ge_0_5mm": 0.529,
-      "prob_ge_2mm": 0.314,
-      "prob_ge_5mm": 0.176,
-      "prob_ge_10mm": 0.039
+      "max_mm": 7.3,
+      "prob_ge_0_5mm": 0.235,
+      "prob_ge_2mm": 0.098,
+      "prob_ge_5mm": 0.02,
+      "prob_ge_10mm": 0.0
      },
      "temperature": {
       "members_valid": 51,
       "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 6.7,
-      "min_median_c": 9.3
+      "min_p10_c": 1.2,
+      "min_median_c": 2.2
      },
      "wind": {
       "members_valid": 51,
-      "prob_gust_ge_40kmh": 0.627,
-      "prob_gust_ge_60kmh": 0.157,
-      "gust_max_median_kmh": 45.0,
-      "gust_max_p90_kmh": 63.0
+      "prob_gust_ge_40kmh": 0.0,
+      "prob_gust_ge_60kmh": 0.0,
+      "gust_max_median_kmh": 14.0,
+      "gust_max_p90_kmh": 18.0
      }
     },
     "icon_eu_eps": {
@@ -1826,25 +1824,25 @@
     "arome_hd": null,
     "arome": null,
     "arpege": null,
-    "ecmwf": 0.3,
-    "icon": 0.6,
-    "icon_global": 0.6
+    "ecmwf": 0.0,
+    "icon": 1.2,
+    "icon_global": 0.8
    },
    "preceding_48h_forecast_precip_mm_by_model": {
     "arome_hd": null,
     "arome": null,
     "arpege": null,
-    "ecmwf": 12.3,
-    "icon": 16.6,
-    "icon_global": 20.5
+    "ecmwf": 0.0,
+    "icon": 1.2,
+    "icon_global": 0.8
    },
    "preceding_72h_forecast_precip_mm_by_model": {
     "arome_hd": null,
     "arome": null,
     "arpege": null,
-    "ecmwf": 22.1,
-    "icon": 25.7,
-    "icon_global": 33.9
+    "ecmwf": 0.0,
+    "icon": 1.2,
+    "icon_global": 0.8
    },
    "consensus": {
     "scenario_threshold_mm": 2.0,
@@ -1854,46 +1852,46 @@
     ],
     "deterministic_categories": {
      "ecmwf": "DRY",
-     "icon_global": "LIGHT"
+     "icon_global": "WET"
     },
-    "deterministic_wet_fraction": 0.0,
+    "deterministic_wet_fraction": 0.5,
     "deterministic_rain_fraction": 0.5,
     "vote_weights": {
      "ecmwf": 1.0,
      "icon_global": 1.0
     },
-    "weighted_agreement": 1.0,
-    "majority_scenario": "DRY",
+    "weighted_agreement": 0.5,
+    "majority_scenario": "SPLIT",
     "deterministic_min_mm": 0.0,
-    "deterministic_max_mm": 0.6,
-    "deterministic_spread_mm": 0.6,
+    "deterministic_max_mm": 3.4,
+    "deterministic_spread_mm": 3.4,
     "ensemble_prob_ge_2mm": {
-     "ecmwf_ens": 0.314,
+     "ecmwf_ens": 0.098,
      "icon_eu_eps": null
     },
     "ensemble_readings": {
-     "ecmwf_ens": "LEANING_DRY",
+     "ecmwf_ens": "DRY",
      "icon_eu_eps": null
     },
     "ensemble_systems_available": 1,
-    "confidence": "MEDIUM",
-    "confidence_cap_reason": "seulement 2 modèles déterministes",
+    "confidence": "LOW",
+    "confidence_cap_reason": "déterministes partagés entre sec et humide (accord 50%)",
     "reasons": [
      "seulement 2 modèles déterministes",
-     "ecmwf_ens : soutien faible du scénario DRY (P(≥ 2 mm) = 31%)",
+     "déterministes partagés entre sec et humide (accord 50%)",
      "un seul système d'ensemble disponible",
      "icon_global relaie icon (hors horizon ou indisponible)",
      "couverture incomplète de la période, exclus du vote : icon",
      "hors horizon : arome, arome_hd, arpege",
-     "2 modèles, accord pondéré 100% sur le scénario DRY"
+     "ecmwf_ens : P(≥ 2 mm) = 10%"
     ],
-    "reason": "seulement 2 modèles déterministes ; ecmwf_ens : soutien faible du scénario DRY (P(≥ 2 mm) = 31%) ; un seul système d'ensemble disponible ; icon_global relaie icon (hors horizon ou indisponible) ; couverture incomplète de la période, exclus du vote : icon ; hors horizon : arome, arome_hd, arpege ; 2 modèles, accord pondéré 100% sur le scénario DRY"
+    "reason": "seulement 2 modèles déterministes ; déterministes partagés entre sec et humide (accord 50%) ; un seul système d'ensemble disponible ; icon_global relaie icon (hors horizon ou indisponible) ; couverture incomplète de la période, exclus du vote : icon ; hors horizon : arome, arome_hd, arpege ; ecmwf_ens : P(≥ 2 mm) = 10%"
    }
   },
   {
-   "date": "2026-10-28",
-   "start_utc": "2026-10-27T23:00:00+00:00",
-   "end_utc": "2026-10-28T23:00:00+00:00",
+   "date": "2026-11-07",
+   "start_utc": "2026-11-06T23:00:00+00:00",
+   "end_utc": "2026-11-07T23:00:00+00:00",
    "hours": 24,
    "period_state": "FUTURE",
    "lead_day": 6,
@@ -1943,16 +1941,16 @@
     "ecmwf": {
      "availability": "AVAILABLE",
      "hours_valid": 24,
-     "precipitation_mm": 1.2,
-     "rain_mm": 1.2,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 8.9,
-     "temperature_max_c": 14.7,
-     "wind_gust_max_kmh": 27.0,
-     "wind_speed_max_kmh": 16.0,
-     "relative_humidity_mean_pct": 86.0,
-     "et0_mm": 1.1,
-     "surface_temperature_min_c": 7.5
+     "temperature_min_c": 3.7,
+     "temperature_max_c": 10.4,
+     "wind_gust_max_kmh": 23.0,
+     "wind_speed_max_kmh": 12.0,
+     "relative_humidity_mean_pct": 94.0,
+     "et0_mm": 0.8,
+     "surface_temperature_min_c": 2.1
     },
     "icon": {
      "availability": "OUT_OF_HORIZON",
@@ -1971,16 +1969,16 @@
     "icon_global": {
      "availability": "AVAILABLE",
      "hours_valid": 24,
-     "precipitation_mm": 0.3,
+     "precipitation_mm": 0.0,
      "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 5.6,
-     "temperature_max_c": 14.5,
-     "wind_gust_max_kmh": 31.0,
-     "wind_speed_max_kmh": 14.0,
-     "relative_humidity_mean_pct": 80.0,
-     "et0_mm": 1.6,
-     "surface_temperature_min_c": 6.2
+     "temperature_min_c": 2.6,
+     "temperature_max_c": 13.4,
+     "wind_gust_max_kmh": 18.0,
+     "wind_speed_max_kmh": 7.0,
+     "relative_humidity_mean_pct": 91.0,
+     "et0_mm": 1.0,
+     "surface_temperature_min_c": 2.7
     }
    },
    "ensemble": {
@@ -2067,23 +2065,23 @@
     "arpege": null,
     "ecmwf": 0.0,
     "icon": null,
-    "icon_global": 0.6
+    "icon_global": 3.4
    },
    "preceding_48h_forecast_precip_mm_by_model": {
     "arome_hd": null,
     "arome": null,
     "arpege": null,
-    "ecmwf": 0.3,
+    "ecmwf": 0.0,
     "icon": null,
-    "icon_global": 1.2
+    "icon_global": 4.2
    },
    "preceding_72h_forecast_precip_mm_by_model": {
     "arome_hd": null,
     "arome": null,
     "arpege": null,
-    "ecmwf": 12.3,
+    "ecmwf": 0.0,
     "icon": null,
-    "icon_global": 21.1
+    "icon_global": 4.2
    },
    "consensus": {
     "scenario_threshold_mm": 2.0,
@@ -2092,20 +2090,20 @@
      "icon_global"
     ],
     "deterministic_categories": {
-     "ecmwf": "LIGHT",
+     "ecmwf": "DRY",
      "icon_global": "DRY"
     },
     "deterministic_wet_fraction": 0.0,
-    "deterministic_rain_fraction": 0.5,
+    "deterministic_rain_fraction": 0.0,
     "vote_weights": {
      "ecmwf": 1.0,
      "icon_global": 1.0
     },
     "weighted_agreement": 1.0,
     "majority_scenario": "DRY",
-    "deterministic_min_mm": 0.3,
-    "deterministic_max_mm": 1.2,
-    "deterministic_spread_mm": 0.9,
+    "deterministic_min_mm": 0.0,
+    "deterministic_max_mm": 0.0,
+    "deterministic_spread_mm": 0.0,
     "ensemble_prob_ge_2mm": {
      "ecmwf_ens": null,
      "icon_eu_eps": null
@@ -2129,9 +2127,9 @@
    }
   },
   {
-   "date": "2026-10-29",
-   "start_utc": "2026-10-28T23:00:00+00:00",
-   "end_utc": "2026-10-29T23:00:00+00:00",
+   "date": "2026-11-08",
+   "start_utc": "2026-11-07T23:00:00+00:00",
+   "end_utc": "2026-11-08T23:00:00+00:00",
    "hours": 24,
    "period_state": "FUTURE",
    "lead_day": 7,
@@ -2181,16 +2179,16 @@
     "ecmwf": {
      "availability": "AVAILABLE",
      "hours_valid": 24,
-     "precipitation_mm": 0.0,
-     "rain_mm": 0.0,
+     "precipitation_mm": 15.3,
+     "rain_mm": 12.4,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 5.3,
-     "temperature_max_c": 13.1,
-     "wind_gust_max_kmh": 26.0,
-     "wind_speed_max_kmh": 13.0,
-     "relative_humidity_mean_pct": 91.0,
-     "et0_mm": 1.1,
-     "surface_temperature_min_c": 4.6
+     "temperature_min_c": 10.1,
+     "temperature_max_c": 12.2,
+     "wind_gust_max_kmh": 45.0,
+     "wind_speed_max_kmh": 23.0,
+     "relative_humidity_mean_pct": 92.0,
+     "et0_mm": 0.5,
+     "surface_temperature_min_c": 9.5
     },
     "icon": {
      "availability": "OUT_OF_HORIZON",
@@ -2209,16 +2207,16 @@
     "icon_global": {
      "availability": "AVAILABLE",
      "hours_valid": 24,
-     "precipitation_mm": 0.0,
-     "rain_mm": 0.0,
+     "precipitation_mm": 14.0,
+     "rain_mm": 10.8,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 3.1,
-     "temperature_max_c": 14.8,
-     "wind_gust_max_kmh": 17.0,
-     "wind_speed_max_kmh": 6.0,
-     "relative_humidity_mean_pct": 91.0,
-     "et0_mm": 1.3,
-     "surface_temperature_min_c": 3.9
+     "temperature_min_c": 6.8,
+     "temperature_max_c": 15.9,
+     "wind_gust_max_kmh": 67.0,
+     "wind_speed_max_kmh": 30.0,
+     "relative_humidity_mean_pct": 84.0,
+     "et0_mm": 0.8,
+     "surface_temperature_min_c": 6.3
     }
    },
    "ensemble": {
@@ -2302,25 +2300,25 @@
     "arome_hd": null,
     "arome": null,
     "arpege": null,
-    "ecmwf": 1.2,
+    "ecmwf": 0.0,
     "icon": null,
-    "icon_global": 0.3
+    "icon_global": 0.0
    },
    "preceding_48h_forecast_precip_mm_by_model": {
     "arome_hd": null,
     "arome": null,
     "arpege": null,
-    "ecmwf": 1.2,
+    "ecmwf": 0.0,
     "icon": null,
-    "icon_global": 0.9
+    "icon_global": 3.4
    },
    "preceding_72h_forecast_precip_mm_by_model": {
     "arome_hd": null,
     "arome": null,
     "arpege": null,
-    "ecmwf": 1.5,
+    "ecmwf": 0.0,
     "icon": null,
-    "icon_global": 1.5
+    "icon_global": 4.2
    },
    "consensus": {
     "scenario_threshold_mm": 2.0,
@@ -2329,20 +2327,20 @@
      "icon_global"
     ],
     "deterministic_categories": {
-     "ecmwf": "DRY",
-     "icon_global": "DRY"
+     "ecmwf": "VERY_WET",
+     "icon_global": "VERY_WET"
     },
-    "deterministic_wet_fraction": 0.0,
-    "deterministic_rain_fraction": 0.0,
+    "deterministic_wet_fraction": 1.0,
+    "deterministic_rain_fraction": 1.0,
     "vote_weights": {
      "ecmwf": 1.0,
      "icon_global": 1.0
     },
     "weighted_agreement": 1.0,
-    "majority_scenario": "DRY",
-    "deterministic_min_mm": 0.0,
-    "deterministic_max_mm": 0.0,
-    "deterministic_spread_mm": 0.0,
+    "majority_scenario": "WET",
+    "deterministic_min_mm": 14.0,
+    "deterministic_max_mm": 15.3,
+    "deterministic_spread_mm": 1.3,
     "ensemble_prob_ge_2mm": {
      "ecmwf_ens": null,
      "icon_eu_eps": null
@@ -2360,20 +2358,20 @@
      "échéance J+7 ≥ J+6",
      "icon_global relaie icon (hors horizon ou indisponible)",
      "hors horizon : arome, arome_hd, arpege, icon",
-     "2 modèles, accord pondéré 100% sur le scénario DRY"
+     "2 modèles, accord pondéré 100% sur le scénario WET"
     ],
-    "reason": "seulement 2 modèles déterministes ; aucun système d'ensemble disponible ; échéance J+7 ≥ J+6 ; icon_global relaie icon (hors horizon ou indisponible) ; hors horizon : arome, arome_hd, arpege, icon ; 2 modèles, accord pondéré 100% sur le scénario DRY"
+    "reason": "seulement 2 modèles déterministes ; aucun système d'ensemble disponible ; échéance J+7 ≥ J+6 ; icon_global relaie icon (hors horizon ou indisponible) ; hors horizon : arome, arome_hd, arpege, icon ; 2 modèles, accord pondéré 100% sur le scénario WET"
    }
   }
  ],
  "half_days": [
   {
-   "date": "2026-10-22",
+   "date": "2026-11-01",
    "slot": "MORNING",
    "local_start": "06:00",
    "local_end": "12:00",
-   "start_utc": "2026-10-22T04:00:00+00:00",
-   "end_utc": "2026-10-22T10:00:00+00:00",
+   "start_utc": "2026-11-01T05:00:00+00:00",
+   "end_utc": "2026-11-01T11:00:00+00:00",
    "hours": 6,
    "period_state": "PAST",
    "lead_day": 0,
@@ -2384,11 +2382,11 @@
      "precipitation_mm": 0.0,
      "rain_mm": null,
      "snowfall_cm": null,
-     "temperature_min_c": 6.6,
-     "temperature_max_c": 12.3,
-     "wind_gust_max_kmh": 31.0,
-     "wind_speed_max_kmh": 16.0,
-     "relative_humidity_mean_pct": 85.0,
+     "temperature_min_c": 3.7,
+     "temperature_max_c": 10.5,
+     "wind_gust_max_kmh": 49.0,
+     "wind_speed_max_kmh": 23.0,
+     "relative_humidity_mean_pct": 77.0,
      "et0_mm": null,
      "surface_temperature_min_c": null
     },
@@ -2398,12 +2396,12 @@
      "precipitation_mm": 0.0,
      "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 6.6,
-     "temperature_max_c": 12.2,
-     "wind_gust_max_kmh": 31.0,
-     "wind_speed_max_kmh": 16.0,
-     "relative_humidity_mean_pct": 85.0,
-     "et0_mm": 0.3,
+     "temperature_min_c": 3.7,
+     "temperature_max_c": 10.4,
+     "wind_gust_max_kmh": 49.0,
+     "wind_speed_max_kmh": 23.0,
+     "relative_humidity_mean_pct": 77.0,
+     "et0_mm": 0.5,
      "surface_temperature_min_c": null
     },
     "arpege": {
@@ -2412,27 +2410,27 @@
      "precipitation_mm": 0.0,
      "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 7.0,
-     "temperature_max_c": 11.6,
-     "wind_gust_max_kmh": 24.0,
-     "wind_speed_max_kmh": 14.0,
-     "relative_humidity_mean_pct": 82.0,
-     "et0_mm": 0.3,
+     "temperature_min_c": 2.4,
+     "temperature_max_c": 10.3,
+     "wind_gust_max_kmh": 48.0,
+     "wind_speed_max_kmh": 26.0,
+     "relative_humidity_mean_pct": 78.0,
+     "et0_mm": 0.5,
      "surface_temperature_min_c": null
     },
     "ecmwf": {
      "availability": "AVAILABLE",
      "hours_valid": 6,
-     "precipitation_mm": 0.3,
-     "rain_mm": 0.1,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 6.1,
-     "temperature_max_c": 12.4,
-     "wind_gust_max_kmh": 33.0,
-     "wind_speed_max_kmh": 17.0,
-     "relative_humidity_mean_pct": 90.0,
-     "et0_mm": 0.3,
-     "surface_temperature_min_c": 5.6
+     "temperature_min_c": 5.1,
+     "temperature_max_c": 10.6,
+     "wind_gust_max_kmh": 55.0,
+     "wind_speed_max_kmh": 30.0,
+     "relative_humidity_mean_pct": 75.0,
+     "et0_mm": 0.6,
+     "surface_temperature_min_c": 3.8
     },
     "icon": {
      "availability": "AVAILABLE",
@@ -2440,13 +2438,13 @@
      "precipitation_mm": 0.0,
      "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 7.5,
-     "temperature_max_c": 12.3,
-     "wind_gust_max_kmh": 31.0,
-     "wind_speed_max_kmh": 17.0,
-     "relative_humidity_mean_pct": 82.0,
-     "et0_mm": 0.4,
-     "surface_temperature_min_c": 6.9
+     "temperature_min_c": 4.5,
+     "temperature_max_c": 10.3,
+     "wind_gust_max_kmh": 50.0,
+     "wind_speed_max_kmh": 28.0,
+     "relative_humidity_mean_pct": 79.0,
+     "et0_mm": 0.5,
+     "surface_temperature_min_c": 3.8
     },
     "icon_global": {
      "availability": "AVAILABLE",
@@ -2454,13 +2452,13 @@
      "precipitation_mm": 0.0,
      "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 8.4,
-     "temperature_max_c": 11.9,
-     "wind_gust_max_kmh": 33.0,
-     "wind_speed_max_kmh": 15.0,
-     "relative_humidity_mean_pct": 84.0,
-     "et0_mm": 0.3,
-     "surface_temperature_min_c": 8.3
+     "temperature_min_c": 2.8,
+     "temperature_max_c": 11.7,
+     "wind_gust_max_kmh": 52.0,
+     "wind_speed_max_kmh": 24.0,
+     "relative_humidity_mean_pct": 74.0,
+     "et0_mm": 0.5,
+     "surface_temperature_min_c": 1.8
     }
    },
    "ensemble": {
@@ -2482,10 +2480,10 @@
       "prob_ge_10mm": null
      },
      "temperature": {
-      "members_valid": 0,
-      "prob_temperature_below_0c": null,
-      "min_p10_c": null,
-      "min_median_c": null
+      "members_valid": 51,
+      "prob_temperature_below_0c": 0.0,
+      "min_p10_c": 4.0,
+      "min_median_c": 4.7
      },
      "wind": {
       "members_valid": 0,
@@ -2506,7 +2504,7 @@
       "p75_mm": 0.0,
       "p90_mm": 0.0,
       "min_mm": 0.0,
-      "max_mm": 0.1,
+      "max_mm": 0.0,
       "prob_ge_0_5mm": 0.0,
       "prob_ge_2mm": 0.0,
       "prob_ge_5mm": 0.0,
@@ -2515,15 +2513,15 @@
      "temperature": {
       "members_valid": 40,
       "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 6.8,
-      "min_median_c": 7.4
+      "min_p10_c": 3.6,
+      "min_median_c": 4.0
      },
      "wind": {
       "members_valid": 40,
-      "prob_gust_ge_40kmh": 0.025,
-      "prob_gust_ge_60kmh": 0.0,
-      "gust_max_median_kmh": 35.0,
-      "gust_max_p90_kmh": 38.0
+      "prob_gust_ge_40kmh": 1.0,
+      "prob_gust_ge_60kmh": 0.025,
+      "gust_max_median_kmh": 56.0,
+      "gust_max_p90_kmh": 58.0
      }
     }
    },
@@ -2537,28 +2535,28 @@
    },
    "hours_since_last_forecast_rain_ge_0_2mm": {
     "arome_hd": {
-     "hours": 16,
-     "lower_bound": false
+     "hours": 78,
+     "lower_bound": true
     },
     "arome": {
-     "hours": 16,
-     "lower_bound": false
+     "hours": 78,
+     "lower_bound": true
     },
     "arpege": {
-     "hours": 6,
-     "lower_bound": false
+     "hours": 78,
+     "lower_bound": true
     },
     "ecmwf": {
-     "hours": 11,
-     "lower_bound": false
+     "hours": 78,
+     "lower_bound": true
     },
     "icon": {
-     "hours": 10,
-     "lower_bound": false
+     "hours": 78,
+     "lower_bound": true
     },
     "icon_global": {
-     "hours": 5,
-     "lower_bound": false
+     "hours": 78,
+     "lower_bound": true
     }
    },
    "consensus": {
@@ -2589,8 +2587,8 @@
     "weighted_agreement": 1.0,
     "majority_scenario": "DRY",
     "deterministic_min_mm": 0.0,
-    "deterministic_max_mm": 0.3,
-    "deterministic_spread_mm": 0.3,
+    "deterministic_max_mm": 0.0,
+    "deterministic_spread_mm": 0.0,
     "ensemble_prob_ge_2mm": {
      "ecmwf_ens": null,
      "icon_eu_eps": 0.0
@@ -2611,12 +2609,12 @@
    }
   },
   {
-   "date": "2026-10-22",
+   "date": "2026-11-01",
    "slot": "AFTERNOON",
    "local_start": "12:00",
    "local_end": "18:00",
-   "start_utc": "2026-10-22T10:00:00+00:00",
-   "end_utc": "2026-10-22T16:00:00+00:00",
+   "start_utc": "2026-11-01T11:00:00+00:00",
+   "end_utc": "2026-11-01T17:00:00+00:00",
    "hours": 6,
    "period_state": "PAST",
    "lead_day": 0,
@@ -2627,11 +2625,11 @@
      "precipitation_mm": 0.0,
      "rain_mm": null,
      "snowfall_cm": null,
-     "temperature_min_c": 13.1,
-     "temperature_max_c": 14.4,
-     "wind_gust_max_kmh": 35.0,
-     "wind_speed_max_kmh": 18.0,
-     "relative_humidity_mean_pct": 64.0,
+     "temperature_min_c": 9.6,
+     "temperature_max_c": 11.7,
+     "wind_gust_max_kmh": 51.0,
+     "wind_speed_max_kmh": 24.0,
+     "relative_humidity_mean_pct": 53.0,
      "et0_mm": null,
      "surface_temperature_min_c": null
     },
@@ -2641,12 +2639,12 @@
      "precipitation_mm": 0.0,
      "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 13.0,
-     "temperature_max_c": 14.3,
-     "wind_gust_max_kmh": 35.0,
-     "wind_speed_max_kmh": 18.0,
-     "relative_humidity_mean_pct": 64.0,
-     "et0_mm": 1.1,
+     "temperature_min_c": 9.5,
+     "temperature_max_c": 11.6,
+     "wind_gust_max_kmh": 51.0,
+     "wind_speed_max_kmh": 24.0,
+     "relative_humidity_mean_pct": 53.0,
+     "et0_mm": 1.0,
      "surface_temperature_min_c": null
     },
     "arpege": {
@@ -2655,12 +2653,12 @@
      "precipitation_mm": 0.0,
      "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 12.7,
-     "temperature_max_c": 13.8,
-     "wind_gust_max_kmh": 32.0,
-     "wind_speed_max_kmh": 16.0,
-     "relative_humidity_mean_pct": 58.0,
-     "et0_mm": 1.1,
+     "temperature_min_c": 8.8,
+     "temperature_max_c": 11.6,
+     "wind_gust_max_kmh": 52.0,
+     "wind_speed_max_kmh": 29.0,
+     "relative_humidity_mean_pct": 54.0,
+     "et0_mm": 1.0,
      "surface_temperature_min_c": null
     },
     "ecmwf": {
@@ -2669,13 +2667,13 @@
      "precipitation_mm": 0.0,
      "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 12.7,
-     "temperature_max_c": 14.3,
-     "wind_gust_max_kmh": 35.0,
-     "wind_speed_max_kmh": 18.0,
-     "relative_humidity_mean_pct": 59.0,
-     "et0_mm": 1.1,
-     "surface_temperature_min_c": 11.3
+     "temperature_min_c": 9.3,
+     "temperature_max_c": 12.1,
+     "wind_gust_max_kmh": 55.0,
+     "wind_speed_max_kmh": 30.0,
+     "relative_humidity_mean_pct": 56.0,
+     "et0_mm": 1.0,
+     "surface_temperature_min_c": 7.8
     },
     "icon": {
      "availability": "AVAILABLE",
@@ -2683,13 +2681,13 @@
      "precipitation_mm": 0.0,
      "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 13.1,
-     "temperature_max_c": 14.0,
-     "wind_gust_max_kmh": 32.0,
-     "wind_speed_max_kmh": 18.0,
-     "relative_humidity_mean_pct": 60.0,
-     "et0_mm": 1.0,
-     "surface_temperature_min_c": 11.4
+     "temperature_min_c": 9.1,
+     "temperature_max_c": 11.7,
+     "wind_gust_max_kmh": 52.0,
+     "wind_speed_max_kmh": 29.0,
+     "relative_humidity_mean_pct": 57.0,
+     "et0_mm": 0.9,
+     "surface_temperature_min_c": 7.4
     },
     "icon_global": {
      "availability": "AVAILABLE",
@@ -2697,13 +2695,13 @@
      "precipitation_mm": 0.0,
      "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 12.6,
-     "temperature_max_c": 13.8,
-     "wind_gust_max_kmh": 35.0,
-     "wind_speed_max_kmh": 16.0,
-     "relative_humidity_mean_pct": 66.0,
-     "et0_mm": 1.0,
-     "surface_temperature_min_c": 11.2
+     "temperature_min_c": 8.4,
+     "temperature_max_c": 12.8,
+     "wind_gust_max_kmh": 54.0,
+     "wind_speed_max_kmh": 24.0,
+     "relative_humidity_mean_pct": 57.0,
+     "et0_mm": 0.9,
+     "surface_temperature_min_c": 7.5
     }
    },
    "ensemble": {
@@ -2718,7 +2716,7 @@
       "p75_mm": 0.0,
       "p90_mm": 0.0,
       "min_mm": 0.0,
-      "max_mm": 0.1,
+      "max_mm": 0.0,
       "prob_ge_0_5mm": 0.0,
       "prob_ge_2mm": 0.0,
       "prob_ge_5mm": 0.0,
@@ -2727,15 +2725,15 @@
      "temperature": {
       "members_valid": 51,
       "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 12.5,
-      "min_median_c": 12.8
+      "min_p10_c": 8.5,
+      "min_median_c": 8.9
      },
      "wind": {
       "members_valid": 51,
-      "prob_gust_ge_40kmh": 0.02,
-      "prob_gust_ge_60kmh": 0.0,
-      "gust_max_median_kmh": 36.0,
-      "gust_max_p90_kmh": 38.0
+      "prob_gust_ge_40kmh": 1.0,
+      "prob_gust_ge_60kmh": 0.059,
+      "gust_max_median_kmh": 56.0,
+      "gust_max_p90_kmh": 59.0
      }
     },
     "icon_eu_eps": {
@@ -2758,15 +2756,15 @@
      "temperature": {
       "members_valid": 40,
       "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 11.9,
-      "min_median_c": 12.3
+      "min_p10_c": 8.0,
+      "min_median_c": 8.4
      },
      "wind": {
       "members_valid": 40,
-      "prob_gust_ge_40kmh": 0.075,
-      "prob_gust_ge_60kmh": 0.0,
-      "gust_max_median_kmh": 37.0,
-      "gust_max_p90_kmh": 40.0
+      "prob_gust_ge_40kmh": 1.0,
+      "prob_gust_ge_60kmh": 0.075,
+      "gust_max_median_kmh": 58.0,
+      "gust_max_p90_kmh": 60.0
      }
     }
    },
@@ -2778,28 +2776,28 @@
    },
    "hours_since_last_forecast_rain_ge_0_2mm": {
     "arome_hd": {
-     "hours": 22,
-     "lower_bound": false
+     "hours": 84,
+     "lower_bound": true
     },
     "arome": {
-     "hours": 22,
-     "lower_bound": false
+     "hours": 84,
+     "lower_bound": true
     },
     "arpege": {
-     "hours": 12,
-     "lower_bound": false
+     "hours": 84,
+     "lower_bound": true
     },
     "ecmwf": {
-     "hours": 3,
-     "lower_bound": false
+     "hours": 84,
+     "lower_bound": true
     },
     "icon": {
-     "hours": 16,
-     "lower_bound": false
+     "hours": 84,
+     "lower_bound": true
     },
     "icon_global": {
-     "hours": 11,
-     "lower_bound": false
+     "hours": 84,
+     "lower_bound": true
     }
    },
    "consensus": {
@@ -2852,12 +2850,12 @@
    }
   },
   {
-   "date": "2026-10-23",
+   "date": "2026-11-02",
    "slot": "MORNING",
    "local_start": "06:00",
    "local_end": "12:00",
-   "start_utc": "2026-10-23T04:00:00+00:00",
-   "end_utc": "2026-10-23T10:00:00+00:00",
+   "start_utc": "2026-11-02T05:00:00+00:00",
+   "end_utc": "2026-11-02T11:00:00+00:00",
    "hours": 6,
    "period_state": "FUTURE",
    "lead_day": 1,
@@ -2865,738 +2863,14 @@
     "arome_hd": {
      "availability": "AVAILABLE",
      "hours_valid": 6,
-     "precipitation_mm": 2.0,
-     "rain_mm": null,
-     "snowfall_cm": null,
-     "temperature_min_c": 10.6,
-     "temperature_max_c": 13.0,
-     "wind_gust_max_kmh": 58.0,
-     "wind_speed_max_kmh": 30.0,
-     "relative_humidity_mean_pct": 82.0,
-     "et0_mm": null,
-     "surface_temperature_min_c": null
-    },
-    "arome": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 2.0,
-     "rain_mm": 2.0,
-     "snowfall_cm": 0.0,
-     "temperature_min_c": 10.5,
-     "temperature_max_c": 12.9,
-     "wind_gust_max_kmh": 58.0,
-     "wind_speed_max_kmh": 30.0,
-     "relative_humidity_mean_pct": 82.0,
-     "et0_mm": 0.3,
-     "surface_temperature_min_c": null
-    },
-    "arpege": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 4.2,
-     "rain_mm": 4.2,
-     "snowfall_cm": 0.0,
-     "temperature_min_c": 10.3,
-     "temperature_max_c": 12.4,
-     "wind_gust_max_kmh": 62.0,
-     "wind_speed_max_kmh": 35.0,
-     "relative_humidity_mean_pct": 85.0,
-     "et0_mm": 0.3,
-     "surface_temperature_min_c": null
-    },
-    "ecmwf": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 2.2,
-     "rain_mm": 1.6,
-     "snowfall_cm": 0.0,
-     "temperature_min_c": 10.3,
-     "temperature_max_c": 12.9,
-     "wind_gust_max_kmh": 57.0,
-     "wind_speed_max_kmh": 32.0,
-     "relative_humidity_mean_pct": 76.0,
-     "et0_mm": 0.5,
-     "surface_temperature_min_c": 9.5
-    },
-    "icon": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 3.0,
-     "rain_mm": 2.6,
-     "snowfall_cm": 0.0,
-     "temperature_min_c": 11.7,
-     "temperature_max_c": 13.9,
-     "wind_gust_max_kmh": 57.0,
-     "wind_speed_max_kmh": 31.0,
-     "relative_humidity_mean_pct": 68.0,
-     "et0_mm": 0.6,
-     "surface_temperature_min_c": 9.8
-    },
-    "icon_global": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 6.5,
-     "rain_mm": 5.4,
-     "snowfall_cm": 0.0,
-     "temperature_min_c": 11.6,
-     "temperature_max_c": 13.6,
-     "wind_gust_max_kmh": 66.0,
-     "wind_speed_max_kmh": 28.0,
-     "relative_humidity_mean_pct": 76.0,
-     "et0_mm": 0.4,
-     "surface_temperature_min_c": 10.3
-    }
-   },
-   "ensemble": {
-    "ecmwf_ens": {
-     "availability": "AVAILABLE",
-     "members_expected": 51,
-     "precipitation": {
-      "members_valid": 51,
-      "p10_mm": 1.5,
-      "p25_mm": 1.8,
-      "median_mm": 2.4,
-      "p75_mm": 3.8,
-      "p90_mm": 4.3,
-      "min_mm": 0.8,
-      "max_mm": 7.6,
-      "prob_ge_0_5mm": 1.0,
-      "prob_ge_2mm": 0.667,
-      "prob_ge_5mm": 0.02,
-      "prob_ge_10mm": 0.0
-     },
-     "temperature": {
-      "members_valid": 51,
-      "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 9.6,
-      "min_median_c": 10.2
-     },
-     "wind": {
-      "members_valid": 51,
-      "prob_gust_ge_40kmh": 1.0,
-      "prob_gust_ge_60kmh": 0.431,
-      "gust_max_median_kmh": 59.0,
-      "gust_max_p90_kmh": 65.0
-     }
-    },
-    "icon_eu_eps": {
-     "availability": "AVAILABLE",
-     "members_expected": 40,
-     "precipitation": {
-      "members_valid": 40,
-      "p10_mm": 2.4,
-      "p25_mm": 3.1,
-      "median_mm": 4.1,
-      "p75_mm": 5.5,
-      "p90_mm": 6.7,
-      "min_mm": 1.4,
-      "max_mm": 9.0,
-      "prob_ge_0_5mm": 1.0,
-      "prob_ge_2mm": 0.95,
-      "prob_ge_5mm": 0.35,
-      "prob_ge_10mm": 0.0
-     },
-     "temperature": {
-      "members_valid": 40,
-      "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 10.3,
-      "min_median_c": 10.9
-     },
-     "wind": {
-      "members_valid": 40,
-      "prob_gust_ge_40kmh": 1.0,
-      "prob_gust_ge_60kmh": 0.375,
-      "gust_max_median_kmh": 58.0,
-      "gust_max_p90_kmh": 68.0
-     }
-    }
-   },
-   "horizon": {
-    "out_of_horizon": [],
-    "partial_horizon": [],
-    "incomplete": [],
-    "in_error": []
-   },
-   "hours_since_last_forecast_rain_ge_0_2mm": {
-    "arome_hd": {
-     "hours": 0,
-     "lower_bound": false
-    },
-    "arome": {
-     "hours": 0,
-     "lower_bound": false
-    },
-    "arpege": {
-     "hours": 0,
-     "lower_bound": false
-    },
-    "ecmwf": {
-     "hours": 21,
-     "lower_bound": false
-    },
-    "icon": {
-     "hours": 34,
-     "lower_bound": false
-    },
-    "icon_global": {
-     "hours": 1,
-     "lower_bound": false
-    }
-   },
-   "consensus": {
-    "scenario_threshold_mm": 2.0,
-    "deterministic_models": [
-     "arome",
-     "arome_hd",
-     "arpege",
-     "ecmwf",
-     "icon"
-    ],
-    "deterministic_categories": {
-     "arome": "WET",
-     "arome_hd": "WET",
-     "arpege": "WET",
-     "ecmwf": "WET",
-     "icon": "WET"
-    },
-    "deterministic_wet_fraction": 1.0,
-    "deterministic_rain_fraction": 1.0,
-    "vote_weights": {
-     "arome_hd": 1.5,
-     "arome": 1.5,
-     "arpege": 1.0,
-     "ecmwf": 1.0,
-     "icon": 1.0
-    },
-    "weighted_agreement": 1.0,
-    "majority_scenario": "WET",
-    "deterministic_min_mm": 2.0,
-    "deterministic_max_mm": 4.2,
-    "deterministic_spread_mm": 2.2,
-    "ensemble_prob_ge_2mm": {
-     "ecmwf_ens": 0.667,
-     "icon_eu_eps": 0.95
-    },
-    "ensemble_readings": {
-     "ecmwf_ens": "LEANING_WET",
-     "icon_eu_eps": "WET"
-    },
-    "ensemble_systems_available": 2,
-    "confidence": "MEDIUM",
-    "confidence_cap_reason": "ecmwf_ens : soutien faible du scénario WET (P(≥ 2 mm) = 67%)",
-    "reasons": [
-     "ecmwf_ens : soutien faible du scénario WET (P(≥ 2 mm) = 67%)",
-     "5 modèles, accord pondéré 100% sur le scénario WET",
-     "icon_eu_eps : P(≥ 2 mm) = 95%"
-    ],
-    "reason": "ecmwf_ens : soutien faible du scénario WET (P(≥ 2 mm) = 67%) ; 5 modèles, accord pondéré 100% sur le scénario WET ; icon_eu_eps : P(≥ 2 mm) = 95%"
-   }
-  },
-  {
-   "date": "2026-10-23",
-   "slot": "AFTERNOON",
-   "local_start": "12:00",
-   "local_end": "18:00",
-   "start_utc": "2026-10-23T10:00:00+00:00",
-   "end_utc": "2026-10-23T16:00:00+00:00",
-   "hours": 6,
-   "period_state": "FUTURE",
-   "lead_day": 1,
-   "deterministic": {
-    "arome_hd": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 0.4,
-     "rain_mm": null,
-     "snowfall_cm": null,
-     "temperature_min_c": 11.4,
-     "temperature_max_c": 14.5,
-     "wind_gust_max_kmh": 57.0,
-     "wind_speed_max_kmh": 31.0,
-     "relative_humidity_mean_pct": 68.0,
-     "et0_mm": null,
-     "surface_temperature_min_c": null
-    },
-    "arome": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 0.4,
-     "rain_mm": 0.4,
-     "snowfall_cm": 0.0,
-     "temperature_min_c": 11.3,
-     "temperature_max_c": 14.5,
-     "wind_gust_max_kmh": 57.0,
-     "wind_speed_max_kmh": 31.0,
-     "relative_humidity_mean_pct": 68.0,
-     "et0_mm": 1.0,
-     "surface_temperature_min_c": null
-    },
-    "arpege": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 4.4,
-     "rain_mm": 4.4,
-     "snowfall_cm": 0.0,
-     "temperature_min_c": 10.7,
-     "temperature_max_c": 14.6,
-     "wind_gust_max_kmh": 66.0,
-     "wind_speed_max_kmh": 36.0,
-     "relative_humidity_mean_pct": 76.0,
-     "et0_mm": 0.8,
-     "surface_temperature_min_c": null
-    },
-    "ecmwf": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 8.1,
-     "rain_mm": 0.2,
-     "snowfall_cm": 0.0,
-     "temperature_min_c": 10.9,
-     "temperature_max_c": 14.7,
-     "wind_gust_max_kmh": 58.0,
-     "wind_speed_max_kmh": 29.0,
-     "relative_humidity_mean_pct": 77.0,
-     "et0_mm": 0.8,
-     "surface_temperature_min_c": 10.1
-    },
-    "icon": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 1.5,
-     "rain_mm": 0.0,
-     "snowfall_cm": 0.0,
-     "temperature_min_c": 13.0,
-     "temperature_max_c": 14.3,
-     "wind_gust_max_kmh": 62.0,
-     "wind_speed_max_kmh": 30.0,
-     "relative_humidity_mean_pct": 66.0,
-     "et0_mm": 0.9,
-     "surface_temperature_min_c": 10.7
-    },
-    "icon_global": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 5.2,
-     "rain_mm": 0.0,
-     "snowfall_cm": 0.0,
-     "temperature_min_c": 11.9,
-     "temperature_max_c": 13.7,
-     "wind_gust_max_kmh": 68.0,
-     "wind_speed_max_kmh": 28.0,
-     "relative_humidity_mean_pct": 77.0,
-     "et0_mm": 0.7,
-     "surface_temperature_min_c": 10.6
-    }
-   },
-   "ensemble": {
-    "ecmwf_ens": {
-     "availability": "AVAILABLE",
-     "members_expected": 51,
-     "precipitation": {
-      "members_valid": 51,
-      "p10_mm": 1.0,
-      "p25_mm": 1.8,
-      "median_mm": 2.5,
-      "p75_mm": 3.6,
-      "p90_mm": 5.7,
-      "min_mm": 0.2,
-      "max_mm": 7.6,
-      "prob_ge_0_5mm": 0.98,
-      "prob_ge_2mm": 0.627,
-      "prob_ge_5mm": 0.118,
-      "prob_ge_10mm": 0.0
-     },
-     "temperature": {
-      "members_valid": 51,
-      "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 10.3,
-      "min_median_c": 11.2
-     },
-     "wind": {
-      "members_valid": 51,
-      "prob_gust_ge_40kmh": 1.0,
-      "prob_gust_ge_60kmh": 0.569,
-      "gust_max_median_kmh": 61.0,
-      "gust_max_p90_kmh": 68.0
-     }
-    },
-    "icon_eu_eps": {
-     "availability": "AVAILABLE",
-     "members_expected": 40,
-     "precipitation": {
-      "members_valid": 40,
-      "p10_mm": 1.3,
-      "p25_mm": 1.7,
-      "median_mm": 2.5,
-      "p75_mm": 3.5,
-      "p90_mm": 4.4,
-      "min_mm": 0.0,
-      "max_mm": 5.7,
-      "prob_ge_0_5mm": 0.975,
-      "prob_ge_2mm": 0.65,
-      "prob_ge_5mm": 0.05,
-      "prob_ge_10mm": 0.0
-     },
-     "temperature": {
-      "members_valid": 40,
-      "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 11.1,
-      "min_median_c": 12.1
-     },
-     "wind": {
-      "members_valid": 40,
-      "prob_gust_ge_40kmh": 1.0,
-      "prob_gust_ge_60kmh": 0.975,
-      "gust_max_median_kmh": 68.0,
-      "gust_max_p90_kmh": 75.0
-     }
-    }
-   },
-   "horizon": {
-    "out_of_horizon": [],
-    "partial_horizon": [],
-    "incomplete": [],
-    "in_error": []
-   },
-   "hours_since_last_forecast_rain_ge_0_2mm": {
-    "arome_hd": {
-     "hours": 3,
-     "lower_bound": false
-    },
-    "arome": {
-     "hours": 3,
-     "lower_bound": false
-    },
-    "arpege": {
-     "hours": 1,
-     "lower_bound": false
-    },
-    "ecmwf": {
-     "hours": 1,
-     "lower_bound": false
-    },
-    "icon": {
-     "hours": 2,
-     "lower_bound": false
-    },
-    "icon_global": {
-     "hours": 1,
-     "lower_bound": false
-    }
-   },
-   "consensus": {
-    "scenario_threshold_mm": 2.0,
-    "deterministic_models": [
-     "arome",
-     "arome_hd",
-     "arpege",
-     "ecmwf",
-     "icon"
-    ],
-    "deterministic_categories": {
-     "arome": "DRY",
-     "arome_hd": "DRY",
-     "arpege": "WET",
-     "ecmwf": "WET",
-     "icon": "LIGHT"
-    },
-    "deterministic_wet_fraction": 0.4,
-    "deterministic_rain_fraction": 0.6,
-    "vote_weights": {
-     "arome_hd": 1.5,
-     "arome": 1.5,
-     "arpege": 1.0,
-     "ecmwf": 1.0,
-     "icon": 1.0
-    },
-    "weighted_agreement": 0.667,
-    "majority_scenario": "DRY",
-    "deterministic_min_mm": 0.4,
-    "deterministic_max_mm": 8.1,
-    "deterministic_spread_mm": 7.7,
-    "ensemble_prob_ge_2mm": {
-     "ecmwf_ens": 0.627,
-     "icon_eu_eps": 0.65
-    },
-    "ensemble_readings": {
-     "ecmwf_ens": "LEANING_WET",
-     "icon_eu_eps": "LEANING_WET"
-    },
-    "ensemble_systems_available": 2,
-    "confidence": "MEDIUM",
-    "confidence_cap_reason": "accord déterministe 67% < 75%",
-    "reasons": [
-     "accord déterministe 67% < 75%",
-     "dispersion quantitative notable (0.4–8.1 mm)",
-     "ecmwf_ens : soutien faible du scénario DRY (P(≥ 2 mm) = 63%)",
-     "icon_eu_eps : soutien faible du scénario DRY (P(≥ 2 mm) = 65%)"
-    ],
-    "reason": "accord déterministe 67% < 75% ; dispersion quantitative notable (0.4–8.1 mm) ; ecmwf_ens : soutien faible du scénario DRY (P(≥ 2 mm) = 63%) ; icon_eu_eps : soutien faible du scénario DRY (P(≥ 2 mm) = 65%)"
-   }
-  },
-  {
-   "date": "2026-10-24",
-   "slot": "MORNING",
-   "local_start": "06:00",
-   "local_end": "12:00",
-   "start_utc": "2026-10-24T04:00:00+00:00",
-   "end_utc": "2026-10-24T10:00:00+00:00",
-   "hours": 6,
-   "period_state": "FUTURE",
-   "lead_day": 2,
-   "deterministic": {
-    "arome_hd": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
      "precipitation_mm": 0.0,
      "rain_mm": null,
      "snowfall_cm": null,
-     "temperature_min_c": 6.7,
-     "temperature_max_c": 10.0,
-     "wind_gust_max_kmh": 35.0,
-     "wind_speed_max_kmh": 18.0,
-     "relative_humidity_mean_pct": 86.0,
-     "et0_mm": null,
-     "surface_temperature_min_c": null
-    },
-    "arome": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 0.0,
-     "rain_mm": 0.0,
-     "snowfall_cm": 0.0,
-     "temperature_min_c": 6.7,
-     "temperature_max_c": 10.0,
-     "wind_gust_max_kmh": 35.0,
-     "wind_speed_max_kmh": 18.0,
-     "relative_humidity_mean_pct": 86.0,
-     "et0_mm": 0.3,
-     "surface_temperature_min_c": null
-    },
-    "arpege": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 2.9,
-     "rain_mm": 2.9,
-     "snowfall_cm": 0.0,
-     "temperature_min_c": 6.9,
-     "temperature_max_c": 8.4,
-     "wind_gust_max_kmh": 34.0,
-     "wind_speed_max_kmh": 19.0,
-     "relative_humidity_mean_pct": 92.0,
-     "et0_mm": 0.2,
-     "surface_temperature_min_c": null
-    },
-    "ecmwf": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 2.2,
-     "rain_mm": 0.7,
-     "snowfall_cm": 0.0,
-     "temperature_min_c": 6.3,
-     "temperature_max_c": 9.4,
-     "wind_gust_max_kmh": 32.0,
-     "wind_speed_max_kmh": 18.0,
-     "relative_humidity_mean_pct": 91.0,
-     "et0_mm": 0.2,
-     "surface_temperature_min_c": 5.7
-    },
-    "icon": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 1.0,
-     "rain_mm": 0.2,
-     "snowfall_cm": 0.0,
-     "temperature_min_c": 7.2,
-     "temperature_max_c": 8.9,
-     "wind_gust_max_kmh": 31.0,
+     "temperature_min_c": 4.1,
+     "temperature_max_c": 9.2,
+     "wind_gust_max_kmh": 36.0,
      "wind_speed_max_kmh": 17.0,
-     "relative_humidity_mean_pct": 88.0,
-     "et0_mm": 0.2,
-     "surface_temperature_min_c": 7.1
-    },
-    "icon_global": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 2.6,
-     "rain_mm": 0.3,
-     "snowfall_cm": 0.0,
-     "temperature_min_c": 8.2,
-     "temperature_max_c": 8.9,
-     "wind_gust_max_kmh": 34.0,
-     "wind_speed_max_kmh": 14.0,
-     "relative_humidity_mean_pct": 89.0,
-     "et0_mm": 0.2,
-     "surface_temperature_min_c": 8.2
-    }
-   },
-   "ensemble": {
-    "ecmwf_ens": {
-     "availability": "AVAILABLE",
-     "members_expected": 51,
-     "precipitation": {
-      "members_valid": 51,
-      "p10_mm": 0.0,
-      "p25_mm": 0.1,
-      "median_mm": 0.4,
-      "p75_mm": 1.2,
-      "p90_mm": 2.2,
-      "min_mm": 0.0,
-      "max_mm": 3.4,
-      "prob_ge_0_5mm": 0.471,
-      "prob_ge_2mm": 0.137,
-      "prob_ge_5mm": 0.0,
-      "prob_ge_10mm": 0.0
-     },
-     "temperature": {
-      "members_valid": 51,
-      "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 5.1,
-      "min_median_c": 6.3
-     },
-     "wind": {
-      "members_valid": 51,
-      "prob_gust_ge_40kmh": 0.02,
-      "prob_gust_ge_60kmh": 0.0,
-      "gust_max_median_kmh": 32.0,
-      "gust_max_p90_kmh": 35.0
-     }
-    },
-    "icon_eu_eps": {
-     "availability": "AVAILABLE",
-     "members_expected": 40,
-     "precipitation": {
-      "members_valid": 40,
-      "p10_mm": 0.0,
-      "p25_mm": 0.1,
-      "median_mm": 0.5,
-      "p75_mm": 0.8,
-      "p90_mm": 1.2,
-      "min_mm": 0.0,
-      "max_mm": 1.8,
-      "prob_ge_0_5mm": 0.525,
-      "prob_ge_2mm": 0.0,
-      "prob_ge_5mm": 0.0,
-      "prob_ge_10mm": 0.0
-     },
-     "temperature": {
-      "members_valid": 40,
-      "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 5.9,
-      "min_median_c": 7.0
-     },
-     "wind": {
-      "members_valid": 40,
-      "prob_gust_ge_40kmh": 0.05,
-      "prob_gust_ge_60kmh": 0.0,
-      "gust_max_median_kmh": 33.0,
-      "gust_max_p90_kmh": 39.0
-     }
-    }
-   },
-   "horizon": {
-    "out_of_horizon": [],
-    "partial_horizon": [],
-    "incomplete": [],
-    "in_error": []
-   },
-   "hours_since_last_forecast_rain_ge_0_2mm": {
-    "arome_hd": {
-     "hours": 9,
-     "lower_bound": false
-    },
-    "arome": {
-     "hours": 9,
-     "lower_bound": false
-    },
-    "arpege": {
-     "hours": 2,
-     "lower_bound": false
-    },
-    "ecmwf": {
-     "hours": 4,
-     "lower_bound": false
-    },
-    "icon": {
-     "hours": 7,
-     "lower_bound": false
-    },
-    "icon_global": {
-     "hours": 0,
-     "lower_bound": false
-    }
-   },
-   "consensus": {
-    "scenario_threshold_mm": 2.0,
-    "deterministic_models": [
-     "arome",
-     "arome_hd",
-     "arpege",
-     "ecmwf",
-     "icon"
-    ],
-    "deterministic_categories": {
-     "arome": "DRY",
-     "arome_hd": "DRY",
-     "arpege": "WET",
-     "ecmwf": "WET",
-     "icon": "LIGHT"
-    },
-    "deterministic_wet_fraction": 0.4,
-    "deterministic_rain_fraction": 0.6,
-    "vote_weights": {
-     "arome_hd": 1.5,
-     "arome": 1.5,
-     "arpege": 1.0,
-     "ecmwf": 1.0,
-     "icon": 1.0
-    },
-    "weighted_agreement": 0.667,
-    "majority_scenario": "DRY",
-    "deterministic_min_mm": 0.0,
-    "deterministic_max_mm": 2.9,
-    "deterministic_spread_mm": 2.9,
-    "ensemble_prob_ge_2mm": {
-     "ecmwf_ens": 0.137,
-     "icon_eu_eps": 0.0
-    },
-    "ensemble_readings": {
-     "ecmwf_ens": "DRY",
-     "icon_eu_eps": "DRY"
-    },
-    "ensemble_systems_available": 2,
-    "confidence": "MEDIUM",
-    "confidence_cap_reason": "accord déterministe 67% < 75%",
-    "reasons": [
-     "accord déterministe 67% < 75%",
-     "ecmwf_ens : P(≥ 2 mm) = 14%",
-     "icon_eu_eps : P(≥ 2 mm) = 0%"
-    ],
-    "reason": "accord déterministe 67% < 75% ; ecmwf_ens : P(≥ 2 mm) = 14% ; icon_eu_eps : P(≥ 2 mm) = 0%"
-   }
-  },
-  {
-   "date": "2026-10-24",
-   "slot": "AFTERNOON",
-   "local_start": "12:00",
-   "local_end": "18:00",
-   "start_utc": "2026-10-24T10:00:00+00:00",
-   "end_utc": "2026-10-24T16:00:00+00:00",
-   "hours": 6,
-   "period_state": "FUTURE",
-   "lead_day": 2,
-   "deterministic": {
-    "arome_hd": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 0.0,
-     "rain_mm": null,
-     "snowfall_cm": null,
-     "temperature_min_c": 10.2,
-     "temperature_max_c": 11.7,
-     "wind_gust_max_kmh": 36.0,
-     "wind_speed_max_kmh": 19.0,
-     "relative_humidity_mean_pct": 74.0,
+     "relative_humidity_mean_pct": 70.0,
      "et0_mm": null,
      "surface_temperature_min_c": null
     },
@@ -3606,745 +2880,25 @@
      "precipitation_mm": 0.0,
      "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 10.1,
-     "temperature_max_c": 11.6,
+     "temperature_min_c": 4.0,
+     "temperature_max_c": 9.1,
      "wind_gust_max_kmh": 36.0,
-     "wind_speed_max_kmh": 19.0,
-     "relative_humidity_mean_pct": 74.0,
-     "et0_mm": 0.6,
-     "surface_temperature_min_c": null
-    },
-    "arpege": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 0.9,
-     "rain_mm": 0.9,
-     "snowfall_cm": 0.0,
-     "temperature_min_c": 8.9,
-     "temperature_max_c": 10.4,
-     "wind_gust_max_kmh": 32.0,
-     "wind_speed_max_kmh": 19.0,
-     "relative_humidity_mean_pct": 83.0,
-     "et0_mm": 0.5,
-     "surface_temperature_min_c": null
-    },
-    "ecmwf": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 1.5,
-     "rain_mm": 0.7,
-     "snowfall_cm": 0.0,
-     "temperature_min_c": 9.6,
-     "temperature_max_c": 11.8,
-     "wind_gust_max_kmh": 36.0,
-     "wind_speed_max_kmh": 18.0,
-     "relative_humidity_mean_pct": 83.0,
-     "et0_mm": 0.5,
-     "surface_temperature_min_c": 9.5
-    },
-    "icon": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 1.6,
-     "rain_mm": 1.6,
-     "snowfall_cm": 0.0,
-     "temperature_min_c": 9.5,
-     "temperature_max_c": 9.9,
-     "wind_gust_max_kmh": 38.0,
-     "wind_speed_max_kmh": 21.0,
-     "relative_humidity_mean_pct": 82.0,
-     "et0_mm": 0.4,
-     "surface_temperature_min_c": 8.8
-    },
-    "icon_global": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 1.7,
-     "rain_mm": 1.7,
-     "snowfall_cm": 0.0,
-     "temperature_min_c": 9.3,
-     "temperature_max_c": 9.9,
-     "wind_gust_max_kmh": 38.0,
      "wind_speed_max_kmh": 17.0,
-     "relative_humidity_mean_pct": 86.0,
-     "et0_mm": 0.4,
-     "surface_temperature_min_c": 9.2
-    }
-   },
-   "ensemble": {
-    "ecmwf_ens": {
-     "availability": "AVAILABLE",
-     "members_expected": 51,
-     "precipitation": {
-      "members_valid": 51,
-      "p10_mm": 0.2,
-      "p25_mm": 0.7,
-      "median_mm": 1.3,
-      "p75_mm": 2.1,
-      "p90_mm": 2.9,
-      "min_mm": 0.0,
-      "max_mm": 9.4,
-      "prob_ge_0_5mm": 0.804,
-      "prob_ge_2mm": 0.255,
-      "prob_ge_5mm": 0.02,
-      "prob_ge_10mm": 0.0
-     },
-     "temperature": {
-      "members_valid": 51,
-      "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 9.0,
-      "min_median_c": 9.7
-     },
-     "wind": {
-      "members_valid": 51,
-      "prob_gust_ge_40kmh": 0.078,
-      "prob_gust_ge_60kmh": 0.0,
-      "gust_max_median_kmh": 36.0,
-      "gust_max_p90_kmh": 39.0
-     }
-    },
-    "icon_eu_eps": {
-     "availability": "AVAILABLE",
-     "members_expected": 40,
-     "precipitation": {
-      "members_valid": 40,
-      "p10_mm": 0.2,
-      "p25_mm": 0.6,
-      "median_mm": 1.2,
-      "p75_mm": 2.0,
-      "p90_mm": 2.9,
-      "min_mm": 0.0,
-      "max_mm": 4.2,
-      "prob_ge_0_5mm": 0.75,
-      "prob_ge_2mm": 0.3,
-      "prob_ge_5mm": 0.0,
-      "prob_ge_10mm": 0.0
-     },
-     "temperature": {
-      "members_valid": 40,
-      "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 9.1,
-      "min_median_c": 9.7
-     },
-     "wind": {
-      "members_valid": 40,
-      "prob_gust_ge_40kmh": 0.125,
-      "prob_gust_ge_60kmh": 0.0,
-      "gust_max_median_kmh": 35.0,
-      "gust_max_p90_kmh": 40.0
-     }
-    }
-   },
-   "horizon": {
-    "out_of_horizon": [],
-    "partial_horizon": [],
-    "incomplete": [],
-    "in_error": []
-   },
-   "hours_since_last_forecast_rain_ge_0_2mm": {
-    "arome_hd": {
-     "hours": 15,
-     "lower_bound": false
-    },
-    "arome": {
-     "hours": 15,
-     "lower_bound": false
-    },
-    "arpege": {
-     "hours": 0,
-     "lower_bound": false
-    },
-    "ecmwf": {
-     "hours": 2,
-     "lower_bound": false
-    },
-    "icon": {
-     "hours": 0,
-     "lower_bound": false
-    },
-    "icon_global": {
-     "hours": 0,
-     "lower_bound": false
-    }
-   },
-   "consensus": {
-    "scenario_threshold_mm": 2.0,
-    "deterministic_models": [
-     "arome",
-     "arome_hd",
-     "arpege",
-     "ecmwf",
-     "icon"
-    ],
-    "deterministic_categories": {
-     "arome": "DRY",
-     "arome_hd": "DRY",
-     "arpege": "LIGHT",
-     "ecmwf": "LIGHT",
-     "icon": "LIGHT"
-    },
-    "deterministic_wet_fraction": 0.0,
-    "deterministic_rain_fraction": 0.6,
-    "vote_weights": {
-     "arome_hd": 1.5,
-     "arome": 1.5,
-     "arpege": 1.0,
-     "ecmwf": 1.0,
-     "icon": 1.0
-    },
-    "weighted_agreement": 1.0,
-    "majority_scenario": "DRY",
-    "deterministic_min_mm": 0.0,
-    "deterministic_max_mm": 1.6,
-    "deterministic_spread_mm": 1.6,
-    "ensemble_prob_ge_2mm": {
-     "ecmwf_ens": 0.255,
-     "icon_eu_eps": 0.3
-    },
-    "ensemble_readings": {
-     "ecmwf_ens": "DRY",
-     "icon_eu_eps": "DRY"
-    },
-    "ensemble_systems_available": 2,
-    "confidence": "HIGH",
-    "confidence_cap_reason": null,
-    "reasons": [
-     "5 modèles, accord pondéré 100% sur le scénario DRY",
-     "ecmwf_ens : P(≥ 2 mm) = 26%",
-     "icon_eu_eps : P(≥ 2 mm) = 30%"
-    ],
-    "reason": "5 modèles, accord pondéré 100% sur le scénario DRY ; ecmwf_ens : P(≥ 2 mm) = 26% ; icon_eu_eps : P(≥ 2 mm) = 30%"
-   }
-  },
-  {
-   "date": "2026-10-25",
-   "slot": "MORNING",
-   "local_start": "06:00",
-   "local_end": "12:00",
-   "start_utc": "2026-10-25T05:00:00+00:00",
-   "end_utc": "2026-10-25T11:00:00+00:00",
-   "hours": 6,
-   "period_state": "FUTURE",
-   "lead_day": 3,
-   "deterministic": {
-    "arome_hd": {
-     "availability": "OUT_OF_HORIZON",
-     "hours_valid": 0,
-     "precipitation_mm": null,
-     "rain_mm": null,
-     "snowfall_cm": null,
-     "temperature_min_c": null,
-     "temperature_max_c": null,
-     "wind_gust_max_kmh": null,
-     "wind_speed_max_kmh": null,
-     "relative_humidity_mean_pct": null,
-     "et0_mm": null,
-     "surface_temperature_min_c": null
-    },
-    "arome": {
-     "availability": "OUT_OF_HORIZON",
-     "hours_valid": 0,
-     "precipitation_mm": null,
-     "rain_mm": null,
-     "snowfall_cm": null,
-     "temperature_min_c": null,
-     "temperature_max_c": null,
-     "wind_gust_max_kmh": null,
-     "wind_speed_max_kmh": null,
-     "relative_humidity_mean_pct": null,
-     "et0_mm": null,
-     "surface_temperature_min_c": null
-    },
-    "arpege": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 4.5,
-     "rain_mm": 4.5,
-     "snowfall_cm": 0.0,
-     "temperature_min_c": 12.0,
-     "temperature_max_c": 13.2,
-     "wind_gust_max_kmh": 71.0,
-     "wind_speed_max_kmh": 40.0,
-     "relative_humidity_mean_pct": 83.0,
-     "et0_mm": 0.4,
-     "surface_temperature_min_c": null
-    },
-    "ecmwf": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 2.4,
-     "rain_mm": 2.0,
-     "snowfall_cm": 0.0,
-     "temperature_min_c": 11.9,
-     "temperature_max_c": 13.2,
-     "wind_gust_max_kmh": 63.0,
-     "wind_speed_max_kmh": 35.0,
-     "relative_humidity_mean_pct": 75.0,
+     "relative_humidity_mean_pct": 70.0,
      "et0_mm": 0.5,
-     "surface_temperature_min_c": 11.3
-    },
-    "icon": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 6.5,
-     "rain_mm": 6.5,
-     "snowfall_cm": 0.0,
-     "temperature_min_c": 13.3,
-     "temperature_max_c": 13.8,
-     "wind_gust_max_kmh": 60.0,
-     "wind_speed_max_kmh": 33.0,
-     "relative_humidity_mean_pct": 79.0,
-     "et0_mm": 0.4,
-     "surface_temperature_min_c": 11.6
-    },
-    "icon_global": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 7.8,
-     "rain_mm": 7.8,
-     "snowfall_cm": 0.0,
-     "temperature_min_c": 14.0,
-     "temperature_max_c": 14.7,
-     "wind_gust_max_kmh": 69.0,
-     "wind_speed_max_kmh": 30.0,
-     "relative_humidity_mean_pct": 84.0,
-     "et0_mm": 0.3,
-     "surface_temperature_min_c": 12.6
-    }
-   },
-   "ensemble": {
-    "ecmwf_ens": {
-     "availability": "AVAILABLE",
-     "members_expected": 51,
-     "precipitation": {
-      "members_valid": 51,
-      "p10_mm": 0.3,
-      "p25_mm": 0.8,
-      "median_mm": 2.3,
-      "p75_mm": 6.4,
-      "p90_mm": 8.8,
-      "min_mm": 0.0,
-      "max_mm": 18.6,
-      "prob_ge_0_5mm": 0.863,
-      "prob_ge_2mm": 0.529,
-      "prob_ge_5mm": 0.333,
-      "prob_ge_10mm": 0.098
-     },
-     "temperature": {
-      "members_valid": 51,
-      "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 10.0,
-      "min_median_c": 10.8
-     },
-     "wind": {
-      "members_valid": 51,
-      "prob_gust_ge_40kmh": 1.0,
-      "prob_gust_ge_60kmh": 0.412,
-      "gust_max_median_kmh": 59.0,
-      "gust_max_p90_kmh": 67.0
-     }
-    },
-    "icon_eu_eps": {
-     "availability": "AVAILABLE",
-     "members_expected": 40,
-     "precipitation": {
-      "members_valid": 40,
-      "p10_mm": 1.9,
-      "p25_mm": 3.9,
-      "median_mm": 5.6,
-      "p75_mm": 7.4,
-      "p90_mm": 8.3,
-      "min_mm": 0.0,
-      "max_mm": 13.3,
-      "prob_ge_0_5mm": 0.975,
-      "prob_ge_2mm": 0.875,
-      "prob_ge_5mm": 0.6,
-      "prob_ge_10mm": 0.025
-     },
-     "temperature": {
-      "members_valid": 40,
-      "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 11.7,
-      "min_median_c": 12.6
-     },
-     "wind": {
-      "members_valid": 40,
-      "prob_gust_ge_40kmh": 1.0,
-      "prob_gust_ge_60kmh": 0.775,
-      "gust_max_median_kmh": 64.0,
-      "gust_max_p90_kmh": 73.0
-     }
-    }
-   },
-   "horizon": {
-    "out_of_horizon": [
-     "arome",
-     "arome_hd"
-    ],
-    "partial_horizon": [],
-    "incomplete": [],
-    "in_error": []
-   },
-   "hours_since_last_forecast_rain_ge_0_2mm": {
-    "arome_hd": {
-     "hours": null,
-     "lower_bound": false
-    },
-    "arome": {
-     "hours": null,
-     "lower_bound": false
-    },
-    "arpege": {
-     "hours": 5,
-     "lower_bound": false
-    },
-    "ecmwf": {
-     "hours": 5,
-     "lower_bound": false
-    },
-    "icon": {
-     "hours": 0,
-     "lower_bound": false
-    },
-    "icon_global": {
-     "hours": 1,
-     "lower_bound": false
-    }
-   },
-   "consensus": {
-    "scenario_threshold_mm": 2.0,
-    "deterministic_models": [
-     "arpege",
-     "ecmwf",
-     "icon"
-    ],
-    "deterministic_categories": {
-     "arpege": "WET",
-     "ecmwf": "WET",
-     "icon": "WET"
-    },
-    "deterministic_wet_fraction": 1.0,
-    "deterministic_rain_fraction": 1.0,
-    "vote_weights": {
-     "arpege": 1.0,
-     "ecmwf": 1.0,
-     "icon": 1.0
-    },
-    "weighted_agreement": 1.0,
-    "majority_scenario": "WET",
-    "deterministic_min_mm": 2.4,
-    "deterministic_max_mm": 6.5,
-    "deterministic_spread_mm": 4.1,
-    "ensemble_prob_ge_2mm": {
-     "ecmwf_ens": 0.529,
-     "icon_eu_eps": 0.875
-    },
-    "ensemble_readings": {
-     "ecmwf_ens": "AMBIGUOUS",
-     "icon_eu_eps": "WET"
-    },
-    "ensemble_systems_available": 2,
-    "confidence": "LOW",
-    "confidence_cap_reason": "ecmwf_ens : P(≥ 2 mm) = 53%, proche de 50 %",
-    "reasons": [
-     "ecmwf_ens : P(≥ 2 mm) = 53%, proche de 50 %",
-     "hors horizon : arome, arome_hd",
-     "3 modèles, accord pondéré 100% sur le scénario WET",
-     "icon_eu_eps : P(≥ 2 mm) = 88%"
-    ],
-    "reason": "ecmwf_ens : P(≥ 2 mm) = 53%, proche de 50 % ; hors horizon : arome, arome_hd ; 3 modèles, accord pondéré 100% sur le scénario WET ; icon_eu_eps : P(≥ 2 mm) = 88%"
-   }
-  },
-  {
-   "date": "2026-10-25",
-   "slot": "AFTERNOON",
-   "local_start": "12:00",
-   "local_end": "18:00",
-   "start_utc": "2026-10-25T11:00:00+00:00",
-   "end_utc": "2026-10-25T17:00:00+00:00",
-   "hours": 6,
-   "period_state": "FUTURE",
-   "lead_day": 3,
-   "deterministic": {
-    "arome_hd": {
-     "availability": "OUT_OF_HORIZON",
-     "hours_valid": 0,
-     "precipitation_mm": null,
-     "rain_mm": null,
-     "snowfall_cm": null,
-     "temperature_min_c": null,
-     "temperature_max_c": null,
-     "wind_gust_max_kmh": null,
-     "wind_speed_max_kmh": null,
-     "relative_humidity_mean_pct": null,
-     "et0_mm": null,
-     "surface_temperature_min_c": null
-    },
-    "arome": {
-     "availability": "OUT_OF_HORIZON",
-     "hours_valid": 0,
-     "precipitation_mm": null,
-     "rain_mm": null,
-     "snowfall_cm": null,
-     "temperature_min_c": null,
-     "temperature_max_c": null,
-     "wind_gust_max_kmh": null,
-     "wind_speed_max_kmh": null,
-     "relative_humidity_mean_pct": null,
-     "et0_mm": null,
      "surface_temperature_min_c": null
     },
     "arpege": {
      "availability": "AVAILABLE",
      "hours_valid": 6,
-     "precipitation_mm": 6.4,
-     "rain_mm": 6.4,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 11.0,
-     "temperature_max_c": 12.9,
-     "wind_gust_max_kmh": 78.0,
-     "wind_speed_max_kmh": 37.0,
-     "relative_humidity_mean_pct": 96.0,
-     "et0_mm": 0.1,
-     "surface_temperature_min_c": null
-    },
-    "ecmwf": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 8.9,
-     "rain_mm": 7.1,
-     "snowfall_cm": 0.0,
-     "temperature_min_c": 10.3,
-     "temperature_max_c": 13.1,
-     "wind_gust_max_kmh": 59.0,
-     "wind_speed_max_kmh": 34.0,
-     "relative_humidity_mean_pct": 96.0,
-     "et0_mm": 0.2,
-     "surface_temperature_min_c": 9.5
-    },
-    "icon": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 2.6,
-     "rain_mm": 2.5,
-     "snowfall_cm": 0.0,
-     "temperature_min_c": 12.3,
-     "temperature_max_c": 14.9,
-     "wind_gust_max_kmh": 45.0,
-     "wind_speed_max_kmh": 18.0,
-     "relative_humidity_mean_pct": 75.0,
-     "et0_mm": 0.6,
-     "surface_temperature_min_c": 10.4
-    },
-    "icon_global": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 3.7,
-     "rain_mm": 3.3,
-     "snowfall_cm": 0.0,
-     "temperature_min_c": 11.9,
-     "temperature_max_c": 14.1,
-     "wind_gust_max_kmh": 59.0,
+     "temperature_min_c": 3.7,
+     "temperature_max_c": 9.0,
+     "wind_gust_max_kmh": 38.0,
      "wind_speed_max_kmh": 20.0,
-     "relative_humidity_mean_pct": 88.0,
-     "et0_mm": 0.4,
-     "surface_temperature_min_c": 11.0
-    }
-   },
-   "ensemble": {
-    "ecmwf_ens": {
-     "availability": "AVAILABLE",
-     "members_expected": 51,
-     "precipitation": {
-      "members_valid": 51,
-      "p10_mm": 2.4,
-      "p25_mm": 3.8,
-      "median_mm": 5.7,
-      "p75_mm": 9.1,
-      "p90_mm": 10.4,
-      "min_mm": 0.0,
-      "max_mm": 12.4,
-      "prob_ge_0_5mm": 0.961,
-      "prob_ge_2mm": 0.902,
-      "prob_ge_5mm": 0.627,
-      "prob_ge_10mm": 0.137
-     },
-     "temperature": {
-      "members_valid": 51,
-      "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 10.2,
-      "min_median_c": 11.6
-     },
-     "wind": {
-      "members_valid": 51,
-      "prob_gust_ge_40kmh": 0.922,
-      "prob_gust_ge_60kmh": 0.235,
-      "gust_max_median_kmh": 54.0,
-      "gust_max_p90_kmh": 64.0
-     }
-    },
-    "icon_eu_eps": {
-     "availability": "AVAILABLE",
-     "members_expected": 40,
-     "precipitation": {
-      "members_valid": 40,
-      "p10_mm": 0.4,
-      "p25_mm": 0.7,
-      "median_mm": 1.8,
-      "p75_mm": 3.6,
-      "p90_mm": 5.3,
-      "min_mm": 0.0,
-      "max_mm": 8.6,
-      "prob_ge_0_5mm": 0.875,
-      "prob_ge_2mm": 0.45,
-      "prob_ge_5mm": 0.2,
-      "prob_ge_10mm": 0.0
-     },
-     "temperature": {
-      "members_valid": 40,
-      "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 10.2,
-      "min_median_c": 11.1
-     },
-     "wind": {
-      "members_valid": 40,
-      "prob_gust_ge_40kmh": 0.9,
-      "prob_gust_ge_60kmh": 0.25,
-      "gust_max_median_kmh": 50.0,
-      "gust_max_p90_kmh": 64.0
-     }
-    }
-   },
-   "horizon": {
-    "out_of_horizon": [
-     "arome",
-     "arome_hd"
-    ],
-    "partial_horizon": [],
-    "incomplete": [],
-    "in_error": []
-   },
-   "hours_since_last_forecast_rain_ge_0_2mm": {
-    "arome_hd": {
-     "hours": null,
-     "lower_bound": false
-    },
-    "arome": {
-     "hours": null,
-     "lower_bound": false
-    },
-    "arpege": {
-     "hours": 0,
-     "lower_bound": false
-    },
-    "ecmwf": {
-     "hours": 0,
-     "lower_bound": false
-    },
-    "icon": {
-     "hours": 0,
-     "lower_bound": false
-    },
-    "icon_global": {
-     "hours": 0,
-     "lower_bound": false
-    }
-   },
-   "consensus": {
-    "scenario_threshold_mm": 2.0,
-    "deterministic_models": [
-     "arpege",
-     "ecmwf",
-     "icon"
-    ],
-    "deterministic_categories": {
-     "arpege": "WET",
-     "ecmwf": "WET",
-     "icon": "WET"
-    },
-    "deterministic_wet_fraction": 1.0,
-    "deterministic_rain_fraction": 1.0,
-    "vote_weights": {
-     "arpege": 1.0,
-     "ecmwf": 1.0,
-     "icon": 1.0
-    },
-    "weighted_agreement": 1.0,
-    "majority_scenario": "WET",
-    "deterministic_min_mm": 2.6,
-    "deterministic_max_mm": 8.9,
-    "deterministic_spread_mm": 6.3,
-    "ensemble_prob_ge_2mm": {
-     "ecmwf_ens": 0.902,
-     "icon_eu_eps": 0.45
-    },
-    "ensemble_readings": {
-     "ecmwf_ens": "WET",
-     "icon_eu_eps": "AMBIGUOUS"
-    },
-    "ensemble_systems_available": 2,
-    "confidence": "LOW",
-    "confidence_cap_reason": "icon_eu_eps : P(≥ 2 mm) = 45%, proche de 50 %",
-    "reasons": [
-     "dispersion quantitative notable (2.6–8.9 mm)",
-     "icon_eu_eps : P(≥ 2 mm) = 45%, proche de 50 %",
-     "hors horizon : arome, arome_hd",
-     "3 modèles, accord pondéré 100% sur le scénario WET",
-     "ecmwf_ens : P(≥ 2 mm) = 90%"
-    ],
-    "reason": "dispersion quantitative notable (2.6–8.9 mm) ; icon_eu_eps : P(≥ 2 mm) = 45%, proche de 50 % ; hors horizon : arome, arome_hd ; 3 modèles, accord pondéré 100% sur le scénario WET ; ecmwf_ens : P(≥ 2 mm) = 90%"
-   }
-  },
-  {
-   "date": "2026-10-26",
-   "slot": "MORNING",
-   "local_start": "06:00",
-   "local_end": "12:00",
-   "start_utc": "2026-10-26T05:00:00+00:00",
-   "end_utc": "2026-10-26T11:00:00+00:00",
-   "hours": 6,
-   "period_state": "FUTURE",
-   "lead_day": 4,
-   "deterministic": {
-    "arome_hd": {
-     "availability": "OUT_OF_HORIZON",
-     "hours_valid": 0,
-     "precipitation_mm": null,
-     "rain_mm": null,
-     "snowfall_cm": null,
-     "temperature_min_c": null,
-     "temperature_max_c": null,
-     "wind_gust_max_kmh": null,
-     "wind_speed_max_kmh": null,
-     "relative_humidity_mean_pct": null,
-     "et0_mm": null,
-     "surface_temperature_min_c": null
-    },
-    "arome": {
-     "availability": "OUT_OF_HORIZON",
-     "hours_valid": 0,
-     "precipitation_mm": null,
-     "rain_mm": null,
-     "snowfall_cm": null,
-     "temperature_min_c": null,
-     "temperature_max_c": null,
-     "wind_gust_max_kmh": null,
-     "wind_speed_max_kmh": null,
-     "relative_humidity_mean_pct": null,
-     "et0_mm": null,
-     "surface_temperature_min_c": null
-    },
-    "arpege": {
-     "availability": "AVAILABLE",
-     "hours_valid": 6,
-     "precipitation_mm": 0.0,
-     "rain_mm": 0.0,
-     "snowfall_cm": 0.0,
-     "temperature_min_c": 5.2,
-     "temperature_max_c": 11.4,
-     "wind_gust_max_kmh": 10.0,
-     "wind_speed_max_kmh": 6.0,
-     "relative_humidity_mean_pct": 93.0,
+     "relative_humidity_mean_pct": 70.0,
      "et0_mm": 0.5,
      "surface_temperature_min_c": null
     },
@@ -4354,13 +2908,13 @@
      "precipitation_mm": 0.0,
      "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 5.6,
-     "temperature_max_c": 13.8,
-     "wind_gust_max_kmh": 22.0,
-     "wind_speed_max_kmh": 10.0,
-     "relative_humidity_mean_pct": 88.0,
-     "et0_mm": 0.6,
-     "surface_temperature_min_c": 5.1
+     "temperature_min_c": 4.2,
+     "temperature_max_c": 9.0,
+     "wind_gust_max_kmh": 41.0,
+     "wind_speed_max_kmh": 22.0,
+     "relative_humidity_mean_pct": 74.0,
+     "et0_mm": 0.5,
+     "surface_temperature_min_c": 3.3
     },
     "icon": {
      "availability": "AVAILABLE",
@@ -4368,13 +2922,13 @@
      "precipitation_mm": 0.0,
      "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 6.8,
-     "temperature_max_c": 12.3,
-     "wind_gust_max_kmh": 18.0,
-     "wind_speed_max_kmh": 10.0,
-     "relative_humidity_mean_pct": 81.0,
-     "et0_mm": 0.4,
-     "surface_temperature_min_c": 5.9
+     "temperature_min_c": 3.3,
+     "temperature_max_c": 9.3,
+     "wind_gust_max_kmh": 35.0,
+     "wind_speed_max_kmh": 20.0,
+     "relative_humidity_mean_pct": 78.0,
+     "et0_mm": 0.5,
+     "surface_temperature_min_c": 3.0
     },
     "icon_global": {
      "availability": "AVAILABLE",
@@ -4382,13 +2936,13 @@
      "precipitation_mm": 0.0,
      "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 5.7,
-     "temperature_max_c": 12.8,
-     "wind_gust_max_kmh": 20.0,
-     "wind_speed_max_kmh": 8.0,
-     "relative_humidity_mean_pct": 84.0,
-     "et0_mm": 0.5,
-     "surface_temperature_min_c": 6.2
+     "temperature_min_c": 3.6,
+     "temperature_max_c": 9.3,
+     "wind_gust_max_kmh": 35.0,
+     "wind_speed_max_kmh": 16.0,
+     "relative_humidity_mean_pct": 80.0,
+     "et0_mm": 0.4,
+     "surface_temperature_min_c": 3.5
     }
    },
    "ensemble": {
@@ -4400,27 +2954,27 @@
       "p10_mm": 0.0,
       "p25_mm": 0.0,
       "median_mm": 0.0,
-      "p75_mm": 0.2,
-      "p90_mm": 1.8,
+      "p75_mm": 0.0,
+      "p90_mm": 0.0,
       "min_mm": 0.0,
-      "max_mm": 2.4,
-      "prob_ge_0_5mm": 0.176,
-      "prob_ge_2mm": 0.059,
+      "max_mm": 0.0,
+      "prob_ge_0_5mm": 0.0,
+      "prob_ge_2mm": 0.0,
       "prob_ge_5mm": 0.0,
       "prob_ge_10mm": 0.0
      },
      "temperature": {
       "members_valid": 51,
       "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 5.0,
-      "min_median_c": 7.4
+      "min_p10_c": 3.2,
+      "min_median_c": 3.7
      },
      "wind": {
       "members_valid": 51,
-      "prob_gust_ge_40kmh": 0.02,
+      "prob_gust_ge_40kmh": 0.706,
       "prob_gust_ge_60kmh": 0.0,
-      "gust_max_median_kmh": 22.0,
-      "gust_max_p90_kmh": 31.0
+      "gust_max_median_kmh": 42.0,
+      "gust_max_p90_kmh": 45.0
      }
     },
     "icon_eu_eps": {
@@ -4432,26 +2986,990 @@
       "p25_mm": 0.0,
       "median_mm": 0.0,
       "p75_mm": 0.0,
-      "p90_mm": 0.5,
+      "p90_mm": 0.0,
       "min_mm": 0.0,
-      "max_mm": 8.5,
-      "prob_ge_0_5mm": 0.175,
-      "prob_ge_2mm": 0.05,
-      "prob_ge_5mm": 0.025,
+      "max_mm": 0.0,
+      "prob_ge_0_5mm": 0.0,
+      "prob_ge_2mm": 0.0,
+      "prob_ge_5mm": 0.0,
       "prob_ge_10mm": 0.0
      },
      "temperature": {
       "members_valid": 40,
       "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 4.5,
-      "min_median_c": 6.7
+      "min_p10_c": 2.2,
+      "min_median_c": 2.8
      },
      "wind": {
       "members_valid": 40,
-      "prob_gust_ge_40kmh": 0.025,
+      "prob_gust_ge_40kmh": 0.3,
       "prob_gust_ge_60kmh": 0.0,
-      "gust_max_median_kmh": 20.0,
-      "gust_max_p90_kmh": 30.0
+      "gust_max_median_kmh": 37.0,
+      "gust_max_p90_kmh": 43.0
+     }
+    }
+   },
+   "horizon": {
+    "out_of_horizon": [],
+    "partial_horizon": [],
+    "incomplete": [],
+    "in_error": []
+   },
+   "hours_since_last_forecast_rain_ge_0_2mm": {
+    "arome_hd": {
+     "hours": 102,
+     "lower_bound": true
+    },
+    "arome": {
+     "hours": 102,
+     "lower_bound": true
+    },
+    "arpege": {
+     "hours": 102,
+     "lower_bound": true
+    },
+    "ecmwf": {
+     "hours": 102,
+     "lower_bound": true
+    },
+    "icon": {
+     "hours": 102,
+     "lower_bound": true
+    },
+    "icon_global": {
+     "hours": 102,
+     "lower_bound": true
+    }
+   },
+   "consensus": {
+    "scenario_threshold_mm": 2.0,
+    "deterministic_models": [
+     "arome",
+     "arome_hd",
+     "arpege",
+     "ecmwf",
+     "icon"
+    ],
+    "deterministic_categories": {
+     "arome": "DRY",
+     "arome_hd": "DRY",
+     "arpege": "DRY",
+     "ecmwf": "DRY",
+     "icon": "DRY"
+    },
+    "deterministic_wet_fraction": 0.0,
+    "deterministic_rain_fraction": 0.0,
+    "vote_weights": {
+     "arome_hd": 1.5,
+     "arome": 1.5,
+     "arpege": 1.0,
+     "ecmwf": 1.0,
+     "icon": 1.0
+    },
+    "weighted_agreement": 1.0,
+    "majority_scenario": "DRY",
+    "deterministic_min_mm": 0.0,
+    "deterministic_max_mm": 0.0,
+    "deterministic_spread_mm": 0.0,
+    "ensemble_prob_ge_2mm": {
+     "ecmwf_ens": 0.0,
+     "icon_eu_eps": 0.0
+    },
+    "ensemble_readings": {
+     "ecmwf_ens": "DRY",
+     "icon_eu_eps": "DRY"
+    },
+    "ensemble_systems_available": 2,
+    "confidence": "HIGH",
+    "confidence_cap_reason": null,
+    "reasons": [
+     "5 modèles, accord pondéré 100% sur le scénario DRY",
+     "ecmwf_ens : P(≥ 2 mm) = 0%",
+     "icon_eu_eps : P(≥ 2 mm) = 0%"
+    ],
+    "reason": "5 modèles, accord pondéré 100% sur le scénario DRY ; ecmwf_ens : P(≥ 2 mm) = 0% ; icon_eu_eps : P(≥ 2 mm) = 0%"
+   }
+  },
+  {
+   "date": "2026-11-02",
+   "slot": "AFTERNOON",
+   "local_start": "12:00",
+   "local_end": "18:00",
+   "start_utc": "2026-11-02T11:00:00+00:00",
+   "end_utc": "2026-11-02T17:00:00+00:00",
+   "hours": 6,
+   "period_state": "FUTURE",
+   "lead_day": 1,
+   "deterministic": {
+    "arome_hd": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": null,
+     "snowfall_cm": null,
+     "temperature_min_c": 8.3,
+     "temperature_max_c": 10.4,
+     "wind_gust_max_kmh": 38.0,
+     "wind_speed_max_kmh": 18.0,
+     "relative_humidity_mean_pct": 54.0,
+     "et0_mm": null,
+     "surface_temperature_min_c": null
+    },
+    "arome": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
+     "snowfall_cm": 0.0,
+     "temperature_min_c": 8.3,
+     "temperature_max_c": 10.4,
+     "wind_gust_max_kmh": 38.0,
+     "wind_speed_max_kmh": 18.0,
+     "relative_humidity_mean_pct": 54.0,
+     "et0_mm": 0.8,
+     "surface_temperature_min_c": null
+    },
+    "arpege": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
+     "snowfall_cm": 0.0,
+     "temperature_min_c": 8.1,
+     "temperature_max_c": 10.1,
+     "wind_gust_max_kmh": 42.0,
+     "wind_speed_max_kmh": 23.0,
+     "relative_humidity_mean_pct": 54.0,
+     "et0_mm": 0.9,
+     "surface_temperature_min_c": null
+    },
+    "ecmwf": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
+     "snowfall_cm": 0.0,
+     "temperature_min_c": 7.4,
+     "temperature_max_c": 10.0,
+     "wind_gust_max_kmh": 43.0,
+     "wind_speed_max_kmh": 24.0,
+     "relative_humidity_mean_pct": 61.0,
+     "et0_mm": 0.8,
+     "surface_temperature_min_c": 6.1
+    },
+    "icon": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
+     "snowfall_cm": 0.0,
+     "temperature_min_c": 7.5,
+     "temperature_max_c": 9.9,
+     "wind_gust_max_kmh": 38.0,
+     "wind_speed_max_kmh": 21.0,
+     "relative_humidity_mean_pct": 62.0,
+     "et0_mm": 0.7,
+     "surface_temperature_min_c": 6.2
+    },
+    "icon_global": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
+     "snowfall_cm": 0.0,
+     "temperature_min_c": 7.6,
+     "temperature_max_c": 10.1,
+     "wind_gust_max_kmh": 38.0,
+     "wind_speed_max_kmh": 17.0,
+     "relative_humidity_mean_pct": 64.0,
+     "et0_mm": 0.7,
+     "surface_temperature_min_c": 6.9
+    }
+   },
+   "ensemble": {
+    "ecmwf_ens": {
+     "availability": "AVAILABLE",
+     "members_expected": 51,
+     "precipitation": {
+      "members_valid": 51,
+      "p10_mm": 0.0,
+      "p25_mm": 0.0,
+      "median_mm": 0.0,
+      "p75_mm": 0.0,
+      "p90_mm": 0.0,
+      "min_mm": 0.0,
+      "max_mm": 0.0,
+      "prob_ge_0_5mm": 0.0,
+      "prob_ge_2mm": 0.0,
+      "prob_ge_5mm": 0.0,
+      "prob_ge_10mm": 0.0
+     },
+     "temperature": {
+      "members_valid": 51,
+      "prob_temperature_below_0c": 0.0,
+      "min_p10_c": 7.1,
+      "min_median_c": 7.7
+     },
+     "wind": {
+      "members_valid": 51,
+      "prob_gust_ge_40kmh": 0.922,
+      "prob_gust_ge_60kmh": 0.0,
+      "gust_max_median_kmh": 44.0,
+      "gust_max_p90_kmh": 48.0
+     }
+    },
+    "icon_eu_eps": {
+     "availability": "AVAILABLE",
+     "members_expected": 40,
+     "precipitation": {
+      "members_valid": 40,
+      "p10_mm": 0.0,
+      "p25_mm": 0.0,
+      "median_mm": 0.0,
+      "p75_mm": 0.0,
+      "p90_mm": 0.0,
+      "min_mm": 0.0,
+      "max_mm": 0.0,
+      "prob_ge_0_5mm": 0.0,
+      "prob_ge_2mm": 0.0,
+      "prob_ge_5mm": 0.0,
+      "prob_ge_10mm": 0.0
+     },
+     "temperature": {
+      "members_valid": 40,
+      "prob_temperature_below_0c": 0.0,
+      "min_p10_c": 6.7,
+      "min_median_c": 7.3
+     },
+     "wind": {
+      "members_valid": 40,
+      "prob_gust_ge_40kmh": 0.575,
+      "prob_gust_ge_60kmh": 0.0,
+      "gust_max_median_kmh": 41.0,
+      "gust_max_p90_kmh": 45.0
+     }
+    }
+   },
+   "horizon": {
+    "out_of_horizon": [],
+    "partial_horizon": [],
+    "incomplete": [],
+    "in_error": []
+   },
+   "hours_since_last_forecast_rain_ge_0_2mm": {
+    "arome_hd": {
+     "hours": 108,
+     "lower_bound": true
+    },
+    "arome": {
+     "hours": 108,
+     "lower_bound": true
+    },
+    "arpege": {
+     "hours": 108,
+     "lower_bound": true
+    },
+    "ecmwf": {
+     "hours": 108,
+     "lower_bound": true
+    },
+    "icon": {
+     "hours": 108,
+     "lower_bound": true
+    },
+    "icon_global": {
+     "hours": 108,
+     "lower_bound": true
+    }
+   },
+   "consensus": {
+    "scenario_threshold_mm": 2.0,
+    "deterministic_models": [
+     "arome",
+     "arome_hd",
+     "arpege",
+     "ecmwf",
+     "icon"
+    ],
+    "deterministic_categories": {
+     "arome": "DRY",
+     "arome_hd": "DRY",
+     "arpege": "DRY",
+     "ecmwf": "DRY",
+     "icon": "DRY"
+    },
+    "deterministic_wet_fraction": 0.0,
+    "deterministic_rain_fraction": 0.0,
+    "vote_weights": {
+     "arome_hd": 1.5,
+     "arome": 1.5,
+     "arpege": 1.0,
+     "ecmwf": 1.0,
+     "icon": 1.0
+    },
+    "weighted_agreement": 1.0,
+    "majority_scenario": "DRY",
+    "deterministic_min_mm": 0.0,
+    "deterministic_max_mm": 0.0,
+    "deterministic_spread_mm": 0.0,
+    "ensemble_prob_ge_2mm": {
+     "ecmwf_ens": 0.0,
+     "icon_eu_eps": 0.0
+    },
+    "ensemble_readings": {
+     "ecmwf_ens": "DRY",
+     "icon_eu_eps": "DRY"
+    },
+    "ensemble_systems_available": 2,
+    "confidence": "HIGH",
+    "confidence_cap_reason": null,
+    "reasons": [
+     "5 modèles, accord pondéré 100% sur le scénario DRY",
+     "ecmwf_ens : P(≥ 2 mm) = 0%",
+     "icon_eu_eps : P(≥ 2 mm) = 0%"
+    ],
+    "reason": "5 modèles, accord pondéré 100% sur le scénario DRY ; ecmwf_ens : P(≥ 2 mm) = 0% ; icon_eu_eps : P(≥ 2 mm) = 0%"
+   }
+  },
+  {
+   "date": "2026-11-03",
+   "slot": "MORNING",
+   "local_start": "06:00",
+   "local_end": "12:00",
+   "start_utc": "2026-11-03T05:00:00+00:00",
+   "end_utc": "2026-11-03T11:00:00+00:00",
+   "hours": 6,
+   "period_state": "FUTURE",
+   "lead_day": 2,
+   "deterministic": {
+    "arome_hd": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": null,
+     "snowfall_cm": null,
+     "temperature_min_c": 1.8,
+     "temperature_max_c": 8.4,
+     "wind_gust_max_kmh": 24.0,
+     "wind_speed_max_kmh": 11.0,
+     "relative_humidity_mean_pct": 78.0,
+     "et0_mm": null,
+     "surface_temperature_min_c": null
+    },
+    "arome": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
+     "snowfall_cm": 0.0,
+     "temperature_min_c": 1.7,
+     "temperature_max_c": 8.3,
+     "wind_gust_max_kmh": 24.0,
+     "wind_speed_max_kmh": 11.0,
+     "relative_humidity_mean_pct": 78.0,
+     "et0_mm": 0.5,
+     "surface_temperature_min_c": null
+    },
+    "arpege": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
+     "snowfall_cm": 0.0,
+     "temperature_min_c": 2.4,
+     "temperature_max_c": 7.7,
+     "wind_gust_max_kmh": 27.0,
+     "wind_speed_max_kmh": 14.0,
+     "relative_humidity_mean_pct": 74.0,
+     "et0_mm": 0.5,
+     "surface_temperature_min_c": null
+    },
+    "ecmwf": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
+     "snowfall_cm": 0.0,
+     "temperature_min_c": 3.6,
+     "temperature_max_c": 9.8,
+     "wind_gust_max_kmh": 31.0,
+     "wind_speed_max_kmh": 17.0,
+     "relative_humidity_mean_pct": 75.0,
+     "et0_mm": 0.5,
+     "surface_temperature_min_c": 2.8
+    },
+    "icon": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
+     "snowfall_cm": 0.0,
+     "temperature_min_c": 3.1,
+     "temperature_max_c": 9.2,
+     "wind_gust_max_kmh": 28.0,
+     "wind_speed_max_kmh": 16.0,
+     "relative_humidity_mean_pct": 77.0,
+     "et0_mm": 0.4,
+     "surface_temperature_min_c": 3.2
+    },
+    "icon_global": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
+     "snowfall_cm": 0.0,
+     "temperature_min_c": 4.8,
+     "temperature_max_c": 9.8,
+     "wind_gust_max_kmh": 19.0,
+     "wind_speed_max_kmh": 6.0,
+     "relative_humidity_mean_pct": 80.0,
+     "et0_mm": 0.4,
+     "surface_temperature_min_c": 4.7
+    }
+   },
+   "ensemble": {
+    "ecmwf_ens": {
+     "availability": "AVAILABLE",
+     "members_expected": 51,
+     "precipitation": {
+      "members_valid": 51,
+      "p10_mm": 0.0,
+      "p25_mm": 0.0,
+      "median_mm": 0.0,
+      "p75_mm": 0.0,
+      "p90_mm": 0.0,
+      "min_mm": 0.0,
+      "max_mm": 0.0,
+      "prob_ge_0_5mm": 0.0,
+      "prob_ge_2mm": 0.0,
+      "prob_ge_5mm": 0.0,
+      "prob_ge_10mm": 0.0
+     },
+     "temperature": {
+      "members_valid": 51,
+      "prob_temperature_below_0c": 0.0,
+      "min_p10_c": 2.5,
+      "min_median_c": 3.2
+     },
+     "wind": {
+      "members_valid": 51,
+      "prob_gust_ge_40kmh": 0.039,
+      "prob_gust_ge_60kmh": 0.0,
+      "gust_max_median_kmh": 31.0,
+      "gust_max_p90_kmh": 38.0
+     }
+    },
+    "icon_eu_eps": {
+     "availability": "AVAILABLE",
+     "members_expected": 40,
+     "precipitation": {
+      "members_valid": 40,
+      "p10_mm": 0.0,
+      "p25_mm": 0.0,
+      "median_mm": 0.0,
+      "p75_mm": 0.0,
+      "p90_mm": 0.0,
+      "min_mm": 0.0,
+      "max_mm": 0.0,
+      "prob_ge_0_5mm": 0.0,
+      "prob_ge_2mm": 0.0,
+      "prob_ge_5mm": 0.0,
+      "prob_ge_10mm": 0.0
+     },
+     "temperature": {
+      "members_valid": 40,
+      "prob_temperature_below_0c": 0.0,
+      "min_p10_c": 1.4,
+      "min_median_c": 2.6
+     },
+     "wind": {
+      "members_valid": 40,
+      "prob_gust_ge_40kmh": 0.05,
+      "prob_gust_ge_60kmh": 0.0,
+      "gust_max_median_kmh": 29.0,
+      "gust_max_p90_kmh": 37.0
+     }
+    }
+   },
+   "horizon": {
+    "out_of_horizon": [],
+    "partial_horizon": [],
+    "incomplete": [],
+    "in_error": []
+   },
+   "hours_since_last_forecast_rain_ge_0_2mm": {
+    "arome_hd": {
+     "hours": 126,
+     "lower_bound": true
+    },
+    "arome": {
+     "hours": 126,
+     "lower_bound": true
+    },
+    "arpege": {
+     "hours": 126,
+     "lower_bound": true
+    },
+    "ecmwf": {
+     "hours": 126,
+     "lower_bound": true
+    },
+    "icon": {
+     "hours": 126,
+     "lower_bound": true
+    },
+    "icon_global": {
+     "hours": 126,
+     "lower_bound": true
+    }
+   },
+   "consensus": {
+    "scenario_threshold_mm": 2.0,
+    "deterministic_models": [
+     "arome",
+     "arome_hd",
+     "arpege",
+     "ecmwf",
+     "icon"
+    ],
+    "deterministic_categories": {
+     "arome": "DRY",
+     "arome_hd": "DRY",
+     "arpege": "DRY",
+     "ecmwf": "DRY",
+     "icon": "DRY"
+    },
+    "deterministic_wet_fraction": 0.0,
+    "deterministic_rain_fraction": 0.0,
+    "vote_weights": {
+     "arome_hd": 1.5,
+     "arome": 1.5,
+     "arpege": 1.0,
+     "ecmwf": 1.0,
+     "icon": 1.0
+    },
+    "weighted_agreement": 1.0,
+    "majority_scenario": "DRY",
+    "deterministic_min_mm": 0.0,
+    "deterministic_max_mm": 0.0,
+    "deterministic_spread_mm": 0.0,
+    "ensemble_prob_ge_2mm": {
+     "ecmwf_ens": 0.0,
+     "icon_eu_eps": 0.0
+    },
+    "ensemble_readings": {
+     "ecmwf_ens": "DRY",
+     "icon_eu_eps": "DRY"
+    },
+    "ensemble_systems_available": 2,
+    "confidence": "HIGH",
+    "confidence_cap_reason": null,
+    "reasons": [
+     "5 modèles, accord pondéré 100% sur le scénario DRY",
+     "ecmwf_ens : P(≥ 2 mm) = 0%",
+     "icon_eu_eps : P(≥ 2 mm) = 0%"
+    ],
+    "reason": "5 modèles, accord pondéré 100% sur le scénario DRY ; ecmwf_ens : P(≥ 2 mm) = 0% ; icon_eu_eps : P(≥ 2 mm) = 0%"
+   }
+  },
+  {
+   "date": "2026-11-03",
+   "slot": "AFTERNOON",
+   "local_start": "12:00",
+   "local_end": "18:00",
+   "start_utc": "2026-11-03T11:00:00+00:00",
+   "end_utc": "2026-11-03T17:00:00+00:00",
+   "hours": 6,
+   "period_state": "FUTURE",
+   "lead_day": 2,
+   "deterministic": {
+    "arome_hd": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": null,
+     "snowfall_cm": null,
+     "temperature_min_c": 7.4,
+     "temperature_max_c": 10.4,
+     "wind_gust_max_kmh": 18.0,
+     "wind_speed_max_kmh": 9.0,
+     "relative_humidity_mean_pct": 59.0,
+     "et0_mm": null,
+     "surface_temperature_min_c": null
+    },
+    "arome": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
+     "snowfall_cm": 0.0,
+     "temperature_min_c": 7.3,
+     "temperature_max_c": 10.3,
+     "wind_gust_max_kmh": 18.0,
+     "wind_speed_max_kmh": 9.0,
+     "relative_humidity_mean_pct": 59.0,
+     "et0_mm": 0.7,
+     "surface_temperature_min_c": null
+    },
+    "arpege": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
+     "snowfall_cm": 0.0,
+     "temperature_min_c": 7.9,
+     "temperature_max_c": 10.5,
+     "wind_gust_max_kmh": 16.0,
+     "wind_speed_max_kmh": 10.0,
+     "relative_humidity_mean_pct": 60.0,
+     "et0_mm": 0.7,
+     "surface_temperature_min_c": null
+    },
+    "ecmwf": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
+     "snowfall_cm": 0.0,
+     "temperature_min_c": 6.9,
+     "temperature_max_c": 10.8,
+     "wind_gust_max_kmh": 21.0,
+     "wind_speed_max_kmh": 12.0,
+     "relative_humidity_mean_pct": 67.0,
+     "et0_mm": 0.7,
+     "surface_temperature_min_c": 5.3
+    },
+    "icon": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
+     "snowfall_cm": 0.0,
+     "temperature_min_c": 6.3,
+     "temperature_max_c": 10.6,
+     "wind_gust_max_kmh": 26.0,
+     "wind_speed_max_kmh": 13.0,
+     "relative_humidity_mean_pct": 66.0,
+     "et0_mm": 0.6,
+     "surface_temperature_min_c": 4.6
+    },
+    "icon_global": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
+     "snowfall_cm": 0.0,
+     "temperature_min_c": 7.0,
+     "temperature_max_c": 10.6,
+     "wind_gust_max_kmh": 16.0,
+     "wind_speed_max_kmh": 6.0,
+     "relative_humidity_mean_pct": 73.0,
+     "et0_mm": 0.6,
+     "surface_temperature_min_c": 4.9
+    }
+   },
+   "ensemble": {
+    "ecmwf_ens": {
+     "availability": "AVAILABLE",
+     "members_expected": 51,
+     "precipitation": {
+      "members_valid": 51,
+      "p10_mm": 0.0,
+      "p25_mm": 0.0,
+      "median_mm": 0.0,
+      "p75_mm": 0.0,
+      "p90_mm": 0.0,
+      "min_mm": 0.0,
+      "max_mm": 0.0,
+      "prob_ge_0_5mm": 0.0,
+      "prob_ge_2mm": 0.0,
+      "prob_ge_5mm": 0.0,
+      "prob_ge_10mm": 0.0
+     },
+     "temperature": {
+      "members_valid": 51,
+      "prob_temperature_below_0c": 0.0,
+      "min_p10_c": 5.9,
+      "min_median_c": 6.5
+     },
+     "wind": {
+      "members_valid": 51,
+      "prob_gust_ge_40kmh": 0.02,
+      "prob_gust_ge_60kmh": 0.0,
+      "gust_max_median_kmh": 22.0,
+      "gust_max_p90_kmh": 32.0
+     }
+    },
+    "icon_eu_eps": {
+     "availability": "AVAILABLE",
+     "members_expected": 40,
+     "precipitation": {
+      "members_valid": 40,
+      "p10_mm": 0.0,
+      "p25_mm": 0.0,
+      "median_mm": 0.0,
+      "p75_mm": 0.0,
+      "p90_mm": 0.0,
+      "min_mm": 0.0,
+      "max_mm": 0.0,
+      "prob_ge_0_5mm": 0.0,
+      "prob_ge_2mm": 0.0,
+      "prob_ge_5mm": 0.0,
+      "prob_ge_10mm": 0.0
+     },
+     "temperature": {
+      "members_valid": 40,
+      "prob_temperature_below_0c": 0.0,
+      "min_p10_c": 6.1,
+      "min_median_c": 6.8
+     },
+     "wind": {
+      "members_valid": 40,
+      "prob_gust_ge_40kmh": 0.05,
+      "prob_gust_ge_60kmh": 0.0,
+      "gust_max_median_kmh": 26.0,
+      "gust_max_p90_kmh": 36.0
+     }
+    }
+   },
+   "horizon": {
+    "out_of_horizon": [],
+    "partial_horizon": [],
+    "incomplete": [],
+    "in_error": []
+   },
+   "hours_since_last_forecast_rain_ge_0_2mm": {
+    "arome_hd": {
+     "hours": 132,
+     "lower_bound": true
+    },
+    "arome": {
+     "hours": 132,
+     "lower_bound": true
+    },
+    "arpege": {
+     "hours": 132,
+     "lower_bound": true
+    },
+    "ecmwf": {
+     "hours": 132,
+     "lower_bound": true
+    },
+    "icon": {
+     "hours": 132,
+     "lower_bound": true
+    },
+    "icon_global": {
+     "hours": 132,
+     "lower_bound": true
+    }
+   },
+   "consensus": {
+    "scenario_threshold_mm": 2.0,
+    "deterministic_models": [
+     "arome",
+     "arome_hd",
+     "arpege",
+     "ecmwf",
+     "icon"
+    ],
+    "deterministic_categories": {
+     "arome": "DRY",
+     "arome_hd": "DRY",
+     "arpege": "DRY",
+     "ecmwf": "DRY",
+     "icon": "DRY"
+    },
+    "deterministic_wet_fraction": 0.0,
+    "deterministic_rain_fraction": 0.0,
+    "vote_weights": {
+     "arome_hd": 1.5,
+     "arome": 1.5,
+     "arpege": 1.0,
+     "ecmwf": 1.0,
+     "icon": 1.0
+    },
+    "weighted_agreement": 1.0,
+    "majority_scenario": "DRY",
+    "deterministic_min_mm": 0.0,
+    "deterministic_max_mm": 0.0,
+    "deterministic_spread_mm": 0.0,
+    "ensemble_prob_ge_2mm": {
+     "ecmwf_ens": 0.0,
+     "icon_eu_eps": 0.0
+    },
+    "ensemble_readings": {
+     "ecmwf_ens": "DRY",
+     "icon_eu_eps": "DRY"
+    },
+    "ensemble_systems_available": 2,
+    "confidence": "HIGH",
+    "confidence_cap_reason": null,
+    "reasons": [
+     "5 modèles, accord pondéré 100% sur le scénario DRY",
+     "ecmwf_ens : P(≥ 2 mm) = 0%",
+     "icon_eu_eps : P(≥ 2 mm) = 0%"
+    ],
+    "reason": "5 modèles, accord pondéré 100% sur le scénario DRY ; ecmwf_ens : P(≥ 2 mm) = 0% ; icon_eu_eps : P(≥ 2 mm) = 0%"
+   }
+  },
+  {
+   "date": "2026-11-04",
+   "slot": "MORNING",
+   "local_start": "06:00",
+   "local_end": "12:00",
+   "start_utc": "2026-11-04T05:00:00+00:00",
+   "end_utc": "2026-11-04T11:00:00+00:00",
+   "hours": 6,
+   "period_state": "FUTURE",
+   "lead_day": 3,
+   "deterministic": {
+    "arome_hd": {
+     "availability": "OUT_OF_HORIZON",
+     "hours_valid": 0,
+     "precipitation_mm": null,
+     "rain_mm": null,
+     "snowfall_cm": null,
+     "temperature_min_c": null,
+     "temperature_max_c": null,
+     "wind_gust_max_kmh": null,
+     "wind_speed_max_kmh": null,
+     "relative_humidity_mean_pct": null,
+     "et0_mm": null,
+     "surface_temperature_min_c": null
+    },
+    "arome": {
+     "availability": "OUT_OF_HORIZON",
+     "hours_valid": 0,
+     "precipitation_mm": null,
+     "rain_mm": null,
+     "snowfall_cm": null,
+     "temperature_min_c": null,
+     "temperature_max_c": null,
+     "wind_gust_max_kmh": null,
+     "wind_speed_max_kmh": null,
+     "relative_humidity_mean_pct": null,
+     "et0_mm": null,
+     "surface_temperature_min_c": null
+    },
+    "arpege": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
+     "snowfall_cm": 0.0,
+     "temperature_min_c": 0.6,
+     "temperature_max_c": 7.2,
+     "wind_gust_max_kmh": 10.0,
+     "wind_speed_max_kmh": 3.0,
+     "relative_humidity_mean_pct": 77.0,
+     "et0_mm": 0.4,
+     "surface_temperature_min_c": null
+    },
+    "ecmwf": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
+     "snowfall_cm": 0.0,
+     "temperature_min_c": -0.2,
+     "temperature_max_c": 8.2,
+     "wind_gust_max_kmh": 16.0,
+     "wind_speed_max_kmh": 5.0,
+     "relative_humidity_mean_pct": 90.0,
+     "et0_mm": 0.4,
+     "surface_temperature_min_c": -2.2
+    },
+    "icon": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
+     "snowfall_cm": 0.0,
+     "temperature_min_c": -1.1,
+     "temperature_max_c": 6.2,
+     "wind_gust_max_kmh": 9.0,
+     "wind_speed_max_kmh": 4.0,
+     "relative_humidity_mean_pct": 95.0,
+     "et0_mm": 0.3,
+     "surface_temperature_min_c": 0.5
+    },
+    "icon_global": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
+     "snowfall_cm": 0.0,
+     "temperature_min_c": 0.2,
+     "temperature_max_c": 8.8,
+     "wind_gust_max_kmh": 14.0,
+     "wind_speed_max_kmh": 5.0,
+     "relative_humidity_mean_pct": 87.0,
+     "et0_mm": 0.4,
+     "surface_temperature_min_c": 1.3
+    }
+   },
+   "ensemble": {
+    "ecmwf_ens": {
+     "availability": "AVAILABLE",
+     "members_expected": 51,
+     "precipitation": {
+      "members_valid": 51,
+      "p10_mm": 0.0,
+      "p25_mm": 0.0,
+      "median_mm": 0.0,
+      "p75_mm": 0.0,
+      "p90_mm": 0.0,
+      "min_mm": 0.0,
+      "max_mm": 0.0,
+      "prob_ge_0_5mm": 0.0,
+      "prob_ge_2mm": 0.0,
+      "prob_ge_5mm": 0.0,
+      "prob_ge_10mm": 0.0
+     },
+     "temperature": {
+      "members_valid": 51,
+      "prob_temperature_below_0c": 0.49,
+      "min_p10_c": -0.7,
+      "min_median_c": 0.1
+     },
+     "wind": {
+      "members_valid": 51,
+      "prob_gust_ge_40kmh": 0.0,
+      "prob_gust_ge_60kmh": 0.0,
+      "gust_max_median_kmh": 14.0,
+      "gust_max_p90_kmh": 17.0
+     }
+    },
+    "icon_eu_eps": {
+     "availability": "AVAILABLE",
+     "members_expected": 40,
+     "precipitation": {
+      "members_valid": 40,
+      "p10_mm": 0.0,
+      "p25_mm": 0.0,
+      "median_mm": 0.0,
+      "p75_mm": 0.0,
+      "p90_mm": 0.0,
+      "min_mm": 0.0,
+      "max_mm": 0.0,
+      "prob_ge_0_5mm": 0.0,
+      "prob_ge_2mm": 0.0,
+      "prob_ge_5mm": 0.0,
+      "prob_ge_10mm": 0.0
+     },
+     "temperature": {
+      "members_valid": 40,
+      "prob_temperature_below_0c": 0.45,
+      "min_p10_c": -1.4,
+      "min_median_c": 0.2
+     },
+     "wind": {
+      "members_valid": 40,
+      "prob_gust_ge_40kmh": 0.0,
+      "prob_gust_ge_60kmh": 0.0,
+      "gust_max_median_kmh": 11.0,
+      "gust_max_p90_kmh": 16.0
      }
     }
    },
@@ -4474,20 +3992,20 @@
      "lower_bound": false
     },
     "arpege": {
-     "hours": 15,
-     "lower_bound": false
+     "hours": 150,
+     "lower_bound": true
     },
     "ecmwf": {
-     "hours": 14,
-     "lower_bound": false
+     "hours": 150,
+     "lower_bound": true
     },
     "icon": {
-     "hours": 16,
-     "lower_bound": false
+     "hours": 150,
+     "lower_bound": true
     },
     "icon_global": {
-     "hours": 16,
-     "lower_bound": false
+     "hours": 150,
+     "lower_bound": true
     }
    },
    "consensus": {
@@ -4515,8 +4033,8 @@
     "deterministic_max_mm": 0.0,
     "deterministic_spread_mm": 0.0,
     "ensemble_prob_ge_2mm": {
-     "ecmwf_ens": 0.059,
-     "icon_eu_eps": 0.05
+     "ecmwf_ens": 0.0,
+     "icon_eu_eps": 0.0
     },
     "ensemble_readings": {
      "ecmwf_ens": "DRY",
@@ -4528,19 +4046,258 @@
     "reasons": [
      "hors horizon : arome, arome_hd",
      "3 modèles, accord pondéré 100% sur le scénario DRY",
-     "ecmwf_ens : P(≥ 2 mm) = 6%",
-     "icon_eu_eps : P(≥ 2 mm) = 5%"
+     "ecmwf_ens : P(≥ 2 mm) = 0%",
+     "icon_eu_eps : P(≥ 2 mm) = 0%"
     ],
-    "reason": "hors horizon : arome, arome_hd ; 3 modèles, accord pondéré 100% sur le scénario DRY ; ecmwf_ens : P(≥ 2 mm) = 6% ; icon_eu_eps : P(≥ 2 mm) = 5%"
+    "reason": "hors horizon : arome, arome_hd ; 3 modèles, accord pondéré 100% sur le scénario DRY ; ecmwf_ens : P(≥ 2 mm) = 0% ; icon_eu_eps : P(≥ 2 mm) = 0%"
    }
   },
   {
-   "date": "2026-10-26",
+   "date": "2026-11-04",
    "slot": "AFTERNOON",
    "local_start": "12:00",
    "local_end": "18:00",
-   "start_utc": "2026-10-26T11:00:00+00:00",
-   "end_utc": "2026-10-26T17:00:00+00:00",
+   "start_utc": "2026-11-04T11:00:00+00:00",
+   "end_utc": "2026-11-04T17:00:00+00:00",
+   "hours": 6,
+   "period_state": "FUTURE",
+   "lead_day": 3,
+   "deterministic": {
+    "arome_hd": {
+     "availability": "OUT_OF_HORIZON",
+     "hours_valid": 0,
+     "precipitation_mm": null,
+     "rain_mm": null,
+     "snowfall_cm": null,
+     "temperature_min_c": null,
+     "temperature_max_c": null,
+     "wind_gust_max_kmh": null,
+     "wind_speed_max_kmh": null,
+     "relative_humidity_mean_pct": null,
+     "et0_mm": null,
+     "surface_temperature_min_c": null
+    },
+    "arome": {
+     "availability": "OUT_OF_HORIZON",
+     "hours_valid": 0,
+     "precipitation_mm": null,
+     "rain_mm": null,
+     "snowfall_cm": null,
+     "temperature_min_c": null,
+     "temperature_max_c": null,
+     "wind_gust_max_kmh": null,
+     "wind_speed_max_kmh": null,
+     "relative_humidity_mean_pct": null,
+     "et0_mm": null,
+     "surface_temperature_min_c": null
+    },
+    "arpege": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
+     "snowfall_cm": 0.0,
+     "temperature_min_c": 7.0,
+     "temperature_max_c": 10.0,
+     "wind_gust_max_kmh": 14.0,
+     "wind_speed_max_kmh": 6.0,
+     "relative_humidity_mean_pct": 64.0,
+     "et0_mm": 0.6,
+     "surface_temperature_min_c": null
+    },
+    "ecmwf": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
+     "snowfall_cm": 0.0,
+     "temperature_min_c": 7.4,
+     "temperature_max_c": 10.8,
+     "wind_gust_max_kmh": 17.0,
+     "wind_speed_max_kmh": 7.0,
+     "relative_humidity_mean_pct": 74.0,
+     "et0_mm": 0.6,
+     "surface_temperature_min_c": 4.6
+    },
+    "icon": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
+     "snowfall_cm": 0.0,
+     "temperature_min_c": 6.3,
+     "temperature_max_c": 10.6,
+     "wind_gust_max_kmh": 12.0,
+     "wind_speed_max_kmh": 6.0,
+     "relative_humidity_mean_pct": 75.0,
+     "et0_mm": 0.5,
+     "surface_temperature_min_c": 4.4
+    },
+    "icon_global": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
+     "snowfall_cm": 0.0,
+     "temperature_min_c": 6.4,
+     "temperature_max_c": 9.5,
+     "wind_gust_max_kmh": 16.0,
+     "wind_speed_max_kmh": 6.0,
+     "relative_humidity_mean_pct": 80.0,
+     "et0_mm": 0.6,
+     "surface_temperature_min_c": 5.6
+    }
+   },
+   "ensemble": {
+    "ecmwf_ens": {
+     "availability": "AVAILABLE",
+     "members_expected": 51,
+     "precipitation": {
+      "members_valid": 51,
+      "p10_mm": 0.0,
+      "p25_mm": 0.0,
+      "median_mm": 0.0,
+      "p75_mm": 0.0,
+      "p90_mm": 0.0,
+      "min_mm": 0.0,
+      "max_mm": 0.1,
+      "prob_ge_0_5mm": 0.0,
+      "prob_ge_2mm": 0.0,
+      "prob_ge_5mm": 0.0,
+      "prob_ge_10mm": 0.0
+     },
+     "temperature": {
+      "members_valid": 51,
+      "prob_temperature_below_0c": 0.0,
+      "min_p10_c": 5.7,
+      "min_median_c": 6.7
+     },
+     "wind": {
+      "members_valid": 51,
+      "prob_gust_ge_40kmh": 0.0,
+      "prob_gust_ge_60kmh": 0.0,
+      "gust_max_median_kmh": 17.0,
+      "gust_max_p90_kmh": 22.0
+     }
+    },
+    "icon_eu_eps": {
+     "availability": "AVAILABLE",
+     "members_expected": 40,
+     "precipitation": {
+      "members_valid": 40,
+      "p10_mm": 0.0,
+      "p25_mm": 0.0,
+      "median_mm": 0.0,
+      "p75_mm": 0.0,
+      "p90_mm": 0.0,
+      "min_mm": 0.0,
+      "max_mm": 0.0,
+      "prob_ge_0_5mm": 0.0,
+      "prob_ge_2mm": 0.0,
+      "prob_ge_5mm": 0.0,
+      "prob_ge_10mm": 0.0
+     },
+     "temperature": {
+      "members_valid": 40,
+      "prob_temperature_below_0c": 0.0,
+      "min_p10_c": 4.7,
+      "min_median_c": 6.2
+     },
+     "wind": {
+      "members_valid": 40,
+      "prob_gust_ge_40kmh": 0.0,
+      "prob_gust_ge_60kmh": 0.0,
+      "gust_max_median_kmh": 11.0,
+      "gust_max_p90_kmh": 16.0
+     }
+    }
+   },
+   "horizon": {
+    "out_of_horizon": [
+     "arome",
+     "arome_hd"
+    ],
+    "partial_horizon": [],
+    "incomplete": [],
+    "in_error": []
+   },
+   "hours_since_last_forecast_rain_ge_0_2mm": {
+    "arome_hd": {
+     "hours": null,
+     "lower_bound": false
+    },
+    "arome": {
+     "hours": null,
+     "lower_bound": false
+    },
+    "arpege": {
+     "hours": 156,
+     "lower_bound": true
+    },
+    "ecmwf": {
+     "hours": 156,
+     "lower_bound": true
+    },
+    "icon": {
+     "hours": 156,
+     "lower_bound": true
+    },
+    "icon_global": {
+     "hours": 156,
+     "lower_bound": true
+    }
+   },
+   "consensus": {
+    "scenario_threshold_mm": 2.0,
+    "deterministic_models": [
+     "arpege",
+     "ecmwf",
+     "icon"
+    ],
+    "deterministic_categories": {
+     "arpege": "DRY",
+     "ecmwf": "DRY",
+     "icon": "DRY"
+    },
+    "deterministic_wet_fraction": 0.0,
+    "deterministic_rain_fraction": 0.0,
+    "vote_weights": {
+     "arpege": 1.0,
+     "ecmwf": 1.0,
+     "icon": 1.0
+    },
+    "weighted_agreement": 1.0,
+    "majority_scenario": "DRY",
+    "deterministic_min_mm": 0.0,
+    "deterministic_max_mm": 0.0,
+    "deterministic_spread_mm": 0.0,
+    "ensemble_prob_ge_2mm": {
+     "ecmwf_ens": 0.0,
+     "icon_eu_eps": 0.0
+    },
+    "ensemble_readings": {
+     "ecmwf_ens": "DRY",
+     "icon_eu_eps": "DRY"
+    },
+    "ensemble_systems_available": 2,
+    "confidence": "HIGH",
+    "confidence_cap_reason": null,
+    "reasons": [
+     "hors horizon : arome, arome_hd",
+     "3 modèles, accord pondéré 100% sur le scénario DRY",
+     "ecmwf_ens : P(≥ 2 mm) = 0%",
+     "icon_eu_eps : P(≥ 2 mm) = 0%"
+    ],
+    "reason": "hors horizon : arome, arome_hd ; 3 modèles, accord pondéré 100% sur le scénario DRY ; ecmwf_ens : P(≥ 2 mm) = 0% ; icon_eu_eps : P(≥ 2 mm) = 0%"
+   }
+  },
+  {
+   "date": "2026-11-05",
+   "slot": "MORNING",
+   "local_start": "06:00",
+   "local_end": "12:00",
+   "start_utc": "2026-11-05T05:00:00+00:00",
+   "end_utc": "2026-11-05T11:00:00+00:00",
    "hours": 6,
    "period_state": "FUTURE",
    "lead_day": 4,
@@ -4579,55 +4336,55 @@
      "precipitation_mm": 0.0,
      "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 11.4,
-     "temperature_max_c": 12.6,
-     "wind_gust_max_kmh": 17.0,
-     "wind_speed_max_kmh": 9.0,
-     "relative_humidity_mean_pct": 77.0,
-     "et0_mm": 0.5,
+     "temperature_min_c": 0.2,
+     "temperature_max_c": 7.0,
+     "wind_gust_max_kmh": 10.0,
+     "wind_speed_max_kmh": 3.0,
+     "relative_humidity_mean_pct": 80.0,
+     "et0_mm": 0.4,
      "surface_temperature_min_c": null
     },
     "ecmwf": {
      "availability": "AVAILABLE",
      "hours_valid": 6,
-     "precipitation_mm": 0.2,
-     "rain_mm": 0.2,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 13.3,
-     "temperature_max_c": 15.2,
-     "wind_gust_max_kmh": 28.0,
-     "wind_speed_max_kmh": 13.0,
-     "relative_humidity_mean_pct": 70.0,
-     "et0_mm": 0.7,
-     "surface_temperature_min_c": 12.2
+     "temperature_min_c": 0.9,
+     "temperature_max_c": 7.0,
+     "wind_gust_max_kmh": 13.0,
+     "wind_speed_max_kmh": 4.0,
+     "relative_humidity_mean_pct": 96.0,
+     "et0_mm": 0.3,
+     "surface_temperature_min_c": 0.5
     },
     "icon": {
      "availability": "AVAILABLE",
      "hours_valid": 6,
-     "precipitation_mm": 0.6,
-     "rain_mm": 0.6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 11.9,
-     "temperature_max_c": 12.8,
-     "wind_gust_max_kmh": 24.0,
-     "wind_speed_max_kmh": 13.0,
-     "relative_humidity_mean_pct": 70.0,
-     "et0_mm": 0.5,
-     "surface_temperature_min_c": 9.8
+     "temperature_min_c": 0.6,
+     "temperature_max_c": 6.5,
+     "wind_gust_max_kmh": 11.0,
+     "wind_speed_max_kmh": 5.0,
+     "relative_humidity_mean_pct": 95.0,
+     "et0_mm": 0.3,
+     "surface_temperature_min_c": 1.6
     },
     "icon_global": {
      "availability": "AVAILABLE",
      "hours_valid": 6,
-     "precipitation_mm": 0.6,
-     "rain_mm": 0.6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 12.9,
-     "temperature_max_c": 13.2,
-     "wind_gust_max_kmh": 32.0,
-     "wind_speed_max_kmh": 10.0,
-     "relative_humidity_mean_pct": 68.0,
-     "et0_mm": 0.5,
-     "surface_temperature_min_c": 11.0
+     "temperature_min_c": 1.6,
+     "temperature_max_c": 9.0,
+     "wind_gust_max_kmh": 16.0,
+     "wind_speed_max_kmh": 6.0,
+     "relative_humidity_mean_pct": 88.0,
+     "et0_mm": 0.4,
+     "surface_temperature_min_c": 2.0
     }
    },
    "ensemble": {
@@ -4639,27 +4396,27 @@
       "p10_mm": 0.0,
       "p25_mm": 0.0,
       "median_mm": 0.0,
-      "p75_mm": 0.4,
-      "p90_mm": 0.9,
+      "p75_mm": 0.0,
+      "p90_mm": 0.0,
       "min_mm": 0.0,
-      "max_mm": 2.2,
-      "prob_ge_0_5mm": 0.235,
-      "prob_ge_2mm": 0.02,
+      "max_mm": 0.7,
+      "prob_ge_0_5mm": 0.02,
+      "prob_ge_2mm": 0.0,
       "prob_ge_5mm": 0.0,
       "prob_ge_10mm": 0.0
      },
      "temperature": {
       "members_valid": 51,
-      "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 10.7,
-      "min_median_c": 13.7
+      "prob_temperature_below_0c": 0.137,
+      "min_p10_c": -0.3,
+      "min_median_c": 0.5
      },
      "wind": {
       "members_valid": 51,
-      "prob_gust_ge_40kmh": 0.059,
+      "prob_gust_ge_40kmh": 0.0,
       "prob_gust_ge_60kmh": 0.0,
-      "gust_max_median_kmh": 28.0,
-      "gust_max_p90_kmh": 37.0
+      "gust_max_median_kmh": 14.0,
+      "gust_max_p90_kmh": 16.0
      }
     },
     "icon_eu_eps": {
@@ -4670,27 +4427,27 @@
       "p10_mm": 0.0,
       "p25_mm": 0.0,
       "median_mm": 0.0,
-      "p75_mm": 1.6,
-      "p90_mm": 3.1,
+      "p75_mm": 0.0,
+      "p90_mm": 0.1,
       "min_mm": 0.0,
-      "max_mm": 5.6,
-      "prob_ge_0_5mm": 0.375,
-      "prob_ge_2mm": 0.225,
-      "prob_ge_5mm": 0.025,
+      "max_mm": 2.6,
+      "prob_ge_0_5mm": 0.1,
+      "prob_ge_2mm": 0.025,
+      "prob_ge_5mm": 0.0,
       "prob_ge_10mm": 0.0
      },
      "temperature": {
       "members_valid": 40,
-      "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 10.9,
-      "min_median_c": 12.9
+      "prob_temperature_below_0c": 0.225,
+      "min_p10_c": -0.9,
+      "min_median_c": 0.9
      },
      "wind": {
       "members_valid": 40,
-      "prob_gust_ge_40kmh": 0.05,
+      "prob_gust_ge_40kmh": 0.0,
       "prob_gust_ge_60kmh": 0.0,
-      "gust_max_median_kmh": 21.0,
-      "gust_max_p90_kmh": 34.0
+      "gust_max_median_kmh": 11.0,
+      "gust_max_p90_kmh": 20.0
      }
     }
    },
@@ -4713,20 +4470,20 @@
      "lower_bound": false
     },
     "arpege": {
-     "hours": 21,
-     "lower_bound": false
+     "hours": 174,
+     "lower_bound": true
     },
     "ecmwf": {
-     "hours": 20,
-     "lower_bound": false
+     "hours": 174,
+     "lower_bound": true
     },
     "icon": {
-     "hours": 22,
-     "lower_bound": false
+     "hours": 174,
+     "lower_bound": true
     },
     "icon_global": {
-     "hours": 22,
-     "lower_bound": false
+     "hours": 174,
+     "lower_bound": true
     }
    },
    "consensus": {
@@ -4739,10 +4496,10 @@
     "deterministic_categories": {
      "arpege": "DRY",
      "ecmwf": "DRY",
-     "icon": "LIGHT"
+     "icon": "DRY"
     },
     "deterministic_wet_fraction": 0.0,
-    "deterministic_rain_fraction": 0.333,
+    "deterministic_rain_fraction": 0.0,
     "vote_weights": {
      "arpege": 1.0,
      "ecmwf": 1.0,
@@ -4751,11 +4508,250 @@
     "weighted_agreement": 1.0,
     "majority_scenario": "DRY",
     "deterministic_min_mm": 0.0,
-    "deterministic_max_mm": 0.6,
-    "deterministic_spread_mm": 0.6,
+    "deterministic_max_mm": 0.0,
+    "deterministic_spread_mm": 0.0,
+    "ensemble_prob_ge_2mm": {
+     "ecmwf_ens": 0.0,
+     "icon_eu_eps": 0.025
+    },
+    "ensemble_readings": {
+     "ecmwf_ens": "DRY",
+     "icon_eu_eps": "DRY"
+    },
+    "ensemble_systems_available": 2,
+    "confidence": "HIGH",
+    "confidence_cap_reason": null,
+    "reasons": [
+     "hors horizon : arome, arome_hd",
+     "3 modèles, accord pondéré 100% sur le scénario DRY",
+     "ecmwf_ens : P(≥ 2 mm) = 0%",
+     "icon_eu_eps : P(≥ 2 mm) = 2%"
+    ],
+    "reason": "hors horizon : arome, arome_hd ; 3 modèles, accord pondéré 100% sur le scénario DRY ; ecmwf_ens : P(≥ 2 mm) = 0% ; icon_eu_eps : P(≥ 2 mm) = 2%"
+   }
+  },
+  {
+   "date": "2026-11-05",
+   "slot": "AFTERNOON",
+   "local_start": "12:00",
+   "local_end": "18:00",
+   "start_utc": "2026-11-05T11:00:00+00:00",
+   "end_utc": "2026-11-05T17:00:00+00:00",
+   "hours": 6,
+   "period_state": "FUTURE",
+   "lead_day": 4,
+   "deterministic": {
+    "arome_hd": {
+     "availability": "OUT_OF_HORIZON",
+     "hours_valid": 0,
+     "precipitation_mm": null,
+     "rain_mm": null,
+     "snowfall_cm": null,
+     "temperature_min_c": null,
+     "temperature_max_c": null,
+     "wind_gust_max_kmh": null,
+     "wind_speed_max_kmh": null,
+     "relative_humidity_mean_pct": null,
+     "et0_mm": null,
+     "surface_temperature_min_c": null
+    },
+    "arome": {
+     "availability": "OUT_OF_HORIZON",
+     "hours_valid": 0,
+     "precipitation_mm": null,
+     "rain_mm": null,
+     "snowfall_cm": null,
+     "temperature_min_c": null,
+     "temperature_max_c": null,
+     "wind_gust_max_kmh": null,
+     "wind_speed_max_kmh": null,
+     "relative_humidity_mean_pct": null,
+     "et0_mm": null,
+     "surface_temperature_min_c": null
+    },
+    "arpege": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
+     "snowfall_cm": 0.0,
+     "temperature_min_c": 7.4,
+     "temperature_max_c": 10.1,
+     "wind_gust_max_kmh": 17.0,
+     "wind_speed_max_kmh": 9.0,
+     "relative_humidity_mean_pct": 70.0,
+     "et0_mm": 0.6,
+     "surface_temperature_min_c": null
+    },
+    "ecmwf": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
+     "snowfall_cm": 0.0,
+     "temperature_min_c": 7.1,
+     "temperature_max_c": 10.0,
+     "wind_gust_max_kmh": 13.0,
+     "wind_speed_max_kmh": 3.0,
+     "relative_humidity_mean_pct": 82.0,
+     "et0_mm": 0.5,
+     "surface_temperature_min_c": 4.6
+    },
+    "icon": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
+     "snowfall_cm": 0.0,
+     "temperature_min_c": 6.4,
+     "temperature_max_c": 8.6,
+     "wind_gust_max_kmh": 18.0,
+     "wind_speed_max_kmh": 10.0,
+     "relative_humidity_mean_pct": 79.0,
+     "et0_mm": 0.5,
+     "surface_temperature_min_c": 6.2
+    },
+    "icon_global": {
+     "availability": "AVAILABLE",
+     "hours_valid": 6,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
+     "snowfall_cm": 0.0,
+     "temperature_min_c": 7.7,
+     "temperature_max_c": 9.3,
+     "wind_gust_max_kmh": 19.0,
+     "wind_speed_max_kmh": 8.0,
+     "relative_humidity_mean_pct": 80.0,
+     "et0_mm": 0.5,
+     "surface_temperature_min_c": 7.2
+    }
+   },
+   "ensemble": {
+    "ecmwf_ens": {
+     "availability": "AVAILABLE",
+     "members_expected": 51,
+     "precipitation": {
+      "members_valid": 51,
+      "p10_mm": 0.0,
+      "p25_mm": 0.0,
+      "median_mm": 0.0,
+      "p75_mm": 0.0,
+      "p90_mm": 0.3,
+      "min_mm": 0.0,
+      "max_mm": 2.0,
+      "prob_ge_0_5mm": 0.078,
+      "prob_ge_2mm": 0.02,
+      "prob_ge_5mm": 0.0,
+      "prob_ge_10mm": 0.0
+     },
+     "temperature": {
+      "members_valid": 51,
+      "prob_temperature_below_0c": 0.0,
+      "min_p10_c": 6.7,
+      "min_median_c": 7.5
+     },
+     "wind": {
+      "members_valid": 51,
+      "prob_gust_ge_40kmh": 0.0,
+      "prob_gust_ge_60kmh": 0.0,
+      "gust_max_median_kmh": 14.0,
+      "gust_max_p90_kmh": 19.0
+     }
+    },
+    "icon_eu_eps": {
+     "availability": "AVAILABLE",
+     "members_expected": 40,
+     "precipitation": {
+      "members_valid": 40,
+      "p10_mm": 0.0,
+      "p25_mm": 0.0,
+      "median_mm": 0.0,
+      "p75_mm": 0.0,
+      "p90_mm": 0.6,
+      "min_mm": 0.0,
+      "max_mm": 2.5,
+      "prob_ge_0_5mm": 0.15,
+      "prob_ge_2mm": 0.05,
+      "prob_ge_5mm": 0.0,
+      "prob_ge_10mm": 0.0
+     },
+     "temperature": {
+      "members_valid": 40,
+      "prob_temperature_below_0c": 0.0,
+      "min_p10_c": 4.3,
+      "min_median_c": 6.5
+     },
+     "wind": {
+      "members_valid": 40,
+      "prob_gust_ge_40kmh": 0.0,
+      "prob_gust_ge_60kmh": 0.0,
+      "gust_max_median_kmh": 11.0,
+      "gust_max_p90_kmh": 20.0
+     }
+    }
+   },
+   "horizon": {
+    "out_of_horizon": [
+     "arome",
+     "arome_hd"
+    ],
+    "partial_horizon": [],
+    "incomplete": [],
+    "in_error": []
+   },
+   "hours_since_last_forecast_rain_ge_0_2mm": {
+    "arome_hd": {
+     "hours": null,
+     "lower_bound": false
+    },
+    "arome": {
+     "hours": null,
+     "lower_bound": false
+    },
+    "arpege": {
+     "hours": 180,
+     "lower_bound": true
+    },
+    "ecmwf": {
+     "hours": 180,
+     "lower_bound": true
+    },
+    "icon": {
+     "hours": 180,
+     "lower_bound": true
+    },
+    "icon_global": {
+     "hours": 180,
+     "lower_bound": true
+    }
+   },
+   "consensus": {
+    "scenario_threshold_mm": 2.0,
+    "deterministic_models": [
+     "arpege",
+     "ecmwf",
+     "icon"
+    ],
+    "deterministic_categories": {
+     "arpege": "DRY",
+     "ecmwf": "DRY",
+     "icon": "DRY"
+    },
+    "deterministic_wet_fraction": 0.0,
+    "deterministic_rain_fraction": 0.0,
+    "vote_weights": {
+     "arpege": 1.0,
+     "ecmwf": 1.0,
+     "icon": 1.0
+    },
+    "weighted_agreement": 1.0,
+    "majority_scenario": "DRY",
+    "deterministic_min_mm": 0.0,
+    "deterministic_max_mm": 0.0,
+    "deterministic_spread_mm": 0.0,
     "ensemble_prob_ge_2mm": {
      "ecmwf_ens": 0.02,
-     "icon_eu_eps": 0.225
+     "icon_eu_eps": 0.05
     },
     "ensemble_readings": {
      "ecmwf_ens": "DRY",
@@ -4768,18 +4764,18 @@
      "hors horizon : arome, arome_hd",
      "3 modèles, accord pondéré 100% sur le scénario DRY",
      "ecmwf_ens : P(≥ 2 mm) = 2%",
-     "icon_eu_eps : P(≥ 2 mm) = 22%"
+     "icon_eu_eps : P(≥ 2 mm) = 5%"
     ],
-    "reason": "hors horizon : arome, arome_hd ; 3 modèles, accord pondéré 100% sur le scénario DRY ; ecmwf_ens : P(≥ 2 mm) = 2% ; icon_eu_eps : P(≥ 2 mm) = 22%"
+    "reason": "hors horizon : arome, arome_hd ; 3 modèles, accord pondéré 100% sur le scénario DRY ; ecmwf_ens : P(≥ 2 mm) = 2% ; icon_eu_eps : P(≥ 2 mm) = 5%"
    }
   },
   {
-   "date": "2026-10-27",
+   "date": "2026-11-06",
    "slot": "MORNING",
    "local_start": "06:00",
    "local_end": "12:00",
-   "start_utc": "2026-10-27T05:00:00+00:00",
-   "end_utc": "2026-10-27T11:00:00+00:00",
+   "start_utc": "2026-11-06T05:00:00+00:00",
+   "end_utc": "2026-11-06T11:00:00+00:00",
    "hours": 6,
    "period_state": "FUTURE",
    "lead_day": 5,
@@ -4832,27 +4828,27 @@
      "precipitation_mm": 0.0,
      "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 8.6,
-     "temperature_max_c": 17.9,
-     "wind_gust_max_kmh": 19.0,
-     "wind_speed_max_kmh": 10.0,
-     "relative_humidity_mean_pct": 88.0,
-     "et0_mm": 0.6,
-     "surface_temperature_min_c": 6.5
+     "temperature_min_c": 2.4,
+     "temperature_max_c": 8.3,
+     "wind_gust_max_kmh": 9.0,
+     "wind_speed_max_kmh": 2.0,
+     "relative_humidity_mean_pct": 93.0,
+     "et0_mm": 0.3,
+     "surface_temperature_min_c": 2.2
     },
     "icon": {
      "availability": "AVAILABLE",
      "hours_valid": 6,
-     "precipitation_mm": 0.0,
-     "rain_mm": 0.0,
+     "precipitation_mm": 0.4,
+     "rain_mm": 0.2,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 8.3,
-     "temperature_max_c": 17.1,
-     "wind_gust_max_kmh": 31.0,
-     "wind_speed_max_kmh": 18.0,
-     "relative_humidity_mean_pct": 81.0,
-     "et0_mm": 0.5,
-     "surface_temperature_min_c": 5.5
+     "temperature_min_c": 3.9,
+     "temperature_max_c": 8.1,
+     "wind_gust_max_kmh": 5.0,
+     "wind_speed_max_kmh": 2.0,
+     "relative_humidity_mean_pct": 97.0,
+     "et0_mm": 0.2,
+     "surface_temperature_min_c": 3.3
     },
     "icon_global": {
      "availability": "AVAILABLE",
@@ -4860,13 +4856,13 @@
      "precipitation_mm": 0.0,
      "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 8.2,
-     "temperature_max_c": 19.4,
-     "wind_gust_max_kmh": 43.0,
-     "wind_speed_max_kmh": 19.0,
-     "relative_humidity_mean_pct": 75.0,
-     "et0_mm": 0.7,
-     "surface_temperature_min_c": 7.9
+     "temperature_min_c": 6.5,
+     "temperature_max_c": 10.5,
+     "wind_gust_max_kmh": 9.0,
+     "wind_speed_max_kmh": 3.0,
+     "relative_humidity_mean_pct": 91.0,
+     "et0_mm": 0.3,
+     "surface_temperature_min_c": 4.5
     }
    },
    "ensemble": {
@@ -4879,26 +4875,26 @@
       "p25_mm": 0.0,
       "median_mm": 0.0,
       "p75_mm": 0.0,
-      "p90_mm": 0.1,
+      "p90_mm": 0.5,
       "min_mm": 0.0,
-      "max_mm": 11.3,
+      "max_mm": 6.6,
       "prob_ge_0_5mm": 0.098,
-      "prob_ge_2mm": 0.059,
+      "prob_ge_2mm": 0.039,
       "prob_ge_5mm": 0.02,
-      "prob_ge_10mm": 0.02
+      "prob_ge_10mm": 0.0
      },
      "temperature": {
       "members_valid": 51,
       "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 7.7,
-      "min_median_c": 11.3
+      "min_p10_c": 1.7,
+      "min_median_c": 2.9
      },
      "wind": {
       "members_valid": 51,
-      "prob_gust_ge_40kmh": 0.49,
-      "prob_gust_ge_60kmh": 0.137,
-      "gust_max_median_kmh": 37.0,
-      "gust_max_p90_kmh": 62.0
+      "prob_gust_ge_40kmh": 0.0,
+      "prob_gust_ge_60kmh": 0.0,
+      "gust_max_median_kmh": 12.0,
+      "gust_max_p90_kmh": 16.0
      }
     },
     "icon_eu_eps": {
@@ -4910,26 +4906,26 @@
       "p25_mm": 0.0,
       "median_mm": 0.0,
       "p75_mm": 0.0,
-      "p90_mm": 0.0,
+      "p90_mm": 0.2,
       "min_mm": 0.0,
-      "max_mm": 12.5,
-      "prob_ge_0_5mm": 0.05,
-      "prob_ge_2mm": 0.05,
-      "prob_ge_5mm": 0.05,
-      "prob_ge_10mm": 0.025
+      "max_mm": 1.7,
+      "prob_ge_0_5mm": 0.1,
+      "prob_ge_2mm": 0.0,
+      "prob_ge_5mm": 0.0,
+      "prob_ge_10mm": 0.0
      },
      "temperature": {
       "members_valid": 40,
-      "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 5.9,
-      "min_median_c": 11.4
+      "prob_temperature_below_0c": 0.05,
+      "min_p10_c": 0.5,
+      "min_median_c": 2.4
      },
      "wind": {
       "members_valid": 40,
-      "prob_gust_ge_40kmh": 0.525,
-      "prob_gust_ge_60kmh": 0.075,
-      "gust_max_median_kmh": 41.0,
-      "gust_max_p90_kmh": 54.0
+      "prob_gust_ge_40kmh": 0.0,
+      "prob_gust_ge_60kmh": 0.0,
+      "gust_max_median_kmh": 8.0,
+      "gust_max_p90_kmh": 13.0
      }
     }
    },
@@ -4957,15 +4953,15 @@
      "lower_bound": false
     },
     "ecmwf": {
-     "hours": 38,
-     "lower_bound": false
+     "hours": 198,
+     "lower_bound": true
     },
     "icon": {
-     "hours": 14,
+     "hours": 2,
      "lower_bound": false
     },
     "icon_global": {
-     "hours": 14,
+     "hours": 2,
      "lower_bound": false
     }
    },
@@ -4988,11 +4984,11 @@
     "weighted_agreement": 1.0,
     "majority_scenario": "DRY",
     "deterministic_min_mm": 0.0,
-    "deterministic_max_mm": 0.0,
-    "deterministic_spread_mm": 0.0,
+    "deterministic_max_mm": 0.4,
+    "deterministic_spread_mm": 0.4,
     "ensemble_prob_ge_2mm": {
-     "ecmwf_ens": 0.059,
-     "icon_eu_eps": 0.05
+     "ecmwf_ens": 0.039,
+     "icon_eu_eps": 0.0
     },
     "ensemble_readings": {
      "ecmwf_ens": "DRY",
@@ -5005,19 +5001,19 @@
      "seulement 2 modèles déterministes",
      "hors horizon : arome, arome_hd, arpege",
      "2 modèles, accord pondéré 100% sur le scénario DRY",
-     "ecmwf_ens : P(≥ 2 mm) = 6%",
-     "icon_eu_eps : P(≥ 2 mm) = 5%"
+     "ecmwf_ens : P(≥ 2 mm) = 4%",
+     "icon_eu_eps : P(≥ 2 mm) = 0%"
     ],
-    "reason": "seulement 2 modèles déterministes ; hors horizon : arome, arome_hd, arpege ; 2 modèles, accord pondéré 100% sur le scénario DRY ; ecmwf_ens : P(≥ 2 mm) = 6% ; icon_eu_eps : P(≥ 2 mm) = 5%"
+    "reason": "seulement 2 modèles déterministes ; hors horizon : arome, arome_hd, arpege ; 2 modèles, accord pondéré 100% sur le scénario DRY ; ecmwf_ens : P(≥ 2 mm) = 4% ; icon_eu_eps : P(≥ 2 mm) = 0%"
    }
   },
   {
-   "date": "2026-10-27",
+   "date": "2026-11-06",
    "slot": "AFTERNOON",
    "local_start": "12:00",
    "local_end": "18:00",
-   "start_utc": "2026-10-27T11:00:00+00:00",
-   "end_utc": "2026-10-27T17:00:00+00:00",
+   "start_utc": "2026-11-06T11:00:00+00:00",
+   "end_utc": "2026-11-06T17:00:00+00:00",
    "hours": 6,
    "period_state": "FUTURE",
    "lead_day": 5,
@@ -5070,13 +5066,13 @@
      "precipitation_mm": 0.0,
      "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 17.1,
-     "temperature_max_c": 20.1,
-     "wind_gust_max_kmh": 35.0,
-     "wind_speed_max_kmh": 17.0,
-     "relative_humidity_mean_pct": 70.0,
-     "et0_mm": 1.1,
-     "surface_temperature_min_c": 15.2
+     "temperature_min_c": 8.7,
+     "temperature_max_c": 10.5,
+     "wind_gust_max_kmh": 11.0,
+     "wind_speed_max_kmh": 2.0,
+     "relative_humidity_mean_pct": 82.0,
+     "et0_mm": 0.4,
+     "surface_temperature_min_c": 7.0
     },
     "icon": {
      "availability": "PARTIAL_HORIZON",
@@ -5095,16 +5091,16 @@
     "icon_global": {
      "availability": "AVAILABLE",
      "hours_valid": 6,
-     "precipitation_mm": 0.0,
-     "rain_mm": 0.0,
+     "precipitation_mm": 1.6,
+     "rain_mm": 0.6,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 17.5,
-     "temperature_max_c": 20.1,
-     "wind_gust_max_kmh": 51.0,
-     "wind_speed_max_kmh": 22.0,
-     "relative_humidity_mean_pct": 69.0,
-     "et0_mm": 1.0,
-     "surface_temperature_min_c": 15.4
+     "temperature_min_c": 9.7,
+     "temperature_max_c": 11.2,
+     "wind_gust_max_kmh": 10.0,
+     "wind_speed_max_kmh": 2.0,
+     "relative_humidity_mean_pct": 90.0,
+     "et0_mm": 0.3,
+     "surface_temperature_min_c": 9.0
     }
    },
    "ensemble": {
@@ -5116,27 +5112,27 @@
       "p10_mm": 0.0,
       "p25_mm": 0.0,
       "median_mm": 0.0,
-      "p75_mm": 0.3,
-      "p90_mm": 3.8,
+      "p75_mm": 0.0,
+      "p90_mm": 0.2,
       "min_mm": 0.0,
-      "max_mm": 5.9,
-      "prob_ge_0_5mm": 0.216,
-      "prob_ge_2mm": 0.157,
-      "prob_ge_5mm": 0.078,
+      "max_mm": 0.8,
+      "prob_ge_0_5mm": 0.039,
+      "prob_ge_2mm": 0.0,
+      "prob_ge_5mm": 0.0,
       "prob_ge_10mm": 0.0
      },
      "temperature": {
       "members_valid": 51,
       "prob_temperature_below_0c": 0.0,
-      "min_p10_c": 12.7,
-      "min_median_c": 16.6
+      "min_p10_c": 5.2,
+      "min_median_c": 7.8
      },
      "wind": {
       "members_valid": 51,
-      "prob_gust_ge_40kmh": 0.627,
-      "prob_gust_ge_60kmh": 0.137,
-      "gust_max_median_kmh": 45.0,
-      "gust_max_p90_kmh": 63.0
+      "prob_gust_ge_40kmh": 0.0,
+      "prob_gust_ge_60kmh": 0.0,
+      "gust_max_median_kmh": 13.0,
+      "gust_max_p90_kmh": 17.0
      }
     },
     "icon_eu_eps": {
@@ -5198,15 +5194,15 @@
      "lower_bound": false
     },
     "ecmwf": {
-     "hours": 44,
-     "lower_bound": false
+     "hours": 204,
+     "lower_bound": true
     },
     "icon": {
-     "hours": 20,
+     "hours": 0,
      "lower_bound": false
     },
     "icon_global": {
-     "hours": 20,
+     "hours": 8,
      "lower_bound": false
     }
    },
@@ -5218,10 +5214,10 @@
     ],
     "deterministic_categories": {
      "ecmwf": "DRY",
-     "icon_global": "DRY"
+     "icon_global": "LIGHT"
     },
     "deterministic_wet_fraction": 0.0,
-    "deterministic_rain_fraction": 0.0,
+    "deterministic_rain_fraction": 0.5,
     "vote_weights": {
      "ecmwf": 1.0,
      "icon_global": 1.0
@@ -5229,10 +5225,10 @@
     "weighted_agreement": 1.0,
     "majority_scenario": "DRY",
     "deterministic_min_mm": 0.0,
-    "deterministic_max_mm": 0.0,
-    "deterministic_spread_mm": 0.0,
+    "deterministic_max_mm": 1.6,
+    "deterministic_spread_mm": 1.6,
     "ensemble_prob_ge_2mm": {
-     "ecmwf_ens": 0.157,
+     "ecmwf_ens": 0.0,
      "icon_eu_eps": null
     },
     "ensemble_readings": {
@@ -5249,18 +5245,18 @@
      "couverture incomplète de la période, exclus du vote : icon",
      "hors horizon : arome, arome_hd, arpege",
      "2 modèles, accord pondéré 100% sur le scénario DRY",
-     "ecmwf_ens : P(≥ 2 mm) = 16%"
+     "ecmwf_ens : P(≥ 2 mm) = 0%"
     ],
-    "reason": "seulement 2 modèles déterministes ; un seul système d'ensemble disponible ; icon_global relaie icon (hors horizon ou indisponible) ; couverture incomplète de la période, exclus du vote : icon ; hors horizon : arome, arome_hd, arpege ; 2 modèles, accord pondéré 100% sur le scénario DRY ; ecmwf_ens : P(≥ 2 mm) = 16%"
+    "reason": "seulement 2 modèles déterministes ; un seul système d'ensemble disponible ; icon_global relaie icon (hors horizon ou indisponible) ; couverture incomplète de la période, exclus du vote : icon ; hors horizon : arome, arome_hd, arpege ; 2 modèles, accord pondéré 100% sur le scénario DRY ; ecmwf_ens : P(≥ 2 mm) = 0%"
    }
   },
   {
-   "date": "2026-10-28",
+   "date": "2026-11-07",
    "slot": "MORNING",
    "local_start": "06:00",
    "local_end": "12:00",
-   "start_utc": "2026-10-28T05:00:00+00:00",
-   "end_utc": "2026-10-28T11:00:00+00:00",
+   "start_utc": "2026-11-07T05:00:00+00:00",
+   "end_utc": "2026-11-07T11:00:00+00:00",
    "hours": 6,
    "period_state": "FUTURE",
    "lead_day": 6,
@@ -5310,16 +5306,16 @@
     "ecmwf": {
      "availability": "AVAILABLE",
      "hours_valid": 6,
-     "precipitation_mm": 0.9,
-     "rain_mm": 0.9,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 12.2,
-     "temperature_max_c": 14.6,
-     "wind_gust_max_kmh": 24.0,
-     "wind_speed_max_kmh": 13.0,
-     "relative_humidity_mean_pct": 92.0,
-     "et0_mm": 0.2,
-     "surface_temperature_min_c": 12.2
+     "temperature_min_c": 3.9,
+     "temperature_max_c": 9.5,
+     "wind_gust_max_kmh": 10.0,
+     "wind_speed_max_kmh": 3.0,
+     "relative_humidity_mean_pct": 96.0,
+     "et0_mm": 0.3,
+     "surface_temperature_min_c": 2.8
     },
     "icon": {
      "availability": "OUT_OF_HORIZON",
@@ -5341,13 +5337,13 @@
      "precipitation_mm": 0.0,
      "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 9.3,
-     "temperature_max_c": 14.1,
-     "wind_gust_max_kmh": 27.0,
-     "wind_speed_max_kmh": 12.0,
-     "relative_humidity_mean_pct": 77.0,
-     "et0_mm": 0.6,
-     "surface_temperature_min_c": 8.9
+     "temperature_min_c": 3.0,
+     "temperature_max_c": 11.6,
+     "wind_gust_max_kmh": 14.0,
+     "wind_speed_max_kmh": 6.0,
+     "relative_humidity_mean_pct": 94.0,
+     "et0_mm": 0.4,
+     "surface_temperature_min_c": 3.1
     }
    },
    "ensemble": {
@@ -5442,15 +5438,15 @@
      "lower_bound": false
     },
     "ecmwf": {
-     "hours": 62,
-     "lower_bound": false
+     "hours": 222,
+     "lower_bound": true
     },
     "icon": {
      "hours": null,
      "lower_bound": false
     },
     "icon_global": {
-     "hours": 5,
+     "hours": 11,
      "lower_bound": false
     }
    },
@@ -5461,11 +5457,11 @@
      "icon_global"
     ],
     "deterministic_categories": {
-     "ecmwf": "LIGHT",
+     "ecmwf": "DRY",
      "icon_global": "DRY"
     },
     "deterministic_wet_fraction": 0.0,
-    "deterministic_rain_fraction": 0.5,
+    "deterministic_rain_fraction": 0.0,
     "vote_weights": {
      "ecmwf": 1.0,
      "icon_global": 1.0
@@ -5473,8 +5469,8 @@
     "weighted_agreement": 1.0,
     "majority_scenario": "DRY",
     "deterministic_min_mm": 0.0,
-    "deterministic_max_mm": 0.9,
-    "deterministic_spread_mm": 0.9,
+    "deterministic_max_mm": 0.0,
+    "deterministic_spread_mm": 0.0,
     "ensemble_prob_ge_2mm": {
      "ecmwf_ens": null,
      "icon_eu_eps": null
@@ -5498,12 +5494,12 @@
    }
   },
   {
-   "date": "2026-10-28",
+   "date": "2026-11-07",
    "slot": "AFTERNOON",
    "local_start": "12:00",
    "local_end": "18:00",
-   "start_utc": "2026-10-28T11:00:00+00:00",
-   "end_utc": "2026-10-28T17:00:00+00:00",
+   "start_utc": "2026-11-07T11:00:00+00:00",
+   "end_utc": "2026-11-07T17:00:00+00:00",
    "hours": 6,
    "period_state": "FUTURE",
    "lead_day": 6,
@@ -5553,16 +5549,16 @@
     "ecmwf": {
      "availability": "AVAILABLE",
      "hours_valid": 6,
-     "precipitation_mm": 0.1,
-     "rain_mm": 0.1,
+     "precipitation_mm": 0.0,
+     "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 12.3,
-     "temperature_max_c": 14.7,
-     "wind_gust_max_kmh": 27.0,
-     "wind_speed_max_kmh": 15.0,
-     "relative_humidity_mean_pct": 76.0,
-     "et0_mm": 0.7,
-     "surface_temperature_min_c": 11.2
+     "temperature_min_c": 8.5,
+     "temperature_max_c": 10.3,
+     "wind_gust_max_kmh": 11.0,
+     "wind_speed_max_kmh": 6.0,
+     "relative_humidity_mean_pct": 90.0,
+     "et0_mm": 0.5,
+     "surface_temperature_min_c": 8.1
     },
     "icon": {
      "availability": "OUT_OF_HORIZON",
@@ -5584,13 +5580,13 @@
      "precipitation_mm": 0.0,
      "rain_mm": 0.0,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 11.5,
-     "temperature_max_c": 14.5,
-     "wind_gust_max_kmh": 31.0,
-     "wind_speed_max_kmh": 14.0,
-     "relative_humidity_mean_pct": 67.0,
-     "et0_mm": 0.9,
-     "surface_temperature_min_c": 10.7
+     "temperature_min_c": 9.5,
+     "temperature_max_c": 13.4,
+     "wind_gust_max_kmh": 16.0,
+     "wind_speed_max_kmh": 4.0,
+     "relative_humidity_mean_pct": 85.0,
+     "et0_mm": 0.6,
+     "surface_temperature_min_c": 8.7
     }
    },
    "ensemble": {
@@ -5684,15 +5680,15 @@
      "lower_bound": false
     },
     "ecmwf": {
-     "hours": 2,
-     "lower_bound": false
+     "hours": 228,
+     "lower_bound": true
     },
     "icon": {
      "hours": null,
      "lower_bound": false
     },
     "icon_global": {
-     "hours": 11,
+     "hours": 17,
      "lower_bound": false
     }
    },
@@ -5715,8 +5711,8 @@
     "weighted_agreement": 1.0,
     "majority_scenario": "DRY",
     "deterministic_min_mm": 0.0,
-    "deterministic_max_mm": 0.1,
-    "deterministic_spread_mm": 0.1,
+    "deterministic_max_mm": 0.0,
+    "deterministic_spread_mm": 0.0,
     "ensemble_prob_ge_2mm": {
      "ecmwf_ens": null,
      "icon_eu_eps": null
@@ -5740,12 +5736,12 @@
    }
   },
   {
-   "date": "2026-10-29",
+   "date": "2026-11-08",
    "slot": "MORNING",
    "local_start": "06:00",
    "local_end": "12:00",
-   "start_utc": "2026-10-29T05:00:00+00:00",
-   "end_utc": "2026-10-29T11:00:00+00:00",
+   "start_utc": "2026-11-08T05:00:00+00:00",
+   "end_utc": "2026-11-08T11:00:00+00:00",
    "hours": 6,
    "period_state": "FUTURE",
    "lead_day": 7,
@@ -5795,16 +5791,16 @@
     "ecmwf": {
      "availability": "AVAILABLE",
      "hours_valid": 6,
-     "precipitation_mm": 0.0,
-     "rain_mm": 0.0,
+     "precipitation_mm": 2.4,
+     "rain_mm": 1.8,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 5.5,
-     "temperature_max_c": 12.2,
-     "wind_gust_max_kmh": 23.0,
-     "wind_speed_max_kmh": 5.0,
+     "temperature_min_c": 10.2,
+     "temperature_max_c": 11.9,
+     "wind_gust_max_kmh": 41.0,
+     "wind_speed_max_kmh": 23.0,
      "relative_humidity_mean_pct": 91.0,
-     "et0_mm": 0.4,
-     "surface_temperature_min_c": 5.1
+     "et0_mm": 0.2,
+     "surface_temperature_min_c": 9.6
     },
     "icon": {
      "availability": "OUT_OF_HORIZON",
@@ -5823,16 +5819,16 @@
     "icon_global": {
      "availability": "AVAILABLE",
      "hours_valid": 6,
-     "precipitation_mm": 0.0,
-     "rain_mm": 0.0,
+     "precipitation_mm": 5.2,
+     "rain_mm": 5.2,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 3.6,
-     "temperature_max_c": 13.4,
-     "wind_gust_max_kmh": 12.0,
-     "wind_speed_max_kmh": 6.0,
-     "relative_humidity_mean_pct": 87.0,
-     "et0_mm": 0.6,
-     "surface_temperature_min_c": 4.4
+     "temperature_min_c": 9.5,
+     "temperature_max_c": 13.3,
+     "wind_gust_max_kmh": 31.0,
+     "wind_speed_max_kmh": 11.0,
+     "relative_humidity_mean_pct": 83.0,
+     "et0_mm": 0.2,
+     "surface_temperature_min_c": 8.4
     }
    },
    "ensemble": {
@@ -5926,7 +5922,7 @@
      "lower_bound": false
     },
     "ecmwf": {
-     "hours": 20,
+     "hours": 0,
      "lower_bound": false
     },
     "icon": {
@@ -5934,7 +5930,7 @@
      "lower_bound": false
     },
     "icon_global": {
-     "hours": 29,
+     "hours": 0,
      "lower_bound": false
     }
    },
@@ -5945,20 +5941,20 @@
      "icon_global"
     ],
     "deterministic_categories": {
-     "ecmwf": "DRY",
-     "icon_global": "DRY"
+     "ecmwf": "WET",
+     "icon_global": "WET"
     },
-    "deterministic_wet_fraction": 0.0,
-    "deterministic_rain_fraction": 0.0,
+    "deterministic_wet_fraction": 1.0,
+    "deterministic_rain_fraction": 1.0,
     "vote_weights": {
      "ecmwf": 1.0,
      "icon_global": 1.0
     },
     "weighted_agreement": 1.0,
-    "majority_scenario": "DRY",
-    "deterministic_min_mm": 0.0,
-    "deterministic_max_mm": 0.0,
-    "deterministic_spread_mm": 0.0,
+    "majority_scenario": "WET",
+    "deterministic_min_mm": 2.4,
+    "deterministic_max_mm": 5.2,
+    "deterministic_spread_mm": 2.8,
     "ensemble_prob_ge_2mm": {
      "ecmwf_ens": null,
      "icon_eu_eps": null
@@ -5976,18 +5972,18 @@
      "échéance J+7 ≥ J+6",
      "icon_global relaie icon (hors horizon ou indisponible)",
      "hors horizon : arome, arome_hd, arpege, icon",
-     "2 modèles, accord pondéré 100% sur le scénario DRY"
+     "2 modèles, accord pondéré 100% sur le scénario WET"
     ],
-    "reason": "seulement 2 modèles déterministes ; aucun système d'ensemble disponible ; échéance J+7 ≥ J+6 ; icon_global relaie icon (hors horizon ou indisponible) ; hors horizon : arome, arome_hd, arpege, icon ; 2 modèles, accord pondéré 100% sur le scénario DRY"
+    "reason": "seulement 2 modèles déterministes ; aucun système d'ensemble disponible ; échéance J+7 ≥ J+6 ; icon_global relaie icon (hors horizon ou indisponible) ; hors horizon : arome, arome_hd, arpege, icon ; 2 modèles, accord pondéré 100% sur le scénario WET"
    }
   },
   {
-   "date": "2026-10-29",
+   "date": "2026-11-08",
    "slot": "AFTERNOON",
    "local_start": "12:00",
    "local_end": "18:00",
-   "start_utc": "2026-10-29T11:00:00+00:00",
-   "end_utc": "2026-10-29T17:00:00+00:00",
+   "start_utc": "2026-11-08T11:00:00+00:00",
+   "end_utc": "2026-11-08T17:00:00+00:00",
    "hours": 6,
    "period_state": "FUTURE",
    "lead_day": 7,
@@ -6037,16 +6033,16 @@
     "ecmwf": {
      "availability": "AVAILABLE",
      "hours_valid": 6,
-     "precipitation_mm": 0.0,
-     "rain_mm": 0.0,
+     "precipitation_mm": 5.4,
+     "rain_mm": 4.3,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 10.5,
-     "temperature_max_c": 13.1,
-     "wind_gust_max_kmh": 18.0,
-     "wind_speed_max_kmh": 4.0,
-     "relative_humidity_mean_pct": 84.0,
-     "et0_mm": 0.7,
-     "surface_temperature_min_c": 8.6
+     "temperature_min_c": 12.0,
+     "temperature_max_c": 12.2,
+     "wind_gust_max_kmh": 45.0,
+     "wind_speed_max_kmh": 23.0,
+     "relative_humidity_mean_pct": 90.0,
+     "et0_mm": 0.2,
+     "surface_temperature_min_c": 11.5
     },
     "icon": {
      "availability": "OUT_OF_HORIZON",
@@ -6065,16 +6061,16 @@
     "icon_global": {
      "availability": "AVAILABLE",
      "hours_valid": 6,
-     "precipitation_mm": 0.0,
-     "rain_mm": 0.0,
+     "precipitation_mm": 4.7,
+     "rain_mm": 3.4,
      "snowfall_cm": 0.0,
-     "temperature_min_c": 12.2,
-     "temperature_max_c": 14.8,
-     "wind_gust_max_kmh": 17.0,
-     "wind_speed_max_kmh": 6.0,
-     "relative_humidity_mean_pct": 82.0,
-     "et0_mm": 0.8,
-     "surface_temperature_min_c": 10.2
+     "temperature_min_c": 14.0,
+     "temperature_max_c": 15.8,
+     "wind_gust_max_kmh": 67.0,
+     "wind_speed_max_kmh": 30.0,
+     "relative_humidity_mean_pct": 80.0,
+     "et0_mm": 0.4,
+     "surface_temperature_min_c": 12.2
     }
    },
    "ensemble": {
@@ -6168,7 +6164,7 @@
      "lower_bound": false
     },
     "ecmwf": {
-     "hours": 26,
+     "hours": 0,
      "lower_bound": false
     },
     "icon": {
@@ -6176,7 +6172,7 @@
      "lower_bound": false
     },
     "icon_global": {
-     "hours": 35,
+     "hours": 0,
      "lower_bound": false
     }
    },
@@ -6187,20 +6183,20 @@
      "icon_global"
     ],
     "deterministic_categories": {
-     "ecmwf": "DRY",
-     "icon_global": "DRY"
+     "ecmwf": "WET",
+     "icon_global": "WET"
     },
-    "deterministic_wet_fraction": 0.0,
-    "deterministic_rain_fraction": 0.0,
+    "deterministic_wet_fraction": 1.0,
+    "deterministic_rain_fraction": 1.0,
     "vote_weights": {
      "ecmwf": 1.0,
      "icon_global": 1.0
     },
     "weighted_agreement": 1.0,
-    "majority_scenario": "DRY",
-    "deterministic_min_mm": 0.0,
-    "deterministic_max_mm": 0.0,
-    "deterministic_spread_mm": 0.0,
+    "majority_scenario": "WET",
+    "deterministic_min_mm": 4.7,
+    "deterministic_max_mm": 5.4,
+    "deterministic_spread_mm": 0.7,
     "ensemble_prob_ge_2mm": {
      "ecmwf_ens": null,
      "icon_eu_eps": null
@@ -6218,9 +6214,9 @@
      "échéance J+7 ≥ J+6",
      "icon_global relaie icon (hors horizon ou indisponible)",
      "hors horizon : arome, arome_hd, arpege, icon",
-     "2 modèles, accord pondéré 100% sur le scénario DRY"
+     "2 modèles, accord pondéré 100% sur le scénario WET"
     ],
-    "reason": "seulement 2 modèles déterministes ; aucun système d'ensemble disponible ; échéance J+7 ≥ J+6 ; icon_global relaie icon (hors horizon ou indisponible) ; hors horizon : arome, arome_hd, arpege, icon ; 2 modèles, accord pondéré 100% sur le scénario DRY"
+    "reason": "seulement 2 modèles déterministes ; aucun système d'ensemble disponible ; échéance J+7 ≥ J+6 ; icon_global relaie icon (hors horizon ou indisponible) ; hors horizon : arome, arome_hd, arpege, icon ; 2 modèles, accord pondéré 100% sur le scénario WET"
    }
   }
  ],
