@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "generated_at": "2026-11-05T18:17:25+00:00",
+ "generated_at": "2026-11-06T17:41:44+00:00",
  "generator": "soil_hydrology_update.py",
  "parcel": {
   "insee": "39160",
@@ -135,11 +135,11 @@
  "sources": {
   "sim": {
    "status": "FRESH",
-   "source_date": "2026-11-04",
-   "valid_until": "2026-11-05T06:00:00+00:00",
-   "age_hours": 12.3,
+   "source_date": "2026-11-05",
+   "valid_until": "2026-11-06T06:00:00+00:00",
+   "age_hours": 11.7,
    "max_age_hours": 48,
-   "status_reason": "dernière donnée âgée de 12.3 h (≤ 48 h)",
+   "status_reason": "dernière donnée âgée de 11.7 h (≤ 48 h)",
    "messages": [],
    "product": "SIM2 quotidien (SAFRAN-ISBA)",
    "provider": "Météo-France",
@@ -181,43 +181,43 @@
      "overlap_fraction": 1.0,
      "distance_m": 0.0,
      "latest": {
-      "date": "2026-11-04",
+      "date": "2026-11-05",
       "values": {
-       "SWI": 0.246,
-       "SSWI_10J": -2.041,
+       "SWI": 0.244,
+       "SSWI_10J": -2.149,
        "WG_RACINE": 0.236,
        "WGI_RACINE": 0.0,
-       "PRELIQ": 0.2,
+       "PRELIQ": 0.7,
        "PRENEI": 0.0,
-       "PRELIQ+PRENEI": 0.2,
-       "PE": -0.4,
+       "PRELIQ+PRENEI": 0.7,
+       "PE": 0.1,
        "EVAP": 0.6,
        "ETP": 0.5,
        "DRAINC": 0.2,
        "RUNC": 0.0,
-       "T": 4.8,
-       "TINF_H": 1.0,
-       "TSUP_H": 10.3,
-       "HU": 89.3
+       "T": 6.1,
+       "TINF_H": 1.5,
+       "TSUP_H": 9.6,
+       "HU": 90.4
       }
      },
      "derived": {
-      "anchor_date": "2026-11-04",
+      "anchor_date": "2026-11-05",
       "swi": {
-       "latest": 0.246,
-       "latest_date": "2026-11-04",
-       "d7": 0.268,
-       "d7_date": "2026-10-28",
-       "delta_7d": -0.022,
+       "latest": 0.244,
+       "latest_date": "2026-11-05",
+       "d7": 0.265,
+       "d7_date": "2026-10-29",
+       "delta_7d": -0.021,
        "trend": "falling",
        "stable_threshold": 0.02
       },
       "cumuls_mm": {
        "PRELIQ": {
-        "24h": 0.2,
-        "72h": 0.2,
-        "7d": 1.1,
-        "14d": 19.6
+        "24h": 0.7,
+        "72h": 0.9,
+        "7d": 1.4,
+        "14d": 20.3
        },
        "PRENEI": {
         "24h": 0.0,
@@ -226,19 +226,19 @@
         "14d": 0.0
        },
        "PRELIQ+PRENEI": {
-        "24h": 0.2,
-        "72h": 0.2,
-        "7d": 1.1,
-        "14d": 19.6
+        "24h": 0.7,
+        "72h": 0.9,
+        "7d": 1.4,
+        "14d": 20.3
        },
        "EVAP": {
-        "7d": 4.9
+        "7d": 5.1
        },
        "ETP": {
         "7d": 5.2
        },
        "PE": {
-        "7d": -3.8
+        "7d": -3.7
        },
        "DRAINC": {
         "7d": 1.4
@@ -251,7 +251,6 @@
      },
      "series": {
       "date": [
-       "2026-09-06",
        "2026-09-07",
        "2026-09-08",
        "2026-09-09",
@@ -310,10 +309,10 @@
        "2026-11-01",
        "2026-11-02",
        "2026-11-03",
-       "2026-11-04"
+       "2026-11-04",
+       "2026-11-05"
       ],
       "SWI": [
-       0.042,
        0.038,
        0.043,
        0.077,
@@ -372,10 +371,10 @@
        0.257,
        0.252,
        0.249,
-       0.246
+       0.246,
+       0.244
       ],
       "SSWI_10J": [
-       -2.392,
        -2.465,
        -2.504,
        -2.49,
@@ -434,10 +433,10 @@
        -1.925,
        -1.945,
        -1.972,
-       -2.041
+       -2.041,
+       -2.149
       ],
       "WG_RACINE": [
-       0.208,
        0.208,
        0.208,
        0.214,
@@ -495,6 +494,7 @@
        0.238,
        0.238,
        0.237,
+       0.236,
        0.236,
        0.236
       ],
@@ -561,7 +561,6 @@
        0.0
       ],
       "PRELIQ": [
-       2.0,
        0.0,
        11.0,
        0.2,
@@ -620,7 +619,8 @@
        0.0,
        0.0,
        0.0,
-       0.2
+       0.2,
+       0.7
       ],
       "PRENEI": [
        0.0,
@@ -685,7 +685,6 @@
        0.0
       ],
       "PRELIQ+PRENEI": [
-       2.0,
        0.0,
        11.0,
        0.2,
@@ -744,10 +743,10 @@
        0.0,
        0.0,
        0.0,
-       0.2
+       0.2,
+       0.7
       ],
       "PE": [
-       0.2,
        -0.8,
        9.9,
        -2.3,
@@ -806,10 +805,10 @@
        -1.4,
        -0.9,
        -0.5,
-       -0.4
+       -0.4,
+       0.1
       ],
       "EVAP": [
-       1.8,
        0.8,
        1.1,
        2.5,
@@ -868,10 +867,10 @@
        1.4,
        0.9,
        0.5,
+       0.6,
        0.6
       ],
       "ETP": [
-       3.3,
        3.3,
        4.4,
        2.4,
@@ -930,6 +929,7 @@
        1.3,
        1.2,
        0.7,
+       0.5,
        0.5
       ],
       "DRAINC": [
@@ -971,7 +971,6 @@
        0.3,
        0.3,
        0.3,
-       0.3,
        0.2,
        0.2,
        0.2,
@@ -983,6 +982,7 @@
        0.2,
        0.2,
        0.3,
+       0.2,
        0.2,
        0.2,
        0.2,
@@ -995,7 +995,6 @@
        0.2
       ],
       "RUNC": [
-       0.0,
        0.0,
        0.0,
        0.1,
@@ -1054,10 +1053,10 @@
        0.0,
        0.0,
        0.0,
+       0.0,
        0.0
       ],
       "T": [
-       22.0,
        24.8,
        24.5,
        17.1,
@@ -1116,10 +1115,10 @@
        6.7,
        6.7,
        5.8,
-       4.8
+       4.8,
+       6.1
       ],
       "TINF_H": [
-       14.3,
        17.7,
        16.2,
        15.3,
@@ -1178,10 +1177,10 @@
        1.8,
        3.4,
        5.7,
-       1.0
+       1.0,
+       1.5
       ],
       "TSUP_H": [
-       29.2,
        34.1,
        33.7,
        19.4,
@@ -1240,10 +1239,10 @@
        12.3,
        9.7,
        7.9,
-       10.3
+       10.3,
+       9.6
       ],
       "HU": [
-       63.5,
        59.5,
        60.7,
        73.9,
@@ -1302,7 +1301,8 @@
        76.3,
        72.4,
        77.3,
-       89.3
+       89.3,
+       90.4
       ]
      }
     },
@@ -1317,43 +1317,43 @@
      "overlap_fraction": 0.0,
      "distance_m": 33.9,
      "latest": {
-      "date": "2026-11-04",
+      "date": "2026-11-05",
       "values": {
-       "SWI": 0.249,
-       "SSWI_10J": -1.951,
-       "WG_RACINE": 0.237,
+       "SWI": 0.246,
+       "SSWI_10J": -2.037,
+       "WG_RACINE": 0.236,
        "WGI_RACINE": 0.0,
-       "PRELIQ": 0.0,
+       "PRELIQ": 0.1,
        "PRENEI": 0.0,
-       "PRELIQ+PRENEI": 0.0,
-       "PE": -0.7,
-       "EVAP": 0.7,
-       "ETP": 0.8,
+       "PRELIQ+PRENEI": 0.1,
+       "PE": -0.4,
+       "EVAP": 0.5,
+       "ETP": 0.6,
        "DRAINC": 0.2,
        "RUNC": 0.0,
-       "T": 6.2,
-       "TINF_H": 2.5,
-       "TSUP_H": 11.9,
-       "HU": 82.5
+       "T": 6.1,
+       "TINF_H": 1.4,
+       "TSUP_H": 11.4,
+       "HU": 87.1
       }
      },
      "derived": {
-      "anchor_date": "2026-11-04",
+      "anchor_date": "2026-11-05",
       "swi": {
-       "latest": 0.249,
-       "latest_date": "2026-11-04",
-       "d7": 0.286,
-       "d7_date": "2026-10-28",
-       "delta_7d": -0.037,
+       "latest": 0.246,
+       "latest_date": "2026-11-05",
+       "d7": 0.282,
+       "d7_date": "2026-10-29",
+       "delta_7d": -0.036,
        "trend": "falling",
        "stable_threshold": 0.02
       },
       "cumuls_mm": {
        "PRELIQ": {
-        "24h": 0.0,
-        "72h": 0.0,
-        "7d": 0.6,
-        "14d": 13.7
+        "24h": 0.1,
+        "72h": 0.1,
+        "7d": 0.5,
+        "14d": 13.6
        },
        "PRENEI": {
         "24h": 0.0,
@@ -1362,19 +1362,19 @@
         "14d": 0.0
        },
        "PRELIQ+PRENEI": {
-        "24h": 0.0,
-        "72h": 0.0,
-        "7d": 0.6,
-        "14d": 13.7
+        "24h": 0.1,
+        "72h": 0.1,
+        "7d": 0.5,
+        "14d": 13.6
        },
        "EVAP": {
-        "7d": 6.6
+        "7d": 6.1
        },
        "ETP": {
-        "7d": 7.3
+        "7d": 7.1
        },
        "PE": {
-        "7d": -6.1
+        "7d": -5.7
        },
        "DRAINC": {
         "7d": 1.4
@@ -1387,7 +1387,6 @@
      },
      "series": {
       "date": [
-       "2026-09-06",
        "2026-09-07",
        "2026-09-08",
        "2026-09-09",
@@ -1446,10 +1445,10 @@
        "2026-11-01",
        "2026-11-02",
        "2026-11-03",
-       "2026-11-04"
+       "2026-11-04",
+       "2026-11-05"
       ],
       "SWI": [
-       0.083,
        0.082,
        0.084,
        0.121,
@@ -1508,10 +1507,10 @@
        0.261,
        0.255,
        0.252,
-       0.249
+       0.249,
+       0.246
       ],
       "SSWI_10J": [
-       -2.115,
        -2.186,
        -2.244,
        -2.262,
@@ -1570,10 +1569,10 @@
        -1.831,
        -1.858,
        -1.891,
-       -1.951
+       -1.951,
+       -2.037
       ],
       "WG_RACINE": [
-       0.215,
        0.215,
        0.214,
        0.22,
@@ -1632,7 +1631,8 @@
        0.238,
        0.237,
        0.237,
-       0.237
+       0.237,
+       0.236
       ],
       "WGI_RACINE": [
        0.0,
@@ -1697,7 +1697,6 @@
        0.0
       ],
       "PRELIQ": [
-       1.6,
        0.0,
        11.5,
        0.2,
@@ -1756,7 +1755,8 @@
        0.0,
        0.0,
        0.0,
-       0.0
+       0.0,
+       0.1
       ],
       "PRENEI": [
        0.0,
@@ -1821,7 +1821,6 @@
        0.0
       ],
       "PRELIQ+PRENEI": [
-       1.6,
        0.0,
        11.5,
        0.2,
@@ -1880,10 +1879,10 @@
        0.0,
        0.0,
        0.0,
-       0.0
+       0.0,
+       0.1
       ],
       "PE": [
-       0.6,
        -1.7,
        10.0,
        -2.2,
@@ -1942,10 +1941,10 @@
        -1.5,
        -1.0,
        -0.4,
-       -0.7
+       -0.7,
+       -0.4
       ],
       "EVAP": [
-       1.0,
        1.7,
        1.5,
        2.4,
@@ -2004,10 +2003,10 @@
        1.5,
        1.0,
        0.4,
-       0.7
+       0.7,
+       0.5
       ],
       "ETP": [
-       3.6,
        4.0,
        4.9,
        2.4,
@@ -2066,7 +2065,8 @@
        1.7,
        1.4,
        1.1,
-       0.8
+       0.8,
+       0.6
       ],
       "DRAINC": [
        0.3,
@@ -2106,7 +2106,6 @@
        0.3,
        0.3,
        0.3,
-       0.3,
        0.2,
        0.2,
        0.2,
@@ -2115,6 +2114,7 @@
        0.2,
        0.3,
        0.3,
+       0.2,
        0.2,
        0.2,
        0.2,
@@ -2131,7 +2131,6 @@
        0.2
       ],
       "RUNC": [
-       0.0,
        0.0,
        0.0,
        0.1,
@@ -2190,10 +2189,10 @@
        0.0,
        0.0,
        0.0,
+       0.0,
        0.0
       ],
       "T": [
-       21.5,
        24.1,
        23.7,
        16.3,
@@ -2252,10 +2251,10 @@
        7.4,
        7.0,
        6.2,
-       6.2
+       6.2,
+       6.1
       ],
       "TINF_H": [
-       14.5,
        18.2,
        15.7,
        15.4,
@@ -2314,10 +2313,10 @@
        4.1,
        3.7,
        6.0,
-       2.5
+       2.5,
+       1.4
       ],
       "TSUP_H": [
-       29.6,
        32.6,
        32.9,
        18.6,
@@ -2376,10 +2375,10 @@
        12.2,
        10.3,
        8.1,
-       11.9
+       11.9,
+       11.4
       ],
       "HU": [
-       68.8,
        65.7,
        65.2,
        76.3,
@@ -2438,7 +2437,8 @@
        73.8,
        71.2,
        74.6,
-       82.5
+       82.5,
+       87.1
       ]
      }
     }
@@ -2450,14 +2450,14 @@
      "transport": "csv.gz",
      "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/REF_CC/SIM/QUOT_SIM2_latest.csv.gz",
      "source_version": "2026-10-29T08:03:25+00:00",
-     "retrieved_at": "2026-11-05T18:17:29.963733+00:00",
+     "retrieved_at": "2026-11-06T17:41:47.434162+00:00",
      "cache_hit": false,
      "fallback": [
-      "tabulaire écartée : copie tabulaire du 2026-10-29T08:03:25+00:00 ≠ fichier publié le 2026-11-05T08:03:25+00:00"
+      "tabulaire écartée : copie tabulaire du 2026-10-29T08:03:25+00:00 ≠ fichier publié le 2026-11-06T08:03:24+00:00"
      ],
-     "etag": "\"9bed77843691986f442e3d401886c330-3\"",
-     "size_bytes": 19936737,
-     "sha256": "33afbef35cee0968b72a0a6570cf9b3bc8fcc59620fc653effdf1d96eba03b7e",
+     "etag": "\"03da83e1854e176d0f65eae1ccb933a6-3\"",
+     "size_bytes": 19935688,
+     "sha256": "f2a435de6722fdc3366f19f59769872add89959bbab9f37ee9ddaa55d4977718",
      "lines_matched": 120,
      "lines_read": 593520
     }
@@ -2465,11 +2465,11 @@
   },
   "copernicus_swi": {
    "status": "FRESH",
-   "source_date": "2026-11-04",
-   "valid_until": "2026-11-04T12:00:00+00:00",
-   "age_hours": 30.3,
+   "source_date": "2026-11-05",
+   "valid_until": "2026-11-05T12:00:00+00:00",
+   "age_hours": 29.7,
    "max_age_hours": 72,
-   "status_reason": "dernière donnée âgée de 30.3 h (≤ 72 h)",
+   "status_reason": "dernière donnée âgée de 29.7 h (≤ 72 h)",
    "messages": [],
    "unit": "%",
    "product": "CLMS Soil Water Index Europe 1 km daily v2",
@@ -2495,13 +2495,13 @@
       46.8125
      ],
      "latest": {
-      "date": "2026-11-04",
+      "date": "2026-11-05",
       "values": {
        "SWI002": 17.0,
-       "SWI005": 27.5,
-       "SWI010": 32.0,
-       "SWI015": 31.0,
-       "SWI020": 29.0,
+       "SWI005": 25.0,
+       "SWI010": 30.0,
+       "SWI015": 30.0,
+       "SWI020": 28.5,
        "SWI040": 23.5,
        "SWI060": 21.5,
        "SWI100": 22.5
@@ -2519,32 +2519,32 @@
       "metadata": {
        "SWI002": {
         "raw_dn": 34,
-        "qflag_pct": 94.0,
+        "qflag_pct": 96.5,
         "ssf": 2
        },
        "SWI005": {
-        "raw_dn": 55,
-        "qflag_pct": 97.5,
+        "raw_dn": 50,
+        "qflag_pct": 98.5,
         "ssf": 2
        },
        "SWI010": {
-        "raw_dn": 64,
-        "qflag_pct": 99.0,
+        "raw_dn": 60,
+        "qflag_pct": 99.5,
         "ssf": 2
        },
        "SWI015": {
-        "raw_dn": 62,
-        "qflag_pct": 99.0,
+        "raw_dn": 60,
+        "qflag_pct": 99.5,
         "ssf": 2
        },
        "SWI020": {
-        "raw_dn": 58,
+        "raw_dn": 57,
         "qflag_pct": 99.5,
         "ssf": 2
        },
        "SWI040": {
         "raw_dn": 47,
-        "qflag_pct": 99.5,
+        "qflag_pct": 100.0,
         "ssf": 2
        },
        "SWI060": {
@@ -2560,76 +2560,76 @@
       }
      },
      "derived": {
-      "anchor_date": "2026-11-04",
+      "anchor_date": "2026-11-05",
       "trends": {
        "SWI002": {
         "latest": 17.0,
-        "latest_date": "2026-11-04",
-        "d7": 50.0,
-        "d7_date": "2026-10-28",
-        "delta_7d": -33.0,
+        "latest_date": "2026-11-05",
+        "d7": 45.0,
+        "d7_date": "2026-10-29",
+        "delta_7d": -28.0,
         "trend": "falling",
         "stable_threshold": 2.0
        },
        "SWI005": {
-        "latest": 27.5,
-        "latest_date": "2026-11-04",
-        "d7": 47.5,
-        "d7_date": "2026-10-28",
-        "delta_7d": -20.0,
+        "latest": 25.0,
+        "latest_date": "2026-11-05",
+        "d7": 45.5,
+        "d7_date": "2026-10-29",
+        "delta_7d": -20.5,
         "trend": "falling",
         "stable_threshold": 2.0
        },
        "SWI010": {
-        "latest": 32.0,
-        "latest_date": "2026-11-04",
-        "d7": 41.5,
-        "d7_date": "2026-10-28",
-        "delta_7d": -9.5,
+        "latest": 30.0,
+        "latest_date": "2026-11-05",
+        "d7": 40.5,
+        "d7_date": "2026-10-29",
+        "delta_7d": -10.5,
         "trend": "falling",
         "stable_threshold": 2.0
        },
        "SWI015": {
-        "latest": 31.0,
-        "latest_date": "2026-11-04",
+        "latest": 30.0,
+        "latest_date": "2026-11-05",
         "d7": 35.5,
-        "d7_date": "2026-10-28",
-        "delta_7d": -4.5,
+        "d7_date": "2026-10-29",
+        "delta_7d": -5.5,
         "trend": "falling",
         "stable_threshold": 2.0
        },
        "SWI020": {
-        "latest": 29.0,
-        "latest_date": "2026-11-04",
+        "latest": 28.5,
+        "latest_date": "2026-11-05",
         "d7": 31.5,
-        "d7_date": "2026-10-28",
-        "delta_7d": -2.5,
+        "d7_date": "2026-10-29",
+        "delta_7d": -3.0,
         "trend": "falling",
         "stable_threshold": 2.0
        },
        "SWI040": {
         "latest": 23.5,
-        "latest_date": "2026-11-04",
+        "latest_date": "2026-11-05",
         "d7": 23.5,
-        "d7_date": "2026-10-28",
+        "d7_date": "2026-10-29",
         "delta_7d": 0.0,
         "trend": "stable",
         "stable_threshold": 2.0
        },
        "SWI060": {
         "latest": 21.5,
-        "latest_date": "2026-11-04",
+        "latest_date": "2026-11-05",
         "d7": 21.5,
-        "d7_date": "2026-10-28",
+        "d7_date": "2026-10-29",
         "delta_7d": 0.0,
         "trend": "stable",
         "stable_threshold": 2.0
        },
        "SWI100": {
         "latest": 22.5,
-        "latest_date": "2026-11-04",
+        "latest_date": "2026-11-05",
         "d7": 22.5,
-        "d7_date": "2026-10-28",
+        "d7_date": "2026-10-29",
         "delta_7d": 0.0,
         "trend": "stable",
         "stable_threshold": 2.0
@@ -2638,7 +2638,6 @@
      },
      "series": {
       "date": [
-       "2026-09-06",
        "2026-09-07",
        "2026-09-08",
        "2026-09-09",
@@ -2697,10 +2696,10 @@
        "2026-11-01",
        "2026-11-02",
        "2026-11-03",
-       "2026-11-04"
+       "2026-11-04",
+       "2026-11-05"
       ],
       "SWI002": [
-       4.5,
        9.0,
        10.5,
        17.5,
@@ -2759,10 +2758,10 @@
        33.5,
        26.5,
        22.0,
+       17.0,
        17.0
       ],
       "SWI005": [
-       10.0,
        10.5,
        11.0,
        14.0,
@@ -2821,10 +2820,10 @@
        39.0,
        34.5,
        31.0,
-       27.5
+       27.5,
+       25.0
       ],
       "SWI010": [
-       11.5,
        12.0,
        12.0,
        13.5,
@@ -2883,10 +2882,10 @@
        38.5,
        36.0,
        34.0,
-       32.0
+       32.0,
+       30.0
       ],
       "SWI015": [
-       11.5,
        11.5,
        12.0,
        12.5,
@@ -2945,10 +2944,10 @@
        35.0,
        33.5,
        32.5,
-       31.0
+       31.0,
+       30.0
       ],
       "SWI020": [
-       11.5,
        11.5,
        12.0,
        12.5,
@@ -3007,10 +3006,10 @@
        31.5,
        30.5,
        30.0,
-       29.0
+       29.0,
+       28.5
       ],
       "SWI040": [
-       13.0,
        13.0,
        13.5,
        13.5,
@@ -3069,10 +3068,10 @@
        24.0,
        24.0,
        24.0,
+       23.5,
        23.5
       ],
       "SWI060": [
-       16.0,
        16.0,
        16.0,
        16.0,
@@ -3131,10 +3130,10 @@
        22.0,
        22.0,
        22.0,
+       21.5,
        21.5
       ],
       "SWI100": [
-       21.0,
        21.0,
        21.0,
        21.0,
@@ -3193,6 +3192,7 @@
        22.5,
        22.5,
        22.5,
+       22.5,
        22.5
       ]
      },
@@ -3213,13 +3213,13 @@
       46.8035714
      ],
      "latest": {
-      "date": "2026-11-04",
+      "date": "2026-11-05",
       "values": {
        "SWI002": 16.0,
-       "SWI005": 26.5,
-       "SWI010": 31.0,
-       "SWI015": 30.5,
-       "SWI020": 28.5,
+       "SWI005": 24.0,
+       "SWI010": 29.5,
+       "SWI015": 29.0,
+       "SWI020": 28.0,
        "SWI040": 23.0,
        "SWI060": 21.0,
        "SWI100": 22.0
@@ -3237,32 +3237,32 @@
       "metadata": {
        "SWI002": {
         "raw_dn": 32,
-        "qflag_pct": 94.0,
+        "qflag_pct": 96.5,
         "ssf": 2
        },
        "SWI005": {
-        "raw_dn": 53,
-        "qflag_pct": 97.5,
+        "raw_dn": 48,
+        "qflag_pct": 98.5,
         "ssf": 2
        },
        "SWI010": {
-        "raw_dn": 62,
-        "qflag_pct": 99.0,
+        "raw_dn": 59,
+        "qflag_pct": 99.5,
         "ssf": 2
        },
        "SWI015": {
-        "raw_dn": 61,
-        "qflag_pct": 99.0,
+        "raw_dn": 58,
+        "qflag_pct": 99.5,
         "ssf": 2
        },
        "SWI020": {
-        "raw_dn": 57,
+        "raw_dn": 56,
         "qflag_pct": 99.5,
         "ssf": 2
        },
        "SWI040": {
         "raw_dn": 46,
-        "qflag_pct": 99.5,
+        "qflag_pct": 100.0,
         "ssf": 2
        },
        "SWI060": {
@@ -3278,76 +3278,76 @@
       }
      },
      "derived": {
-      "anchor_date": "2026-11-04",
+      "anchor_date": "2026-11-05",
       "trends": {
        "SWI002": {
         "latest": 16.0,
-        "latest_date": "2026-11-04",
-        "d7": 49.0,
-        "d7_date": "2026-10-28",
-        "delta_7d": -33.0,
+        "latest_date": "2026-11-05",
+        "d7": 44.5,
+        "d7_date": "2026-10-29",
+        "delta_7d": -28.5,
         "trend": "falling",
         "stable_threshold": 2.0
        },
        "SWI005": {
-        "latest": 26.5,
-        "latest_date": "2026-11-04",
-        "d7": 46.5,
-        "d7_date": "2026-10-28",
-        "delta_7d": -20.0,
+        "latest": 24.0,
+        "latest_date": "2026-11-05",
+        "d7": 45.0,
+        "d7_date": "2026-10-29",
+        "delta_7d": -21.0,
         "trend": "falling",
         "stable_threshold": 2.0
        },
        "SWI010": {
-        "latest": 31.0,
-        "latest_date": "2026-11-04",
-        "d7": 40.5,
-        "d7_date": "2026-10-28",
-        "delta_7d": -9.5,
+        "latest": 29.5,
+        "latest_date": "2026-11-05",
+        "d7": 40.0,
+        "d7_date": "2026-10-29",
+        "delta_7d": -10.5,
         "trend": "falling",
         "stable_threshold": 2.0
        },
        "SWI015": {
-        "latest": 30.5,
-        "latest_date": "2026-11-04",
+        "latest": 29.0,
+        "latest_date": "2026-11-05",
         "d7": 35.0,
-        "d7_date": "2026-10-28",
-        "delta_7d": -4.5,
+        "d7_date": "2026-10-29",
+        "delta_7d": -6.0,
         "trend": "falling",
         "stable_threshold": 2.0
        },
        "SWI020": {
-        "latest": 28.5,
-        "latest_date": "2026-11-04",
+        "latest": 28.0,
+        "latest_date": "2026-11-05",
         "d7": 31.0,
-        "d7_date": "2026-10-28",
-        "delta_7d": -2.5,
+        "d7_date": "2026-10-29",
+        "delta_7d": -3.0,
         "trend": "falling",
         "stable_threshold": 2.0
        },
        "SWI040": {
         "latest": 23.0,
-        "latest_date": "2026-11-04",
+        "latest_date": "2026-11-05",
         "d7": 23.0,
-        "d7_date": "2026-10-28",
+        "d7_date": "2026-10-29",
         "delta_7d": 0.0,
         "trend": "stable",
         "stable_threshold": 2.0
        },
        "SWI060": {
         "latest": 21.0,
-        "latest_date": "2026-11-04",
+        "latest_date": "2026-11-05",
         "d7": 21.0,
-        "d7_date": "2026-10-28",
+        "d7_date": "2026-10-29",
         "delta_7d": 0.0,
         "trend": "stable",
         "stable_threshold": 2.0
        },
        "SWI100": {
         "latest": 22.0,
-        "latest_date": "2026-11-04",
+        "latest_date": "2026-11-05",
         "d7": 22.0,
-        "d7_date": "2026-10-28",
+        "d7_date": "2026-10-29",
         "delta_7d": 0.0,
         "trend": "stable",
         "stable_threshold": 2.0
@@ -3356,7 +3356,6 @@
      },
      "series": {
       "date": [
-       "2026-09-06",
        "2026-09-07",
        "2026-09-08",
        "2026-09-09",
@@ -3415,10 +3414,10 @@
        "2026-11-01",
        "2026-11-02",
        "2026-11-03",
-       "2026-11-04"
+       "2026-11-04",
+       "2026-11-05"
       ],
       "SWI002": [
-       5.0,
        9.0,
        11.0,
        18.0,
@@ -3477,10 +3476,10 @@
        32.5,
        25.0,
        20.5,
+       16.0,
        16.0
       ],
       "SWI005": [
-       10.0,
        10.5,
        11.5,
        14.0,
@@ -3539,10 +3538,10 @@
        38.5,
        33.5,
        30.0,
-       26.5
+       26.5,
+       24.0
       ],
       "SWI010": [
-       11.5,
        12.0,
        12.0,
        13.5,
@@ -3601,10 +3600,10 @@
        37.5,
        35.0,
        33.0,
-       31.0
+       31.0,
+       29.5
       ],
       "SWI015": [
-       11.5,
        11.5,
        12.0,
        12.5,
@@ -3663,10 +3662,10 @@
        34.0,
        33.0,
        31.5,
-       30.5
+       30.5,
+       29.0
       ],
       "SWI020": [
-       11.5,
        11.5,
        11.5,
        12.5,
@@ -3725,10 +3724,10 @@
        31.0,
        30.0,
        29.5,
-       28.5
+       28.5,
+       28.0
       ],
       "SWI040": [
-       13.0,
        13.0,
        13.0,
        13.0,
@@ -3787,10 +3786,10 @@
        24.0,
        23.5,
        23.5,
+       23.0,
        23.0
       ],
       "SWI060": [
-       15.5,
        15.5,
        15.5,
        15.5,
@@ -3849,10 +3848,10 @@
        21.5,
        21.5,
        21.5,
+       21.0,
        21.0
       ],
       "SWI100": [
-       20.5,
        20.5,
        20.5,
        20.5,
@@ -3911,6 +3910,7 @@
        22.0,
        22.0,
        22.0,
+       22.0,
        22.0
       ]
      },
@@ -3921,19 +3921,19 @@
     "collection": "clms_swi_europe_1km_daily_v2_cog",
     "discovery": "https://catalogue.dataspace.copernicus.eu/odata/v1/Products",
     "auth_method": "s3",
-    "s3_preflight": "OK : HEAD s3://eodata/CLMS/bio-geophysical/soil_water_index/swi_europe_1km_daily_v2/2026/11/04/c_gls_SWI1km_202611041200_CEURO_SCATSAR_V2.1.1_cog/c_gls_SWI1km-SWI002_202611041200_CEURO_SCATSAR_V2.1.1.tiff → 6856423 octets",
-    "catalog_latest": "2026-11-04",
-    "days_read": 2,
-    "days_from_cache": 58
+    "s3_preflight": "OK : HEAD s3://eodata/CLMS/bio-geophysical/soil_water_index/swi_europe_1km_daily_v2/2026/11/05/c_gls_SWI1km_202611051200_CEURO_SCATSAR_V2.1.1_cog/c_gls_SWI1km-SWI002_202611051200_CEURO_SCATSAR_V2.1.1.tiff → 6870224 octets",
+    "catalog_latest": "2026-11-05",
+    "days_read": 1,
+    "days_from_cache": 59
    },
    "parcel_weighted": {
-    "date": "2026-11-04",
+    "date": "2026-11-05",
     "values": {
      "SWI002": 16.69,
-     "SWI005": 27.19,
-     "SWI010": 31.69,
-     "SWI015": 30.84,
-     "SWI020": 28.84,
+     "SWI005": 24.69,
+     "SWI010": 29.84,
+     "SWI015": 29.69,
+     "SWI020": 28.34,
      "SWI040": 23.34,
      "SWI060": 21.34,
      "SWI100": 22.34
@@ -3957,11 +3957,11 @@
   },
   "copernicus_ssm": {
    "status": "FRESH",
-   "source_date": "2026-11-02",
-   "valid_until": "2026-11-03T00:00:00+00:00",
-   "age_hours": 66.3,
+   "source_date": "2026-11-05",
+   "valid_until": "2026-11-06T00:00:00+00:00",
+   "age_hours": 17.7,
    "max_age_hours": 72,
-   "status_reason": "dernière donnée âgée de 66.3 h (≤ 72 h)",
+   "status_reason": "dernière donnée âgée de 17.7 h (≤ 72 h)",
    "messages": [],
    "unit": "%",
    "product": "CLMS Surface Soil Moisture Europe 1 km daily v1",
@@ -3987,37 +3987,36 @@
       46.8125
      ],
      "latest": {
-      "date": "2026-11-02",
+      "date": "2026-11-05",
       "values": {
-       "SSM": 7.5
+       "SSM": 5.5
       },
       "quality": {
        "SSM": "valid"
       },
       "metadata": {
        "SSM": {
-        "raw_dn": 15,
+        "raw_dn": 11,
         "noise": 9.5
        }
       }
      },
      "derived": {
-      "anchor_date": "2026-11-02",
+      "anchor_date": "2026-11-05",
       "trends": {
        "SSM": {
-        "latest": 7.5,
-        "latest_date": "2026-11-02",
-        "d7": 30.5,
-        "d7_date": "2026-10-26",
-        "delta_7d": -23.0,
-        "trend": "falling",
+        "latest": 5.5,
+        "latest_date": "2026-11-05",
+        "d7": null,
+        "d7_date": "2026-10-29",
+        "delta_7d": null,
+        "trend": null,
         "stable_threshold": 5.0
        }
       }
      },
      "series": {
       "date": [
-       "2026-09-06",
        "2026-09-07",
        "2026-09-08",
        "2026-09-09",
@@ -4076,10 +4075,10 @@
        "2026-11-01",
        "2026-11-02",
        "2026-11-03",
-       "2026-11-04"
+       "2026-11-04",
+       "2026-11-05"
       ],
       "SSM": [
-       0.0,
        37.5,
        4.5,
        30.5,
@@ -4138,7 +4137,8 @@
        3.5,
        7.5,
        null,
-       null
+       null,
+       5.5
       ]
      },
      "flags": {
@@ -4192,37 +4192,36 @@
       46.8035714
      ],
      "latest": {
-      "date": "2026-11-02",
+      "date": "2026-11-05",
       "values": {
-       "SSM": 1.5
+       "SSM": 3.5
       },
       "quality": {
        "SSM": "valid"
       },
       "metadata": {
        "SSM": {
-        "raw_dn": 3,
+        "raw_dn": 7,
         "noise": 10.0
        }
       }
      },
      "derived": {
-      "anchor_date": "2026-11-02",
+      "anchor_date": "2026-11-05",
       "trends": {
        "SSM": {
-        "latest": 1.5,
-        "latest_date": "2026-11-02",
-        "d7": 27.5,
-        "d7_date": "2026-10-26",
-        "delta_7d": -26.0,
-        "trend": "falling",
+        "latest": 3.5,
+        "latest_date": "2026-11-05",
+        "d7": null,
+        "d7_date": "2026-10-29",
+        "delta_7d": null,
+        "trend": null,
         "stable_threshold": 5.0
        }
       }
      },
      "series": {
       "date": [
-       "2026-09-06",
        "2026-09-07",
        "2026-09-08",
        "2026-09-09",
@@ -4281,10 +4280,10 @@
        "2026-11-01",
        "2026-11-02",
        "2026-11-03",
-       "2026-11-04"
+       "2026-11-04",
+       "2026-11-05"
       ],
       "SSM": [
-       null,
        32.5,
        0.5,
        23.5,
@@ -4343,12 +4342,12 @@
        0.0,
        1.5,
        null,
-       null
+       null,
+       3.5
       ]
      },
      "flags": {
       "SSM": {
-       "2026-09-06": "NoData",
        "2026-09-10": "NoData",
        "2026-09-11": "NoData",
        "2026-09-13": "NoData",
@@ -4390,15 +4389,15 @@
     "collection": "clms_ssm_europe_1km_daily_v1_cog",
     "discovery": "https://catalogue.dataspace.copernicus.eu/odata/v1/Products",
     "auth_method": "s3",
-    "s3_preflight": "OK : HEAD s3://eodata/CLMS/bio-geophysical/surface_soil_moisture/ssm_europe_1km_daily_v1/2026/11/04/c_gls_SSM1km_202611040000_CEURO_S1CSAR_V1.2.1_cog/c_gls_SSM1km-SSM_202611040000_CEURO_S1CSAR_V1.2.1.tiff → 5911723 octets",
-    "catalog_latest": "2026-11-04",
-    "days_read": 2,
-    "days_from_cache": 58
+    "s3_preflight": "OK : HEAD s3://eodata/CLMS/bio-geophysical/surface_soil_moisture/ssm_europe_1km_daily_v1/2026/11/05/c_gls_SSM1km_202611050000_CEURO_S1CSAR_V1.2.1_cog/c_gls_SSM1km-SSM_202611050000_CEURO_S1CSAR_V1.2.1.tiff → 6425450 octets",
+    "catalog_latest": "2026-11-05",
+    "days_read": 1,
+    "days_from_cache": 59
    },
    "parcel_weighted": {
-    "date": "2026-11-02",
+    "date": "2026-11-05",
     "values": {
-     "SSM": 5.62
+     "SSM": 4.87
     },
     "covered_fraction": {
      "SSM": 1.0
@@ -4418,15 +4417,15 @@
    "max_age_hours": null,
    "status_reason": "source non exécutée lors de cette mise à jour",
    "messages": [],
-   "carried_over_from": "2026-11-04T18:14:10+00:00"
+   "carried_over_from": "2026-11-05T18:17:25+00:00"
   },
   "rain_precipitation": {
    "status": "FRESH",
-   "source_date": "2026-11-04",
-   "valid_until": "2026-11-05T00:00:00+00:00",
-   "age_hours": 18.3,
+   "source_date": "2026-11-05",
+   "valid_until": "2026-11-06T00:00:00+00:00",
+   "age_hours": 17.7,
    "max_age_hours": 48,
-   "status_reason": "dernière donnée âgée de 18.3 h (≤ 48 h)",
+   "status_reason": "dernière donnée âgée de 17.7 h (≤ 48 h)",
    "messages": [
     "CSV existant lu sans modification. Couverture intrajournalière et coordonnées des pixels non conservées par Rain."
    ],
@@ -4437,15 +4436,14 @@
    "day_convention": "journée 00–24 UTC",
    "in_progress_dates": [],
    "cumuls_mm": {
-    "24h": 0.0,
-    "72h": 0.51,
-    "7d": 0.51,
-    "14d": 23.42
+    "24h": 1.09,
+    "72h": 1.09,
+    "7d": 1.6,
+    "14d": 24.51
    },
    "missing_days": {},
    "series": {
     "date": [
-     "2026-09-06",
      "2026-09-07",
      "2026-09-08",
      "2026-09-09",
@@ -4504,10 +4502,10 @@
      "2026-11-01",
      "2026-11-02",
      "2026-11-03",
-     "2026-11-04"
+     "2026-11-04",
+     "2026-11-05"
     ],
     "mm": [
-     0.0,
      3.8,
      0.0,
      13.4,
@@ -4566,7 +4564,8 @@
      0.0,
      0.51,
      0.0,
-     0.0
+     0.0,
+     1.09
     ],
     "source": [
      "comephore",
@@ -4594,7 +4593,7 @@
      "comephore",
      "comephore",
      "comephore",
-     "comephore",
+     "antilope",
      "antilope",
      "antilope",
      "antilope",
@@ -4637,48 +4636,48 @@
   "precipitation_sim_vs_rain": {
    "method": "Écart relatif symétrique |S−R|/((S+R)/2) : ≤ 25% CONSISTENT, ≤ 50% PARTIAL, sinon DIVERGENT ; BOTH_DRY si les deux ≤ 2 mm ; écart ≤ 1 mm jamais DIVERGENT, ≥ 10 mm jamais CONSISTENT. Global : score pondéré (7 j ×3, 14 j ×2, 30 j ×1 ; CONSISTENT/BOTH_DRY 0, PARTIAL 1, DIVERGENT 2), DIVERGENT dès 1.25, PARTIAL dès 0.5 ; 7 j et 14 j divergents → DIVERGENT ; 7 j et 14 j cohérents → jamais DIVERGENT.",
    "caveat": "SIM : maille 8 km, journées 06–06 UTC ; Rain : pixel 1 km (COMÉPHORE) ou 500 m (LAME_D_EAU), journées 00–24 UTC. Un écart journalier est attendu ; seuls les cumuls pluri-journaliers sont comparés.",
-   "anchor_date": "2026-11-04",
+   "anchor_date": "2026-11-05",
    "windows": {
     "7d": {
      "window": "7d",
-     "sim_mm": 1.1,
-     "rain_mm": 0.5,
-     "difference_mm": 0.6,
-     "absolute_difference_mm": 0.6,
-     "symmetric_relative_difference": 0.75,
-     "ratio": 2.2,
-     "direction": "SIM_HIGHER",
+     "sim_mm": 1.4,
+     "rain_mm": 1.6,
+     "difference_mm": -0.2,
+     "absolute_difference_mm": 0.2,
+     "symmetric_relative_difference": 0.133,
+     "ratio": 1.143,
+     "direction": "RAIN_HIGHER",
      "classification": "BOTH_DRY",
      "reason": "les deux cumuls ≤ 2 mm",
-     "diff_mm": 0.6,
+     "diff_mm": -0.2,
      "flag": "BOTH_DRY"
     },
     "14d": {
      "window": "14d",
-     "sim_mm": 19.6,
-     "rain_mm": 23.4,
-     "difference_mm": -3.8,
-     "absolute_difference_mm": 3.8,
-     "symmetric_relative_difference": 0.177,
-     "ratio": 1.194,
+     "sim_mm": 20.3,
+     "rain_mm": 24.5,
+     "difference_mm": -4.2,
+     "absolute_difference_mm": 4.2,
+     "symmetric_relative_difference": 0.188,
+     "ratio": 1.207,
      "direction": "RAIN_HIGHER",
      "classification": "CONSISTENT",
-     "reason": "écart relatif symétrique 18%",
-     "diff_mm": -3.8,
+     "reason": "écart relatif symétrique 19%",
+     "diff_mm": -4.2,
      "flag": "CONSISTENT"
     },
     "30d": {
      "window": "30d",
-     "sim_mm": 77.2,
-     "rain_mm": 42.3,
-     "difference_mm": 34.9,
-     "absolute_difference_mm": 34.9,
-     "symmetric_relative_difference": 0.584,
-     "ratio": 1.825,
+     "sim_mm": 77.9,
+     "rain_mm": 43.4,
+     "difference_mm": 34.5,
+     "absolute_difference_mm": 34.5,
+     "symmetric_relative_difference": 0.569,
+     "ratio": 1.795,
      "direction": "SIM_HIGHER",
      "classification": "DIVERGENT",
-     "reason": "écart relatif symétrique 58%",
-     "diff_mm": 34.9,
+     "reason": "écart relatif symétrique 57%",
+     "diff_mm": 34.5,
      "flag": "DIVERGENT"
     }
    },
@@ -4698,52 +4697,52 @@
    ],
    "sources_excluded": {},
    "evidence": [
-    "Copernicus SSM pondéré ZP1 = 5.62 % au 2026-11-02 (J−7 29.56 %, Δ -23.94 pts) : forte baisse de l'humidité de surface",
-    "Copernicus SWI temps courts (SWI002, SWI005, SWI010) : 0/3 en hausse, 3 en baisse sur 7 jours (Δ -33 à -9.5 pts)",
-    "Copernicus SWI temps longs (SWI040–SWI100) : 21.34–23.34 %, 0/3 en hausse ; 2.85 pts sous les temps courts du même produit",
-    "SIM SWI = 0.246 au 2026-11-04 (J−7 0.268, Δ -0.022) : baisse sur 7 jours",
-    "SIM SSWI_10J = -2.041 (≤ -1 : plus sec que la normale du modèle)"
+    "Copernicus SSM pondéré ZP1 = 4.87 % au 2026-11-05 (J−7 n.d. %, Δ n.d. pts) : tendance non calculable (J−7 absent) de l'humidité de surface",
+    "Copernicus SWI temps courts (SWI002, SWI005, SWI010) : 0/3 en hausse, 3 en baisse sur 7 jours (Δ -28.15 à -10.5 pts)",
+    "Copernicus SWI temps longs (SWI040–SWI100) : 21.34–23.34 %, 0/3 en hausse ; 1.4 pts sous les temps courts du même produit",
+    "SIM SWI = 0.244 au 2026-11-05 (J−7 0.265, Δ -0.021) : baisse sur 7 jours",
+    "SIM SSWI_10J = -2.149 (≤ -1 : plus sec que la normale du modèle)"
    ],
    "signals": {
     "copernicus_ssm": {
      "band": "SSM",
-     "date": "2026-11-02",
-     "value": 5.62,
-     "d7_date": "2026-10-26",
-     "d7": 29.56,
-     "delta_7d": -23.94,
-     "trend": "falling",
+     "date": "2026-11-05",
+     "value": 4.87,
+     "d7_date": "2026-10-29",
+     "d7": null,
+     "delta_7d": null,
+     "trend": null,
      "covered_fraction": 1.0
     },
     "copernicus_swi": {
      "short_t": [
       {
        "band": "SWI002",
-       "date": "2026-11-04",
+       "date": "2026-11-05",
        "value": 16.69,
-       "d7_date": "2026-10-28",
-       "d7": 49.69,
-       "delta_7d": -33.0,
+       "d7_date": "2026-10-29",
+       "d7": 44.84,
+       "delta_7d": -28.15,
        "trend": "falling",
        "covered_fraction": 1.0
       },
       {
        "band": "SWI005",
-       "date": "2026-11-04",
-       "value": 27.19,
-       "d7_date": "2026-10-28",
-       "d7": 47.19,
-       "delta_7d": -20.0,
+       "date": "2026-11-05",
+       "value": 24.69,
+       "d7_date": "2026-10-29",
+       "d7": 45.34,
+       "delta_7d": -20.65,
        "trend": "falling",
        "covered_fraction": 1.0
       },
       {
        "band": "SWI010",
-       "date": "2026-11-04",
-       "value": 31.69,
-       "d7_date": "2026-10-28",
-       "d7": 41.19,
-       "delta_7d": -9.5,
+       "date": "2026-11-05",
+       "value": 29.84,
+       "d7_date": "2026-10-29",
+       "d7": 40.34,
+       "delta_7d": -10.5,
        "trend": "falling",
        "covered_fraction": 1.0
       }
@@ -4751,9 +4750,9 @@
      "long_t": [
       {
        "band": "SWI040",
-       "date": "2026-11-04",
+       "date": "2026-11-05",
        "value": 23.34,
-       "d7_date": "2026-10-28",
+       "d7_date": "2026-10-29",
        "d7": 23.34,
        "delta_7d": 0.0,
        "trend": "stable",
@@ -4761,9 +4760,9 @@
       },
       {
        "band": "SWI060",
-       "date": "2026-11-04",
+       "date": "2026-11-05",
        "value": 21.34,
-       "d7_date": "2026-10-28",
+       "d7_date": "2026-10-29",
        "d7": 21.34,
        "delta_7d": 0.0,
        "trend": "stable",
@@ -4771,25 +4770,25 @@
       },
       {
        "band": "SWI100",
-       "date": "2026-11-04",
+       "date": "2026-11-05",
        "value": 22.34,
-       "d7_date": "2026-10-28",
+       "d7_date": "2026-10-29",
        "d7": 22.34,
        "delta_7d": 0.0,
        "trend": "stable",
        "covered_fraction": 1.0
       }
      ],
-     "short_minus_long_pts": 2.85
+     "short_minus_long_pts": 1.4
     },
     "sim": {
      "grid": "8360_22090",
-     "date": "2026-11-04",
-     "swi": 0.246,
-     "swi_d7": 0.268,
-     "swi_delta_7d": -0.022,
+     "date": "2026-11-05",
+     "swi": 0.244,
+     "swi_d7": 0.265,
+     "swi_delta_7d": -0.021,
      "swi_trend": "falling",
-     "sswi_10j": -2.041
+     "sswi_10j": -2.149
     }
    },
    "method": "Tendances 7 j propres à chaque source : SSM Δ > 5 pts ; SWI Copernicus par bande Δ > 2 pts (temps courts SWI002, SWI005, SWI010 majoritaires) ; écart temps courts − longs ≥ 10 pts dans le même produit = fond en retard ; SIM : tendance SWI et SSWI_10J ≤ -1. Valeurs Copernicus pondérées par la part de ZP1 de chaque pixel.",
