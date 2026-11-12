@@ -13,10 +13,15 @@ from .export import refresh_freshness
 
 SHORT = {"arome_hd": "AROME HD", "arome": "AROME", "arpege": "ARPEGE", "ecmwf": "IFS", "icon": "ICON-EU", "icon_global": "ICON-G",
          "ecmwf_ens": "IFS ENS", "icon_eu_eps": "ICON-EU-EPS"}
+SHORT.update(aifs_single="AIFS Single", aifs_ens="AIFS ENS")
 DAYS_FR = ("lun.", "mar.", "mer.", "jeu.", "ven.", "sam.", "dim.")
 SLOT_FR = {"MORNING": "matin 06–12 h", "AFTERNOON": "après-midi 12–18 h"}
 STATE_FR = {"PAST": "écoulé", "ONGOING": "en cours", "FUTURE": ""}
 CONF_FR = {"HIGH": "élevée", "MEDIUM": "moyenne", "LOW": "faible"}
+AVAILABILITY_FR = {"AVAILABLE": "disponible", "PARTIAL_MEMBERS": "membres manquants",
+                   "INCOMPLETE": "période incomplète", "OUT_OF_HORIZON": "hors horizon",
+                   "PARTIAL_HORIZON": "fin d’horizon", "MODEL_ERROR": "erreur de collecte",
+                   "MODEL_UNAVAILABLE": "modèle indisponible"}
 CSS = """
 :root{--bg:#f7f7f5;--card:#fff;--ink:#1d1d1b;--muted:#6b6b66;--line:#deded8;--rain1:#e3edf9;--rain2:#bcd3f0;--rain3:#87b0e3;
 --hi:#3b3f8f;--hi-ink:#fff;--md:#c9cbe8;--md-ink:#23264f;--lo:transparent;--lo-ink:#55554f;--warn:#9a5b00;--warn-bg:#fdf0d9}
@@ -35,7 +40,7 @@ tbody tr.day th{white-space:nowrap}td.r1{background:var(--rain1)}td.r2{backgroun
 .badge{display:inline-block;border-radius:999px;padding:1px 9px;font-size:.8rem;font-weight:600;border:1px solid var(--line)}
 .HIGH{background:var(--hi);color:var(--hi-ink);border-color:var(--hi)}.MEDIUM{background:var(--md);color:var(--md-ink);border-color:var(--md)}
 .LOW{background:var(--lo);color:var(--lo-ink)}.FRESH{background:var(--md);color:var(--md-ink)}.STALE{background:var(--warn-bg);color:var(--warn)}
-.na{color:var(--muted)}.models{font-size:.8rem;color:var(--muted)}.reason{font-size:.8rem;color:var(--muted);max-width:340px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;overflow-wrap:anywhere}.card h3{margin:0 0 8px;font-size:1rem}.card p{margin:6px 0}.frost-HIGH{border-left:4px solid var(--hi)}.frost-UNCERTAIN{border-left:4px solid var(--warn)}.frost-INSUFFICIENT{border-left:4px dotted var(--muted)}details{margin-top:8px}summary{cursor:pointer}.na{color:var(--muted)}.models{font-size:.8rem;color:var(--muted)}.reason{font-size:.8rem;color:var(--muted);max-width:340px}
 footer{margin-top:2em;font-size:.8rem;color:var(--muted)}a{color:inherit}
 """
 
@@ -91,14 +96,14 @@ def ens_rain(period, key) -> str:
 
 def ens_prob(period, part, key) -> str:
     return " / ".join(pct(period["ensemble"][k][part][key]) if period["ensemble"][k]["availability"] == "AVAILABLE"
-                      else "<span class='na'>–</span>" for k in period["ensemble"])
+                      else "<span class='na'>–</span>" for k in period["ensemble"] if k != "aifs_ens")
 
 
 def models_cell(period) -> str:
     c, h = period["consensus"], period["horizon"]
     used = ", ".join(SHORT[k] for k in c["deterministic_models"]) or "aucun"
     per_model = " · ".join(f"{SHORT[k]} {num(b['precipitation_mm'])}"
-                           + ("" if k in c["deterministic_models"] else " (relais non compté)")
+                           + ("" if k in c["deterministic_models"] else " (expérimental hors consensus)" if k == "aifs_single" else " (relais non compté)")
                            for k, b in period["deterministic"].items() if b["availability"] == "AVAILABLE")
     extra = []
     if h["out_of_horizon"]:
@@ -191,6 +196,7 @@ def render(report: dict, path, now: datetime | None = None) -> None:
         f"<div class='scroll'><table>{HEAD.format(extra='')}<tbody>{days}</tbody></table></div>",
         "<h2>Demi-journées</h2>",
         f"<div class='scroll'><table>{HEAD.format(extra='<th>Depuis dernière pluie ≥ 0,2 mm</th>')}<tbody>{halves}</tbody></table></div>",
+        comparative_cards(report), frost_cards(report),
         "<h2>Modèles</h2>", providers_table(report),
         "<h2>Limites</h2><ul>" + "".join(f"<li>{esc(x)}</li>" for x in report["limits"]) + "</ul>",
         f"<footer><a href='{esc(att['open_meteo']['url'])}'>{esc(att['open_meteo']['text'])}</a> "
@@ -203,3 +209,76 @@ def render(report: dict, path, now: datetime | None = None) -> None:
                     "<meta name='viewport' content='width=device-width, initial-scale=1'>"
                     f"<title>Rain · Prévision ZP1</title><style>{CSS}</style></head><body><main>"
                     + "".join(blocks) + "</main></body></html>", encoding="utf-8")
+
+
+def provider_age(report, group, key):
+    p = report["providers"][group].get(key, {})
+    if p.get("status") == "ERROR" or not p.get("fetched_at"):
+        return f"{p.get('status', 'indisponible')} · aucune donnée collectée"
+    f = p.get("freshness") or {}
+    return f"{p.get('status', 'indisponible')} · {f.get('status', report['status'])} · collecte {p.get('fetched_at') or 'indisponible'}"
+
+
+def availability_label(block):
+    return esc(AVAILABILITY_FR.get(block.get('availability'), 'indisponible'))
+
+
+def comparative_cards(report):
+    cards = []
+    for day in report["daily"]:
+        lines = []
+        for key in ("arome_hd", "arome", "arpege", "ecmwf", "aifs_single"):
+            b = day["deterministic"].get(key, {})
+            lines.append(f"<p><b>{SHORT[key]}</b> : {num(b.get('precipitation_mm'), 1, 'mm')} <small>{availability_label(b)}</small></p>")
+        for key in ("ecmwf_ens", "aifs_ens"):
+            b = day["ensemble"].get(key, {})
+            p = b.get("precipitation", {})
+            lines.append(f"<p><b>{SHORT[key]}</b> P50 {num(p.get('median_mm'), 1, 'mm')} · P10–P90 {num(p.get('p10_mm'))}–{num(p.get('p90_mm'))} mm"
+                         f"<br><small>{availability_label(b)} · {p.get('members_valid', 0)}/{b.get('members_expected', 51)} membres"
+                         f" · P(≥2/5/10 mm) : {pct(p.get('prob_ge_2mm'))} / {pct(p.get('prob_ge_5mm'))} / {pct(p.get('prob_ge_10mm'))}</small></p>")
+        a = day["deterministic"].get("aifs_single", {}).get("precipitation_mm")
+        classic = day["deterministic"].get("ecmwf", {}).get("precipitation_mm")
+        if a is not None and classic is not None:
+            lines.append(f"<p>Écart AIFS Single − IFS : {num(a-classic, 1, 'mm')}.</p>")
+        provenance = "<br>".join(esc(SHORT[k] + ' : ' + provider_age(report, g, k))
+                                 for g, k in (("deterministic", "aifs_single"), ("ensemble", "aifs_ens")))
+        cards.append(f"<article class='card'><h3>{day_label(day)}</h3>{''.join(lines)}<details><summary>Disponibilité IA</summary>{provenance}</details></article>")
+    return ("<h2>Prévisions IA — ECMWF AIFS</h2><p class='note'>Comparaison expérimentale, exclue du consensus et de la confiance. "
+            "IFS et AIFS viennent du même producteur et ne sont pas des sources indépendantes. Maille AIFS ≈28 km ; pas natif 6 h, "
+            "séries horaires interpolées par Open-Meteo. P10–P90 décrit la dispersion des scénarios.</p><div class='cards'>" + ''.join(cards) + '</div>')
+
+
+def frost_cards(report):
+    if "nights" not in report:
+        return "<h2>Surveillance du gel — prochaines nuits</h2><p>Nuits indisponibles dans cet ancien fichier ; relancer la collecte.</p>"
+    labels = {"LOW": "probabilité faible", "UNCERTAIN": "situation incertaine", "HIGH": "probabilité élevée", "INSUFFICIENT": "données insuffisantes"}
+    cards = []
+    for night in report["nights"]:
+        lines, details = [], []
+        valid = [b["temperature_min_c"] for b in night["deterministic"].values() if b["temperature_min_c"] is not None]
+        if valid:
+            lines.append(f"<p><b>Minima : {num(min(valid))} à {num(max(valid), 1, '°C')}</b></p>")
+            if min(valid) < 0 <= max(valid):
+                lines.append("<p>Divergence : certains modèles passent sous 0 °C, d’autres restent au-dessus.</p>")
+        else:
+            lines.append("<p>Minima indisponibles.</p>")
+        for key, b in night["ensemble"].items():
+            stale = (report["providers"]["ensemble"].get(key, {}).get("freshness") or {}).get("status", report["status"]) == "STALE"
+            label = "données trop anciennes" if stale else labels[b["reading"]]
+            style = 'INSUFFICIENT' if stale else b['reading']
+            lines.append(f"<p class='frost-{style}'><b>{SHORT[key]} : {pct(b['prob_temperature_below_0c'])}</b> · {label}"
+                         f"<br><small>{b['members_valid']}/{b['members_expected']} membres complets · {availability_label(b)} · Tmin P50 {num(b['min_median_c'], 1, '°C')}"
+                         f" · P10–P90 {num(b['min_p10_c'])}–{num(b['min_p90_c'])} °C</small></p>")
+            details.append(esc(SHORT[key] + ' : ' + provider_age(report, 'ensemble', key)))
+        for key, b in night["deterministic"].items():
+            details.append(f"{SHORT[key]} : {num(b['temperature_min_c'], 1, '°C')} · {availability_label(b)} · {esc(provider_age(report, 'deterministic', key))}")
+        thresholds = night['reading_thresholds']
+        details.append(f"Lecture : faible &lt; {thresholds['low_below']:.0%}, élevée ≥ {thresholds['high_at_least']:.0%}, incertaine entre les deux. "
+                       f"Insuffisant si moins de {thresholds['min_member_fraction']:.0%} des membres sont complets. Seuils de présentation, sans validation agronomique.")
+        details.append(f"{night['hours']} h ; {night['hours']+1} échantillons instantanés attendus, bornes incluses. UTC : {esc(night['start_utc'])} → {esc(night['end_utc'])}")
+        cards.append(f"<article class='card'><h3>{day_label(night)}</h3><small>{esc(night['start_local'])} → {esc(night['end_local'])} (Paris)</small>"
+                     + ''.join(lines) + "<details><summary>Modèles et méthode</summary>" + '<br>'.join(details) + '</details></article>')
+    return ("<h2>Surveillance du gel — prochaines nuits</h2><p class='note'><b>Température de l’air à 2 m, ni sol ni bourgeons.</b> "
+            "Le gel des plantes peut différer, surtout par nuit calme et dégagée. Chaque probabilité compte les membres dont le minimum nocturne est &lt;0 °C ; "
+            "les membres incomplets sont exclus. La probabilité de gel est distincte de la confiance météo. AIFS : pas natif 6 h, maille ≈28 km ; "
+            "les variations locales et minima brefs peuvent être mal représentés.</p><div class='cards'>" + ''.join(cards) + '</div>')

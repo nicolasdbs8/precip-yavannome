@@ -11,7 +11,7 @@ from forecast_fixtures import REAL_NOW, SPECS, FakeHttp, make_result, payload, r
 from soil_hydrology.cache import Cache
 from weather_forecast import open_meteo as om
 from weather_forecast.export import ForecastUnavailable, build_report
-from weather_forecast.specs import ALL_MODELS, ENSEMBLES
+from weather_forecast.specs import CONVENTIONAL_MODELS as ALL_MODELS, ENSEMBLES
 
 UTC = timezone.utc
 EXPECTED_IDS = {"arome_hd": "meteofrance_arome_france_hd", "arome": "meteofrance_arome_france",
@@ -132,6 +132,7 @@ class Resilience(unittest.TestCase):
             )
 
         self.assertEqual(results["arpege"].status, "ERROR")
+        self.assertIsNone(results["arpege"].fetched_at)
         self.assertIn("500", results["arpege"].reason)
 
         self.assertTrue(
@@ -157,6 +158,7 @@ class Resilience(unittest.TestCase):
                 raise requests.ConnectionError("DNS")
         result = om.fetch(SPECS["arome"], Broken(), self.cache)
         self.assertEqual(result.status, "ERROR")
+        self.assertIsNone(result.fetched_at)
         self.assertIn("réseau", result.reason)
 
     def test_retry_is_bounded(self):

@@ -247,6 +247,7 @@ def fetch(spec: ModelSpec, http, cache=None, offline=False, refresh=False) -> Mo
         status, reason = assess(spec, series, fetched_at)
     except OpenMeteoError as exc:
         log.warning("%s (%s) : %s", spec.key, spec.model_id, exc)
+        # Une tentative échouée n'est pas une collecte de données utilisables.
         return ModelResult(spec, "ERROR", str(exc), request=request)
     if from_cache:
         reason += f" ; réponse du cache local ({entry['fetched_at']})"

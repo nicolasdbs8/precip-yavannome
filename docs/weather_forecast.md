@@ -1,5 +1,173 @@
 # Prévision météo ZP1 — multi-modèles
 
+## Extension AIFS et nuits — 12 novembre 2026
+
+### Produits vérifiés
+
+Documentation officielle et appels réels vérifiés le **12 novembre 2026**, au
+centroïde cadastral ZP1, sans compte ni clé supplémentaire :
+
+| Clé JSON | Identifiant Open-Meteo explicite | Endpoint | Produit |
+|---|---|---|---|
+| `aifs_single` | `ecmwf_aifs025_single` | `https://api.open-meteo.com/v1/forecast` | déterministe, 0,25° (~28 km), 15 jours nominaux |
+| `aifs_ens` | `ecmwf_aifs025_ensemble` | `https://ensemble-api.open-meteo.com/v1/ensemble` | 51 membres, 0,25° (~28 km), 15 jours nominaux |
+
+Sources : [documentation ECMWF](https://open-meteo.com/en/docs/ecmwf-api),
+[documentation ensembles](https://open-meteo.com/en/docs/ensemble-api),
+[identifiants dans le code officiel](https://github.com/open-meteo/open-meteo-website/blob/main/src/routes/en/docs/ensemble-api/options.ts).
+L’API propose aussi `ecmwf_aifs_europe_ensemble` sur grille N320 (~31 km) ; ce
+produit distinct n’est pas demandé ici. Aucun produit seamless ni best_match.
+
+Les variables **vérifiées et demandées pour cette intégration** sont
+`precipitation` (mm, cumul sur l’heure précédente) et `temperature_2m` (°C,
+instantanée). Les autres métriques déterministes/rafales AIFS restent `null` :
+leur disponibilité n’est pas supposée. La résolution native AIFS est **6 h** ;
+Open-Meteo sert une série **interpolée à 1 h**, ce qui ne permet pas de résoudre
+un minimum bref de température ou la répartition réelle d’une averse dans ces
+six heures. `native_step_hours`, `returned_step_hours`, `temporal_note` et
+`experimental` sont publiés dans les métadonnées du modèle.
+
+Les cumuls horaires servis sont additionnés **une seule fois**, sans multiplier
+par six. Une comparaison réelle avec `temporal_resolution=hourly_6` a vérifié
+11 blocs Single et 561 blocs ENS : écart maximal **0,3 mm par bloc de 6 h**.
+L’API arrondit les précipitations à 0,1 mm ; la somme de six valeurs arrondies
+peut différer du cumul arrondi. Les tests hors réseau conservent les réponses
+des deux résolutions, avec tolérance de 0,35 mm (six arrondis horaires et un
+arrondi six-horaire). Ce contrôle ne prétend pas valider les cumuls GRIB natifs
+du producteur. L’agrégation locale conserve exactement la somme des valeurs
+horaires reçues, avant l’arrondi final à 0,1 mm.
+
+Les appels `meta.json` AIFS ont aussi répondu : `model_run` n’est publié que
+si les lectures avant/après sont identiques et plausibles selon les contrôles
+existants. Il reste `null` si l’heure de production n’est pas vérifiable.
+Chaque modèle conserve son statut de collecte, sa date et sa propre
+`freshness` (`FRESH` jusqu’à 12 h, puis `STALE`), recalculée lors du rendu.
+`ERROR` est un échec de collecte : `fetched_at` et `freshness` restent `null`
+lorsqu’aucune donnée utilisable n’a été récupérée. L’heure d’une tentative ne
+constitue jamais une date de collecte réussie. Le rendu indique « aucune donnée
+collectée » et ne réutilise pas la fraîcheur globale pour ce modèle ; les anciens
+JSON contenant une fraîcheur incohérente sur un modèle `ERROR` sont aussi traités
+ainsi à la lecture.
+
+### Précipitations et consensus
+
+`daily` et `half_days` accueillent les deux nouveaux modèles dans leurs
+sections déterministe et ensemble existantes. Les quantiles type 7, probabilités
+`≥ 2/5/10 mm` et nombres de membres réutilisent les calculs existants : somme
+complète par membre, puis quantiles et proportions parmi les membres valides.
+Un membre incomplet est exclu ; zéro membre valide donne `null`, jamais 0 mm.
+Les seuils de précipitation restent inclusifs comme dans le module existant.
+
+La section IA affiche les cumuls de chaque modèle, les quantiles, probabilités,
+membres valides et l’écart signé AIFS Single − IFS. La dispersion P10–P90 et
+les statuts restent visibles, sans produire une moyenne entre modèles.
+
+**AIFS ne vote pas** : il est filtré avant l’appel au calcul de consensus,
+y compris dans la liste des modèles en panne. Poids, plafonds et règles de
+`confidence.py` sont inchangés ; les tests comparent tous les champs du
+consensus avant/après ajout d’AIFS contradictoires ou en erreur. IFS et AIFS
+appartiennent à l’ECMWF et ne sont pas supposés statistiquement indépendants.
+La fraîcheur globale et la condition de réussite de collecte reposent sur les
+modèles conventionnels ; une collecte AIFS ancienne ne périme pas leurs
+prévisions, et AIFS seul ne remplace pas les modèles conventionnels en panne.
+
+### Huit nuits et probabilité de gel
+
+`nights[8]` correspond à D=J0…J+7, **D 18 h → D+1 6 h Europe/Paris**.
+La dernière nuit finit donc le matin suivant J+7, sans ajouter de journée J+8.
+Les requêtes existantes à neuf jours couvrent cette fin de nuit. `DAYS=8` reste
+la seule convention de couverture ; le nominal AIFS de 360 h permettra une
+extension ultérieure, qui nécessitera aussi une révision du contrat de schéma.
+
+Chaque nuit publie `start_utc`, `end_utc`, `start_local`, `end_local`, sa durée
+et son état. Les températures sont instantanées : les échantillons aux deux
+bornes sont inclus. Une nuit ordinaire compte 12 intervalles/13 échantillons ;
+la nuit du 28 au 29 mars 2026 compte 11 h/12 échantillons, celle du 24 au
+25 octobre 13 h/14 échantillons. Les bornes locales sont converties séparément
+en UTC ; aucune hypothèse de douze pas fixes.
+
+Pour chaque déterministe : minimum à 2 m et `below_0c`. Pour chaque ensemble
+séparément : minimum de **chaque membre sur toute la nuit**, P10/P50/P90 des
+minima, nombre de membres complets et fraction dont le minimum est strictement
+inférieur à 0 °C. Ce n’est jamais la moyenne des probabilités horaires.
+Un échantillon manquant exclut le membre entier. `PARTIAL_MEMBERS` signale un
+ensemble incomplet, `INCOMPLETE` l’absence de membre complet, avec probabilité
+`null`. La probabilité partielle reste conditionnelle aux membres complets,
+avec son dénominateur visible, jamais présentée comme un ensemble complet.
+
+Seuils de **lecture**, configurables dans `weather_forecast/nights.py` et
+publiés dans `reading_thresholds` :
+
+- faible : P(gel) < 20 % ;
+- incertaine : 20 % ≤ P(gel) < 70 % ;
+- élevée : P(gel) ≥ 70 % ;
+- données insuffisantes : moins de 80 % des membres attendus complets.
+
+Ces seuils n’ont **aucune validation agronomique** et ne constituent pas la
+confiance météorologique HIGH/MEDIUM/LOW. Les prévisions concernent **l’air à
+2 m, ni le sol ni les bourgeons**. Le gel des plantes peut différer par nuit
+calme et dégagée. Aucune décision automatique de protection n’est produite.
+Les cartes signalent les divergences déterministes et détaillent les minima
+par modèle, les membres, les bornes et les disponibilités dans des panneaux
+dépliables. Les modèles anciens sont explicitement marqués comme tels.
+
+### Compatibilité, automatisation et contrôle
+
+Le schéma garde `schema_version: 1` avec des ajouts optionnels : `nights`,
+nouvelles clés de modèles et nouvelles métadonnées. Les anciens JSON restent
+valides ; leur page indique qu’une collecte est nécessaire pour obtenir les
+nuits. Les lecteurs du dépôt ont été adaptés. Un lecteur externe qui énumère
+strictement les anciens modèles doit accepter les clés supplémentaires et
+consulter `experimental` ; un ancien validateur doit charger le nouveau schéma.
+Les champs et conventions des journées/demi-journées existantes restent présents.
+
+Le workflow `forecast_daily.yml` est réutilisé **sans changement de cadence,
+de secrets ni d’infrastructure** : il collecte automatiquement les dix modèles,
+valide et exporte le JSON, puis génère la page en artifact. Une panne AIFS
+renvoie un résultat `ERROR` isolé, sans faire échouer la collecte conventionnelle.
+Les modules pluie, hydrologie et tâches externes ne sont pas modifiés.
+
+La validation `.github/workflows/forecast_pr.yml` s’exécute sur les Pull Requests
+vers `main`, avec Python 3.12 et les seules dépendances météo. Elle lance les
+tests `test_forecast*.py` hors réseau, valide le JSON et génère le HTML dans le
+répertoire temporaire du runner. Tout échec bloque le contrôle. Les permissions
+sont limitées à la lecture du dépôt, les identifiants Git ne sont pas conservés,
+et une vérification finale impose que les fichiers suivis restent inchangés.
+Cette CI ne collecte aucune prévision, n’écrit pas dans les données
+opérationnelles, ne committe rien et ne pousse rien. Elle ne change pas la
+cadence des workflows de production.
+
+```powershell
+python -m unittest discover -s tests
+python forecast_update.py --refresh
+python forecast_update.py --validate
+python forecast_update.py --render-only
+# Intégration réelle facultative, distincte des tests hors réseau :
+$env:RAIN_NETWORK_TESTS='1'
+python -m unittest discover -s tests -p 'test_forecast_network_smoke.py' -v
+Remove-Item Env:RAIN_NETWORK_TESTS
+```
+
+Dans les logs et l’artifact du workflow, vérifier `aifs_single` / `aifs_ens`,
+`fetched_at`, `freshness`, `model_run_note`, le nombre de membres et les huit
+nuits. Un statut partiel doit se lire avec sa raison : lors de la validation
+du 12 novembre, IFS ENS ne couvrait que jusqu’au 18 novembre à 06 h UTC ;
+les périodes suivantes sont restées manquantes. La réussite du workflow
+n’implique donc pas que tous les modèles couvrent toutes les échéances.
+
+Exemple de **prévisions réellement collectées le 12 novembre 2026 à 16:24 UTC** :
+pour le 15 novembre, AIFS Single 9,3 mm, AIFS ENS P50 6,3 mm [P10 3,7 ; P90
+10,8], 51 membres valides, P(≥2/5/10 mm) 94,1 / 72,5 / 19,6 %. Pour la nuit
+du 13 au 14 novembre : P(gel) IFS ENS 90,2 %, ICON-EU-EPS 60,0 %, AIFS ENS
+58,8 % ; minimum AIFS Single −0,7 °C. Ces valeurs datées sont des prévisions,
+pas des observations ni une évaluation de performance.
+
+Après intégration de ces changements sur GitHub par le propriétaire, aucune
+action manuelle récurrente n’est nécessaire. Aucun push n’a été effectué lors
+de l’implémentation locale.
+
+---
+
 Module de prévision ponctuelle au point de la parcelle **ZP1** (terrain
 Yavannomë, Commenailles). Documentation vérifiée le 21 octobre 2026.
 

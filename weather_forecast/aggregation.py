@@ -224,3 +224,8 @@ def ensemble_period(result, period: Period) -> dict:
             "precipitation": precipitation_stats(member_values(members.get("precipitation", {}), idx, period.hours, "sum")),
             "temperature": temperature_stats(member_values(members.get("temperature_2m", {}), idx, period.hours, "min")),
             "wind": wind_stats(member_values(members.get("wind_gusts_10m", {}), idx, period.hours, "max"))}
+
+
+def night_period(day: date) -> Period:
+    """Nuit D 18 h → D+1 06 h, bornes converties séparément pour le DST."""
+    return Period("night", day, "NIGHT", local_to_utc(day, 18), local_to_utc(day + timedelta(days=1), 6))

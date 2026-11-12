@@ -39,6 +39,8 @@ class OpenMeteoSmoke(unittest.TestCase):
         ecmwf = self.results["ecmwf_ens"].series.members
         self.assertEqual(len(ecmwf["precipitation"]), 51)
         self.assertEqual(len(self.results["icon_eu_eps"].series.members["precipitation"]), 40)
+        self.assertEqual(len(self.results["aifs_ens"].series.members["precipitation"]), 51)
+        self.assertEqual(len(self.results["aifs_ens"].series.members["temperature_2m"]), 51)
         for result in self.results.values():
             series = result.series
             stacks = list(series.members.get("temperature_2m", {}).values()) or [series.values["temperature_2m"]]
@@ -52,6 +54,10 @@ class OpenMeteoSmoke(unittest.TestCase):
         report = build_report(self.results, datetime.now(timezone.utc))
         self.assertEqual(validate(report), [])
         self.assertTrue(report["daily"] and report["half_days"])
+        self.assertEqual(len(report["nights"]), 8)
+        for day in report["daily"]:
+            self.assertNotIn("aifs_single", day["consensus"]["deterministic_models"])
+            self.assertNotIn("aifs_ens", day["consensus"]["ensemble_prob_ge_2mm"])
 
 
 if __name__ == "__main__":
