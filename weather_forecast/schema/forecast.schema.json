@@ -41,13 +41,195 @@
     },
     "daily": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/day"}},
     "half_days": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/halfDay"}},
+    "nights": {"type": "array", "minItems": 8, "maxItems": 8, "items": {"$ref": "#/$defs/night"}},
     "limits": {"type": "array", "items": {"type": "string"}}
   },
   "$defs": {
+    "nightDet": {
+      "type": "object",
+      "properties": {
+        "availability": {
+          "enum": [
+            "AVAILABLE",
+            "PARTIAL_MEMBERS",
+            "INCOMPLETE",
+            "MODEL_UNAVAILABLE"
+          ]
+        },
+        "samples_expected": {
+          "type": "integer",
+          "minimum": 12,
+          "maximum": 14
+        },
+        "temperature_min_c": {
+          "$ref": "#/$defs/num"
+        },
+        "below_0c": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "availability",
+        "samples_expected",
+        "temperature_min_c",
+        "below_0c"
+      ],
+      "additionalProperties": false
+    },
+    "nightEns": {
+      "type": "object",
+      "properties": {
+        "availability": {
+          "enum": [
+            "AVAILABLE",
+            "PARTIAL_MEMBERS",
+            "INCOMPLETE",
+            "MODEL_UNAVAILABLE"
+          ]
+        },
+        "samples_expected": {
+          "type": "integer",
+          "minimum": 12,
+          "maximum": 14
+        },
+        "members_expected": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "members_valid": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "prob_temperature_below_0c": {
+          "$ref": "#/$defs/prob"
+        },
+        "min_p10_c": {
+          "$ref": "#/$defs/num"
+        },
+        "min_median_c": {
+          "$ref": "#/$defs/num"
+        },
+        "min_p90_c": {
+          "$ref": "#/$defs/num"
+        },
+        "reading": {
+          "enum": [
+            "LOW",
+            "UNCERTAIN",
+            "HIGH",
+            "INSUFFICIENT"
+          ]
+        }
+      },
+      "required": [
+        "availability",
+        "samples_expected",
+        "members_expected",
+        "members_valid",
+        "prob_temperature_below_0c",
+        "min_p10_c",
+        "min_median_c",
+        "min_p90_c",
+        "reading"
+      ],
+      "additionalProperties": false
+    },
+    "night": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "$ref": "#/$defs/date"
+        },
+        "start_utc": {
+          "$ref": "#/$defs/datetime"
+        },
+        "end_utc": {
+          "$ref": "#/$defs/datetime"
+        },
+        "start_local": {
+          "type": "string"
+        },
+        "end_local": {
+          "type": "string"
+        },
+        "hours": {
+          "type": "integer",
+          "minimum": 11,
+          "maximum": 13
+        },
+        "period_state": {
+          "enum": [
+            "PAST",
+            "ONGOING",
+            "FUTURE"
+          ]
+        },
+        "lead_day": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 7
+        },
+        "deterministic": {
+          "type": "object",
+          "propertyNames": {
+            "$ref": "#/$defs/detKey"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/nightDet"
+          }
+        },
+        "ensemble": {
+          "type": "object",
+          "propertyNames": {
+            "$ref": "#/$defs/ensKey"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/nightEns"
+          }
+        },
+        "reading_thresholds": {
+          "type": "object",
+          "properties": {
+            "low_below": {
+              "$ref": "#/$defs/prob"
+            },
+            "high_at_least": {
+              "$ref": "#/$defs/prob"
+            },
+            "min_member_fraction": {
+              "$ref": "#/$defs/prob"
+            }
+          },
+          "required": [
+            "low_below",
+            "high_at_least",
+            "min_member_fraction"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "date",
+        "start_utc",
+        "end_utc",
+        "start_local",
+        "end_local",
+        "hours",
+        "period_state",
+        "lead_day",
+        "deterministic",
+        "ensemble",
+        "reading_thresholds"
+      ],
+      "additionalProperties": false
+    },
     "datetime": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\+00:00|Z)$"},
     "date": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
-    "detKey": {"enum": ["arome_hd", "arome", "arpege", "ecmwf", "icon", "icon_global"]},
-    "ensKey": {"enum": ["ecmwf_ens", "icon_eu_eps"]},
+    "detKey": {"enum": ["arome_hd", "arome", "arpege", "ecmwf", "icon", "icon_global", "aifs_single"]},
+    "ensKey": {"enum": ["ecmwf_ens", "icon_eu_eps", "aifs_ens"]},
     "num": {"type": ["number", "null"]},
     "nonneg": {"type": ["number", "null"], "minimum": 0},
     "prob": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
@@ -59,6 +241,11 @@
                    "last_forecast_time", "series_start", "model_run", "model_run_note", "grid_point",
                    "variables_requested", "variables_missing"],
       "properties": {
+        "experimental": {"type": "boolean"},
+        "native_step_hours": {"type": ["integer", "null"]},
+        "returned_step_hours": {"const": 1},
+        "temporal_note": {"type": "string"},
+        "freshness": {"type": ["object", "null"], "properties": {"status": {"enum": ["FRESH", "STALE"]}, "age_hours": {"type": "number"}, "max_age_hours": {"const": 12}, "fresh_until": {"$ref": "#/$defs/datetime"}}},
         "provider": {"type": "string"}, "model_name": {"type": "string"},
         "model_id": {"type": "string", "not": {"pattern": "best_match|seamless"}},
         "kind": {"enum": ["deterministic", "ensemble"]}, "endpoint": {"type": ["string", "null"]},

@@ -45,8 +45,13 @@ class ModelSpec:
     members_expected: int | None = None
     relay_for: str | None = None   # ne vote que si ce modèle (même système, domaine réduit) est hors horizon
 
+    experimental: bool = False
+    native_step_hours: int | None = None
+
     @property
     def variables(self) -> tuple[str, ...]:
+        if self.experimental:
+            return ("precipitation", "temperature_2m")
         if self.kind == "ensemble":
             return ENSEMBLE_VARIABLES
         return DETERMINISTIC_VARIABLES + SECONDARY_VARIABLES
@@ -81,6 +86,18 @@ ENSEMBLES = (
     ModelSpec("icon_eu_eps", "ensemble", "dwd_icon_eu_eps_native", "dwd_icon_eu_eps_native", "DWD",
               "ICON-EU-EPS (grille native)", "Europe", 6.5, 120, "second ensemble indépendant J0–J5", members_expected=40),
 )
+CONVENTIONAL_MODELS = DETERMINISTIC + ENSEMBLES
+# Identifiants / endpoints et variables precipitation, temperature_2m vérifiés
+# par documentation officielle et appels réels au point ZP1 le 12/11/2026.
+AIFS_SINGLE = ModelSpec("aifs_single", "deterministic", "ecmwf_aifs025_single", "ecmwf_aifs025_single", "ECMWF",
+                        "AIFS Single 0.25°", "Global", 28.0, 360,
+                        "IA expérimentale comparative, exclue du consensus", experimental=True, native_step_hours=6)
+AIFS_ENS = ModelSpec("aifs_ens", "ensemble", "ecmwf_aifs025_ensemble", "ecmwf_aifs025_ensemble", "ECMWF",
+                     "AIFS ENS 0.25°", "Global", 28.0, 360,
+                     "IA expérimentale comparative, exclue du consensus", members_expected=51,
+                     experimental=True, native_step_hours=6)
+DETERMINISTIC = DETERMINISTIC + (AIFS_SINGLE,)
+ENSEMBLES = ENSEMBLES + (AIFS_ENS,)
 ALL_MODELS = DETERMINISTIC + ENSEMBLES
 RELAYS = {s.key: s.relay_for for s in DETERMINISTIC if s.relay_for}
 
@@ -94,7 +111,7 @@ ATTRIBUTION = {
     "producers": [
         {"name": "Météo-France", "models": ["AROME France HD", "AROME France", "ARPEGE Europe"],
          "licence": "Licence Ouverte / Open Licence Etalab 2.0"},
-        {"name": "ECMWF", "models": ["IFS HRES 9 km", "IFS ENS 9 km Europe"],
+        {"name": "ECMWF", "models": ["IFS HRES 9 km", "IFS ENS 9 km Europe", "AIFS Single", "AIFS ENS"],
          "licence": "ECMWF open data, CC BY 4.0"},
         {"name": "Deutscher Wetterdienst (DWD)", "models": ["ICON-EU", "ICON Global", "ICON-EU-EPS"],
          "licence": "DWD open data, attribution « Quelle : Deutscher Wetterdienst »"},

@@ -52,6 +52,17 @@ moyenne entre modèles :
   rafales ≥ 40 / 60 km/h), jamais mélangés ;
 - consensus et confiance `HIGH` / `MEDIUM` / `LOW` par règles explicites, raisons publiées.
 
+Deux espaces complètent maintenant le tableau de bord : **Prévisions IA — ECMWF
+AIFS** (Single et ENS, 51 membres) et **Surveillance du gel — prochaines nuits**
+(huit nuits, 18 h → 6 h Europe/Paris, changements d’heure respectés). AIFS reste
+expérimental et exclu du consensus, de ses poids et des pénalités de confiance.
+Sa maille est d’environ 28 km et son pas natif de six heures : les valeurs horaires
+sont interpolées par Open-Meteo. Les probabilités de gel comptent les minima des
+membres complets de chaque ensemble séparément ; elles concernent l’air à 2 m,
+ni le sol ni les bourgeons. Aucune recommandation de protection n’est produite.
+Les détails, seuils de lecture et limites sont dans
+[la documentation météo](docs/weather_forecast.md#extension-aifs-et-nuits--12-novembre-2026).
+
 ```bash
 pip install -r requirements-forecast.txt
 python forecast_update.py                  # → forecast_zp1.json + forecast_zp1.html

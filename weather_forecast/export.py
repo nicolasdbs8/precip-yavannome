@@ -14,6 +14,7 @@ from pathlib import Path
 
 from . import aggregation as agg
 from . import confidence
+from .nights import night_block
 from .open_meteo import CACHE_TTL_S, PAST_DAYS, hours_ahead, last_valid_time
 from .specs import ATTRIBUTION, DETERMINISTIC, ENSEMBLES, POINT
 
@@ -25,7 +26,7 @@ DAYS = 8   # J0 (aujourd'hui, heure de Paris) à J+7
 FORBIDDEN_KEY_PARTS = ("average", "auger", "tariere", "workab", "travaillab", "go_no_go", "decision")
 LIMITS = [
     "Prévisions de modèles numériques interpolées au point ZP1 par Open-Meteo : la maille la plus proche "
-    "(1,5 à 11 km) ne résout ni le relief local, ni la haie, ni les averses isolées.",
+    "(1,5 à 28 km) ne résout ni le relief local, ni la haie, ni les averses isolées.",
     "Ce ne sont pas des observations : la pluie réellement tombée est mesurée par Rain "
     "(ANTILOPE / COMÉPHORE) et l'état du sol par le module Sol / Hydrologie.",
     "Les heures passées (cumuls 24–72 h précédents, J0 écoulé) proviennent des runs Open-Meteo antérieurs, "
@@ -63,6 +64,10 @@ def provider_block(result, last_complete_day) -> dict:
         "provider": spec.provider, "model_name": spec.model_name, "model_id": spec.model_id, "kind": spec.kind,
         "endpoint": result.request.get("endpoint"), "region": spec.region, "nominal_resolution_km": spec.nominal_resolution_km,
         "role": spec.role,
+        "experimental": spec.experimental,
+        "native_step_hours": spec.native_step_hours,
+        "returned_step_hours": 1,
+        "temporal_note": "pas natif 6 h ; série horaire interpolée par Open-Meteo" if spec.experimental else "voir conventions horaires",
         "forecast_horizon": {"nominal_hours": spec.nominal_horizon_hours, "observed_hours_after_fetch": hours_ahead(result),
                              "last_complete_local_day": last_complete_day},
         "fetched_at": _iso(result.fetched_at), "from_cache": result.from_cache, "status": result.status,
@@ -104,8 +109,10 @@ def period_block(period, lead_day, det, ens, now) -> dict:
                 k: agg.preceding_precipitation(r, period.start, hours) for k, r in det.items()}
     else:
         out["hours_since_last_forecast_rain_ge_0_2mm"] = {k: agg.hours_since_rain(r, period.start) for k, r in det.items()}
-    out["consensus"] = confidence.assess(deterministic, ensemble, lead_day,
-                                         failed_for({**det, **ens}, period, now))
+    out["consensus"] = confidence.assess(
+        {k: b for k, b in deterministic.items() if not det[k].spec.experimental},
+        {k: b for k, b in ensemble.items() if not ens[k].spec.experimental}, lead_day,
+        failed_for({k: r for k, r in {**det, **ens}.items() if not r.spec.experimental}, period, now))
     return out
 
 
@@ -117,7 +124,7 @@ def freshness(fetched_at: datetime, now: datetime) -> dict:
 
 def build_report(results: dict, now: datetime, generator: str = "forecast_update.py") -> dict:
     """`results` : {clé modèle: ModelResult} pour DETERMINISTIC + ENSEMBLES."""
-    usable = [r for r in results.values() if r.usable]
+    usable = [r for r in results.values() if r.usable and not r.spec.experimental]
     if not usable:
         raise ForecastUnavailable("aucun modèle Open-Meteo exploitable : " + " ; ".join(
             f"{k} {r.status} ({r.reason})" for k, r in results.items()))
@@ -135,6 +142,7 @@ def build_report(results: dict, now: datetime, generator: str = "forecast_update
         for key, result in models.items():
             complete = [d["date"] for d in daily if d[group][key]["availability"] == "AVAILABLE"]
             providers[group][key] = provider_block(result, complete[-1] if complete else None)
+            providers[group][key]["freshness"] = freshness(result.fetched_at, now) if result.fetched_at else None
     fetched = min(r.fetched_at for r in usable)
     not_fresh = sorted(k for k, r in results.items() if r.status != "FRESH")
     return {
@@ -143,7 +151,10 @@ def build_report(results: dict, now: datetime, generator: str = "forecast_update
         "last_attempt": {"at": _iso(now), "outcome": "PARTIAL" if not_fresh else "OK",
                          "reason": ("modèles non FRESH : " + ", ".join(not_fresh)) if not_fresh else "tous les modèles FRESH"},
         "point": POINT, "attribution": ATTRIBUTION, "conventions": conventions(),
-        "providers": providers, "daily": daily, "half_days": half_days, "limits": LIMITS,
+        "providers": providers, "daily": daily, "half_days": half_days,
+        "nights": [night_block(agg.night_period(today + timedelta(days=lead)), lead, det, ens, now) for lead in range(DAYS)],
+        "limits": LIMITS + ["AIFS : pas natif 6 h, séries horaires interpolées ; expérimental, hors consensus. AIFS et IFS ne sont pas indépendants.",
+                            "Températures de l’air à 2 m : ni sol ni bourgeons. Le gel des plantes peut différer, notamment par nuit calme et dégagée."],
     }
 
 
@@ -155,6 +166,10 @@ def conventions() -> dict:
         "half_days": {slot: f"{h0:02d}:00–{h1:02d}:00 Europe/Paris" for slot, (h0, h1) in agg.HALF_DAYS.items()},
         "hourly_semantics": "cumuls (precipitation, rain, snowfall, ET0) et rafales : heure précédant T ; autres : instant T",
         "completeness": "valeur publiée seulement si tous les pas de la période sont valides ; sinon null",
+        "nights": "D 18:00 à D+1 06:00 Europe/Paris ; températures instantanées aux deux bornes incluses ; "
+                  "11/12/13 heures, 12/13/14 échantillons selon le changement d’heure ; minimum par membre complet",
+        "aifs": "pas natif 6 h, série servie à 1 h interpolée par Open-Meteo ; cumuls horaires additionnés une seule fois ; "
+                "expérimental, exclu du consensus, des poids, plafonds et pénalités de confiance ; IFS et AIFS non indépendants",
         "units": {"precipitation": "mm", "snowfall": "cm de neige fraîche (convention Open-Meteo : 7 cm ≈ 10 mm "
                                                  "d'équivalent en eau, soit mm = cm / 0,7)",
                   "temperature": "°C", "wind": "km/h", "relative_humidity": "%"},
@@ -178,9 +193,13 @@ def refresh_freshness(report: dict, now: datetime) -> dict:
     """Recalcule âge, statut et état des périodes d'un JSON existant (lecture tardive, report)."""
     out = copy.deepcopy(report)
     out.update(freshness(datetime.fromisoformat(report["data_fetched_at"]), now))
-    for period in out["daily"] + out["half_days"]:
+    for period in out["daily"] + out["half_days"] + out.get("nights", []):
         start, end = datetime.fromisoformat(period["start_utc"]), datetime.fromisoformat(period["end_utc"])
         period["period_state"] = "PAST" if end <= now else "ONGOING" if start < now else "FUTURE"
+    for group in out["providers"].values():
+        for b in group.values():
+            if "freshness" in b:
+                b["freshness"] = freshness(datetime.fromisoformat(b["fetched_at"]), now) if b["fetched_at"] else None
     return out
 
 
@@ -231,6 +250,9 @@ def validate(report: dict) -> list[str]:
                 errors.append(f"providers/{group}/{key}: {block['status']} sans fetched_at / last_forecast_time")
     for period in report["daily"] + report["half_days"]:
         where = f"{period['date']} {period.get('slot', 'DAY')}"
+        c = period["consensus"]
+        if "aifs_single" in c["deterministic_models"] or "aifs_ens" in c["ensemble_prob_ge_2mm"]:
+            errors.append(f"{where}: AIFS interdit dans le consensus")
         for key, block in period["deterministic"].items():
             if block["availability"] != "AVAILABLE" and block["precipitation_mm"] is not None:
                 errors.append(f"{where} {key}: cumul publié alors que {block['availability']}")
@@ -240,4 +262,17 @@ def validate(report: dict) -> list[str]:
                     errors.append(f"{where} {key}/{part}: {block[part]['members_valid']} membres > {block['members_expected']}")
         if period["consensus"]["confidence"] == "HIGH" and period["consensus"]["ensemble_systems_available"] < 2:
             errors.append(f"{where}: HIGH avec moins de deux systèmes d'ensemble")
+    for night in report.get("nights", []):
+        start, end = datetime.fromisoformat(night["start_utc"]), datetime.fromisoformat(night["end_utc"])
+        local_start, local_end = datetime.fromisoformat(night["start_local"]), datetime.fromisoformat(night["end_local"])
+        if ((end - start) / timedelta(hours=1) != night["hours"] or start != local_start or end != local_end
+                or local_start != agg.local_to_utc(datetime.fromisoformat(night["date"]).date(), 18)
+                or local_end != agg.local_to_utc(datetime.fromisoformat(night["date"]).date() + timedelta(days=1), 6)):
+            errors.append(f"{night['date']}: bornes nocturnes incohérentes")
+        for key, block in night["ensemble"].items():
+            n = block["members_valid"]
+            if n > block["members_expected"] or (n == 0 and block["prob_temperature_below_0c"] is not None):
+                errors.append(f"{night['date']} {key}: membres nocturnes / probabilité incohérents")
+            if block["availability"] == "AVAILABLE" and n != block["members_expected"]:
+                errors.append(f"{night['date']} {key}: ensemble incomplet présenté comme complet")
     return errors

@@ -10,7 +10,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from weather_forecast.open_meteo import ModelResult, assess, endpoint, parse, request_params
-from weather_forecast.specs import ALL_MODELS
+from weather_forecast.specs import CONVENTIONAL_MODELS as ALL_MODELS
 
 for _name in ("weather_forecast", "forecast"):  # pannes simulées : journal silencieux pendant les tests
     logging.getLogger(_name).setLevel(logging.CRITICAL)
