@@ -132,6 +132,7 @@ class Resilience(unittest.TestCase):
             )
 
         self.assertEqual(results["arpege"].status, "ERROR")
+        self.assertIsNone(results["arpege"].fetched_at)
         self.assertIn("500", results["arpege"].reason)
 
         self.assertTrue(
@@ -157,6 +158,7 @@ class Resilience(unittest.TestCase):
                 raise requests.ConnectionError("DNS")
         result = om.fetch(SPECS["arome"], Broken(), self.cache)
         self.assertEqual(result.status, "ERROR")
+        self.assertIsNone(result.fetched_at)
         self.assertIn("réseau", result.reason)
 
     def test_retry_is_bounded(self):

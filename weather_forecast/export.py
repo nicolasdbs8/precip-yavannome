@@ -142,7 +142,8 @@ def build_report(results: dict, now: datetime, generator: str = "forecast_update
         for key, result in models.items():
             complete = [d["date"] for d in daily if d[group][key]["availability"] == "AVAILABLE"]
             providers[group][key] = provider_block(result, complete[-1] if complete else None)
-            providers[group][key]["freshness"] = freshness(result.fetched_at, now) if result.fetched_at else None
+            providers[group][key]["freshness"] = (
+                freshness(result.fetched_at, now) if result.status != "ERROR" and result.fetched_at else None)
     fetched = min(r.fetched_at for r in usable)
     not_fresh = sorted(k for k, r in results.items() if r.status != "FRESH")
     return {
@@ -199,7 +200,8 @@ def refresh_freshness(report: dict, now: datetime) -> dict:
     for group in out["providers"].values():
         for b in group.values():
             if "freshness" in b:
-                b["freshness"] = freshness(datetime.fromisoformat(b["fetched_at"]), now) if b["fetched_at"] else None
+                b["freshness"] = (freshness(datetime.fromisoformat(b["fetched_at"]), now)
+                                  if b["status"] != "ERROR" and b["fetched_at"] else None)
     return out
 
 

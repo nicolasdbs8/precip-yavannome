@@ -11,8 +11,8 @@ from forecast_fixtures import FakeHttp, make_result, payload, real_entry, real_r
 from weather_forecast import aggregation as agg
 from weather_forecast.export import build_report, refresh_freshness, validate
 from weather_forecast.nights import night_temperature
-from weather_forecast.open_meteo import fetch_all, parse
-from weather_forecast.presentation import render
+from weather_forecast.open_meteo import fetch, fetch_all, parse
+from weather_forecast.presentation import provider_age, render
 from weather_forecast.specs import AIFS_SINGLE, AIFS_ENS
 
 UTC = timezone.utc
@@ -100,6 +100,48 @@ class AifsTests(unittest.TestCase):
         self.assertEqual(out['status'], 'FRESH')
         self.assertEqual(out['providers']['ensemble']['aifs_ens']['freshness']['status'], 'STALE')
         self.assertEqual(refresh_freshness(out, REAL_NOW + timedelta(hours=13))['status'], 'STALE')
+
+    def test_failed_collection_has_no_fetch_time_or_freshness(self):
+        failures = fetch_all((AIFS_SINGLE, AIFS_ENS), FakeHttp({}))
+        # A missing offline cache and a malformed response are also failed collections.
+        malformed = payload(AIFS_SINGLE, REAL_NOW, 2)
+        malformed['hourly']['precipitation'].pop()
+        for result in (*failures.values(), fetch(AIFS_SINGLE, None, offline=True),
+                       fetch(AIFS_SINGLE, FakeHttp({AIFS_SINGLE.model_id: malformed}))):
+            self.assertEqual(result.status, 'ERROR')
+            self.assertIsNone(result.fetched_at)
+            self.assertIsNone(result.series)
+        out = build_report({**real_results(), **failures}, REAL_NOW)
+        self.assertEqual(validate(out), [])
+        self.assertEqual(out['status'], 'FRESH')
+        for report in (out, refresh_freshness(out, REAL_NOW + timedelta(hours=1))):
+            for group, key in (('deterministic', 'aifs_single'), ('ensemble', 'aifs_ens')):
+                block = report['providers'][group][key]
+                self.assertIsNone(block['fetched_at'])
+                self.assertIsNone(block['freshness'])
+                label = provider_age(report, group, key)
+                self.assertIn('ERROR', label)
+                self.assertIn('aucune donnée collectée', label)
+                self.assertNotIn('FRESH', label)
+
+    def test_legacy_error_is_not_presented_as_fresh_data(self):
+        failed = fetch_all((AIFS_SINGLE, AIFS_ENS), FakeHttp({}))
+        out = build_report({**real_results(), **failed}, REAL_NOW)
+        for group, key in (('deterministic', 'aifs_single'), ('ensemble', 'aifs_ens')):
+            # Simulate the incoherent metadata produced before this correction.
+            block = out['providers'][group][key]
+            block['fetched_at'] = REAL_NOW.isoformat()
+            block['freshness'] = {'status': 'FRESH'}
+            self.assertNotIn('FRESH', provider_age(out, group, key))
+        refreshed = refresh_freshness(out, REAL_NOW + timedelta(hours=1))
+        for group, key in (('deterministic', 'aifs_single'), ('ensemble', 'aifs_ens')):
+            self.assertIsNone(refreshed['providers'][group][key]['freshness'])
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / 'forecast.html'
+            render(out, path, REAL_NOW)
+            html = path.read_text(encoding='utf8')
+            self.assertIn('ERROR · aucune donnée collectée', html)
+            self.assertNotIn('ERROR · FRESH', html)
 
     def test_night_minimum_and_member_probability(self):
         p = agg.night_period(date(2026, 10, 21))

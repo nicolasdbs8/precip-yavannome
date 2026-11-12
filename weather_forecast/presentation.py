@@ -213,6 +213,8 @@ def render(report: dict, path, now: datetime | None = None) -> None:
 
 def provider_age(report, group, key):
     p = report["providers"][group].get(key, {})
+    if p.get("status") == "ERROR" or not p.get("fetched_at"):
+        return f"{p.get('status', 'indisponible')} · aucune donnée collectée"
     f = p.get("freshness") or {}
     return f"{p.get('status', 'indisponible')} · {f.get('status', report['status'])} · collecte {p.get('fetched_at') or 'indisponible'}"
 

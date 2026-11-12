@@ -42,7 +42,12 @@ si les lectures avant/après sont identiques et plausibles selon les contrôles
 existants. Il reste `null` si l’heure de production n’est pas vérifiable.
 Chaque modèle conserve son statut de collecte, sa date et sa propre
 `freshness` (`FRESH` jusqu’à 12 h, puis `STALE`), recalculée lors du rendu.
-`ERROR` est un échec de collecte même si sa tentative est récente.
+`ERROR` est un échec de collecte : `fetched_at` et `freshness` restent `null`
+lorsqu’aucune donnée utilisable n’a été récupérée. L’heure d’une tentative ne
+constitue jamais une date de collecte réussie. Le rendu indique « aucune donnée
+collectée » et ne réutilise pas la fraîcheur globale pour ce modèle ; les anciens
+JSON contenant une fraîcheur incohérente sur un modèle `ERROR` sont aussi traités
+ainsi à la lecture.
 
 ### Précipitations et consensus
 
@@ -121,6 +126,16 @@ de secrets ni d’infrastructure** : il collecte automatiquement les dix modèle
 valide et exporte le JSON, puis génère la page en artifact. Une panne AIFS
 renvoie un résultat `ERROR` isolé, sans faire échouer la collecte conventionnelle.
 Les modules pluie, hydrologie et tâches externes ne sont pas modifiés.
+
+La validation `.github/workflows/forecast_pr.yml` s’exécute sur les Pull Requests
+vers `main`, avec Python 3.12 et les seules dépendances météo. Elle lance les
+tests `test_forecast*.py` hors réseau, valide le JSON et génère le HTML dans le
+répertoire temporaire du runner. Tout échec bloque le contrôle. Les permissions
+sont limitées à la lecture du dépôt, les identifiants Git ne sont pas conservés,
+et une vérification finale impose que les fichiers suivis restent inchangés.
+Cette CI ne collecte aucune prévision, n’écrit pas dans les données
+opérationnelles, ne committe rien et ne pousse rien. Elle ne change pas la
+cadence des workflows de production.
 
 ```powershell
 python -m unittest discover -s tests
